@@ -87,11 +87,11 @@ export const VideoSliderSection = () => {
                   {videos.map((video, index) => (
                     <div
                       key={index}
-                      className="flex-[0_0_280px] md:flex-[0_0_320px] min-w-0"
+                      className="flex-[0_0_320px] md:flex-[0_0_400px] lg:flex-[0_0_450px] min-w-0"
                     >
                       <div className="group relative rounded-2xl overflow-hidden bg-anthracite shadow-card hover:shadow-lg transition-all duration-300">
                         {/* Video Thumbnail */}
-                        <div className="relative aspect-[9/16]">
+                        <div className="relative aspect-[3/4]">
                           <img
                             src={video.image}
                             alt={`Getuigenis van ${video.name}`}
