@@ -16,8 +16,8 @@
     --popover: 0 0% 100%;
     --popover-foreground: 220 15% 15%;
 
-    /* Primary - Golden Yellow (Hope & Warmth) */
-    --primary: 45 95% 65%;
+    /* Primary - Golden Yellow (Hope & Warmth) - #fad150 */
+    --primary: 45 93% 65%;
     --primary-foreground: 220 15% 15%;
 
     /* Secondary - Soft Cream */
@@ -37,16 +37,16 @@
 
     --border: 220 10% 88%;
     --input: 220 10% 88%;
-    --ring: 45 95% 65%;
+    --ring: 45 93% 65%;
 
     --radius: 0.75rem;
 
-    /* Custom Colors for Jesus Today */
+    /* Custom Colors for Jesus Today - #fad150 = hsl(45, 93%, 65%) */
     --anthracite: 220 15% 12%;
     --anthracite-light: 220 12% 18%;
-    --gold: 45 95% 65%;
-    --gold-hover: 45 95% 55%;
-    --gold-glow: 45 95% 75%;
+    --gold: 45 93% 65%;
+    --gold-hover: 45 93% 55%;
+    --gold-glow: 45 93% 75%;
     --cream: 40 30% 97%;
     --warm-white: 40 20% 99%;
 
