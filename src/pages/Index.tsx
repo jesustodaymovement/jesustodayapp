@@ -1,3 +1,4 @@
+import { Header } from '@/components/sections/Header';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { ProblemSection } from '@/components/sections/ProblemSection';
 import { GuideSection } from '@/components/sections/GuideSection';
@@ -5,8 +6,8 @@ import { PlanSection } from '@/components/sections/PlanSection';
 import { CTASection } from '@/components/sections/CTASection';
 import { SuccessSection } from '@/components/sections/SuccessSection';
 import { FailureSection } from '@/components/sections/FailureSection';
-import { TransformationSection } from '@/components/sections/TransformationSection';
 import { ChurchSection } from '@/components/sections/ChurchSection';
+import { VideoSliderSection } from '@/components/sections/VideoSliderSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { Footer } from '@/components/sections/Footer';
 import { Helmet } from 'react-helmet-async';
@@ -27,6 +28,7 @@ const Index = () => {
         <meta property="og:type" content="website" />
       </Helmet>
 
+      <Header />
       <main className="overflow-hidden">
         <HeroSection />
         <ProblemSection />
@@ -35,8 +37,8 @@ const Index = () => {
         <CTASection />
         <SuccessSection />
         <FailureSection />
-        <TransformationSection />
         <ChurchSection />
+        <VideoSliderSection />
         <TestimonialsSection />
         <Footer />
       </main>

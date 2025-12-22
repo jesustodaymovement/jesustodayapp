@@ -39,7 +39,10 @@ export const Footer = () => {
               <h4 className="text-warm-white font-semibold mb-4">Links</h4>
               <ul className="space-y-3">
                 <li>
-                  <a href="#" className="text-warm-white/60 hover:text-gold transition-colors">Over ons</a>
+                  <a href="#" className="text-warm-white/60 hover:text-gold transition-colors">Verhalen</a>
+                </li>
+                <li>
+                  <a href="#" className="text-warm-white/60 hover:text-gold transition-colors">Over Ons</a>
                 </li>
                 <li>
                   <a href="#" className="text-warm-white/60 hover:text-gold transition-colors">Contact</a>
