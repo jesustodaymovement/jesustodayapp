@@ -8,6 +8,7 @@ import { SuccessSection } from '@/components/sections/SuccessSection';
 import { ChurchSection } from '@/components/sections/ChurchSection';
 import { VideoSliderSection } from '@/components/sections/VideoSliderSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
+import { InstagramReelsSection } from '@/components/sections/InstagramReelsSection';
 import { Footer } from '@/components/sections/Footer';
 import { Helmet } from 'react-helmet-async';
 
@@ -36,6 +37,7 @@ const Index = () => {
         <SuccessSection />
         <PlanSection />
         <TestimonialsSection />
+        <InstagramReelsSection />
         <ChurchSection />
         <CTASection />
         <Footer />
