@@ -3,9 +3,9 @@ import { MessageCircle, ShieldX, HelpCircle, Users } from 'lucide-react';
 
 const painPoints = [
   { icon: HelpCircle, text: 'Je wilt wel delen, maar weet niet hoe je moet beginnen' },
-  { icon: ShieldX, text: 'Je bent bang om afgewezen te worden' },
-  { icon: MessageCircle, text: 'Je twijfelt of jouw verhaal wel "bijzonder genoeg" is' },
-  { icon: Users, text: 'Je zoekt een manier die bij jou past, zonder ongemakkelijke gesprekken' },
+  { icon: ShieldX, text: 'Je bent bang dat het ongemakkelijk of "cringe" wordt' },
+  { icon: MessageCircle, text: 'Je vraagt je af of jouw verhaal wel bijzonder genoeg is' },
+  { icon: Users, text: 'Je wilt geen discussies of ongemakkelijke gesprekken' },
 ];
 
 export const ProblemSection = () => {

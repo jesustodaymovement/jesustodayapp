@@ -27,7 +27,7 @@ export const HeroSection = () => {
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-warm-white/80 max-w-2xl mx-auto leading-relaxed animate-fade-up delay-100">
-            Je wilt je getuigenis delen, maar het voelt spannend. Wij helpen je om jouw persoonlijke verhaal eenvoudig en veilig te delen, zodat God het kan gebruiken om anderen te raken en levens te veranderen.
+            Je wilt delen, maar het voelt spannend, misschien zelfs ongemakkelijk. Wij helpen je om jouw verhaal eenvoudig en veilig te delen, op een manier die bij jou past. God kan het gebruiken om anderen te raken.
           </p>
 
           {/* CTAs */}
