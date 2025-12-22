@@ -1,5 +1,6 @@
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { Quote } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const testimonials = [
   {
@@ -62,6 +63,15 @@ export const TestimonialsSection = () => {
               </ScrollReveal>
             ))}
           </div>
+
+          {/* CTA Button */}
+          <ScrollReveal delay={450}>
+            <div className="text-center mt-12">
+              <Button variant="hero" size="lg">
+                Bekijk de getuigenissen van anderen
+              </Button>
+            </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

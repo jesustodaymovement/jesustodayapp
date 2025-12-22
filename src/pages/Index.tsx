@@ -32,12 +32,12 @@ const Index = () => {
         <HeroSection />
         <ProblemSection />
         <GuideSection />
-        <PlanSection />
-        <CTASection />
-        <SuccessSection />
-        <ChurchSection />
         <VideoSliderSection />
+        <SuccessSection />
+        <PlanSection />
         <TestimonialsSection />
+        <ChurchSection />
+        <CTASection />
         <Footer />
       </main>
     </>
