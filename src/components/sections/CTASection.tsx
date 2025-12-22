@@ -37,7 +37,7 @@ export const CTASection = () => {
 
           <ScrollReveal delay={400}>
             <Button variant="hero" size="xl" className="mb-8">
-              Download de app
+              Upload jouw getuigenis
             </Button>
           </ScrollReveal>
 

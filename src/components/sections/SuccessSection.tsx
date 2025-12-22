@@ -2,9 +2,9 @@ import { ScrollReveal } from '@/components/ScrollReveal';
 import { Ear, Heart, TrendingUp, Eye, Users, Sparkles } from 'lucide-react';
 
 const successPoints = [
-  { icon: Ear, text: 'Mensen horen jouw verhaal' },
-  { icon: Heart, text: 'Mensen komen in aanraking met Jezus' },
-  { icon: TrendingUp, text: 'Jij groeit in vrijmoedigheid en vertrouwen' },
+  { icon: Ear, text: 'Je getuigenis bereikt mensen' },
+  { icon: Heart, text: 'Mensen komen tot geloof door jouw getuigenis' },
+  { icon: TrendingUp, text: 'Je groeit in vrijmoedigheid en in zekerheid over wie je bent in Jezus' },
   { icon: Sparkles, text: 'Je ontdekt dat God jou gebruikt' },
   { icon: Eye, text: 'Je wordt zichtbaar als christen' },
   { icon: Users, text: 'Je inspireert anderen om ook te delen' },

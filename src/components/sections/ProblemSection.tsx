@@ -42,7 +42,7 @@ export const ProblemSection = () => {
             <div className="text-center p-8 rounded-2xl bg-anthracite text-warm-white">
               <p className="text-lg md:text-xl font-medium leading-relaxed">
                 Je bent niet zwak. Je bent niet de enige.<br />
-                <span className="text-gold">Getuigen is spannend — en dat begrijpen we.</span>
+                <span className="text-gold">Getuigen is spannend, en dat begrijpen we.</span>
               </p>
             </div>
           </ScrollReveal>

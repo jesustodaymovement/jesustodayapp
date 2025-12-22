@@ -7,19 +7,19 @@ const steps = [
     icon: Video,
     number: '01',
     title: 'Neem jouw getuigenis op',
-    description: 'We helpen je om in een paar minuten jouw persoonlijke verhaal vast te leggen. Je hoeft het niet perfect te doen — jouw verhaal is genoeg.',
+    description: 'We helpen je om in enkele minuten jouw persoonlijke verhaal op video vast te leggen. Download vervolgens onze app en upload jouw getuigenis.',
   },
   {
     icon: QrCode,
     number: '02',
-    title: 'Ontvang jouw unieke QR-code',
-    description: 'Je krijgt kaartjes met een QR-code die direct naar jouw video leidt.',
+    title: 'Ontvang jouw eigen QR-kaartjes',
+    description: 'Je krijgt een unieke QR-code met kaartjes die direct naar jouw video leiden.',
   },
   {
     icon: Share2,
     number: '03',
     title: 'Deel jouw verhaal in het dagelijks leven',
-    description: 'Geef een kaartje weg waar je ook bent. Deel je getuigenis ook online. Laat jouw verhaal het gesprek openen.',
+    description: 'Geef de kaartjes weg waar je ook bent, inspireer anderen met Jezus en bereik nog meer mensen door je getuigenis ook op social media te delen.',
   },
 ];
 
@@ -43,13 +43,13 @@ export const PlanSection = () => {
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             {steps.map((step, index) => (
               <ScrollReveal key={index} delay={150 + index * 100}>
-                <div className="relative group">
+                <div className="relative group h-full">
                   {/* Connection Line */}
                   {index < steps.length - 1 && (
                     <div className="hidden md:block absolute top-16 left-[calc(100%+1rem)] w-[calc(100%-2rem)] h-0.5 bg-gradient-to-r from-gold to-gold/20" />
                   )}
                   
-                  <div className="relative p-8 rounded-2xl bg-background border border-border/50 shadow-soft hover:shadow-card transition-all duration-300 hover:-translate-y-2 h-full">
+                  <div className="relative p-8 rounded-2xl bg-background border border-border/50 shadow-soft hover:shadow-card transition-all duration-300 hover:-translate-y-2 h-full flex flex-col">
                     {/* Step Number */}
                     <span className="absolute -top-4 -right-2 text-6xl font-bold text-gold/10 font-heading">
                       {step.number}
@@ -61,7 +61,7 @@ export const PlanSection = () => {
                     </div>
                     
                     <h3 className="text-xl font-semibold text-foreground mb-3">{step.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{step.description}</p>
+                    <p className="text-muted-foreground leading-relaxed flex-grow">{step.description}</p>
                   </div>
                 </div>
               </ScrollReveal>
@@ -71,7 +71,7 @@ export const PlanSection = () => {
           <ScrollReveal delay={450}>
             <div className="text-center">
               <Button variant="cta-light" size="lg">
-                Download de app
+                Upload jouw getuigenis
               </Button>
             </div>
           </ScrollReveal>
