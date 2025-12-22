@@ -1,6 +1,6 @@
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { Users, CheckCircle } from 'lucide-react';
-import heroImage from '@/assets/hero-image.jpg';
+import guideImage from '@/assets/guide-image.jpg';
 
 export const GuideSection = () => {
   return (
@@ -18,11 +18,10 @@ export const GuideSection = () => {
             <ScrollReveal delay={100}>
               <div className="relative rounded-2xl overflow-hidden">
                 <img 
-                  src={heroImage} 
+                  src={guideImage} 
                   alt="Jongvolwassenen delen hun verhaal" 
                   className="w-full h-auto rounded-2xl"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-anthracite/60 to-transparent" />
               </div>
             </ScrollReveal>
 

@@ -90,8 +90,16 @@ export const Footer = () => {
               <p className="text-warm-white/40 text-sm">
                 © {currentYear} Jesus Today. Alle rechten voorbehouden.
               </p>
-              <p className="text-warm-white/40 text-sm flex items-center gap-1">
-                Gemaakt met <Heart className="w-4 h-4 text-gold" /> in Nederland
+              <p className="text-warm-white/40 text-sm">
+                Website door{' '}
+                <a 
+                  href="https://shoopshoop.nl" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gold hover:text-gold/80 transition-colors"
+                >
+                  Shoop Shoop
+                </a>
               </p>
             </div>
           </div>

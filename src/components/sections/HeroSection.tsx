@@ -10,7 +10,7 @@ export const HeroSection = () => {
         <img 
           src={heroImage} 
           alt="Jongvolwassenen in gesprek" 
-          className="w-full h-full object-cover opacity-40"
+          className="w-full h-full object-cover opacity-50"
           loading="eager"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-anthracite/60 via-anthracite/40 to-anthracite" />
@@ -27,17 +27,17 @@ export const HeroSection = () => {
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-warm-white/80 max-w-2xl mx-auto leading-relaxed animate-fade-up delay-100">
-            Je wilt wel getuigen, maar het voelt spannend. Jesus Today helpt je om jouw persoonlijke verhaal op een eenvoudige, veilige en impactvolle manier te delen, zonder druk, zonder perfect te hoeven zijn.
+            Je wilt je getuigenis delen, maar het voelt spannend. Wij helpen je om jouw persoonlijke verhaal op een eenvoudige, veilige en impactvolle manier te delen. God kan jouw verhaal gebruiken om de levens van anderen voorgoed te veranderen.
           </p>
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 animate-fade-up delay-200">
             <Button variant="hero" size="lg" className="min-w-[200px]">
-              Upload je getuigenis
+              Upload jouw getuigenis
             </Button>
             <Button variant="hero-outline" size="lg" className="gap-2">
-              <ArrowRight className="w-5 h-5" />
               Ontdek hoe eenvoudig je kan getuigen
+              <ArrowRight className="w-5 h-5" />
             </Button>
           </div>
 
