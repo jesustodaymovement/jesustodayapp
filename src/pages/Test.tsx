@@ -46,10 +46,9 @@ const Test = () => {
         {icons.map(({ name, Icon }) => (
           <div
             key={name}
-            className="aspect-square rounded-2xl border border-border bg-card shadow-sm flex flex-col items-center justify-center gap-4 p-6 hover:shadow-md hover:border-primary/30 transition-all duration-300"
+            className="aspect-square rounded-2xl border border-border bg-card shadow-sm flex items-center justify-center p-6 hover:shadow-md hover:border-primary/30 transition-all duration-300"
           >
             <Icon className="w-2/3 h-2/3 text-primary" />
-            <span className="text-sm font-medium text-foreground">{name}</span>
           </div>
         ))}
       </div>
