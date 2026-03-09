@@ -21,6 +21,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<HomeVideo />} />
             <Route path="/static" element={<Index />} />
+            <Route path="/test" element={<Test />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
