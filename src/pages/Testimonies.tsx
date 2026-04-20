@@ -152,8 +152,20 @@ const Testimonies = () => {
     else setLoading(true);
     setError(null);
     try {
-      const url = `https://jesustoday-production-backend.azurewebsites.net/api/jesustoday/videos?LanguageCode=${lang}&Status=50&Sorting=creationTime%20desc&MaxResultCount=${PAGE_SIZE}&SkipCount=${skipCount}`;
-      const res = await fetch(url);
+      const params = new URLSearchParams({
+        LanguageCode: lang,
+        Status: '50',
+        Sorting: 'creationTime desc',
+        MaxResultCount: String(PAGE_SIZE),
+        SkipCount: String(skipCount),
+      });
+      const url = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/get-testimonies?${params.toString()}`;
+      const res = await fetch(url, {
+        headers: {
+          apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+        },
+      });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data: ApiResponse = await res.json();
       setTotalCount(data.totalCount);
