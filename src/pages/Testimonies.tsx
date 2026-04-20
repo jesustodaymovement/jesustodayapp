@@ -140,13 +140,16 @@ const Testimonies = () => {
   const [churchFilter, setChurchFilter] = useState('all');
   const [skip, setSkip] = useState(0);
   const [activeVideo, setActiveVideo] = useState<Testimony | null>(null);
+  const [allLoaded, setAllLoaded] = useState(false);
+  const [loadingAll, setLoadingAll] = useState(false);
 
   const PAGE_SIZE = 12;
 
   const fetchVideos = async (
     lang: string,
     skipCount: number,
-    append: boolean
+    append: boolean,
+    pageSize: number = PAGE_SIZE
   ) => {
     if (append) setLoadingMore(true);
     else setLoading(true);
@@ -156,7 +159,7 @@ const Testimonies = () => {
         LanguageCode: lang,
         Status: '50',
         Sorting: 'creationTime desc',
-        MaxResultCount: String(PAGE_SIZE),
+        MaxResultCount: String(pageSize),
         SkipCount: String(skipCount),
       });
       const url = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/get-testimonies?${params.toString()}`;
@@ -170,6 +173,11 @@ const Testimonies = () => {
       const data: ApiResponse = await res.json();
       setTotalCount(data.totalCount);
       setItems((prev) => (append ? [...prev, ...data.items] : data.items));
+      if (!append && pageSize >= data.totalCount) {
+        setAllLoaded(true);
+      } else if (!append) {
+        setAllLoaded(false);
+      }
     } catch (e) {
       console.error(e);
       setError('Er ging iets mis bij het ophalen van de getuigenissen.');
@@ -181,8 +189,21 @@ const Testimonies = () => {
 
   useEffect(() => {
     setSkip(0);
+    setAllLoaded(false);
     fetchVideos(language, 0, false);
   }, [language]);
+
+  // When user starts searching/filtering, automatically load all videos
+  useEffect(() => {
+    const isFiltering = search.trim().length > 0 || churchFilter !== 'all';
+    if (isFiltering && !allLoaded && !loadingAll && totalCount > 0) {
+      setLoadingAll(true);
+      fetchVideos(language, 0, false, totalCount).finally(() => {
+        setLoadingAll(false);
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [search, churchFilter, totalCount]);
 
   const churches = useMemo(() => {
     const set = new Set<string>();
