@@ -306,6 +306,12 @@ const Testimonies = () => {
                   </SelectContent>
                 </Select>
               </div>
+              {loadingAll && (
+                <p className="text-sm text-center text-muted-foreground -mt-6 mb-6 flex items-center justify-center gap-2">
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  Alle getuigenissen worden geladen voor de zoekfunctie...
+                </p>
+              )}
             </ScrollReveal>
 
             {/* Content */}
