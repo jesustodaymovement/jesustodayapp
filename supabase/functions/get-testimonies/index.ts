@@ -1,6 +1,12 @@
-import { corsHeaders } from '@supabase/supabase-js/cors';
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers':
+    'authorization, x-client-info, apikey, content-type',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+};
 
-const API_BASE = 'https://jesustoday-production-backend.azurewebsites.net/api/jesustoday/videos';
+const API_BASE =
+  'https://jesustoday-production-backend.azurewebsites.net/api/jesustoday/videos';
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
