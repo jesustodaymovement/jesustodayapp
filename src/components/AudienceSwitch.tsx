@@ -3,7 +3,7 @@ import { Sparkles, Compass } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface AudienceSwitchProps {
-  variant?: 'hero' | 'floating';
+  variant?: 'hero' | 'floating' | 'header';
   className?: string;
 }
 
@@ -14,6 +14,41 @@ const options: { value: AudienceMode; label: string; sub: string; icon: typeof S
 
 export const AudienceSwitch = ({ variant = 'hero', className }: AudienceSwitchProps) => {
   const { mode, setMode } = useAudience();
+
+  if (variant === 'header') {
+    return (
+      <div
+        className={cn(
+          'inline-flex items-center gap-1 rounded-full bg-anthracite/5 border border-anthracite/10 p-1',
+          className,
+        )}
+        role="tablist"
+        aria-label="Kies jouw reis"
+      >
+        {options.map((opt) => {
+          const active = mode === opt.value;
+          const Icon = opt.icon;
+          return (
+            <button
+              key={opt.value}
+              onClick={() => setMode(opt.value)}
+              role="tab"
+              aria-selected={active}
+              className={cn(
+                'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold transition-all',
+                active
+                  ? 'bg-gold text-anthracite shadow-sm'
+                  : 'text-anthracite/70 hover:text-anthracite',
+              )}
+            >
+              <Icon className="w-4 h-4" />
+              <span className="hidden lg:inline">{opt.label}</span>
+            </button>
+          );
+        })}
+      </div>
+    );
+  }
 
   if (variant === 'floating') {
     return (
