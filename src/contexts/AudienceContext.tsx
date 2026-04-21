@@ -40,3 +40,8 @@ export const useAudience = () => {
   if (!ctx) throw new Error('useAudience must be used within AudienceProvider');
   return ctx;
 };
+
+// Veilige variant: geeft null terug wanneer er geen provider is (bijv. op andere pagina's).
+export const useAudienceOptional = () => {
+  return useContext(AudienceContext) ?? null;
+};
