@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import Test from "./pages/Test";
 import HomeTest from "./pages/HomeTest";
 import Base from "./pages/Base";
+import Afrika from "./pages/Afrika";
 import Testimonies from "./pages/Testimonies";
 import TestimonyDetail from "./pages/TestimonyDetail";
 import NotFound from "./pages/NotFound";
@@ -28,6 +29,7 @@ const App = () => (
             <Route path="/test" element={<Test />} />
             <Route path="/hometest" element={<HomeTest />} />
             <Route path="/base" element={<Base />} />
+            <Route path="/afrika" element={<Afrika />} />
             <Route path="/getuigenissen" element={<Testimonies />} />
             <Route path="/getuigenissen/:vimeoId" element={<TestimonyDetail />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
