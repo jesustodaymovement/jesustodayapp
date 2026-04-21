@@ -109,6 +109,7 @@ const Testimonies = () => {
   const [language, setLanguage] = useState('nl');
   const [search, setSearch] = useState('');
   const [churchFilter, setChurchFilter] = useState('all');
+  const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
   const [skip, setSkip] = useState(0);
   const [allLoaded, setAllLoaded] = useState(false);
   const [loadingAll, setLoadingAll] = useState(false);
@@ -165,7 +166,8 @@ const Testimonies = () => {
 
   // When user starts searching/filtering, automatically load all videos
   useEffect(() => {
-    const isFiltering = search.trim().length > 0 || churchFilter !== 'all';
+    const isFiltering =
+      search.trim().length > 0 || churchFilter !== 'all' || selectedTopics.length > 0;
     if (isFiltering && !allLoaded && !loadingAll && totalCount > 0) {
       setLoadingAll(true);
       fetchVideos(language, 0, false, totalCount).finally(() => {
@@ -173,7 +175,7 @@ const Testimonies = () => {
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search, churchFilter, totalCount]);
+  }, [search, churchFilter, selectedTopics, totalCount]);
 
   const churches = useMemo(() => {
     const map = new Map<string, string>();
