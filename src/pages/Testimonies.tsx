@@ -6,6 +6,7 @@ import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { Input } from '@/components/ui/input';
+import { fetchThumbnail, getChurchKey, getChurchName } from '@/lib/testimonies';
 import {
   Select,
   SelectContent,
@@ -39,29 +40,9 @@ const LANGUAGES = [
   { code: 'es', label: 'Español' },
 ];
 
-const thumbCache = new Map<string, string>();
-
-const fetchThumbnail = async (vimeoId: string): Promise<string | null> => {
-  if (thumbCache.has(vimeoId)) return thumbCache.get(vimeoId)!;
-  try {
-    const res = await fetch(
-      `https://vimeo.com/api/oembed.json?url=https%3A//vimeo.com/${vimeoId}&width=640`
-    );
-    if (!res.ok) return null;
-    const data = await res.json();
-    const url = data.thumbnail_url as string | undefined;
-    if (url) {
-      thumbCache.set(vimeoId, url);
-      return url;
-    }
-  } catch (e) {
-    console.error('Vimeo thumbnail error', e);
-  }
-  return null;
-};
-
 const TestimonyCard = ({ testimony }: { testimony: Testimony }) => {
   const [thumb, setThumb] = useState<string | null>(null);
+  const churchName = getChurchName(testimony.churchName);
 
   useEffect(() => {
     let mounted = true;
@@ -107,9 +88,9 @@ const TestimonyCard = ({ testimony }: { testimony: Testimony }) => {
           <p className="text-warm-white/80 text-sm line-clamp-2 mb-1">
             "{testimony.quote}"
           </p>
-          {testimony.churchName && testimony.churchName !== 'undefined' && (
+          {churchName && (
             <p className="text-gold text-xs font-medium line-clamp-1">
-              {testimony.churchName}
+              {churchName}
             </p>
           )}
         </div>
@@ -194,22 +175,28 @@ const Testimonies = () => {
   }, [search, churchFilter, totalCount]);
 
   const churches = useMemo(() => {
-    const set = new Set<string>();
+    const map = new Map<string, string>();
     items.forEach((i) => {
-      if (i.churchName && i.churchName !== 'undefined') set.add(i.churchName);
+      const churchName = getChurchName(i.churchName);
+      const churchKey = getChurchKey(i.churchName);
+      if (churchName && churchKey && !map.has(churchKey)) map.set(churchKey, churchName);
     });
-    return Array.from(set).sort();
+    return Array.from(map.entries())
+      .sort((a, b) => a[1].localeCompare(b[1]))
+      .map(([value, label]) => ({ value, label }));
   }, [items]);
 
   const filtered = useMemo(() => {
     return items.filter((i) => {
-      if (churchFilter !== 'all' && i.churchName !== churchFilter) return false;
+      const churchName = getChurchName(i.churchName) ?? '';
+      const churchKey = getChurchKey(i.churchName);
+      if (churchFilter !== 'all' && churchKey !== churchFilter) return false;
       if (search) {
         const s = search.toLowerCase();
         return (
           i.quote.toLowerCase().includes(s) ||
           i.user.username.toLowerCase().includes(s) ||
-          (i.churchName || '').toLowerCase().includes(s)
+          churchName.toLowerCase().includes(s)
         );
       }
       return true;
@@ -286,9 +273,9 @@ const Testimonies = () => {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">Alle kerken</SelectItem>
-                    {churches.map((c) => (
-                      <SelectItem key={c} value={c}>
-                        {c}
+                     {churches.map((church) => (
+                       <SelectItem key={church.value} value={church.value}>
+                         {church.label}
                       </SelectItem>
                     ))}
                   </SelectContent>
