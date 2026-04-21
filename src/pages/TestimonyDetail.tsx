@@ -204,6 +204,11 @@ const TestimonyDetail = () => {
     return testimony.user.username.trim();
   }, [testimony]);
 
+  const churchName = useMemo(
+    () => getChurchName(testimony?.churchName),
+    [testimony?.churchName]
+  );
+
   const discussionLink = testimony
     ? buildMailTo(
         `Doorpraten over ${fullName}`,
@@ -316,10 +321,10 @@ const TestimonyDetail = () => {
                         </div>
 
                         <div className="flex flex-wrap gap-3 text-sm">
-                          {testimony.churchName && testimony.churchName !== 'undefined' && (
+                          {churchName && (
                             <span className="inline-flex items-center gap-2 rounded-full bg-cream px-4 py-2 text-anthracite">
                               <MapPin className="w-4 h-4 text-gold" />
-                              {testimony.churchName}
+                              {churchName}
                             </span>
                           )}
                           <span className="inline-flex items-center gap-2 rounded-full bg-cream px-4 py-2 text-anthracite uppercase">
@@ -505,33 +510,61 @@ const TestimonyDetail = () => {
 
                       <div className="bg-warm-white rounded-2xl shadow-card p-8">
                         <h2 className="text-2xl font-bold text-anthracite mb-6">Aanbevolen video&apos;s</h2>
-                        <div className="space-y-4">
-                          {relatedVideos.map((video) => (
-                            <Link
-                              key={video.id}
-                              to={`/getuigenissen/${video.vimeoUrl}`}
-                              className="group block rounded-xl border border-border p-4 hover:border-gold transition-colors"
-                            >
-                              <div className="flex items-start justify-between gap-4">
-                                <div>
-                                  <p className="font-semibold text-anthracite group-hover:text-gold transition-colors">
-                                    {recommendationTitle(video)}
-                                  </p>
-                                  <p className="text-sm text-muted-foreground mt-1 line-clamp-2">
-                                    "{video.quote}"
-                                  </p>
-                                  {video.churchName && video.churchName !== 'undefined' && (
-                                    <p className="text-sm text-gold mt-2">{video.churchName}</p>
-                                  )}
-                                </div>
-                                <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-gold transition-colors" />
-                              </div>
-                            </Link>
-                          ))}
+                        <div className="relative px-3 md:px-12">
+                          <Carousel
+                            opts={{ align: 'start', dragFree: true }}
+                            className="w-full"
+                          >
+                            <CarouselContent>
+                              {relatedVideos.map((video) => (
+                                <CarouselItem
+                                  key={video.id}
+                                  className="basis-[78%] sm:basis-[42%] lg:basis-[34%] xl:basis-[30%]"
+                                >
+                                  <RelatedVideoCard video={video} />
+                                </CarouselItem>
+                              ))}
+                            </CarouselContent>
+                            <CarouselPrevious className="left-0 top-1/2 h-10 w-10 -translate-y-1/2 border-border bg-background" />
+                            <CarouselNext className="right-0 top-1/2 h-10 w-10 -translate-y-1/2 border-border bg-background" />
+                          </Carousel>
                         </div>
                       </div>
                     </div>
                   </ScrollReveal>
+                </section>
+
+                <section className="bg-warm-white rounded-2xl shadow-card p-8 md:p-10">
+                  <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-8">
+                    <div>
+                      <p className="text-sm font-semibold uppercase tracking-wide text-gold mb-2">
+                        Verder kijken
+                      </p>
+                      <h2 className="text-3xl font-bold text-anthracite">
+                        Ontdek meer gezichten en verhalen
+                      </h2>
+                    </div>
+                    <p className="text-muted-foreground max-w-2xl">
+                      Een visuele slider onderaan de pagina, zodat je intuïtief door meer getuigenissen kunt bladeren.
+                    </p>
+                  </div>
+
+                  <div className="relative px-3 md:px-12">
+                    <Carousel opts={{ align: 'start', dragFree: true }} className="w-full">
+                      <CarouselContent>
+                        {relatedVideos.map((video) => (
+                          <CarouselItem
+                            key={`bottom-${video.id}`}
+                            className="basis-[72%] sm:basis-[42%] lg:basis-[26%] xl:basis-[22%]"
+                          >
+                            <RelatedVideoCard video={video} />
+                          </CarouselItem>
+                        ))}
+                      </CarouselContent>
+                      <CarouselPrevious className="left-0 top-1/2 h-10 w-10 -translate-y-1/2 border-border bg-background" />
+                      <CarouselNext className="right-0 top-1/2 h-10 w-10 -translate-y-1/2 border-border bg-background" />
+                    </Carousel>
+                  </div>
                 </section>
               </div>
             )}
