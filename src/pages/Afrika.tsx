@@ -17,7 +17,7 @@ const outcomes = [
   { title: 'Vrede in jou hart', text: 'Soos baie ander, kan jy ’n diep rus ervaar wat die wêreld nie kan gee nie.' },
   { title: 'Antwoorde op jou vrae', text: 'Ontdek dat geloof nie blinde aanvaarding is nie, maar ’n reis van ontdekking.' },
   { title: 'Egte verbintenis', text: 'Vind ’n gemeenskap wat jou aanvaar net soos jy is, sonder oordeel.' },
-  { title: ’n Nuwe begin', text: 'Dit maak nie saak waar jy vandaan kom nie, by Jesus is daar altyd plek vir jou.' },
+  { title: "'n Nuwe begin", text: 'Dit maak nie saak waar jy vandaan kom nie, by Jesus is daar altyd plek vir jou.' },
 ];
 
 const Afrika = () => {
