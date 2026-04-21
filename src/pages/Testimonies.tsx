@@ -7,6 +7,7 @@ import { Footer } from '@/components/sections/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { Input } from '@/components/ui/input';
 import { fetchThumbnail, getChurchKey, getChurchName } from '@/lib/testimonies';
+import { TOPICS, testimonyMatchesTopics } from '@/lib/topics';
 import {
   Select,
   SelectContent,
@@ -108,6 +109,7 @@ const Testimonies = () => {
   const [language, setLanguage] = useState('nl');
   const [search, setSearch] = useState('');
   const [churchFilter, setChurchFilter] = useState('all');
+  const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
   const [skip, setSkip] = useState(0);
   const [allLoaded, setAllLoaded] = useState(false);
   const [loadingAll, setLoadingAll] = useState(false);
@@ -164,7 +166,8 @@ const Testimonies = () => {
 
   // When user starts searching/filtering, automatically load all videos
   useEffect(() => {
-    const isFiltering = search.trim().length > 0 || churchFilter !== 'all';
+    const isFiltering =
+      search.trim().length > 0 || churchFilter !== 'all' || selectedTopics.length > 0;
     if (isFiltering && !allLoaded && !loadingAll && totalCount > 0) {
       setLoadingAll(true);
       fetchVideos(language, 0, false, totalCount).finally(() => {
@@ -172,7 +175,7 @@ const Testimonies = () => {
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search, churchFilter, totalCount]);
+  }, [search, churchFilter, selectedTopics, totalCount]);
 
   const churches = useMemo(() => {
     const map = new Map<string, string>();
@@ -191,6 +194,10 @@ const Testimonies = () => {
       const churchName = getChurchName(i.churchName) ?? '';
       const churchKey = getChurchKey(i.churchName);
       if (churchFilter !== 'all' && churchKey !== churchFilter) return false;
+      if (selectedTopics.length > 0) {
+        const text = `${i.quote} ${i.user.username}`;
+        if (!testimonyMatchesTopics(text, selectedTopics)) return false;
+      }
       if (search) {
         const s = search.toLowerCase();
         return (
@@ -201,7 +208,34 @@ const Testimonies = () => {
       }
       return true;
     });
-  }, [items, churchFilter, search]);
+  }, [items, churchFilter, search, selectedTopics]);
+
+  const topicCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    TOPICS.forEach((t) => (counts[t.id] = 0));
+    items.forEach((i) => {
+      const text = `${i.quote} ${i.user.username}`.toLowerCase();
+      TOPICS.forEach((t) => {
+        if (t.keywords.some((k) => text.includes(k))) counts[t.id] += 1;
+      });
+    });
+    return counts;
+  }, [items]);
+
+  const toggleTopic = (id: string) => {
+    setSelectedTopics((prev) =>
+      prev.includes(id) ? prev.filter((t) => t !== id) : [...prev, id]
+    );
+  };
+
+  const clearFilters = () => {
+    setSearch('');
+    setChurchFilter('all');
+    setSelectedTopics([]);
+  };
+
+  const hasActiveFilters =
+    search.trim().length > 0 || churchFilter !== 'all' || selectedTopics.length > 0;
 
   const loadMore = () => {
     const newSkip = skip + PAGE_SIZE;
@@ -281,6 +315,48 @@ const Testimonies = () => {
                   </SelectContent>
                 </Select>
               </div>
+
+              {/* Topic chips */}
+              <div className="mb-6 p-4 bg-warm-white rounded-2xl shadow-card">
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-sm font-semibold text-anthracite">Onderwerpen</p>
+                  {hasActiveFilters && (
+                    <button
+                      onClick={clearFilters}
+                      className="text-xs font-medium text-anthracite/70 hover:text-gold transition-colors underline-offset-2 hover:underline"
+                    >
+                      Wis filters
+                    </button>
+                  )}
+                </div>
+                <div className="flex flex-wrap gap-2 overflow-x-auto">
+                  {TOPICS.map((topic) => {
+                    const active = selectedTopics.includes(topic.id);
+                    const count = topicCounts[topic.id] ?? 0;
+                    return (
+                      <button
+                        key={topic.id}
+                        onClick={() => toggleTopic(topic.id)}
+                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border ${
+                          active
+                            ? 'bg-gold text-anthracite border-gold shadow-gold'
+                            : 'bg-warm-white text-anthracite/80 border-anthracite/15 hover:border-gold hover:text-anthracite'
+                        }`}
+                      >
+                        <span>{topic.label}</span>
+                        <span
+                          className={`text-xs ${
+                            active ? 'text-anthracite/70' : 'text-anthracite/50'
+                          }`}
+                        >
+                          {count}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
               {loadingAll && (
                 <p className="text-sm text-center text-muted-foreground -mt-6 mb-6 flex items-center justify-center gap-2">
                   <Loader2 className="w-4 h-4 animate-spin" />
