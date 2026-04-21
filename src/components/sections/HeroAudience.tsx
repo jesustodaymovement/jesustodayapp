@@ -1,7 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Upload, Play } from 'lucide-react';
 import { useAudience } from '@/contexts/AudienceContext';
-import { AudienceSwitch } from '@/components/AudienceSwitch';
 import { Link } from 'react-router-dom';
 
 export const HeroAudience = () => {
@@ -55,9 +54,6 @@ export const HeroAudience = () => {
 
       <div className="relative z-10 container mx-auto px-6 py-20 text-center">
         <div className="max-w-4xl mx-auto space-y-8">
-          {/* Switch boven headline */}
-          <AudienceSwitch />
-
           <div key={mode} className="space-y-6 animate-fade-up">
             <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-warm-white leading-tight">
               {content.headline}{' '}
