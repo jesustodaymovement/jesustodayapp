@@ -8,6 +8,7 @@ import HomeVideo from "./pages/HomeVideo";
 import Index from "./pages/Index";
 import Test from "./pages/Test";
 import Testimonies from "./pages/Testimonies";
+import TestimonyDetail from "./pages/TestimonyDetail";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
             <Route path="/static" element={<Index />} />
             <Route path="/test" element={<Test />} />
             <Route path="/getuigenissen" element={<Testimonies />} />
+            <Route path="/getuigenissen/:vimeoId" element={<TestimonyDetail />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
