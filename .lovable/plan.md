@@ -1,85 +1,73 @@
 
 
-# Plan: nieuwe `/hometest` pagina met dual-audience switch
+# Plan: onderwerp-filters voor video getuigenissen
 
-Een nieuwe homepagina-variant die zich richt op twee doelgroepen tegelijk: **gelovigen die willen evangeliseren** en **zoekers die geïnspireerd willen worden**. Een prominente switch bovenaan stuurt de hele pagina-flow.
+Op de pagina `/getuigenissen` komt een extra filter-laag waarmee bezoekers kunnen filteren op **thema's** die in de getuigenissen voorkomen (bijv. depressie, verslaving, new age, ziekte). Omdat de upstream API geen onderwerp-veld levert, classificeren we client-side via trefwoord-matching op de quote en gebruikersnaam.
 
-## Het centrale switch-concept
+## Voorgestelde onderwerpen
 
-Bovenaan de hero (onder het logo, vóór de headline) komt een grote, opvallende **toggle-switch** met twee opties:
+Een set van 12 herkenbare thema's die passen bij de doelgroep (16-29) en bij wat in de getuigenissen voorkomt:
+
+| Thema | Trefwoorden (NL/EN) |
+|---|---|
+| Depressie | depressie, depressed, somber, hopeloos, donkerte |
+| Angst | angst, anxiety, paniek, bang, onrust |
+| Verslaving (alcohol) | alcohol, drank, drinken, zuipen |
+| Verslaving (drugs) | drugs, wiet, cocaïne, verslaafd, blowen |
+| New Age / occult | new age, spiritueel, yoga, occult, esoterisch, energie |
+| Ziekte / genezing | ziek, ziekte, kanker, genezen, healing, pijn |
+| Eenzaamheid | eenzaam, alleen, isolatie, leegte |
+| Relaties / liefde | relatie, liefde, gebroken hart, scheiding, breakup |
+| Identiteit | identiteit, wie ben ik, zelfbeeld, onzeker |
+| Verlies / rouw | verlies, overleden, dood, rouw, gemist |
+| Twijfel / zoeken | twijfel, zoeken, zin, doel, vragen |
+| Vergeving | vergeving, schuld, schaamte, fout |
+
+Lijst is uitbreidbaar in één centraal bestand.
+
+## UX op de pagina
+
+- Onder de bestaande filterbalk (zoek, taal, kerk) komt een rij met **chips/tags** voor onderwerpen
+- Chips zijn multi-select: meerdere thema's actief = OR-filter (toont video's die minstens één gekozen thema bevatten)
+- Actieve chip: `bg-gold` (#fad150) met donkere tekst; inactief: warm-white met border
+- Een "Wis filters" knop verschijnt zodra er een onderwerp gekozen is
+- Achter elke chip-label een klein aantal tussen haakjes (hoeveel video's matchen) op basis van de geladen set
+- Op mobiel: horizontaal scrollbare rij chips
 
 ```text
-┌─────────────────────────────────────────────────────┐
-│   Ik wil...                                         │
-│   ┌──────────────────────┬──────────────────────┐  │
-│   │  ✦ Vertel over God   │  ✧ Ontdek God        │  │
-│   │   (gelovige modus)   │   (zoeker modus)     │  │
-│   └──────────────────────┴──────────────────────┘  │
-└─────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│ [🔍 zoek...]  [Taal ▾]  [Kerk ▾]                         │
+├──────────────────────────────────────────────────────────┤
+│ Onderwerpen:                                  Wis filters │
+│ ( Depressie 4 ) ( Angst 3 ) ( Alcohol 2 ) ( Drugs 5 )    │
+│ ( New Age 1 ) ( Ziekte 2 ) ( Eenzaamheid 3 ) ...         │
+└──────────────────────────────────────────────────────────┘
 ```
 
-De keuze:
-- Wisselt headline, subheadline, CTA-tekst en accentkleur in de hero
-- Filtert/verandert welke secties tonen, in welke volgorde, en met welke teksten
-- Wordt opgeslagen in `localStorage` zodat de keuze bewaard blijft bij terugkeer
-- Is altijd zichtbaar via een kleine "modus-pill" in een sticky positie (rechtsonder), zodat bezoekers kunnen wisselen
+## Logica
 
-## Twee parallelle flows
-
-### Flow A — "Vertel over God" (gelovigen)
-Volgorde van secties:
-1. **Hero** — "Jouw verhaal kan iemands leven veranderen" + CTA "Upload jouw getuigenis"
-2. **Herken je dit?** (bestaande `ProblemSection` — angst om te delen)
-3. **Je hoeft het niet alleen te doen** (bestaande `GuideSection`)
-4. **Zo werkt het** (bestaande `PlanSection` — opnemen → QR → delen)
-5. **Wat er gebeurt als je deelt** (bestaande `SuccessSection`)
-6. **Echte verhalen** (bestaande `VideoSliderSection`)
-7. **Voor kerken** (`ChurchSection`)
-8. **CTA** — "Upload jouw getuigenis"
-
-### Flow B — "Ontdek God" (zoekers)
-Volgorde van secties:
-1. **Hero** — "Echte verhalen van mensen zoals jij" + CTA "Bekijk getuigenissen"
-2. **Nieuwe sectie: "Misschien herken je dit?"** — pijnpunten van zoekers (leegte, twijfel, zoeken naar zin, nieuwsgierigheid naar Jezus)
-3. **Bestaande `VideoSliderSection`** — direct verhalen zien (eerder in flow)
-4. **Nieuwe sectie: "Wat anderen ontdekten"** — uitkomst-statements (vrede, hoop, richting, vergeving) in plaats van "wat er gebeurt als je deelt"
-5. **Nieuwe sectie: "Volgende stap"** — drie kaarten:
-   - Bekijk meer getuigenissen → `/getuigenissen`
-   - Ontdek Alpha Nederland → externe link
-   - Vind een kerk in de buurt → externe link/zoekfunctie
-6. **Nieuwe sectie: "Stel je vraag"** — eenvoudig contactblok ("Heb je een vraag over geloof? We luisteren.")
-7. **CTA** — "Begin je ontdekkingsreis"
-
-Secties die NIET tonen in zoeker-modus: `ProblemSection` (gericht op delen), `PlanSection` (app-flow), `ChurchSection` (B2B), `InstagramReelsSection` (focus op delen).
-
-## Visueel ontwerp van de switch
-
-- Geplaatst in een glas-achtige container boven de hero-headline
-- Twee "tabs" naast elkaar, actieve tab krijgt `bg-gold` (#fad150) met donkere tekst, inactief is transparant met witte tekst
-- Subtiele animatie bij wissel (fade + slide van content eronder, ~300ms)
-- Op mobiel: full-width, twee gelijke helften
-- Sticky mini-versie verschijnt na 50% scroll, rechtsonder, zodat wisselen altijd mogelijk blijft
+- Omdat filteren over alle data moet gebeuren, blijft de bestaande "load all on filter" trigger werken: zodra een onderwerp wordt geselecteerd worden alle getuigenissen van de huidige taal opgehaald (al geïmplementeerd voor zoek/kerk)
+- Een testimony matcht een thema als de gecombineerde tekst (`quote + username`, lowercase) een van de trefwoorden van dat thema bevat (substring match)
+- Combinatie met andere filters (zoek/kerk/taal) blijft AND, onderwerpen onderling OR
 
 ## Technische uitwerking
 
-**Nieuwe bestanden:**
-- `src/pages/HomeTest.tsx` — nieuwe pagina met `AudienceProvider` context en conditionele section rendering
-- `src/contexts/AudienceContext.tsx` — React context met `mode: 'share' | 'discover'`, persistent via `localStorage`
-- `src/components/AudienceSwitch.tsx` — de hoofdtoggle (gebruikt in hero) + `AudienceSwitchFloating.tsx` voor sticky variant
-- `src/components/sections/HeroAudience.tsx` — hero waarvan content reageert op de gekozen modus
-- `src/components/sections/DiscoverProblemSection.tsx` — pijnpunten voor zoekers
-- `src/components/sections/DiscoverOutcomesSection.tsx` — uitkomsten voor zoekers (vrede, hoop, etc.)
-- `src/components/sections/NextStepsSection.tsx` — drie kaarten naar Alpha / kerken / meer video's
-- `src/components/sections/AskQuestionSection.tsx` — eenvoudig vraag-contactblok
+**Nieuw bestand `src/lib/topics.ts`**
+- Exporteert `TOPICS` array: `{ id, label, keywords: string[] }[]`
+- Helper `matchTopics(text: string): string[]` → geeft topic-ids terug die matchen
+- Helper `testimonyMatchesTopics(testimony, selectedTopicIds)` → boolean
 
-**Routing (`src/App.tsx`):**
-- Voeg toe: `<Route path="/hometest" element={<HomeTest />} />`
+**`src/pages/Testimonies.tsx`**
+- Nieuwe state: `selectedTopics: Set<string>`
+- Nieuwe sectie in filterbalk met chip-knoppen (gebruik bestaande `Badge` of een nieuwe lichte chip-styling met Tailwind)
+- `filtered` useMemo uitbreiden met onderwerp-filter
+- Topic counts via useMemo over `items` (telt alleen binnen huidige taal-set)
+- "Wis filters" knop reset zoek + kerk + onderwerpen
+- De bestaande effect-trigger voor `loadingAll` uitbreiden zodat `selectedTopics.size > 0` ook alle data laadt
 
-**Bestaande secties:** worden hergebruikt zonder wijziging; `HomeTest.tsx` rendert ze conditioneel op basis van `mode` uit de context.
-
-**Stijl:** volgt bestaande tokens (gold #fad150, anthracite, cream, warm-white). Geen donkere/zware esthetiek toevoegen, blijft licht en hoopvol conform projectregels.
+**Geen wijzigingen** aan: edge function, types, routing, andere pagina's.
 
 ## Wat dit oplevert
 
-Eén pagina die als het ware twee homepages is: bezoekers kiezen direct hun reis, en de site spreekt hen vervolgens specifiek aan. Geen gemengde boodschap meer voor twee zeer verschillende doelgroepen. Te bespreken met JCD en eenvoudig later samen te voegen met `/` als de richting bevalt.
+Bezoekers kunnen direct filteren op herkenbare levensthema's, wat de drempel verlaagt om een relevante getuigenis te vinden. Volledig client-side, geen API-wijzigingen, makkelijk uit te breiden door trefwoorden toe te voegen.
 
