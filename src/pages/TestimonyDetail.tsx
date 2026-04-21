@@ -17,8 +17,16 @@ import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { Button } from '@/components/ui/button';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { fetchThumbnail, getChurchName } from '@/lib/testimonies';
 
 interface Testimony {
   id: string;
@@ -49,6 +57,10 @@ interface CommentItem {
   createdAtLabel: string;
 }
 
+interface RelatedVideoCardProps {
+  video: Testimony;
+}
+
 const LANGUAGES = ['nl', 'en', 'de', 'fr', 'es'];
 const DEFAULT_COMMENTS: CommentItem[] = [
   {
@@ -65,6 +77,56 @@ const recommendationTitle = (testimony: Testimony) =>
 
 const buildMailTo = (subject: string, body: string) =>
   `mailto:info@jesustoday.nl?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+const RelatedVideoCard = ({ video }: RelatedVideoCardProps) => {
+  const [thumb, setThumb] = useState<string | null>(null);
+  const churchName = getChurchName(video.churchName);
+
+  useEffect(() => {
+    let active = true;
+
+    fetchThumbnail(video.vimeoUrl).then((url) => {
+      if (active) setThumb(url);
+    });
+
+    return () => {
+      active = false;
+    };
+  }, [video.vimeoUrl]);
+
+  return (
+    <Link
+      to={`/getuigenissen/${video.vimeoUrl}`}
+      className="group block overflow-hidden rounded-2xl bg-anthracite shadow-card"
+    >
+      <div className="relative aspect-[3/4] bg-anthracite-light">
+        {thumb ? (
+          <img
+            src={thumb}
+            alt={`Getuigenis van ${recommendationTitle(video)}`}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center">
+            <Loader2 className="w-8 h-8 text-warm-white/50 animate-spin" />
+          </div>
+        )}
+
+        <div className="absolute inset-0 bg-gradient-to-t from-anthracite via-anthracite/50 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 p-4">
+          <p className="text-lg font-semibold text-warm-white line-clamp-1">
+            {recommendationTitle(video)}
+          </p>
+          <p className="mt-1 text-sm text-warm-white/80 line-clamp-2">"{video.quote}"</p>
+          {churchName && (
+            <p className="mt-2 text-xs font-medium text-gold line-clamp-1">{churchName}</p>
+          )}
+        </div>
+      </div>
+    </Link>
+  );
+};
 
 const TestimonyDetail = () => {
   const { vimeoId } = useParams<{ vimeoId: string }>();
