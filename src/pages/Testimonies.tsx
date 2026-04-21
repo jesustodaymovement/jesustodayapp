@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import { Play, Loader2, Search } from 'lucide-react';
 import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
@@ -12,12 +13,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
 
 interface Testimony {
   id: string;
