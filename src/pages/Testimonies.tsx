@@ -315,6 +315,48 @@ const Testimonies = () => {
                   </SelectContent>
                 </Select>
               </div>
+
+              {/* Topic chips */}
+              <div className="mb-6 p-4 bg-warm-white rounded-2xl shadow-card">
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-sm font-semibold text-anthracite">Onderwerpen</p>
+                  {hasActiveFilters && (
+                    <button
+                      onClick={clearFilters}
+                      className="text-xs font-medium text-anthracite/70 hover:text-gold transition-colors underline-offset-2 hover:underline"
+                    >
+                      Wis filters
+                    </button>
+                  )}
+                </div>
+                <div className="flex flex-wrap gap-2 overflow-x-auto">
+                  {TOPICS.map((topic) => {
+                    const active = selectedTopics.includes(topic.id);
+                    const count = topicCounts[topic.id] ?? 0;
+                    return (
+                      <button
+                        key={topic.id}
+                        onClick={() => toggleTopic(topic.id)}
+                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border ${
+                          active
+                            ? 'bg-gold text-anthracite border-gold shadow-gold'
+                            : 'bg-warm-white text-anthracite/80 border-anthracite/15 hover:border-gold hover:text-anthracite'
+                        }`}
+                      >
+                        <span>{topic.label}</span>
+                        <span
+                          className={`text-xs ${
+                            active ? 'text-anthracite/70' : 'text-anthracite/50'
+                          }`}
+                        >
+                          {count}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
               {loadingAll && (
                 <p className="text-sm text-center text-muted-foreground -mt-6 mb-6 flex items-center justify-center gap-2">
                   <Loader2 className="w-4 h-4 animate-spin" />
