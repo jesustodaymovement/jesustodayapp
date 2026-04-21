@@ -194,6 +194,10 @@ const Testimonies = () => {
       const churchName = getChurchName(i.churchName) ?? '';
       const churchKey = getChurchKey(i.churchName);
       if (churchFilter !== 'all' && churchKey !== churchFilter) return false;
+      if (selectedTopics.length > 0) {
+        const text = `${i.quote} ${i.user.username}`;
+        if (!testimonyMatchesTopics(text, selectedTopics)) return false;
+      }
       if (search) {
         const s = search.toLowerCase();
         return (
@@ -204,7 +208,34 @@ const Testimonies = () => {
       }
       return true;
     });
-  }, [items, churchFilter, search]);
+  }, [items, churchFilter, search, selectedTopics]);
+
+  const topicCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    TOPICS.forEach((t) => (counts[t.id] = 0));
+    items.forEach((i) => {
+      const text = `${i.quote} ${i.user.username}`.toLowerCase();
+      TOPICS.forEach((t) => {
+        if (t.keywords.some((k) => text.includes(k))) counts[t.id] += 1;
+      });
+    });
+    return counts;
+  }, [items]);
+
+  const toggleTopic = (id: string) => {
+    setSelectedTopics((prev) =>
+      prev.includes(id) ? prev.filter((t) => t !== id) : [...prev, id]
+    );
+  };
+
+  const clearFilters = () => {
+    setSearch('');
+    setChurchFilter('all');
+    setSelectedTopics([]);
+  };
+
+  const hasActiveFilters =
+    search.trim().length > 0 || churchFilter !== 'all' || selectedTopics.length > 0;
 
   const loadMore = () => {
     const newSkip = skip + PAGE_SIZE;
