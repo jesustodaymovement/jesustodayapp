@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import { Play, Loader2, Search } from 'lucide-react';
 import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
@@ -12,12 +13,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
 
 interface Testimony {
   id: string;
@@ -65,13 +60,7 @@ const fetchThumbnail = async (vimeoId: string): Promise<string | null> => {
   return null;
 };
 
-const TestimonyCard = ({
-  testimony,
-  onPlay,
-}: {
-  testimony: Testimony;
-  onPlay: (t: Testimony) => void;
-}) => {
+const TestimonyCard = ({ testimony }: { testimony: Testimony }) => {
   const [thumb, setThumb] = useState<string | null>(null);
 
   useEffect(() => {
@@ -85,9 +74,9 @@ const TestimonyCard = ({
   }, [testimony.vimeoUrl]);
 
   return (
-    <button
-      onClick={() => onPlay(testimony)}
-      className="group relative rounded-2xl overflow-hidden bg-anthracite shadow-card hover:shadow-lg transition-all duration-300 text-left"
+    <Link
+      to={`/getuigenissen/${testimony.vimeoUrl}`}
+      className="group relative rounded-2xl overflow-hidden bg-anthracite shadow-card hover:shadow-lg transition-all duration-300 text-left block"
     >
       <div className="relative aspect-[3/4] bg-anthracite-light">
         {thumb ? (
@@ -125,7 +114,7 @@ const TestimonyCard = ({
           )}
         </div>
       </div>
-    </button>
+    </Link>
   );
 };
 
@@ -139,7 +128,6 @@ const Testimonies = () => {
   const [search, setSearch] = useState('');
   const [churchFilter, setChurchFilter] = useState('all');
   const [skip, setSkip] = useState(0);
-  const [activeVideo, setActiveVideo] = useState<Testimony | null>(null);
   const [allLoaded, setAllLoaded] = useState(false);
   const [loadingAll, setLoadingAll] = useState(false);
 
@@ -337,11 +325,7 @@ const Testimonies = () => {
               <>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                   {filtered.map((t) => (
-                    <TestimonyCard
-                      key={t.id}
-                      testimony={t}
-                      onPlay={setActiveVideo}
-                    />
+                    <TestimonyCard key={t.id} testimony={t} />
                   ))}
                 </div>
 
@@ -370,31 +354,6 @@ const Testimonies = () => {
       </main>
 
       <Footer />
-
-      {/* Video player dialog */}
-      <Dialog
-        open={!!activeVideo}
-        onOpenChange={(open) => !open && setActiveVideo(null)}
-      >
-        <DialogContent className="max-w-4xl p-0 overflow-hidden bg-anthracite border-anthracite">
-          <DialogHeader className="p-6 pb-2">
-            <DialogTitle className="text-warm-white">
-              {activeVideo?.user.username} — "{activeVideo?.quote}"
-            </DialogTitle>
-          </DialogHeader>
-          {activeVideo && (
-            <div className="aspect-video w-full">
-              <iframe
-                src={`https://player.vimeo.com/video/${activeVideo.vimeoUrl}?autoplay=1`}
-                className="w-full h-full"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
-                title={`Getuigenis van ${activeVideo.user.username}`}
-              />
-            </div>
-          )}
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };
