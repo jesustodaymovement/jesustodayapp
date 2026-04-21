@@ -7,6 +7,7 @@ import { HelmetProvider } from "react-helmet-async";
 import HomeVideo from "./pages/HomeVideo";
 import Index from "./pages/Index";
 import Test from "./pages/Test";
+import HomeTest from "./pages/HomeTest";
 import Testimonies from "./pages/Testimonies";
 import TestimonyDetail from "./pages/TestimonyDetail";
 import NotFound from "./pages/NotFound";
@@ -24,6 +25,7 @@ const App = () => (
             <Route path="/" element={<HomeVideo />} />
             <Route path="/static" element={<Index />} />
             <Route path="/test" element={<Test />} />
+            <Route path="/hometest" element={<HomeTest />} />
             <Route path="/getuigenissen" element={<Testimonies />} />
             <Route path="/getuigenissen/:vimeoId" element={<TestimonyDetail />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
