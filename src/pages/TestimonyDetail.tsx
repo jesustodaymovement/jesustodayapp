@@ -1,10 +1,24 @@
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ArrowLeft, Loader2 } from 'lucide-react';
+import {
+  ArrowLeft,
+  ChevronRight,
+  Loader2,
+  MessageCircle,
+  MessagesSquare,
+  Mail,
+  MapPin,
+  PlayCircle,
+  Search,
+  Users,
+} from 'lucide-react';
 import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 
 interface Testimony {
   id: string;
@@ -23,13 +37,46 @@ interface ApiResponse {
   items: Testimony[];
 }
 
+interface CommentDraft {
+  name: string;
+  message: string;
+}
+
+interface CommentItem {
+  id: string;
+  name: string;
+  message: string;
+  createdAtLabel: string;
+}
+
 const LANGUAGES = ['nl', 'en', 'de', 'fr', 'es'];
+const DEFAULT_COMMENTS: CommentItem[] = [
+  {
+    id: 'welcome-1',
+    name: 'Jesus Today team',
+    message:
+      'Welke gedachte of vraag blijft bij je hangen na deze video? Deel het gerust hieronder.',
+    createdAtLabel: 'Zojuist',
+  },
+];
+
+const recommendationTitle = (testimony: Testimony) =>
+  testimony.user.username || testimony.churchName || 'Getuigenis';
+
+const buildMailTo = (subject: string, body: string) =>
+  `mailto:info@jesustoday.nl?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
 const TestimonyDetail = () => {
   const { vimeoId } = useParams<{ vimeoId: string }>();
   const [testimony, setTestimony] = useState<Testimony | null>(null);
+  const [relatedVideos, setRelatedVideos] = useState<Testimony[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [commentDraft, setCommentDraft] = useState<CommentDraft>({
+    name: '',
+    message: '',
+  });
+  const [comments, setComments] = useState<CommentItem[]>(DEFAULT_COMMENTS);
 
   useEffect(() => {
     if (!vimeoId) return;
@@ -54,17 +101,29 @@ const TestimonyDetail = () => {
               Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
             },
           });
+
           if (!res.ok) continue;
+
           const data: ApiResponse = await res.json();
-          const found = data.items.find((t) => t.vimeoUrl === vimeoId);
+          const found = data.items.find((item) => item.vimeoUrl === vimeoId);
+
           if (found) {
-            if (!cancelled) setTestimony(found);
+            if (!cancelled) {
+              setTestimony(found);
+              setRelatedVideos(
+                data.items
+                  .filter((item) => item.vimeoUrl !== vimeoId)
+                  .slice(0, 4)
+              );
+              setComments(DEFAULT_COMMENTS);
+            }
             return;
           }
         }
+
         if (!cancelled) setError('Getuigenis niet gevonden.');
-      } catch (e) {
-        console.error(e);
+      } catch (fetchError) {
+        console.error(fetchError);
         if (!cancelled) setError('Er ging iets mis bij het laden.');
       } finally {
         if (!cancelled) setLoading(false);
@@ -72,24 +131,70 @@ const TestimonyDetail = () => {
     };
 
     findTestimony();
+
     return () => {
       cancelled = true;
     };
   }, [vimeoId]);
+
+  const fullName = useMemo(() => {
+    if (!testimony) return '';
+    return testimony.user.username.trim();
+  }, [testimony]);
+
+  const discussionLink = testimony
+    ? buildMailTo(
+        `Doorpraten over ${fullName}`,
+        `Hoi Jesus Today,%0D%0A%0D%0AIk wil graag doorpraten over de video van ${fullName}.`
+      )
+    : '#';
+
+  const questionLink = testimony
+    ? buildMailTo(
+        `Vraag over getuigenis van ${fullName}`,
+        `Hoi Jesus Today,%0D%0A%0D%0AIk heb een vraag na het zien van de video van ${fullName}:`
+      )
+    : '#';
+
+  const contactLink = testimony
+    ? buildMailTo(
+        `In contact komen met ${fullName}`,
+        `Hoi Jesus Today,%0D%0A%0D%0AIk zou graag in contact komen met ${fullName} naar aanleiding van deze video.`
+      )
+    : '#';
+
+  const handleCommentSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const name = commentDraft.name.trim();
+    const message = commentDraft.message.trim();
+
+    if (!name || !message) return;
+
+    setComments((current) => [
+      ...current,
+      {
+        id: `${Date.now()}`,
+        name,
+        message,
+        createdAtLabel: 'Net geplaatst',
+      },
+    ]);
+    setCommentDraft({ name: '', message: '' });
+  };
 
   return (
     <div className="min-h-screen bg-cream">
       <Helmet>
         <title>
           {testimony
-            ? `${testimony.user.username} — Getuigenis | Jesus Today`
-            : 'Video Getuigenis | Jesus Today'}
+            ? `${fullName}, video getuigenis | Jesus Today`
+            : 'Video getuigenis | Jesus Today'}
         </title>
         <meta
           name="description"
           content={
             testimony
-              ? `${testimony.user.username}: "${testimony.quote}"`
+              ? `${fullName} deelt een getuigenis en vervolgstappen voor wie verder wil ontdekken.`
               : 'Bekijk een video getuigenis op Jesus Today.'
           }
         />
@@ -100,7 +205,7 @@ const TestimonyDetail = () => {
 
       <main className="pt-32 pb-24">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-7xl mx-auto">
             <Link
               to="/getuigenissen"
               className="inline-flex items-center gap-2 text-anthracite hover:text-gold transition-colors mb-8 font-medium"
@@ -115,44 +220,258 @@ const TestimonyDetail = () => {
               </div>
             ) : error || !testimony ? (
               <div className="text-center py-24">
-                <p className="text-destructive mb-4">
-                  {error ?? 'Getuigenis niet gevonden.'}
-                </p>
+                <p className="text-destructive mb-4">{error ?? 'Getuigenis niet gevonden.'}</p>
                 <Link to="/getuigenissen" className="text-gold underline">
                   Bekijk alle getuigenissen
                 </Link>
               </div>
             ) : (
-              <>
-                <ScrollReveal>
-                  <div className="aspect-video w-full rounded-2xl overflow-hidden shadow-card bg-anthracite mb-8">
-                    <iframe
-                      src={`https://player.vimeo.com/video/${testimony.vimeoUrl}?autoplay=1`}
-                      className="w-full h-full"
-                      allow="autoplay; fullscreen; picture-in-picture"
-                      allowFullScreen
-                      title={`Getuigenis van ${testimony.user.username}`}
-                    />
-                  </div>
-                </ScrollReveal>
+              <div className="space-y-12">
+                <section className="grid gap-8 xl:grid-cols-[minmax(0,1.45fr)_minmax(320px,0.95fr)] items-start">
+                  <ScrollReveal>
+                    <div className="space-y-6">
+                      <div className="aspect-video w-full rounded-2xl overflow-hidden shadow-card bg-anthracite">
+                        <iframe
+                          src={`https://player.vimeo.com/video/${testimony.vimeoUrl}?autoplay=1`}
+                          className="w-full h-full"
+                          allow="autoplay; fullscreen; picture-in-picture"
+                          allowFullScreen
+                          title={`Getuigenis van ${fullName}`}
+                        />
+                      </div>
 
-                <ScrollReveal delay={100}>
-                  <div className="bg-warm-white rounded-2xl shadow-card p-8">
-                    <h1 className="text-3xl md:text-4xl font-bold text-anthracite mb-4">
-                      {testimony.user.username}
-                    </h1>
-                    <blockquote className="text-xl md:text-2xl text-anthracite/90 italic border-l-4 border-gold pl-6 mb-6">
-                      "{testimony.quote}"
-                    </blockquote>
-                    {testimony.churchName &&
-                      testimony.churchName !== 'undefined' && (
-                        <p className="text-gold font-semibold">
-                          {testimony.churchName}
+                      <div className="bg-warm-white rounded-2xl shadow-card p-8 space-y-5">
+                        <div className="space-y-3">
+                          <p className="text-sm font-semibold uppercase tracking-wide text-gold">
+                            Video getuigenis
+                          </p>
+                          <h1 className="text-3xl md:text-5xl font-bold text-anthracite">
+                            {fullName}
+                          </h1>
+                          <blockquote className="text-xl md:text-2xl text-anthracite/90 italic border-l-4 border-gold pl-6">
+                            "{testimony.quote}"
+                          </blockquote>
+                        </div>
+
+                        <div className="flex flex-wrap gap-3 text-sm">
+                          {testimony.churchName && testimony.churchName !== 'undefined' && (
+                            <span className="inline-flex items-center gap-2 rounded-full bg-cream px-4 py-2 text-anthracite">
+                              <MapPin className="w-4 h-4 text-gold" />
+                              {testimony.churchName}
+                            </span>
+                          )}
+                          <span className="inline-flex items-center gap-2 rounded-full bg-cream px-4 py-2 text-anthracite uppercase">
+                            <PlayCircle className="w-4 h-4 text-gold" />
+                            {testimony.languageCode}
+                          </span>
+                        </div>
+
+                        <div className="grid gap-3 sm:grid-cols-3">
+                          <a href={discussionLink}>
+                            <Button variant="hero" className="w-full justify-between">
+                              Doorpraten
+                              <ChevronRight className="w-4 h-4" />
+                            </Button>
+                          </a>
+                          <a href={questionLink}>
+                            <Button variant="outline" className="w-full justify-between">
+                              Vraag stellen
+                              <ChevronRight className="w-4 h-4" />
+                            </Button>
+                          </a>
+                          <a href={contactLink}>
+                            <Button variant="outline" className="w-full justify-between">
+                              Contact leggen
+                              <ChevronRight className="w-4 h-4" />
+                            </Button>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </ScrollReveal>
+
+                  <ScrollReveal delay={100}>
+                    <aside className="bg-anthracite rounded-2xl shadow-card p-8 space-y-6 text-warm-white">
+                      <div>
+                        <p className="text-sm font-semibold uppercase tracking-wide text-gold mb-3">
+                          Ontdek verder
                         </p>
-                      )}
-                  </div>
-                </ScrollReveal>
-              </>
+                        <h2 className="text-2xl font-bold mb-3">
+                          Wat wil je hierna doen?
+                        </h2>
+                        <p className="text-warm-white/75 leading-relaxed">
+                          Een intuïtieve vervolgroute voor nieuw gelovigen, direct vanuit deze video.
+                        </p>
+                      </div>
+
+                      <div className="space-y-3">
+                        <a
+                          href="https://alphanederland.org"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="block rounded-xl bg-warm-white/10 p-5 hover:bg-warm-white/15 transition-colors"
+                        >
+                          <div className="flex items-start gap-4">
+                            <div className="rounded-lg bg-gold/20 p-3">
+                              <Users className="w-5 h-5 text-gold" />
+                            </div>
+                            <div>
+                              <h3 className="font-semibold text-lg">Meld je aan bij Alpha Nederland</h3>
+                              <p className="text-warm-white/70 text-sm mt-1">
+                                Verken geloof samen met anderen in een veilige, laagdrempelige setting.
+                              </p>
+                            </div>
+                          </div>
+                        </a>
+
+                        <a
+                          href="https://www.google.com/search?q=kerk+in+de+buurt"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="block rounded-xl bg-warm-white/10 p-5 hover:bg-warm-white/15 transition-colors"
+                        >
+                          <div className="flex items-start gap-4">
+                            <div className="rounded-lg bg-gold/20 p-3">
+                              <Search className="w-5 h-5 text-gold" />
+                            </div>
+                            <div>
+                              <h3 className="font-semibold text-lg">Vind een kerk in de buurt</h3>
+                              <p className="text-warm-white/70 text-sm mt-1">
+                                Zoek direct naar een plek waar je mensen kunt ontmoeten en verder kunt groeien.
+                              </p>
+                            </div>
+                          </div>
+                        </a>
+
+                        <a
+                          href={questionLink}
+                          className="block rounded-xl bg-warm-white/10 p-5 hover:bg-warm-white/15 transition-colors"
+                        >
+                          <div className="flex items-start gap-4">
+                            <div className="rounded-lg bg-gold/20 p-3">
+                              <MessagesSquare className="w-5 h-5 text-gold" />
+                            </div>
+                            <div>
+                              <h3 className="font-semibold text-lg">Stel je eerste vragen</h3>
+                              <p className="text-warm-white/70 text-sm mt-1">
+                                Deel waar je mee zit, wij helpen je met een volgende stap die bij jou past.
+                              </p>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    </aside>
+                  </ScrollReveal>
+                </section>
+
+                <section className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_minmax(320px,0.9fr)] items-start">
+                  <ScrollReveal>
+                    <div className="bg-warm-white rounded-2xl shadow-card p-8">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="rounded-lg bg-gold/15 p-3">
+                          <MessageCircle className="w-5 h-5 text-gold" />
+                        </div>
+                        <div>
+                          <h2 className="text-2xl font-bold text-anthracite">Reacties bij deze video</h2>
+                          <p className="text-muted-foreground">
+                            Laat weten wat deze getuigenis bij je oproept.
+                          </p>
+                        </div>
+                      </div>
+
+                      <form onSubmit={handleCommentSubmit} className="grid gap-4 mb-8">
+                        <Input
+                          value={commentDraft.name}
+                          onChange={(event) =>
+                            setCommentDraft((current) => ({ ...current, name: event.target.value }))
+                          }
+                          placeholder="Jouw naam"
+                          maxLength={80}
+                        />
+                        <Textarea
+                          value={commentDraft.message}
+                          onChange={(event) =>
+                            setCommentDraft((current) => ({ ...current, message: event.target.value }))
+                          }
+                          placeholder="Schrijf hier je reactie..."
+                          maxLength={500}
+                          className="min-h-[140px]"
+                        />
+                        <div>
+                          <Button type="submit" variant="hero">
+                            Reageer op deze video
+                          </Button>
+                        </div>
+                      </form>
+
+                      <div className="space-y-4">
+                        {comments.map((comment) => (
+                          <div key={comment.id} className="rounded-xl border border-border bg-cream p-5">
+                            <div className="flex items-center justify-between gap-3 mb-2">
+                              <p className="font-semibold text-anthracite">{comment.name}</p>
+                              <span className="text-sm text-muted-foreground">{comment.createdAtLabel}</span>
+                            </div>
+                            <p className="text-anthracite/80 leading-relaxed">{comment.message}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </ScrollReveal>
+
+                  <ScrollReveal delay={100}>
+                    <div className="space-y-6">
+                      <div className="bg-warm-white rounded-2xl shadow-card p-8">
+                        <h2 className="text-2xl font-bold text-anthracite mb-3">Vragen of contact</h2>
+                        <p className="text-muted-foreground mb-6">
+                          Kies de route die het beste aansluit op wat je nu nodig hebt.
+                        </p>
+                        <div className="space-y-3">
+                          <a href={discussionLink} className="block rounded-xl border border-border p-5 hover:border-gold transition-colors">
+                            <p className="font-semibold text-anthracite mb-1">Doorpraten over de video</p>
+                            <p className="text-sm text-muted-foreground">Start een gesprek over wat je hebt gezien.</p>
+                          </a>
+                          <a href={questionLink} className="block rounded-xl border border-border p-5 hover:border-gold transition-colors">
+                            <p className="font-semibold text-anthracite mb-1">Stel een persoonlijke vraag</p>
+                            <p className="text-sm text-muted-foreground">Voor geloofsvragen, twijfel of praktische vervolgstappen.</p>
+                          </a>
+                          <a href={contactLink} className="block rounded-xl border border-border p-5 hover:border-gold transition-colors">
+                            <p className="font-semibold text-anthracite mb-1">Kom in contact met de spreker</p>
+                            <p className="text-sm text-muted-foreground">Wij kunnen helpen om het juiste contact te leggen.</p>
+                          </a>
+                        </div>
+                      </div>
+
+                      <div className="bg-warm-white rounded-2xl shadow-card p-8">
+                        <h2 className="text-2xl font-bold text-anthracite mb-6">Aanbevolen video&apos;s</h2>
+                        <div className="space-y-4">
+                          {relatedVideos.map((video) => (
+                            <Link
+                              key={video.id}
+                              to={`/getuigenissen/${video.vimeoUrl}`}
+                              className="group block rounded-xl border border-border p-4 hover:border-gold transition-colors"
+                            >
+                              <div className="flex items-start justify-between gap-4">
+                                <div>
+                                  <p className="font-semibold text-anthracite group-hover:text-gold transition-colors">
+                                    {recommendationTitle(video)}
+                                  </p>
+                                  <p className="text-sm text-muted-foreground mt-1 line-clamp-2">
+                                    "{video.quote}"
+                                  </p>
+                                  {video.churchName && video.churchName !== 'undefined' && (
+                                    <p className="text-sm text-gold mt-2">{video.churchName}</p>
+                                  )}
+                                </div>
+                                <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-gold transition-colors" />
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </ScrollReveal>
+                </section>
+              </div>
             )}
           </div>
         </div>
