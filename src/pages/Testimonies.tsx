@@ -60,13 +60,7 @@ const fetchThumbnail = async (vimeoId: string): Promise<string | null> => {
   return null;
 };
 
-const TestimonyCard = ({
-  testimony,
-  onPlay,
-}: {
-  testimony: Testimony;
-  onPlay: (t: Testimony) => void;
-}) => {
+const TestimonyCard = ({ testimony }: { testimony: Testimony }) => {
   const [thumb, setThumb] = useState<string | null>(null);
 
   useEffect(() => {
@@ -80,9 +74,9 @@ const TestimonyCard = ({
   }, [testimony.vimeoUrl]);
 
   return (
-    <button
-      onClick={() => onPlay(testimony)}
-      className="group relative rounded-2xl overflow-hidden bg-anthracite shadow-card hover:shadow-lg transition-all duration-300 text-left"
+    <Link
+      to={`/getuigenissen/${testimony.vimeoUrl}`}
+      className="group relative rounded-2xl overflow-hidden bg-anthracite shadow-card hover:shadow-lg transition-all duration-300 text-left block"
     >
       <div className="relative aspect-[3/4] bg-anthracite-light">
         {thumb ? (
@@ -120,7 +114,7 @@ const TestimonyCard = ({
           )}
         </div>
       </div>
-    </button>
+    </Link>
   );
 };
 
