@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import logo from '@/assets/jesus-today-logo.png';
+import { useAudienceOptional } from '@/contexts/AudienceContext';
+import { AudienceSwitch } from '@/components/AudienceSwitch';
 
 const navLinks = [
   { label: 'Verhalen', href: '#' },
@@ -13,6 +15,7 @@ const navLinks = [
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const audience = useAudienceOptional();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,8 +58,9 @@ export const Header = () => {
             ))}
           </nav>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:block">
+          {/* Desktop CTA + audience switch */}
+          <div className="hidden md:flex items-center gap-4">
+            {audience && <AudienceSwitch variant="header" />}
             <Button variant="hero" size="default">
               Upload jouw getuigenis
             </Button>
@@ -80,6 +84,11 @@ export const Header = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden absolute top-20 left-0 right-0 bg-white shadow-lg border-t border-anthracite/10">
             <nav className="flex flex-col py-4">
+              {audience && (
+                <div className="px-6 py-3 flex justify-center">
+                  <AudienceSwitch variant="header" />
+                </div>
+              )}
               {navLinks.map((link) => (
                 <a
                   key={link.label}
