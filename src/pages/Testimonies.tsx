@@ -7,6 +7,7 @@ import { Footer } from '@/components/sections/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { Input } from '@/components/ui/input';
 import { fetchThumbnail, getChurchKey, getChurchName } from '@/lib/testimonies';
+import { TOPICS, testimonyMatchesTopics } from '@/lib/topics';
 import {
   Select,
   SelectContent,
