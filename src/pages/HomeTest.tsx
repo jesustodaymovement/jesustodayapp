@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async';
 import { AudienceProvider, useAudience } from '@/contexts/AudienceContext';
-import { AudienceSwitch } from '@/components/AudienceSwitch';
 import { Header } from '@/components/sections/Header';
 import { HeroAudience } from '@/components/sections/HeroAudience';
 import { ProblemSection } from '@/components/sections/ProblemSection';
@@ -50,8 +49,6 @@ const HomeTestContent = () => {
 
         <Footer />
       </main>
-
-      <AudienceSwitch variant="floating" />
     </>
   );
 };
