@@ -448,6 +448,7 @@ const OverOns = () => {
         <ProofSection />
         <PlanSection />
         <ScaleSection />
+        <VideoSliderSection />
         <CornerstoneSection />
         <FinalCta />
       </main>
