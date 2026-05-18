@@ -96,7 +96,7 @@ const RelatedVideoCard = ({ video }: RelatedVideoCardProps) => {
 
   return (
     <Link
-      to={`/verhaalsen/${video.vimeoUrl}`}
+      to={`/verhalen-over-jezus/${video.vimeoUrl}`}
       className="group block overflow-hidden rounded-2xl bg-anthracite shadow-card"
     >
       <div className="relative aspect-[3/4] bg-anthracite-light">
@@ -265,7 +265,7 @@ const TestimonyDetail = () => {
               : 'Bekijk een verhaal op video op Jesus Today.'
           }
         />
-        <link rel="canonical" href={`/verhaalsen/${vimeoId}`} />
+        <link rel="canonical" href={`/verhalen-over-jezus/${vimeoId}`} />
       </Helmet>
 
       <Header />
@@ -274,7 +274,7 @@ const TestimonyDetail = () => {
         <div className="container mx-auto px-6">
           <div className="max-w-7xl mx-auto">
             <Link
-              to="/verhaalsen"
+              to="/verhalen-over-jezus"
               className="inline-flex items-center gap-2 text-anthracite hover:text-gold transition-colors mb-8 font-medium"
             >
               <ArrowLeft className="w-5 h-5" />
@@ -288,7 +288,7 @@ const TestimonyDetail = () => {
             ) : error || !testimony ? (
               <div className="text-center py-24">
                 <p className="text-destructive mb-4">{error ?? 'Verhaal niet gevonden.'}</p>
-                <Link to="/verhaalsen" className="text-gold underline">
+                <Link to="/verhalen-over-jezus" className="text-gold underline">
                   Bekijk alle verhalen
                 </Link>
               </div>

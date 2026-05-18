@@ -49,7 +49,7 @@ const Hero = () => (
               Upload jouw verhaal
             </Button>
             <Button asChild variant="outline" size="lg">
-              <Link to="/verhaalsen">
+              <Link to="/verhalen-over-jezus">
                 <Play className="w-5 h-5" />
                 Bekijk verhalen
               </Link>
@@ -403,7 +403,7 @@ const FinalCta = () => (
               Upload jouw verhaal
             </Button>
             <Button asChild variant="hero-outline" size="lg">
-              <Link to="/verhaalsen">
+              <Link to="/verhalen-over-jezus">
                 <ArrowRight className="w-5 h-5" />
                 Bekijk verhalen
               </Link>

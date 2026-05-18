@@ -8,7 +8,7 @@ const steps = [
     title: 'Bekijk meer verhalen',
     description: 'Ontdek tientallen verhalen van mensen die God leerden kennen.',
     cta: 'Naar de verhalen',
-    href: '/verhaalsen',
+    href: '/verhalen-over-jezus',
     external: false,
   },
   {

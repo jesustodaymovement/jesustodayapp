@@ -68,7 +68,7 @@ export const HeroAudience = () => {
                 </Button>
               ) : (
                 <Button asChild variant="hero" size="lg" className="min-w-[220px]">
-                  <Link to="/verhaalsen">
+                  <Link to="/verhalen-over-jezus">
                     <PrimaryIcon className="w-5 h-5" />
                     {content.primaryLabel}
                   </Link>
