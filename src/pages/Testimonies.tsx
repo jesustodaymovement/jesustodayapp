@@ -251,10 +251,10 @@ const Testimonies = () => {
   return (
     <div className="min-h-screen bg-cream">
       <Helmet>
-        <title>Verhalen op video — Jesus Today</title>
+        <title>Getuigenissen op video, JesusToday</title>
         <meta
           name="description"
-          content="Bekijk verhalen op video van mensen die hun geloof in Jezus delen."
+          content="Bekijk persoonlijke getuigenissen van mensen die hun verhaal over Jezus delen."
         />
         <link rel="canonical" href="/verhalen-over-jezus" />
       </Helmet>
@@ -266,14 +266,14 @@ const Testimonies = () => {
           <div className="max-w-6xl mx-auto">
             <ScrollReveal>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-anthracite mb-4">
-                Video <span className="text-gold">Verhalen</span>
+                Verhalen over <span className="text-gold">Jezus</span>
               </h1>
             </ScrollReveal>
 
             <ScrollReveal delay={100}>
               <p className="text-lg text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-                Ontdek de verhalen van mensen die hun leven met Jezus delen.
-                {globalTotal > 0 && ` ${globalTotal} verhalen beschikbaar.`}
+                Echte getuigenissen van mensen die ontdekten wie Jezus voor hen is.
+                {globalTotal > 0 && ` ${globalTotal} verhalen te bekijken.`}
               </p>
             </ScrollReveal>
 
