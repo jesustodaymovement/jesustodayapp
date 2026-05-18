@@ -11,6 +11,7 @@ import Base from "./pages/Base";
 import Test22 from "./pages/Test22";
 import Testimonies from "./pages/Testimonies";
 import TestimonyDetail from "./pages/TestimonyDetail";
+import Doneren from "./pages/Doneren";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
             <Route path="/test22" element={<Test22 />} />
             <Route path="/getuigenissen" element={<Testimonies />} />
             <Route path="/getuigenissen/:vimeoId" element={<TestimonyDetail />} />
+            <Route path="/doneren" element={<Doneren />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
