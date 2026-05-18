@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
-import { Download, Video, QrCode, Share2, Shield, Clock, Heart, ArrowRight } from 'lucide-react';
+import { Download, Video, QrCode, Share2, Shield, Clock, Heart, ArrowRight, Camera, Users, Mail, HelpCircle } from 'lucide-react';
 
 const APP_STORE_URL = 'https://apps.apple.com/nl/app/jesus-today/id1623308816';
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=io.mxapps.jesustoday';
@@ -260,6 +260,57 @@ const Upload = () => {
                   </ScrollReveal>
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* HELP & DRAAIDAGEN */}
+        <section className="py-24 bg-cream">
+          <div className="container mx-auto px-6">
+            <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+              <ScrollReveal>
+                <div className="h-full p-8 md:p-10 rounded-2xl bg-background border border-border/50 shadow-card">
+                  <div className="w-14 h-14 rounded-2xl bg-gold/15 flex items-center justify-center mb-6">
+                    <Camera className="w-7 h-7 text-gold" />
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-anthracite mb-4">
+                    Wij komen ook langs voor draaidagen
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed mb-6">
+                    We organiseren draaidagen binnen kerken en organisaties en komen graag langs om jouw getuigenis vast te leggen, of om te helpen met het samenstellen en opnemen van getuigenissen van meerdere mensen.
+                  </p>
+                  <ul className="space-y-2 mb-6 text-anthracite">
+                    <li className="flex items-start gap-3"><Users className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" /><span>Draaidagen in kerken en organisaties</span></li>
+                    <li className="flex items-start gap-3"><Video className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" /><span>Hulp bij opnemen en monteren</span></li>
+                    <li className="flex items-start gap-3"><Heart className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" /><span>Persoonlijke begeleiding bij jouw verhaal</span></li>
+                  </ul>
+                  <a href="mailto:info@jesustoday.nl?subject=Draaidag%20aanvragen" className="inline-flex items-center gap-2 text-gold font-semibold hover:gap-3 transition-all">
+                    <Mail className="w-5 h-5" /> info@jesustoday.nl
+                  </a>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal delay={150}>
+                <div className="h-full p-8 md:p-10 rounded-2xl bg-background border border-border/50 shadow-card">
+                  <div className="w-14 h-14 rounded-2xl bg-gold/15 flex items-center justify-center mb-6">
+                    <HelpCircle className="w-7 h-7 text-gold" />
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-anthracite mb-4">
+                    Liever je video op een andere manier delen?
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed mb-6">
+                    Geen probleem. Wil je jouw video liever via WeTransfer, e-mail of een ander kanaal sturen, of heb je hulp nodig bij het opnemen? Neem contact met ons op, we denken graag met je mee.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <a href="mailto:info@jesustoday.nl?subject=Hulp%20bij%20mijn%20verhaal" className="inline-flex items-center justify-center gap-2 rounded-xl bg-gold text-anthracite px-5 py-3 font-semibold shadow-gold hover:scale-105 transition-all">
+                      <Mail className="w-5 h-5" /> Stuur ons een mail
+                    </a>
+                    <Link to="/contact" className="inline-flex items-center justify-center gap-2 rounded-xl bg-anthracite/10 text-anthracite border border-anthracite/20 px-5 py-3 font-semibold hover:bg-anthracite/20 transition-all">
+                      Naar contactpagina <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </div>
+                </div>
+              </ScrollReveal>
             </div>
           </div>
         </section>
