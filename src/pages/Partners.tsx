@@ -104,10 +104,6 @@ const offering = [
 
 const faqs = [
   {
-    q: 'Wat kost een partnership?',
-    a: 'We zoeken altijd naar wat passend is voor jullie kerk. Neem contact op, dan kijken we samen wat haalbaar is.',
-  },
-  {
     q: 'Moeten we het zelf opnemen of komen jullie filmen?',
     a: 'Het idee is dat jullie het zelf doen, dat geeft de meeste eigenaarschap in de gemeente. Lukt dat niet, dan kunnen we in overleg langskomen om te helpen met opnemen.',
   },
@@ -398,7 +394,7 @@ const Partners = () => {
             <div className="max-w-3xl mx-auto text-center">
               <ScrollReveal>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-warm-white mb-6">
-                  Klaar om als kerk <span className="text-gold">eigenaarschap</span> te pakken?
+                  Samen jullie gemeente <span className="text-gold">activeren</span> in getuigen?
                 </h2>
               </ScrollReveal>
               <ScrollReveal delay={100}>
