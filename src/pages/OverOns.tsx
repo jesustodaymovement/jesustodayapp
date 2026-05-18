@@ -35,16 +35,14 @@ const Hero = () => (
         </ScrollReveal>
         <ScrollReveal delay={200}>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">
-            JesusToday is een platform voor persoonlijke videogetuigenissen,
-            gemaakt door en voor mensen die hun ervaring met Jezus willen delen.
-            Geen ingewikkelde taal, geen drempel.
-          </p>
+            JesusToday is een platform voor persoonlijke verhalen op video,
+            gemaakt door en voor mensen die hun ervaring met Jezus willen delen. </p>
         </ScrollReveal>
         <ScrollReveal delay={300}>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button variant="hero" size="lg">
               <Upload className="w-5 h-5" />
-              Upload jouw getuigenis
+              Upload jouw verhaal
             </Button>
             <Button asChild variant="outline" size="lg">
               <Link to="/getuigenissen">
@@ -70,7 +68,7 @@ const GapSection = () => (
         </ScrollReveal>
         <ScrollReveal delay={100}>
           <p className="text-lg text-warm-white/80 leading-relaxed mb-8">
-            Nederland is het meest seculiere land van West-Europa. De generatie
+            Nederland is een van de meest seculiere landen van West-Europa. De generatie
             die we het meest willen bereiken loopt uit zichzelf nooit een kerk
             binnen. Tegelijk willen veel christenen hun verhaal delen, maar
             weten ze niet hoe. Beide groepen wachten op elkaar.
@@ -159,7 +157,7 @@ const FounderSection = () => (
 );
 
 const stats = [
-  { value: '200+', label: 'persoonlijke videogetuigenissen' },
+  { value: '200+', label: 'persoonlijke verhalen op video' },
   { value: '10+', label: 'samenwerkingen, o.a. Opwekking, The Send, New Wine, YWAM' },
   { value: '1', label: 'land actief (Zuid-Afrika)' },
   { value: '2', label: 'landen klaar voor opstart (India, Macedonië)' },
@@ -203,7 +201,7 @@ const steps = [
     icon: Video,
     nr: '01',
     title: 'Opnemen',
-    desc: 'Een gelovige neemt zijn persoonlijke getuigenis op via de JesusToday-app. Het verhaal komt op het platform.',
+    desc: 'Een gelovige neemt zijn persoonlijke verhaal op via de JesusToday-app. Het verhaal komt op het platform.',
   },
   {
     icon: QrCode,
@@ -359,7 +357,7 @@ const FinalCta = () => (
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button variant="hero" size="lg">
               <Upload className="w-5 h-5" />
-              Upload jouw getuigenis
+              Upload jouw verhaal
             </Button>
             <Button asChild variant="hero-outline" size="lg">
               <Link to="/getuigenissen">
@@ -381,7 +379,7 @@ const OverOns = () => {
         <title>Over JesusToday, ons verhaal</title>
         <meta
           name="description"
-          content="JesusToday is een platform voor persoonlijke videogetuigenissen. Lees hoe het begon met het verhaal van oprichter Alexander Keur."
+          content="JesusToday is een platform voor persoonlijke verhalen op video. Lees hoe het begon met het verhaal van oprichter Alexander Keur."
         />
         <link
           rel="canonical"
@@ -390,7 +388,7 @@ const OverOns = () => {
         <meta property="og:title" content="Over JesusToday, ons verhaal" />
         <meta
           property="og:description"
-          content="JesusToday is een platform voor persoonlijke videogetuigenissen, gemaakt door en voor mensen die hun ervaring met Jezus willen delen."
+          content="JesusToday is een platform voor persoonlijke verhalen op video, gemaakt door en voor mensen die hun ervaring met Jezus willen delen."
         />
         <meta
           property="og:url"

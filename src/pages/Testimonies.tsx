@@ -64,7 +64,7 @@ const TestimonyCard = ({ testimony }: { testimony: Testimony }) => {
         {thumb ? (
           <img
             src={thumb}
-            alt={`Getuigenis van ${testimony.user.username}`}
+            alt={`Verhaal van ${testimony.user.username}`}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
           />
@@ -146,7 +146,7 @@ const Testimonies = () => {
       setItems(data.items);
     } catch (e) {
       console.error(e);
-      setError('Er ging iets mis bij het ophalen van de getuigenissen.');
+      setError('Er ging iets mis bij het ophalen van de verhalen.');
     } finally {
       setLoading(false);
     }
@@ -251,10 +251,10 @@ const Testimonies = () => {
   return (
     <div className="min-h-screen bg-cream">
       <Helmet>
-        <title>Video Getuigenissen — Jesus Today</title>
+        <title>Verhalen op video — Jesus Today</title>
         <meta
           name="description"
-          content="Bekijk video getuigenissen van mensen die hun geloof in Jezus delen."
+          content="Bekijk verhalen op video van mensen die hun geloof in Jezus delen."
         />
         <link rel="canonical" href="/getuigenissen" />
       </Helmet>
@@ -266,14 +266,14 @@ const Testimonies = () => {
           <div className="max-w-6xl mx-auto">
             <ScrollReveal>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-anthracite mb-4">
-                Video <span className="text-gold">Getuigenissen</span>
+                Video <span className="text-gold">Verhalen</span>
               </h1>
             </ScrollReveal>
 
             <ScrollReveal delay={100}>
               <p className="text-lg text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
                 Ontdek de verhalen van mensen die hun leven met Jezus delen.
-                {globalTotal > 0 && ` ${globalTotal} getuigenissen beschikbaar.`}
+                {globalTotal > 0 && ` ${globalTotal} verhalen beschikbaar.`}
               </p>
             </ScrollReveal>
 
@@ -379,7 +379,7 @@ const Testimonies = () => {
               </div>
             ) : filtered.length === 0 ? (
               <div className="text-center py-24 text-muted-foreground">
-                Geen getuigenissen gevonden met deze filters.
+                Geen verhalen gevonden met deze filters.
               </div>
             ) : (
               <>

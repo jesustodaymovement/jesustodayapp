@@ -25,7 +25,7 @@ export const ChurchSection = () => {
 
               <ScrollReveal delay={200}>
                 <p className="text-warm-white/80 leading-relaxed mb-8">
-                  We organiseren opnamedagen in kerken om mensen te helpen hun getuigenis vast te leggen en te delen. Een praktische manier om getuigenis een vaste plek te geven in de gemeente.
+                  We organiseren opnamedagen in kerken om mensen te helpen hun verhaal vast te leggen en te delen. Een praktische manier om verhalen een vaste plek te geven in de gemeente.
                 </p>
               </ScrollReveal>
 
@@ -57,7 +57,7 @@ export const ChurchSection = () => {
                         <Users className="w-6 h-6 text-gold" />
                       </div>
                       <div>
-                        <p className="text-warm-white font-semibold">500+ getuigenissen</p>
+                        <p className="text-warm-white font-semibold">500+ verhalen</p>
                         <p className="text-warm-white/60 text-sm">opgenomen</p>
                       </div>
                     </div>
