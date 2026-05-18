@@ -223,14 +223,15 @@ const Upload = () => {
                 </div>
               </ScrollReveal>
               <ScrollReveal delay={150}>
-                <div className="relative aspect-[9/16] max-w-xs mx-auto rounded-[2.5rem] bg-anthracite p-3 shadow-card">
-                  <div className="w-full h-full rounded-[2rem] bg-gradient-to-br from-anthracite via-anthracite-light to-anthracite flex flex-col items-center justify-center p-8 text-center">
-                    <div className="w-20 h-20 rounded-2xl bg-gold flex items-center justify-center mb-6 shadow-gold">
-                      <Video className="w-10 h-10 text-anthracite" />
-                    </div>
-                    <p className="text-warm-white text-lg font-semibold mb-2">JesusToday</p>
-                    <p className="text-warm-white/60 text-sm">Een korte preview van de app</p>
-                  </div>
+                <div className="relative aspect-video rounded-2xl overflow-hidden bg-anthracite shadow-card">
+                  <iframe
+                    src="https://player.vimeo.com/video/947358616?title=0&byline=0&portrait=0"
+                    className="absolute inset-0 w-full h-full"
+                    frameBorder={0}
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowFullScreen
+                    title="JesusToday app preview"
+                  />
                 </div>
               </ScrollReveal>
             </div>
