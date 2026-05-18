@@ -7,7 +7,7 @@ import { useAudienceOptional } from '@/contexts/AudienceContext';
 import { AudienceSwitch } from '@/components/AudienceSwitch';
 
 const navLinks = [
-  { label: 'Verhalen', href: '#' },
+  { label: 'Verhalen', href: '/verhalen-over-jezus' },
   { label: 'Over Ons', href: '/over-ons' },
   { label: 'Partners', href: '/partners' },
   { label: 'Doneren', href: '/doneren' },
