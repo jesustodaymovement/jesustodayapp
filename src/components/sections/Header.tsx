@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import logo from '@/assets/jesus-today-logo.png';
@@ -15,24 +16,20 @@ const navLinks = [
 ];
 
 export const Header = () => {
+  const { t, i18n } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [lang, setLang] = useState<'nl' | 'en'>(() => {
-    if (typeof window === 'undefined') return 'nl';
-    return (localStorage.getItem('jt-lang') as 'nl' | 'en') || 'nl';
-  });
   const audience = useAudienceOptional();
-
+  const lang = (i18n.language?.startsWith('en') ? 'en' : 'nl') as 'nl' | 'en';
   const setLanguage = (l: 'nl' | 'en') => {
-    setLang(l);
-    try { localStorage.setItem('jt-lang', l); } catch {}
+    i18n.changeLanguage(l);
   };
 
   const LanguageSwitch = ({ className = '' }: { className?: string }) => (
     <div
       className={`inline-flex items-center rounded-md border border-anthracite/15 overflow-hidden text-xs font-semibold ${className}`}
       role="group"
-      aria-label="Taal kiezen"
+      aria-label={t('Taal kiezen')}
     >
       <button
         type="button"
@@ -94,7 +91,7 @@ export const Header = () => {
                 href={link.href}
                 className="text-anthracite/80 hover:text-gold transition-colors font-medium"
               >
-                {link.label}
+                {t(link.label)}
               </a>
             ))}
           </nav>
@@ -103,7 +100,7 @@ export const Header = () => {
           <div className="hidden md:flex items-center gap-4">
             {audience && <AudienceSwitch variant="header" />}
             <Button asChild variant="hero" size="default">
-              <Link to="/upload">Upload jouw verhaal</Link>
+              <Link to="/upload">{t('Upload jouw verhaal')}</Link>
             </Button>
             <LanguageSwitch />
           </div>
@@ -112,7 +109,7 @@ export const Header = () => {
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden text-anthracite p-2"
-            aria-label="Toggle menu"
+            aria-label={t('Toggle menu')}
           >
             {isMobileMenuOpen ? (
               <X className="w-6 h-6" />
@@ -138,13 +135,13 @@ export const Header = () => {
                   className="px-6 py-3 text-anthracite/80 hover:text-gold hover:bg-anthracite/5 transition-colors font-medium"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {link.label}
+                  {t(link.label)}
                 </a>
               ))}
               <div className="px-6 py-4">
                 <Button asChild variant="hero" size="default" className="w-full">
                   <Link to="/upload" onClick={() => setIsMobileMenuOpen(false)}>
-                    Upload jouw verhaal
+                    {t('Upload jouw verhaal')}
                   </Link>
                 </Button>
                 <div className="mt-3 flex justify-center">
