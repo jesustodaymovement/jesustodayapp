@@ -1,0 +1,53 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { Megaphone, X } from "lucide-react";
+
+const STORAGE_KEY = "jt-opwekking-bar-dismissed";
+
+export const AlertBar = () => {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (!localStorage.getItem(STORAGE_KEY)) setVisible(true);
+  }, []);
+
+  if (!visible) return null;
+
+  const dismiss = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    localStorage.setItem(STORAGE_KEY, "1");
+    setVisible(false);
+  };
+
+  return (
+    <div
+      className="relative w-full"
+      style={{ backgroundColor: "#fad150" }}
+      role="region"
+      aria-label="Aankondiging Opwekking"
+    >
+      <Link
+        to="/opwekking"
+        className="flex items-center justify-center gap-2 px-12 py-2.5 text-sm md:text-base font-semibold text-neutral-900 hover:bg-black/5 transition-colors text-center"
+      >
+        <Megaphone className="w-4 h-4 shrink-0" aria-hidden="true" />
+        <span>
+          Laat je getuigenis opnemen tijdens Opwekking,{" "}
+          <span className="underline underline-offset-2">meld je aan</span>
+        </span>
+      </Link>
+      <button
+        type="button"
+        onClick={dismiss}
+        aria-label="Aankondiging sluiten"
+        className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-md hover:bg-black/10 transition-colors text-neutral-900"
+      >
+        <X className="w-4 h-4" aria-hidden="true" />
+      </button>
+    </div>
+  );
+};
+
+export default AlertBar;
