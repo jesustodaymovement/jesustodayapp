@@ -1,36 +1,64 @@
 ## Doel
 
-Een sitewide zwevende chat-widget (rechtsonder) toevoegen, vergelijkbaar met het Chaty-voorbeeld, met twee kanalen: WhatsApp en Email. Geen externe Chaty-plugin nodig, gewoon een lichte eigen React-component zodat we performance, styling en toegankelijkheid in eigen hand houden.
+Sitewide alert-balk met een duidelijke CTA voor Opwekking, en een nieuwe aanmeldpagina met contactformulier waar geïnteresseerden zich melden om tijdens Opwekking een getuigenisvideo te laten opnemen.
 
-## Gedrag
+## 1. Alert-balk (sitewide)
 
-- Hoofdknop rechtsonder met label "Vraag over God?" en chat-icoon.
-- Klik opent een verticale lijst boven de knop met twee ronde kanaal-iconen:
-  1. WhatsApp, opent `https://wa.me/31643798701` in nieuw tabblad (groene cirkel, WhatsApp-glyph, kleur #49E670 zoals in de bron).
-  2. Email, opent `mailto:info@vraagovergod.nl` (gele cirkel met #fad150 zoals huisstijl, envelop-glyph).
-- Klik op de hoofdknop opnieuw, of buiten de widget, sluit het paneel.
-- Tooltip-label naast elk icoon ("WhatsApp", "Email") bij hover op desktop.
-- ESC sluit het paneel, focus-trap binnen open state, ARIA: `aria-expanded`, `aria-label="Chat openen"`, kanaal-links met eigen `aria-label`.
+- Nieuwe component `src/components/AlertBar.tsx`.
+- Boven de header gepind (boven de sticky `Header`). Achtergrond #fad150, donkere tekst, klein megafoon-icoon.
+- Tekst: "Laat je getuigenis opnemen tijdens Opwekking" met daarachter een onderstreepte CTA-link "Meld je aan".
+- Hele balk is klikbaar, navigeert naar `/opwekking`.
+- Sluitknop (X) rechts. Gesloten-status onthouden in `localStorage` onder key `jt-opwekking-bar-dismissed` zodat de balk niet opnieuw verschijnt na sluiten.
+- Mount in `src/App.tsx` boven `<Routes>` zodat hij op elke pagina staat.
+- Tone: positief en uitnodigend, sluit aan op huisstijl-regel "lichte, hoopvolle esthetiek".
 
-## Stijl
+## 2. Nieuwe pagina `/opwekking`
 
-- Knop: ronde pill, achtergrond #fad150, donkere tekst (anthracite), subtiele schaduw, hover lift.
-- Kanaal-iconen: 48px ronde cirkels, fade+slide-up animatie bij openen (gestaggerd 60ms).
-- Mobile: alleen icoon-only hoofdknop (geen tekst) om ruimte te besparen, paneel blijft identiek.
-- Geen em-dashes, komma's in alle tekst.
-- z-index hoog genoeg om boven Embla carousels en video-embeds te staan (z-50 of hoger).
+- Bestand: `src/pages/Opwekking.tsx`, geregistreerd in `App.tsx`.
+- Header en Footer hergebruiken (zelfde patroon als andere subpagina's).
+- Helmet: title "Opwekking, laat je getuigenis opnemen, JesusToday", description en og/twitter tags.
+- H1: "Ja, ik wil een video maken"
+- Intro (één H2 + bodytekst, met komma's in plaats van em-dashes):
+  - Welkomstparagraaf: "Wat mooi dat je je aanmeldt. Wij gaan je helpen om een impactvolle getuigenisvideo te maken."
+  - Vooraf-blok in een vriendelijke "Goed om te weten"-kaart (bewust niet als angstboodschap framen, maar als bemoediging):
+    - Korte uitleg dat er drempels kunnen opduiken die je verhaal willen tegenhouden.
+    - Lijst met de vier voorbeelden uit de briefing, letterlijk overgenomen.
+  - Bemoediging: "Maar jouw authentieke verhaal doet er weldegelijk toe en wij gaan je helpen, zodat jij een gezegend Jezus-getuige bent. Gehoorzaam aan Zijn 'Grote opdracht'."
+  - Korte uitleg waarom we contactgegevens vragen.
+- Contactformulier (kaart, lichte achtergrond):
+  - Velden: Voornaam, Achternaam, Telefoonnummer, E-mailadres (allemaal required).
+  - Validatie met `zod` (al aanwezig in project): trim, max-lengtes, e-mailcheck, telefoon min 6 max 20 tekens, alleen cijfers/spaties/+/-.
+  - Submit-knop: "Meld mij aan" in #fad150.
+- Verzending:
+  - Insert in nieuwe Supabase-tabel `opwekking_signups` (kolommen: id uuid pk default gen_random_uuid, first_name text, last_name text, phone text, email text, created_at timestamptz default now).
+  - RLS: alleen anonieme INSERT toegestaan (`with check (true)`), geen SELECT/UPDATE/DELETE voor anon. Admins (bestaande user_roles 'admin') krijgen SELECT-policy.
+  - Bevestigings-toast en in-page success-state met de hartelijke groet-blok:
+    - "We nemen zo snel mogelijk contact met je op."
+    - Ondertekening: "Hartelijke groet en zegen namens het JesusToday Team", `info@jesustoday.nl`, tel. 06-83559808, link naar `https://www.jesustoday.nl`.
+- Sectie onderaan met praktische contactinfo (mail + telefoon klikbaar) voor wie liever direct contact opneemt.
 
-## Implementatie
+## 3. Database-migratie
 
-1. Nieuwe component `src/components/ChatWidget.tsx`
-   - Client-side React, `useState` voor open/dicht, `useEffect` voor ESC + click-outside.
-   - Geen extra npm packages, iconen via inline SVG (WhatsApp glyph uit de meegestuurde HTML) of `lucide-react` (`Mail`, `MessageCircle`).
-2. Mount in `src/App.tsx` (of de huidige root layout) na de routes, zodat de widget op elke pagina zichtbaar is (inclusief Base, Home, Testimonies, etc.).
-3. Telefoonnummer en e-mailadres als consts bovenaan de component voor één-plek-onderhoud.
-4. Geen wijzigingen aan bestaande pagina's, layout of footer.
+Nieuwe migratie:
+- `create table public.opwekking_signups (...)` zoals hierboven.
+- `alter table ... enable row level security`.
+- Policy `anon_insert`: `for insert to anon with check (true)`.
+- Policy `admin_select`: `for select to authenticated using (public.has_role(auth.uid(), 'admin'))` (gebruikt bestaande `has_role` functie).
+
+## 4. Admin-zichtbaarheid (lichte aanvulling, optioneel)
+
+Niet in eerste versie. Inzendingen zijn in de database zichtbaar; we voegen later eventueel een tab toe in `/admin/inzendingen`.
+
+## 5. Toon en stijlregels
+
+- Komma's in plaats van em-dashes.
+- "JesusToday" als één woord.
+- Gele knoppen/accenten in #fad150.
+- Geen angst-retoriek in eigen koppen; de drogredenen-lijst staat in een neutrale "Goed om te weten"-kaart, niet als sectiekop "Wat als je stil blijft?".
+- Mobile-first, WCAG AA contrast, alt-tekst op iconen via `aria-hidden`/labels.
 
 ## Niet in scope
 
-- Geen extra kanalen (Messenger, Telegram, etc.); makkelijk later uit te breiden via een config-array.
-- Geen analytics-tracking op clicks (kan later toegevoegd via een onClick-handler).
-- Geen contactformulier-popup, alleen directe deep-links naar WhatsApp en mail-client.
+- Geen e-mailnotificatie naar het team bij een nieuwe aanmelding (kan later via edge function en Resend).
+- Geen agenda/datumselectie of tijdslot-boeking.
+- Geen wijziging aan bestaande Upload-flow of getuigenis-pagina's.

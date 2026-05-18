@@ -21,6 +21,8 @@ import AdminLogin from "./pages/admin/AdminLogin";
 import AdminSubmissions from "./pages/admin/AdminSubmissions";
 import { CookieConsent } from "./components/CookieConsent";
 import { ChatWidget } from "./components/ChatWidget";
+import { AlertBar } from "./components/AlertBar";
+import Opwekking from "./pages/Opwekking";
 
 import { useEffect, useState } from "react";
 
@@ -83,6 +85,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <AlertBar />
           <Routes>
             <Route path="/" element={<HomeGate />} />
             <Route path="/base" element={<Base />} />
@@ -96,6 +99,7 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/upload" element={<Upload />} />
             <Route path="/partners" element={<Partners />} />
+            <Route path="/opwekking" element={<Opwekking />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin/inzendingen" element={<AdminSubmissions />} />
             <Route path="/admin" element={<Navigate to="/admin/inzendingen" replace />} />

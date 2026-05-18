@@ -96,7 +96,7 @@ export type Database = {
     Enums: {
       app_role: "admin" | "moderator" | "user"
       submission_status: "nieuw" | "gelezen" | "afgehandeld"
-      submission_type: "contact" | "vraag" | "partner"
+      submission_type: "contact" | "vraag" | "partner" | "opwekking"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -226,7 +226,7 @@ export const Constants = {
     Enums: {
       app_role: ["admin", "moderator", "user"],
       submission_status: ["nieuw", "gelezen", "afgehandeld"],
-      submission_type: ["contact", "vraag", "partner"],
+      submission_type: ["contact", "vraag", "partner", "opwekking"],
     },
   },
 } as const
