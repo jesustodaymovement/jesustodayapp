@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Upload, Play } from 'lucide-react';
 import { useAudience } from '@/contexts/AudienceContext';
 import { Link } from 'react-router-dom';
+import heroVideo from '@/assets/hero-banner.mp4';
 
 export const HeroAudience = () => {
   const { mode } = useAudience();
@@ -34,18 +35,13 @@ export const HeroAudience = () => {
       {/* Video Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 w-full h-full">
-          <iframe
-            src="https://player.vimeo.com/video/947358616?background=1&autoplay=1&loop=1&muted=1&controls=0"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-            style={{
-              width: '177.78vh',
-              height: '100vh',
-              minWidth: '100%',
-              minHeight: '56.25vw',
-            }}
-            frameBorder="0"
-            allow="autoplay; fullscreen"
-            title="Jesus Today Hero"
+          <video
+            src={heroVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
           />
         </div>
         <div className="absolute inset-0 bg-anthracite/55" />
