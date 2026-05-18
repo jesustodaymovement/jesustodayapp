@@ -11,7 +11,6 @@ export const ContactForm = () => {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [searchParams] = useSearchParams();
-  const prefillName = searchParams.get('name') ?? '';
   const prefillSubject = searchParams.get('subject') ?? '';
   const prefillMessage = searchParams.get('message') ?? '';
 
