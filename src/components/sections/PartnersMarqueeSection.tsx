@@ -1,4 +1,5 @@
 import { ScrollReveal } from '@/components/ScrollReveal';
+import { useTranslation } from 'react-i18next';
 import globalrize from '@/assets/partners/globalrize.png';
 import theSend from '@/assets/partners/the-send.png';
 import europoort from '@/assets/partners/europoort.png';
@@ -26,14 +27,15 @@ const partners = [
 ];
 
 export const PartnersMarqueeSection = () => {
+  const { t } = useTranslation();
   const loop = [...partners, ...partners];
 
   return (
-    <section className="py-16 md:py-20 bg-cream" aria-label="Onze partners">
+    <section className="py-16 md:py-20 bg-cream" aria-label={t('Onze partners')}>
       <div className="container mx-auto px-6">
         <ScrollReveal>
           <p className="text-center text-sm uppercase tracking-widest text-muted-foreground mb-10">
-            Samen met deze kerken en organisaties
+            {t('Samen met deze kerken en organisaties')}
           </p>
         </ScrollReveal>
         <div
