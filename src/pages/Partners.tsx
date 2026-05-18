@@ -35,6 +35,7 @@ import impactWorldTour from '@/assets/partners/impact-world-tour.png';
 import theMessage from '@/assets/partners/the-message.png';
 import ruah from '@/assets/partners/ruah.png';
 import outreachZutphen from '@/assets/partners/outreach-zutphen.png';
+import meerJezus from '@/assets/partners/meer-jezus.png';
 import martinKoornstra from '@/assets/endorsements/martin-koornstra.jpg';
 import janPool from '@/assets/endorsements/jan-pool.jpg';
 import benVerboom from '@/assets/endorsements/ben-verboom.jpg';
@@ -54,6 +55,7 @@ const partners = [
   { name: 'The Message Nederland', url: 'https://www.themessage.nl/', logo: theMessage },
   { name: 'RUAH School van Profetie', url: 'https://www.prophesyandheal.com/', logo: ruah },
   { name: 'Outreach Zutphen', url: 'https://www.instagram.com/outreachzutphen/', logo: outreachZutphen },
+  { name: 'Meer Jezus', url: 'https://meerjezus.nl/', logo: meerJezus },
 ];
 const endorsements = [
   {
