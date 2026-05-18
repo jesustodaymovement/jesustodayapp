@@ -15,6 +15,8 @@ const Privacy = () => {
         <meta property="og:description" content="Lees hoe JesusToday omgaat met jouw persoonsgegevens." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://storybrand-share-grace.lovable.app/privacy" />
+
+        <link rel="canonical" href="https://storybrand-share-grace.lovable.app/privacy" />
         <meta name="twitter:title" content="Privacyverklaring, JesusToday" />
         <meta name="twitter:description" content="Lees hoe JesusToday omgaat met jouw persoonsgegevens." />
       </Helmet>

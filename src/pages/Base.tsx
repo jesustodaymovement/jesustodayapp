@@ -27,6 +27,8 @@ const Base = () => {
         <meta property="og:description" content="Ontdek Jezus of vertel over Jezus. Kies de reis die bij jou past." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://storybrand-share-grace.lovable.app/" />
+
+        <link rel="canonical" href="https://storybrand-share-grace.lovable.app/" />
         <meta name="twitter:title" content="JesusToday, kies jouw reis" />
         <meta name="twitter:description" content="Ontdek Jezus of vertel over Jezus. Kies de reis die bij jou past." />
       </Helmet>

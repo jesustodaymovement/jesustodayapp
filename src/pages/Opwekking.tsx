@@ -108,6 +108,8 @@ const Opwekking = () => {
         <meta property="og:description" content="Meld je aan voor het opnemen van jouw getuigenisvideo tijdens Opwekking." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://storybrand-share-grace.lovable.app/aanmeldenopwekking2026" />
+
+        <link rel="canonical" href="https://storybrand-share-grace.lovable.app/aanmeldenopwekking2026" />
         <meta name="twitter:title" content="Opwekking, laat je getuigenis opnemen, JesusToday" />
         <meta name="twitter:description" content="Meld je aan voor het opnemen van jouw getuigenisvideo tijdens Opwekking." />
       </Helmet>

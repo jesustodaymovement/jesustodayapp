@@ -262,6 +262,8 @@ const Testimonies = () => {
           content="Bekijk persoonlijke verhalen van mensen die hun ervaring met Jezus delen."
         />
         <meta property="og:url" content="https://storybrand-share-grace.lovable.app/verhalen-over-jezus" />
+
+        <link rel="canonical" href="https://storybrand-share-grace.lovable.app/verhalen-over-jezus" />
         <meta property="og:type" content="website" />
         <meta name="twitter:title" content="Verhalen op video, JesusToday" />
         <meta name="twitter:description" content="Bekijk persoonlijke verhalen van mensen die hun ervaring met Jezus delen." />

@@ -146,6 +146,8 @@ const Upload = () => {
         <meta property="og:description" content="Deel jouw verhaal over Jezus in 3 simpele stappen." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://storybrand-share-grace.lovable.app/upload" />
+
+        <link rel="canonical" href="https://storybrand-share-grace.lovable.app/upload" />
         <meta name="twitter:title" content="Upload jouw verhaal, JesusToday" />
         <meta name="twitter:description" content="Deel jouw verhaal over Jezus in 3 simpele stappen." />
       </Helmet>
