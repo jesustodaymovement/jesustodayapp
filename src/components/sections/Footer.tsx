@@ -56,6 +56,15 @@ export const Footer = () => {
                 <li>
                   <a href="/disclaimer" className="text-warm-white/60 hover:text-gold transition-colors">Disclaimer</a>
                 </li>
+                <li>
+                  <button
+                    type="button"
+                    onClick={() => window.dispatchEvent(new Event('open-cookie-settings'))}
+                    className="text-warm-white/60 hover:text-gold transition-colors text-left"
+                  >
+                    Cookie-instellingen
+                  </button>
+                </li>
               </ul>
             </div>
 
