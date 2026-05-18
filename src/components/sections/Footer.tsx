@@ -54,7 +54,7 @@ export const Footer = () => {
                   <a href="/privacy" className="text-warm-white/60 hover:text-gold transition-colors">Privacybeleid</a>
                 </li>
                 <li>
-                  <a href="#" className="text-warm-white/60 hover:text-gold transition-colors">Voorwaarden</a>
+                  <a href="/disclaimer" className="text-warm-white/60 hover:text-gold transition-colors">Disclaimer</a>
                 </li>
               </ul>
             </div>
