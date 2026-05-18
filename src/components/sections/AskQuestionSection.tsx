@@ -86,7 +86,7 @@ export const AskQuestionSection = () => {
                 )}
               </Button>
               <p className="text-xs text-center text-muted-foreground">
-                We behandelen je vraag vertrouwelijk. Geen spam, beloofd.
+                We behandelen je vraag vertrouwelijk.
               </p>
             </form>
           </ScrollReveal>
