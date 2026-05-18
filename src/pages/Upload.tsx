@@ -327,6 +327,37 @@ const Upload = () => {
         </section>
 
         {/* FINAL CTA */}
+        <section className="py-24 bg-anthracite">
+          <div className="container mx-auto px-6">
+            <div className="max-w-5xl mx-auto">
+              <ScrollReveal>
+                <h2 className="text-3xl md:text-4xl font-bold text-center text-warm-white mb-4">
+                  Verhalen van <span className="text-gold">gelovigen</span>
+                </h2>
+              </ScrollReveal>
+              <ScrollReveal delay={100}>
+                <p className="text-lg text-center text-warm-white/70 mb-12 max-w-2xl mx-auto">
+                  Waarom anderen hun verhaal delen via JesusToday.
+                </p>
+              </ScrollReveal>
+              <div className="grid md:grid-cols-2 gap-8">
+                {reviews.map((r, i) => (
+                  <ScrollReveal key={r.name} delay={150 + i * 100}>
+                    <figure className="relative h-full p-8 md:p-10 rounded-2xl bg-anthracite-light border border-warm-white/10">
+                      <Quote className="w-9 h-9 text-gold mb-5" aria-hidden />
+                      <blockquote className="text-xl md:text-2xl text-warm-white leading-relaxed font-medium">
+                        "{r.quote}"
+                      </blockquote>
+                      <figcaption className="mt-6 text-warm-white/70 font-semibold">, {r.name}</figcaption>
+                    </figure>
+                  </ScrollReveal>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FINAL CTA */}
         <section className="py-24 bg-cream relative overflow-hidden">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/20 rounded-full blur-3xl" aria-hidden />
           <div className="container mx-auto px-6 relative z-10">
