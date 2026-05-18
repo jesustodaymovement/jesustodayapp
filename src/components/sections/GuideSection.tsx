@@ -17,7 +17,7 @@ export const GuideSection = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Visual Left */}
             <ScrollReveal delay={100}>
-              <div className="relative rounded-2xl overflow-hidden aspect-video bg-anthracite-light">
+              <div className="relative mx-auto w-full max-w-[420px] rounded-2xl overflow-hidden aspect-[9/16] bg-anthracite-light shadow-card">
                 <iframe
                   src="https://player.vimeo.com/video/1114232845?title=0&byline=0&portrait=0"
                   className="absolute inset-0 w-full h-full"
