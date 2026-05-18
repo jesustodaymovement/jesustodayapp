@@ -1,4 +1,5 @@
 import { ScrollReveal } from '@/components/ScrollReveal';
+import { useTranslation } from 'react-i18next';
 import { Play, Loader2 } from 'lucide-react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { useCallback, useEffect, useState } from 'react';
@@ -14,6 +15,7 @@ interface Testimony {
 }
 
 const VideoCard = ({ testimony }: { testimony: Testimony }) => {
+  const { t } = useTranslation();
   const [thumb, setThumb] = useState<string | null>(null);
 
   useEffect(() => {
@@ -35,7 +37,7 @@ const VideoCard = ({ testimony }: { testimony: Testimony }) => {
         {thumb ? (
           <img
             src={thumb}
-            alt={`Verhaal van ${testimony.user.username}`}
+            alt={t('Verhaal van {{name}}', { name: testimony.user.username })}
             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
             loading="lazy"
           />
@@ -72,6 +74,7 @@ interface VideoSliderSectionProps {
 }
 
 export const VideoSliderSection = ({ title, subtitle }: VideoSliderSectionProps = {}) => {
+  const { t } = useTranslation();
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: 'start',
@@ -125,13 +128,13 @@ export const VideoSliderSection = ({ title, subtitle }: VideoSliderSectionProps 
         <div className="max-w-6xl mx-auto">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-anthracite mb-4">
-              {title ?? (<>Bekijk <span className="text-gold">verhalen</span></>)}
+              {title ?? (<>{t('Bekijk')} <span className="text-gold">{t('verhalen')}</span></>)}
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={100}>
             <p className="text-lg text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-              {subtitle ?? 'Ontdek de verhalen van anderen die hun geloof delen'}
+              {subtitle ?? t('Ontdek de verhalen van anderen die hun geloof delen')}
             </p>
           </ScrollReveal>
 
@@ -141,7 +144,7 @@ export const VideoSliderSection = ({ title, subtitle }: VideoSliderSectionProps 
               <button
                 onClick={scrollPrev}
                 className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 rounded-full bg-anthracite text-warm-white flex items-center justify-center shadow-lg hover:bg-gold hover:text-anthracite transition-all duration-300 hidden md:flex"
-                aria-label="Previous"
+                aria-label={t('Previous')}
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
@@ -149,7 +152,7 @@ export const VideoSliderSection = ({ title, subtitle }: VideoSliderSectionProps 
               <button
                 onClick={scrollNext}
                 className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 rounded-full bg-anthracite text-warm-white flex items-center justify-center shadow-lg hover:bg-gold hover:text-anthracite transition-all duration-300 hidden md:flex"
-                aria-label="Next"
+                aria-label={t('Next')}
               >
                 <ChevronRight className="w-6 h-6" />
               </button>
