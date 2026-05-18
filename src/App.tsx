@@ -28,7 +28,6 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomeVideo />} />
-            <Route path="/static" element={<Index />} />
             <Route path="/test" element={<Test />} />
             <Route path="/hometest" element={<HomeTest />} />
             <Route path="/base" element={<Base />} />
