@@ -49,7 +49,7 @@ export const NewsletterForm = () => {
           placeholder="Voornaam"
           aria-label="Voornaam"
           maxLength={100}
-          className="flex-1 min-w-0 h-11 rounded-lg bg-warm-white/10 border border-warm-white/20 px-3 text-warm-white placeholder:text-warm-white/40 focus:outline-none focus:ring-2 focus:ring-[#fad150]"
+          className="flex-1 min-w-0 h-11 rounded-lg bg-warm-white/10 border border-warm-white/20 px-3 text-warm-white placeholder:text-warm-white/70 focus:outline-none focus:ring-2 focus:ring-[#fad150]"
         />
         <input
           type="email"
@@ -59,7 +59,7 @@ export const NewsletterForm = () => {
           placeholder="jouw@email.nl"
           aria-label="E-mailadres"
           maxLength={255}
-          className="flex-[1.5] min-w-0 h-11 rounded-lg bg-warm-white/10 border border-warm-white/20 px-3 text-warm-white placeholder:text-warm-white/40 focus:outline-none focus:ring-2 focus:ring-[#fad150]"
+          className="flex-[1.5] min-w-0 h-11 rounded-lg bg-warm-white/10 border border-warm-white/20 px-3 text-warm-white placeholder:text-warm-white/70 focus:outline-none focus:ring-2 focus:ring-[#fad150]"
         />
         <button
           type="submit"

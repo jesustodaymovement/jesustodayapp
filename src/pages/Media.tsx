@@ -168,6 +168,8 @@ const Media = () => (
       <meta property="og:description" content="JesusToday in de media: VPRO Tegenlicht, EO en NPO Radio 5 over de app en de verhalen van gewone mensen." />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://storybrand-share-grace.lovable.app/media" />
+
+      <link rel="canonical" href="https://storybrand-share-grace.lovable.app/media" />
       <meta name="twitter:title" content="JesusToday in de media" />
       <meta name="twitter:description" content="JesusToday in de media: VPRO Tegenlicht, EO en NPO Radio 5." />
     </Helmet>

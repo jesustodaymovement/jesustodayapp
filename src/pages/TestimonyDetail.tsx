@@ -275,6 +275,7 @@ const TestimonyDetail = () => {
           />
         )}
         <meta property="og:url" content={`https://storybrand-share-grace.lovable.app/verhalen-over-jezus/${vimeoId}`} />
+        <link rel="canonical" href={`https://storybrand-share-grace.lovable.app/verhalen-over-jezus/${vimeoId}`} />
         <meta property="og:type" content="video.other" />
         {testimony && (
           <script type="application/ld+json">

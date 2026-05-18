@@ -19,6 +19,8 @@ const Contact = () => {
         <meta property="og:description" content="Neem contact op met JesusToday. Stel je vraag of deel je verhaal." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://storybrand-share-grace.lovable.app/contact" />
+
+        <link rel="canonical" href="https://storybrand-share-grace.lovable.app/contact" />
         <meta name="twitter:title" content="Contact, JesusToday" />
         <meta name="twitter:description" content="Neem contact op met JesusToday." />
       </Helmet>

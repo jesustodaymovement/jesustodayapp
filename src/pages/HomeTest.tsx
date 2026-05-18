@@ -71,6 +71,8 @@ const HomeTest = () => {
         <meta property="og:description" content="Of je nu jouw verhaal wilt delen of God wilt ontdekken, JesusToday begeleidt je in jouw reis." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://storybrand-share-grace.lovable.app/" />
+
+        <link rel="canonical" href="https://storybrand-share-grace.lovable.app/" />
         <meta name="twitter:title" content="JesusToday, kies jouw reis" />
         <meta name="twitter:description" content="Of je nu jouw verhaal wilt delen of God wilt ontdekken, JesusToday begeleidt je in jouw reis." />
       </Helmet>
