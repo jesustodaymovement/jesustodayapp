@@ -1,28 +1,65 @@
-## Wijzigingen seeker-pagina (Ontdek-modus)
+# Plan: /upload landingspagina voor app-conversie
 
-Alle aanpassingen blijven binnen de seeker-flow. De vertel-flow blijft ongewijzigd.
+## Doel
+Een tussenstap creëren tussen de "Upload jouw verhaal" CTA's en de app stores. In plaats van direct naar Apple/Google te sturen (waar veel mensen afhaken), krijgen ze eerst een korte, krachtige uitleg over hoe het werkt, waarna ze gemotiveerd doorklikken naar de juiste store.
 
-### 1. Jargon weghalen (NextStepsSection)
-Bestand: `src/components/sections/NextStepsSection.tsx`
-- "Volg een Alpha-cursus" → **"Volg een beginnerscursus over geloof"**
-- Subtekst "Stel al je vragen in een veilige groep. Gratis, vrijblijvend en open." blijft, maar CTA "Vind een Alpha bij jou" → **"Vind een cursus bij jou in de buurt"**
-- "Vind een kerk in de buurt" → subtekst wordt **"Kom in contact met andere gelovige mensen die hun geloof in het dagelijks leven beleven."**
+## Waarom dit conversie verhoogt
+- **Verwachting managen**: mensen weten waarom ze de app nodig hebben voordat ze installeren
+- **Vertrouwen opbouwen**: visuele uitleg + sociale bewijslast vermindert drempel
+- **Device detection**: iOS-gebruikers zien de App Store knop bovenaan, Android-gebruikers Google Play, geen verwarring
+- **Eén focus per pagina**: geen afleidende navigatie, alleen "download de app"
 
-### 2. "Geen spam, beloofd." verwijderen
-Bestand: `src/components/sections/AskQuestionSection.tsx`
-- Regel onder het formulier wordt: **"We behandelen je vraag vertrouwelijk."**
+## Pagina structuur (/upload)
 
-### 3. DiscoverProblemSection, onduidelijke tekst herschrijven
-Bestand: `src/components/sections/DiscoverProblemSection.tsx`
-- "Je zoekt naar zin, maar weet niet precies waar te kijken" → **"Je verlangt naar meer betekenis, maar weet niet waar je moet beginnen"**
+```text
++--------------------------------------------------+
+| 1. Hero                                          |
+|    H1: Jouw verhaal, in 3 stappen gedeeld        |
+|    Sub: Download de app, neem op, deel.          |
+|    [App Store]  [Google Play]                    |
+|    (device-detect: relevante store eerst+groot)  |
++--------------------------------------------------+
+| 2. Zo werkt het (3 stappen, visueel)             |
+|    01 Download    02 Neem op    03 Deel via QR   |
+|    Iconen + korte tekst per stap                 |
++--------------------------------------------------+
+| 3. App preview (screenshots of mockup)           |
+|    1-2 schermen van de app naast elkaar          |
++--------------------------------------------------+
+| 4. Korte FAQ / geruststelling                    |
+|    - Is het gratis? Ja.                          |
+|    - Hoe lang duurt opnemen? ~5 min.             |
+|    - Wat gebeurt er met mijn video? (privacy)    |
++--------------------------------------------------+
+| 5. Eindsectie: nogmaals de download knoppen      |
+|    [App Store]  [Google Play]                    |
++--------------------------------------------------+
+| Footer                                           |
++--------------------------------------------------+
+```
 
-### 4. VideoSliderSection: titel + subtitel aanpassen voor seekers
-Bestand: `src/components/sections/VideoSliderSection.tsx` + `src/pages/Base.tsx`
-- Sectie krijgt optionele props `title` en `subtitle` (defaults blijven huidige tekst zodat de vertel-modus ongewijzigd blijft).
-- In Base.tsx wordt de seeker-variant aangeroepen met:
-  - Titel: **"Ontdek verhalen"**
-  - Subtitel: **"Ontdek hoe anderen hoop vonden in een wereld vol vragen."**
+## Wijzigingen aan bestaande site
 
-### Technische details
-- VideoSlider blijft één component; props zijn optioneel zodat de vertel-flow precies dezelfde output houdt.
-- Geen wijzigingen aan data-fetching, routing of styling. Geen em-dashes, gele accent blijft `#fad150` (gold token).
+**Alle "Upload jouw verhaal" knoppen** verwijzen voortaan naar `/upload` in plaats van direct naar de stores. Bestanden waar dit nu speelt:
+- `HeroAudience.tsx` (share-modus primaire CTA)
+- `GuideSection.tsx` (nieuwe CTA die we net plaatsten)
+- `PlanSection.tsx`
+- `CTASection.tsx`
+- `HeroSectionVideo.tsx`
+- eventueel andere upload-knoppen
+
+De directe App Store / Google Play badges in de hero blijven wel direct linken (voor wie al weet dat ze de app willen).
+
+## Technische details
+
+- Nieuwe file: `src/pages/Upload.tsx` met `<Helmet>` (title + meta), `<Header>` en `<Footer>`
+- Route toevoegen in `src/App.tsx`: `<Route path="/upload" element={<Upload />} />`
+- Device detection via `navigator.userAgent` (simpele check op iPhone/iPad vs Android) om de juiste store-knop prominent te tonen, beide blijven altijd zichtbaar
+- Stijl in lijn met huidige design system: lichte sfeer, cream/anthracite afwisseling, gele accent #fad150, dezelfde Button-varianten
+- App store links die al in de codebase staan hergebruiken:
+  - https://apps.apple.com/nl/app/jesus-today/id1623308816
+  - https://play.google.com/store/apps/details?id=io.mxapps.jesustoday
+
+## Wat ik nog van jou nodig heb
+- App screenshots/mockups: heb je die ergens, of mag ik placeholders gebruiken die je later vervangt?
+- De 3 stappen tekst: mag ik de stappen uit `PlanSection` hergebruiken (opnemen, QR ontvangen, delen), of moet de uitleg specifieker over de app zijn?
