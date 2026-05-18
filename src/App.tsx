@@ -4,8 +4,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import HomeVideo from "./pages/HomeVideo";
-import Index from "./pages/Index";
 import HomeTest from "./pages/HomeTest";
 import Base from "./pages/Base";
 import Testimonies from "./pages/Testimonies";
@@ -17,6 +15,21 @@ import OverOns from "./pages/OverOns";
 import Media from "./pages/Media";
 import NotFound from "./pages/NotFound";
 import { CookieConsent } from "./components/CookieConsent";
+
+import { useEffect, useState } from "react";
+
+const AUDIENCE_KEY = "jt-audience-mode";
+
+const HomeGate = () => {
+  const [ready, setReady] = useState(false);
+  const [hasMode, setHasMode] = useState(false);
+  useEffect(() => {
+    setHasMode(!!localStorage.getItem(AUDIENCE_KEY));
+    setReady(true);
+  }, []);
+  if (!ready) return null;
+  return hasMode ? <HomeTest /> : <Base />;
+};
 
 const queryClient = new QueryClient();
 
@@ -64,8 +77,8 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<HomeVideo />} />
-            <Route path="/hometest" element={<HomeTest />} />
+            <Route path="/" element={<HomeGate />} />
+            <Route path="/hometest" element={<Navigate to="/" replace />} />
             <Route path="/base" element={<Base />} />
             <Route path="/getuigenissen" element={<Testimonies />} />
             <Route path="/getuigenissen/:vimeoId" element={<TestimonyDetail />} />
