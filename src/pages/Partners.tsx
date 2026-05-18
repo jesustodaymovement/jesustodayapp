@@ -75,18 +75,18 @@ const endorsements = [
 const benefits = [
   {
     icon: HeartHandshake,
-    title: 'Eigenaarschap in de gemeente',
-    description: 'Jullie kerk pakt zelf het stuur om getuigenissen van gemeenteleden te verzamelen en te delen, op jullie eigen tempo.',
+    title: 'Eigenaarschap bij jullie',
+    description: 'Jullie kerk of organisatie pakt zelf het stuur om getuigenissen van mensen uit jullie achterban te verzamelen en te delen, op jullie eigen tempo.',
   },
   {
     icon: Users,
-    title: 'Activeer je gemeente',
-    description: 'Gemeenteleden gaan zelf de straat op met kaartjes om hun verhaal en geloof te delen met anderen.',
+    title: 'Activeer jullie achterban',
+    description: 'Gemeenteleden, vrijwilligers of deelnemers gaan zelf op pad met kaartjes om hun verhaal en geloof te delen met anderen.',
   },
   {
     icon: Palette,
     title: 'Kaartjes in jullie huisstijl',
-    description: 'QR-kaartjes ontworpen in de kleuren en met het logo van jullie kerk, herkenbaar en eigen.',
+    description: 'QR-kaartjes ontworpen in de kleuren en met het logo van jullie kerk of organisatie, herkenbaar en eigen.',
   },
   {
     icon: Camera,
@@ -118,7 +118,7 @@ const steps = [
     number: '04',
     icon: Users,
     title: 'De straat op',
-    description: 'Gemeenteleden delen de kaartjes in hun dagelijks leven, op werk, school en in de buurt.',
+    description: 'Jullie mensen delen de kaartjes in hun dagelijks leven, op werk, school, evenementen en in de buurt.',
   },
 ];
 
@@ -134,7 +134,7 @@ const offering = [
 const faqs = [
   {
     q: 'Moeten we het zelf opnemen of komen jullie filmen?',
-    a: 'Het idee is dat jullie het zelf doen, dat geeft de meeste eigenaarschap in de gemeente. Lukt dat niet, dan kunnen we in overleg langskomen om te helpen met opnemen.',
+    a: 'Het idee is dat jullie het zelf doen, dat geeft de meeste eigenaarschap binnen jullie kerk of organisatie. Lukt dat niet, dan kunnen we in overleg langskomen om te helpen met opnemen.',
   },
   {
     q: 'Wat als we geen ervaring hebben met video?',
@@ -142,7 +142,7 @@ const faqs = [
   },
   {
     q: 'Mogen we de verhalen ook zelf gebruiken?',
-    a: 'Ja, jullie krijgen toegang tot de getuigenissen en mogen deze ook delen via eigen kanalen, social media of in de dienst.',
+    a: 'Ja, jullie krijgen toegang tot de getuigenissen en mogen deze ook delen via eigen kanalen, social media, in een dienst of op een event.',
   },
 ];
 
@@ -176,13 +176,13 @@ const Partners = () => {
               </ScrollReveal>
               <ScrollReveal delay={200}>
                 <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">
-                  We helpen missionair gerichte kerken om zelf getuigenissen van gemeenteleden vast te leggen en te delen via QR-kaartjes in jullie eigen huisstijl. Jullie nemen het eigenaarschap, wij denken mee en springen bij waar nodig.
+                  We werken samen met missionair gerichte kerken én organisaties, zoals The Send en Opwekking, om getuigenissen van jullie achterban vast te leggen en te delen via QR-kaartjes in jullie eigen huisstijl. Jullie nemen het eigenaarschap, wij denken mee en springen bij waar nodig.
                 </p>
               </ScrollReveal>
               <ScrollReveal delay={300}>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button asChild variant="cta-light" size="lg">
-                    <Link to="/upload">Meld je kerk aan</Link>
+                    <Link to="/upload">Meld jullie aan</Link>
                   </Button>
                   <Button asChild variant="outline" size="lg">
                     <a href="mailto:info@jesustoday.nl?subject=Partnership%20met%20JesusToday">
@@ -206,7 +206,7 @@ const Partners = () => {
               </ScrollReveal>
               <ScrollReveal delay={100}>
                 <p className="text-lg text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
-                  Samen bouwen we aan een cultuur waarin verhalen over Jezus een vaste plek krijgen in jullie gemeente.
+                  Samen bouwen we aan een cultuur waarin verhalen over Jezus een vaste plek krijgen binnen jullie kerk of organisatie.
                 </p>
               </ScrollReveal>
               <div className="grid md:grid-cols-2 gap-6">
@@ -237,7 +237,7 @@ const Partners = () => {
               </ScrollReveal>
               <ScrollReveal delay={100}>
                 <p className="text-lg text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
-                  In vier overzichtelijke stappen van kennismaking tot gemeenteleden die de straat op gaan.
+                  In vier overzichtelijke stappen van kennismaking tot jullie achterban die de straat op gaat.
                 </p>
               </ScrollReveal>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -321,9 +321,9 @@ const Partners = () => {
 
               <div className="grid md:grid-cols-3 gap-6 mb-10">
                 {[
-                  { icon: Calendar, title: 'In de zondagsdienst', desc: 'Een inspirerende boodschap over getuigen, met praktische handvatten voor de gemeente.' },
+                  { icon: Calendar, title: 'In een dienst of bijeenkomst', desc: 'Een inspirerende boodschap over getuigen, met praktische handvatten voor jullie achterban.' },
                   { icon: Users, title: 'Op een jongeren-/jeugdavond', desc: 'Een interactieve sessie waarin jongeren ontdekken hoe ze hun verhaal kunnen delen.' },
-                  { icon: UserCheck, title: 'Voor het leiderschapsteam', desc: 'Een verdiepend gesprek over evangelisatie als beweging binnen jullie gemeente.' },
+                  { icon: UserCheck, title: 'Voor het leiderschapsteam', desc: 'Een verdiepend gesprek over evangelisatie als beweging binnen jullie kerk of organisatie.' },
                 ].map((item, i) => (
                   <ScrollReveal key={item.title} delay={150 + i * 100}>
                     <div className="h-full p-6 rounded-2xl bg-background border border-border/50 shadow-soft hover:shadow-card transition-all">
@@ -362,7 +362,7 @@ const Partners = () => {
               </ScrollReveal>
               <ScrollReveal delay={100}>
                 <p className="text-lg text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
-                  We werken samen met kerken en organisaties die zich inzetten om Jezus zichtbaar te maken in Nederland.
+                  We werken samen met kerken en christelijke organisaties die zich inzetten om Jezus zichtbaar te maken in Nederland.
                 </p>
               </ScrollReveal>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -468,12 +468,12 @@ const Partners = () => {
             <div className="max-w-3xl mx-auto text-center">
               <ScrollReveal>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-warm-white mb-6">
-                  Samen jullie gemeente <span className="text-gold">activeren</span> in getuigen?
+                  Samen jullie achterban <span className="text-gold">activeren</span> in getuigen?
                 </h2>
               </ScrollReveal>
               <ScrollReveal delay={100}>
                 <p className="text-lg text-warm-white/80 mb-10 leading-relaxed">
-                  Laten we kennismaken. We denken graag met jullie mee over hoe getuigenissen een vaste plek krijgen in jullie gemeente.
+                  Laten we kennismaken. We denken graag met jullie mee over hoe getuigenissen een vaste plek krijgen binnen jullie kerk of organisatie.
                 </p>
               </ScrollReveal>
               <ScrollReveal delay={200}>
