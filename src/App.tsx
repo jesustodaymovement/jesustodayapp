@@ -23,6 +23,7 @@ import { CookieConsent } from "./components/CookieConsent";
 import { ChatWidget } from "./components/ChatWidget";
 import { AlertBar } from "./components/AlertBar";
 import Opwekking from "./pages/Opwekking";
+import { ScrollToTop } from "./components/ScrollToTop";
 
 import { useEffect, useState } from "react";
 
@@ -86,6 +87,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <AlertBar />
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<HomeGate />} />
             <Route path="/base" element={<Base />} />
