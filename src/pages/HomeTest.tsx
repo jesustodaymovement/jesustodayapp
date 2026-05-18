@@ -8,6 +8,7 @@ import { PlanSection } from '@/components/sections/PlanSection';
 import { SuccessSection } from '@/components/sections/SuccessSection';
 import { VideoSliderSection } from '@/components/sections/VideoSliderSection';
 import { ChurchSection } from '@/components/sections/ChurchSection';
+import { PartnersMarqueeSection } from '@/components/sections/PartnersMarqueeSection';
 import { CTASection } from '@/components/sections/CTASection';
 import { DiscoverProblemSection } from '@/components/sections/DiscoverProblemSection';
 import { DiscoverOutcomesSection } from '@/components/sections/DiscoverOutcomesSection';
@@ -34,6 +35,7 @@ const HomeTestContent = () => {
             <SuccessSection />
             <VideoSliderSection />
             <ChurchSection />
+            <PartnersMarqueeSection />
             <CTASection />
           </>
         ) : (
