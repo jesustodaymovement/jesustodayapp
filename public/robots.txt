@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://storybrand-share-grace.lovable.app/sitemap.xml

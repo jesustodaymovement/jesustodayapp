@@ -266,6 +266,33 @@ const TestimonyDetail = () => {
           }
         />
         <link rel="canonical" href={`/verhalen-over-jezus/${vimeoId}`} />
+        {testimony && (
+          <meta
+            property="og:title"
+            content={`${fullName}, getuigenis op video | JesusToday`}
+          />
+        )}
+        {testimony && (
+          <meta
+            property="og:description"
+            content={`${fullName} deelt een persoonlijke getuigenis over Jezus. Bekijk de video en ontdek je volgende stap.`}
+          />
+        )}
+        <meta property="og:url" content={`/verhalen-over-jezus/${vimeoId}`} />
+        <meta property="og:type" content="video.other" />
+        {testimony && (
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "VideoObject",
+              name: fullName,
+              description: testimony.quote || `${fullName} deelt een persoonlijke getuigenis over Jezus.`,
+              embedUrl: `https://player.vimeo.com/video/${testimony.vimeoUrl}`,
+              contentUrl: `https://vimeo.com/${testimony.vimeoUrl}`,
+              uploadDate: new Date().toISOString().split('T')[0],
+            })}
+          </script>
+        )}
       </Helmet>
 
       <Header />

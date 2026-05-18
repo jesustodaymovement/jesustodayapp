@@ -164,7 +164,7 @@ const Media = () => (
         name="description"
         content="JesusToday in de media: VPRO Tegenlicht, EO en NPO Radio 5 over de app en de verhalen van gewone mensen."
       />
-      <link rel="canonical" href="https://storybrand-share-grace.lovable.app/media" />
+      <link rel="canonical" href="/media" />
     </Helmet>
     <Header />
     <main>

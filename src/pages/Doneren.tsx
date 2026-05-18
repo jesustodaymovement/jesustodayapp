@@ -631,10 +631,7 @@ const Doneren = () => {
           name="description"
           content="Help mee bouwen aan een beweging die een hele generatie bereikt. Doneer veilig en fiscaal aftrekbaar via Stichting Cornerstone Ministries (ANBI)."
         />
-        <link
-          rel="canonical"
-          href="https://storybrand-share-grace.lovable.app/doneren"
-        />
+        <link rel="canonical" href="/doneren" />
         <meta
           property="og:title"
           content="Doneren aan JesusToday, Stichting Cornerstone Ministries"
@@ -643,10 +640,7 @@ const Doneren = () => {
           property="og:description"
           content="Help mee bouwen aan een beweging die een hele generatie bereikt."
         />
-        <meta
-          property="og:url"
-          content="https://storybrand-share-grace.lovable.app/doneren"
-        />
+        <meta property="og:url" content="/doneren" />
         <meta property="og:type" content="website" />
         <script src="https://donorbox.org/widget.js" defer></script>
       </Helmet>
