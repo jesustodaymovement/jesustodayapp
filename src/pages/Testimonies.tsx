@@ -103,6 +103,7 @@ const TestimonyCard = ({ testimony }: { testimony: Testimony }) => {
 const Testimonies = () => {
   const [items, setItems] = useState<Testimony[]>([]);
   const [totalCount, setTotalCount] = useState(0);
+  const [globalTotal, setGlobalTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -110,72 +111,83 @@ const Testimonies = () => {
   const [search, setSearch] = useState('');
   const [churchFilter, setChurchFilter] = useState('all');
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
-  const [skip, setSkip] = useState(0);
-  const [allLoaded, setAllLoaded] = useState(false);
-  const [loadingAll, setLoadingAll] = useState(false);
 
-  const PAGE_SIZE = 12;
-
-  const fetchVideos = async (
-    lang: string,
-    skipCount: number,
-    append: boolean,
-    pageSize: number = PAGE_SIZE
-  ) => {
-    if (append) setLoadingMore(true);
-    else setLoading(true);
+  const fetchVideos = async (lang: string) => {
+    setLoading(true);
     setError(null);
     try {
-      const params = new URLSearchParams({
+      const headers = {
+        apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+        Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+      };
+      const base = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/get-testimonies`;
+      const probeParams = new URLSearchParams({
         LanguageCode: lang,
         Status: '50',
         Sorting: 'creationTime desc',
-        MaxResultCount: String(pageSize),
-        SkipCount: String(skipCount),
+        MaxResultCount: '1',
+        SkipCount: '0',
       });
-      const url = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/get-testimonies?${params.toString()}`;
-      const res = await fetch(url, {
-        headers: {
-          apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
-        },
+      const probe = await fetch(`${base}?${probeParams.toString()}`, { headers });
+      if (!probe.ok) throw new Error(`HTTP ${probe.status}`);
+      const probeData: ApiResponse = await probe.json();
+      const total = probeData.totalCount;
+      setTotalCount(total);
+
+      const fullParams = new URLSearchParams({
+        LanguageCode: lang,
+        Status: '50',
+        Sorting: 'creationTime desc',
+        MaxResultCount: String(Math.max(total, 1)),
+        SkipCount: '0',
       });
+      const res = await fetch(`${base}?${fullParams.toString()}`, { headers });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data: ApiResponse = await res.json();
-      setTotalCount(data.totalCount);
-      setItems((prev) => (append ? [...prev, ...data.items] : data.items));
-      if (!append && pageSize >= data.totalCount) {
-        setAllLoaded(true);
-      } else if (!append) {
-        setAllLoaded(false);
-      }
+      setItems(data.items);
     } catch (e) {
       console.error(e);
       setError('Er ging iets mis bij het ophalen van de getuigenissen.');
     } finally {
       setLoading(false);
-      setLoadingMore(false);
+    }
+  };
+
+  const fetchGlobalTotal = async () => {
+    try {
+      const headers = {
+        apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+        Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+      };
+      const base = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/get-testimonies`;
+      const totals = await Promise.all(
+        LANGUAGES.map(async (l) => {
+          const params = new URLSearchParams({
+            LanguageCode: l.code,
+            Status: '50',
+            Sorting: 'creationTime desc',
+            MaxResultCount: '1',
+            SkipCount: '0',
+          });
+          const res = await fetch(`${base}?${params.toString()}`, { headers });
+          if (!res.ok) return 0;
+          const data: ApiResponse = await res.json();
+          return data.totalCount ?? 0;
+        })
+      );
+      setGlobalTotal(totals.reduce((a, b) => a + b, 0));
+    } catch (e) {
+      console.error('global total error', e);
     }
   };
 
   useEffect(() => {
-    setSkip(0);
-    setAllLoaded(false);
-    fetchVideos(language, 0, false);
+    fetchVideos(language);
   }, [language]);
 
-  // When user starts searching/filtering, automatically load all videos
   useEffect(() => {
-    const isFiltering =
-      search.trim().length > 0 || churchFilter !== 'all' || selectedTopics.length > 0;
-    if (isFiltering && !allLoaded && !loadingAll && totalCount > 0) {
-      setLoadingAll(true);
-      fetchVideos(language, 0, false, totalCount).finally(() => {
-        setLoadingAll(false);
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search, churchFilter, selectedTopics, totalCount]);
+    fetchGlobalTotal();
+  }, []);
 
   const churches = useMemo(() => {
     const map = new Map<string, string>();
