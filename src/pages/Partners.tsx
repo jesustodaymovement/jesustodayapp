@@ -36,6 +36,7 @@ import theMessage from '@/assets/partners/the-message.png';
 import ruah from '@/assets/partners/ruah.png';
 import outreachZutphen from '@/assets/partners/outreach-zutphen.png';
 import meerJezus from '@/assets/partners/meer-jezus.png';
+import jesusInTheStreets from '@/assets/partners/jesus-in-the-streets.png';
 import martinKoornstra from '@/assets/endorsements/martin-koornstra.jpg';
 import janPool from '@/assets/endorsements/jan-pool.jpg';
 import benVerboom from '@/assets/endorsements/ben-verboom.jpg';
@@ -56,6 +57,7 @@ const partners = [
   { name: 'RUAH School van Profetie', url: 'https://www.prophesyandheal.com/', logo: ruah },
   { name: 'Outreach Zutphen', url: 'https://www.instagram.com/outreachzutphen/', logo: outreachZutphen },
   { name: 'Meer Jezus', url: 'https://meerjezus.nl/', logo: meerJezus },
+  { name: 'Jesus in the Streets', url: 'https://jesusinthestreets.nu/', logo: jesusInTheStreets },
 ];
 const endorsements = [
   {
