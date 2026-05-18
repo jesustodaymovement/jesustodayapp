@@ -37,6 +37,7 @@ import ruah from '@/assets/partners/ruah.png';
 import outreachZutphen from '@/assets/partners/outreach-zutphen.png';
 import meerJezus from '@/assets/partners/meer-jezus.png';
 import jesusInTheStreets from '@/assets/partners/jesus-in-the-streets.png';
+import ownj from '@/assets/partners/ownj.png';
 import martinKoornstra from '@/assets/endorsements/martin-koornstra.jpg';
 import janPool from '@/assets/endorsements/jan-pool.jpg';
 import benVerboom from '@/assets/endorsements/ben-verboom.jpg';
@@ -58,6 +59,7 @@ const partners = [
   { name: 'Outreach Zutphen', url: 'https://www.instagram.com/outreachzutphen/', logo: outreachZutphen },
   { name: 'Meer Jezus', url: 'https://meerjezus.nl/', logo: meerJezus },
   { name: 'Jesus in the Streets', url: 'https://jesusinthestreets.nu/', logo: jesusInTheStreets },
+  { name: 'Our World Needs Jesus', url: 'https://ourworldneedsjesus.com/', logo: ownj },
 ];
 const endorsements = [
   {
