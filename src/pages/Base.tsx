@@ -89,6 +89,23 @@ const Base = () => {
           </div>
         </div>
       </main>
+
+      <section
+        aria-hidden="true"
+        className="w-full overflow-hidden leading-none select-none"
+      >
+        <h2
+          className="font-black tracking-tighter text-center"
+          style={{
+            color: '#fad150',
+            fontSize: 'clamp(4rem, 22vw, 22rem)',
+            lineHeight: 0.85,
+            letterSpacing: '-0.04em',
+          }}
+        >
+          JESUSTODAY
+        </h2>
+      </section>
     </>
   );
 };
