@@ -15,6 +15,7 @@ import Doneren from "./pages/Doneren";
 import Privacy from "./pages/Privacy";
 import Disclaimer from "./pages/Disclaimer";
 import OverOns from "./pages/OverOns";
+import Media from "./pages/Media";
 import NotFound from "./pages/NotFound";
 import { CookieConsent } from "./components/CookieConsent";
 
@@ -38,6 +39,7 @@ const App = () => (
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/disclaimer" element={<Disclaimer />} />
             <Route path="/over-ons" element={<OverOns />} />
+            <Route path="/media" element={<Media />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

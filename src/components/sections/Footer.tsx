@@ -45,6 +45,9 @@ export const Footer = () => {
                   <a href="/over-ons" className="text-warm-white/60 hover:text-gold transition-colors">Over Ons</a>
                 </li>
                 <li>
+                  <a href="/media" className="text-warm-white/60 hover:text-gold transition-colors">Media</a>
+                </li>
+                <li>
                   <a href="#" className="text-warm-white/60 hover:text-gold transition-colors">Contact</a>
                 </li>
                 <li>
