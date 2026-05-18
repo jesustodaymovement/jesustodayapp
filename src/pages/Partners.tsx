@@ -87,12 +87,12 @@ const benefits = [
   {
     icon: HeartHandshake,
     title: 'Eigenaarschap bij jullie',
-    description: 'Jullie kerk of organisatie pakt zelf het stuur om getuigenissen van mensen uit jullie achterban te verzamelen en te delen, op jullie eigen tempo.',
+    description: 'Jullie kerk of organisatie pakt zelf het stuur om verhalen van mensen uit jullie kerk, organisatie of team te verzamelen en te delen, op jullie eigen tempo.',
   },
   {
     icon: Users,
-    title: 'Activeer jullie achterban',
-    description: 'Gemeenteleden, vrijwilligers of deelnemers gaan zelf op pad met kaartjes om hun verhaal en geloof te delen met anderen.',
+    title: 'Activeer jullie mensen',
+    description: 'Leden, vrijwilligers of deelnemers gaan zelf op pad met kaartjes om hun verhaal en geloof te delen met anderen.',
   },
   {
     icon: Palette,
@@ -164,7 +164,7 @@ const Partners = () => {
         <title>Partners, JesusToday voor kerken en organisaties</title>
         <meta
           name="description"
-          content="Word partner van JesusToday. We helpen kerken en organisaties om getuigenissen van gemeenteleden vast te leggen en te delen via QR-kaartjes in jullie eigen huisstijl."
+          content="Word partner van JesusToday. We helpen kerken en organisaties om verhalen van mensen uit jullie kerk of organisatie vast te leggen en te delen via QR-kaartjes in jullie eigen huisstijl."
         />
         <link rel="canonical" href="/partners" />
       </Helmet>
@@ -187,7 +187,7 @@ const Partners = () => {
               </ScrollReveal>
               <ScrollReveal delay={200}>
                 <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">
-                  We werken samen met missionair gerichte kerken én organisaties, zoals The Send en Opwekking, om getuigenissen van jullie achterban vast te leggen en te delen via QR-kaartjes in jullie eigen huisstijl. Jullie nemen het eigenaarschap, wij denken mee en springen bij waar nodig.
+                  We werken samen met missionair gerichte kerken én organisaties, zoals The Send en Opwekking, om verhalen van mensen uit jullie kerk of organisatie vast te leggen en te delen via QR-kaartjes in jullie eigen huisstijl. Jullie nemen het eigenaarschap, wij denken mee en springen bij waar nodig.
                 </p>
               </ScrollReveal>
               <ScrollReveal delay={300}>
@@ -270,7 +270,7 @@ const Partners = () => {
               </ScrollReveal>
               <ScrollReveal delay={100}>
                 <p className="text-lg text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
-                  In vier overzichtelijke stappen van kennismaking tot jullie achterban die de straat op gaat.
+                  In vier overzichtelijke stappen van kennismaking tot jullie mensen die de kaartjes uitdelen in het dagelijks leven.
                 </p>
               </ScrollReveal>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -347,16 +347,16 @@ const Partners = () => {
                 </ScrollReveal>
                 <ScrollReveal delay={200}>
                   <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-                    Naast partner worden kunnen we ook langskomen om in jullie dienst, jongerenavond of leiderschapsteam te spreken over getuigen en evangelisatie.
+                    Naast partner worden kunnen we ook langskomen om in jullie dienst, jongerenavond of bestuur of kernteam te spreken over getuigen en het delen van verhalen over Jezus.
                   </p>
                 </ScrollReveal>
               </div>
 
               <div className="grid md:grid-cols-3 gap-6 mb-10">
                 {[
-                  { icon: Calendar, title: 'In een dienst of bijeenkomst', desc: 'Een inspirerende boodschap over getuigen, met praktische handvatten voor jullie achterban.' },
+                  { icon: Calendar, title: 'In een dienst of bijeenkomst', desc: 'Een inspirerende boodschap over getuigen, met praktische handvatten voor jullie team.' },
                   { icon: Users, title: 'Op een jongeren-/jeugdavond', desc: 'Een interactieve sessie waarin jongeren ontdekken hoe ze hun verhaal kunnen delen.' },
-                  { icon: UserCheck, title: 'Voor het leiderschapsteam', desc: 'Een verdiepend gesprek over evangelisatie als beweging binnen jullie kerk of organisatie.' },
+                  { icon: UserCheck, title: 'Voor het bestuur of kernteam', desc: 'Een verdiepend gesprek over het delen van verhalen over Jezus als beweging binnen jullie kerk of organisatie.' },
                 ].map((item, i) => (
                   <ScrollReveal key={item.title} delay={150 + i * 100}>
                     <div className="h-full p-6 rounded-2xl bg-background border border-border/50 shadow-soft hover:shadow-card transition-all">
@@ -501,12 +501,12 @@ const Partners = () => {
             <div className="max-w-3xl mx-auto text-center">
               <ScrollReveal>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-warm-white mb-6">
-                  Samen jullie achterban <span className="text-gold">activeren</span> in getuigen?
+                  Samen jullie mensen <span className="text-gold">helpen</span> hun verhaal te delen?
                 </h2>
               </ScrollReveal>
               <ScrollReveal delay={100}>
                 <p className="text-lg text-warm-white/80 mb-10 leading-relaxed">
-                  Laten we kennismaken. We denken graag met jullie mee over hoe getuigenissen een vaste plek krijgen binnen jullie kerk of organisatie.
+                  Laten we kennismaken. We denken graag met jullie mee over hoe verhalen over Jezus een vaste plek krijgen binnen jullie kerk of organisatie.
                 </p>
               </ScrollReveal>
               <ScrollReveal delay={200}>

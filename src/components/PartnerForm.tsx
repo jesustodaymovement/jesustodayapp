@@ -7,10 +7,22 @@ import { toast } from '@/hooks/use-toast';
 import { createSubmission, submissionSchema } from '@/lib/submissions';
 
 const REQUEST_TYPES = [
-  { value: 'partnership', label: 'Partnership met onze kerk' },
-  { value: 'spreker', label: 'Spreker over evangelisatie' },
+  { value: 'partnership', label: 'Partnership met onze kerk of organisatie' },
+  { value: 'spreker', label: 'Spreker over getuigen en verhalen delen' },
   { value: 'draaidag', label: 'Draaidag om verhalen op te nemen' },
+  { value: 'event', label: 'Samenwerking op een event of festival' },
   { value: 'anders', label: 'Iets anders' },
+];
+
+const ORG_TYPES = [
+  { value: '', label: 'Kies een type (optioneel)' },
+  { value: 'kerk', label: 'Kerk' },
+  { value: 'stichting', label: 'Christelijke organisatie of stichting' },
+  { value: 'jongerenwerk', label: 'Jeugd, of jongerenwerk' },
+  { value: 'event', label: 'Festival of event' },
+  { value: 'school', label: 'School of onderwijs' },
+  { value: 'bedrijf', label: 'Bedrijf' },
+  { value: 'anders', label: 'Anders' },
 ];
 
 export const PartnerForm = () => {
@@ -24,6 +36,7 @@ export const PartnerForm = () => {
     setLoading(true);
     try {
       const requestType = String(data.get('requestType') ?? 'partnership');
+      const organizationType = String(data.get('organizationType') ?? '');
       const parsed = submissionSchema.parse({
         type: 'partner',
         name: String(data.get('name') ?? ''),
@@ -32,7 +45,7 @@ export const PartnerForm = () => {
         organization: String(data.get('organization') ?? ''),
         subject: REQUEST_TYPES.find((r) => r.value === requestType)?.label ?? requestType,
         message: String(data.get('message') ?? ''),
-        metadata: { requestType },
+        metadata: { requestType, organizationType },
       });
       await createSubmission(parsed);
       setSubmitted(true);
@@ -51,7 +64,7 @@ export const PartnerForm = () => {
       <div className="grid sm:grid-cols-2 gap-4">
         <div className="space-y-2">
           <label htmlFor="p-org" className="text-sm font-medium text-foreground">Kerk of organisatie</label>
-          <Input id="p-org" name="organization" required placeholder="Bijv. Stadskerk Groningen" />
+          <Input id="p-org" name="organization" required placeholder="Bijv. Stadskerk Groningen of Stichting Hoop" />
         </div>
         <div className="space-y-2">
           <label htmlFor="p-name" className="text-sm font-medium text-foreground">Contactpersoon</label>
@@ -61,12 +74,25 @@ export const PartnerForm = () => {
       <div className="grid sm:grid-cols-2 gap-4">
         <div className="space-y-2">
           <label htmlFor="p-email" className="text-sm font-medium text-foreground">E-mail</label>
-          <Input id="p-email" name="email" type="email" required placeholder="jij@kerk.nl" />
+          <Input id="p-email" name="email" type="email" required placeholder="jij@organisatie.nl" />
         </div>
         <div className="space-y-2">
           <label htmlFor="p-phone" className="text-sm font-medium text-foreground">Telefoon (optioneel)</label>
           <Input id="p-phone" name="phone" type="tel" placeholder="06 12345678" />
         </div>
+      </div>
+      <div className="space-y-2">
+        <label htmlFor="p-orgtype" className="text-sm font-medium text-foreground">Type organisatie (optioneel)</label>
+        <select
+          id="p-orgtype"
+          name="organizationType"
+          defaultValue=""
+          className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+        >
+          {ORG_TYPES.map((o) => (
+            <option key={o.value} value={o.value}>{o.label}</option>
+          ))}
+        </select>
       </div>
       <div className="space-y-2">
         <label htmlFor="p-type" className="text-sm font-medium text-foreground">Waar willen jullie over praten?</label>

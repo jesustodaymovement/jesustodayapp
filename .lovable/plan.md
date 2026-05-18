@@ -1,60 +1,68 @@
-## Huidige situatie
+## Doel
 
-Op dit moment werken de "contactformulieren" eigenlijk niet echt:
+Twee verbeteringen doorvoeren:
+1. Vakjargon dat niet-christenen of mensen buiten kerken niet kennen, vervangen door duidelijke taal.
+2. Het partnerformulier verbreden zodat het niet alleen op kerken gericht lijkt, maar ook op andere organisaties (jeugdwerk, festivals, scholen, bedrijven, stichtingen).
 
-- **Contactpagina (`/contact`)** heeft geen echt formulier, alleen een grote mailto-link naar `info@jesustoday.nl` en daaronder de "Stel je vraag"-sectie.
-- **"Stel je vraag"-sectie** (op homepage, /contact en /upload) heeft wel een formulier met naam, e-mail en vraag, maar bij verzenden opent het simpelweg het mailprogramma van de bezoeker (mailto:). De bezoeker moet zelf nog op "verzenden" klikken in zijn eigen mail-app. Als hij geen mail-app heeft ingesteld, gebeurt er niets.
-- **Partners, Upload, Doneren, Media** gebruiken allemaal alleen mailto-links voor contact.
-- **Reacties bij getuigenissen** worden alleen in het geheugen van de browser bewaard, ze verdwijnen bij refresh.
+## 1. Taalcorrecties
 
-Conclusie: er wordt op dit moment niets opgeslagen, niets automatisch verstuurd, en je hebt geen overzicht van wie wat heeft ingestuurd.
+### Pagina Partners (`src/pages/Partners.tsx`)
+Het woord "achterban" en een paar andere kerktaal-uitdrukkingen vervangen:
 
-## Wat ik ga bouwen
+- "jullie achterban" → "jullie mensen" of "jullie community" (afhankelijk van context)
+- "Activeer jullie achterban" → "Activeer jullie mensen"
+- "gemeenteleden" → "mensen uit jullie kerk of organisatie"
+- "leiderschapsteam" → "bestuur of kernteam"
+- "praktische handvatten voor jullie achterban" → "praktische handvatten voor jullie team"
 
-Een volwaardig contact- en aanvraagsysteem op JesusToday, met drie lagen:
+Specifiek per regel:
+- regel 90: "mensen uit jullie achterban" → "mensen uit jullie kerk, organisatie of team"
+- regel 94: "Activeer jullie achterban" → "Activeer jullie mensen"
+- regel 167 (meta description): "gemeenteleden" → "mensen uit jullie kerk of organisatie"
+- regel 190 (hero intro): "getuigenissen van jullie achterban" → "verhalen van mensen uit jullie kerk of organisatie"
+- regel 273: "jullie achterban die de straat op gaat" → "jullie mensen die de kaartjes uitdelen in het dagelijks leven"
+- regel 350: "leiderschapsteam" → "bestuur of kernteam"
+- regel 357: "voor jullie achterban" → "voor jullie team"
+- regel 359: "leiderschapsteam" → "bestuur of kernteam"
+- regel 504 (CTA-kop): "Samen jullie achterban activeren in getuigen?" → "Samen jullie mensen helpen hun verhaal te delen?"
 
-### 1. Echte formulieren met opslag in Lovable Cloud
+De woorden "getuigen", "getuigenis" en "evangelisatie" blijven staan op de Partners-pagina want dat zijn precies de termen waar kerken en christelijke organisaties op zoeken. Wel in CTA's en intro's één keer toelichten met "verhalen over Jezus" zodat de betekenis duidelijk is.
 
-- Vervang de mailto-flow in de "Stel je vraag"-sectie door een echte formulier-submit naar de backend.
-- Voeg een volwaardig contactformulier toe op `/contact` (naam, e-mail, onderwerp, bericht) in plaats van alleen een mailto-link.
-- Voeg een partner-aanvraagformulier toe op `/partners` (kerk/organisatie, naam, e-mail, telefoon optioneel, type aanvraag: partnership / spreker / draaidag, bericht) zodat aanvragen niet meer via mail-app hoeven.
-- Alles wordt opgeslagen in een nieuwe tabel zodat geen enkele aanvraag verloren gaat.
+### Overige pagina's
+- `src/components/sections/ChurchSection.tsx` regel 47: "een vaste plek geven in de gemeente" → "een vaste plek geven binnen jullie kerk of organisatie"
+- Andere paginatekst (Verhalen, Upload, Over Ons, Home) blijft ongewijzigd: daar wordt "getuigenis" en "evangelisatie" als kernbegrip gebruikt en past dat bij het publiek.
 
-### 2. Automatische e-mailnotificaties
+## 2. Partnerformulier breder maken
 
-- Elke nieuwe inzending stuurt direct een e-mail naar **zowel `info@jesustoday.nl` als `ben@jesustoday.nl`** (beide ontvangers in CC), met alle gegevens van de inzending.
-- De afzender krijgt een automatische bevestigingsmail dat het bericht is ontvangen, met een persoonlijke toon.
-- Hiervoor zetten we Lovable's ingebouwde e-mailsysteem op, gekoppeld aan jouw eigen domein (`notify.jesustoday.nl` of vergelijkbaar) zodat mails vanuit JesusToday komen, niet vanuit een generiek adres.
+### `src/components/PartnerForm.tsx`
 
-### 3. Beveiligd admin-overzicht in de site zelf
+Aanpassingen aan veldlabels, placeholders en opties zodat het niet alleen kerk-gericht klinkt:
 
-- Nieuwe pagina `/admin/inzendingen` waar je alle ingestuurde berichten kunt bekijken, filteren (per type: contact, partner, vraag) en doorzoeken.
-- Per inzending zie je: datum, naam, e-mail, type, bericht, status (nieuw / gelezen / afgehandeld).
-- Inloggen met e-mail + wachtwoord (Lovable Cloud auth). Alleen accounts met de rol "admin" kunnen de pagina zien, anderen zien een 404 of inlogscherm.
-- Vanuit het overzicht kun je direct op een inzending klikken om de details te zien en de status bij te werken.
+- Label "Kerk of organisatie" blijft (was al neutraal), placeholder "Bijv. Stadskerk Groningen" → "Bijv. Stadskerk Groningen of Stichting Hoop"
+- E-mail placeholder "jij@kerk.nl" → "jij@organisatie.nl"
+- Selectlabel "Waar willen jullie over praten?" blijft staan
+- Opties uitbreiden:
+  - "Partnership met onze kerk" → "Partnership met onze kerk of organisatie"
+  - "Spreker over evangelisatie" blijft
+  - "Draaidag om verhalen op te nemen" blijft
+  - Nieuw toevoegen: "Samenwerking op een event of festival"
+  - "Iets anders" blijft
+- Toevoegen onder de selectbox: nieuw veld "Type organisatie" (optioneel select met opties: Kerk, Christelijke organisatie of stichting, Jeugd of jongerenwerk, Festival of event, School of onderwijs, Bedrijf, Anders). Wordt meegestuurd in `metadata.organizationType`.
+- Placeholder textarea "Wat hopen jullie te bereiken? Wat is jullie context?" blijft.
 
-## Technische opzet (kort)
+### `src/pages/Partners.tsx` formuliersectie (rond regel 504)
+Kopjes en omringende teksten breder maken:
+- "Samen jullie mensen helpen hun verhaal te delen?" (zie boven)
+- intro onder de kop: "Laten we kennismaken. We denken graag met jullie mee over hoe verhalen over Jezus een vaste plek krijgen binnen jullie kerk of organisatie." (woord "getuigenissen" → "verhalen over Jezus" voor toegankelijkheid)
 
-```text
-Bezoeker → formulier → Lovable Cloud database (tabel: submissions)
-                    ↓
-            Edge Function stuurt:
-            - notificatie naar info@jesustoday.nl + ben@jesustoday.nl
-            - bevestiging naar bezoeker
-                    ↓
-            Admin logt in → /admin/inzendingen toont alles
-```
+## Niet in scope
 
-- Eén tabel `submissions` met velden voor naam, e-mail, type, onderwerp, bericht, status, datum.
-- Toegangsregels (RLS) zodat alleen admins de tabel kunnen lezen, en iedereen mag insturen.
-- Aparte tabel voor admin-rollen (`user_roles`), gekoppeld aan je login-account.
-- Edge Function voor het versturen van de twee mails per inzending (notificatie naar beide adressen + bevestiging naar afzender).
-- E-maildomein van JesusToday opzetten via Lovable Cloud (eenmalige DNS-stap bij je domeinprovider).
+- Geen wijzigingen aan de databaseschema's; nieuw veld `organizationType` gaat mee in de bestaande `metadata` JSON-kolom van submissions.
+- Geen visuele of layout-veranderingen.
+- Geen wijzigingen aan andere formulieren (Contact, Upload).
 
-## Wat ik van jou nodig heb
+## Vragen voor jou
 
-Een paar keuzes voordat ik begin:
-
-1. **Subdomein voor afzender**: ik stel voor `notify.jesustoday.nl` als afzenderdomein (b.v. `noreply@notify.jesustoday.nl`). Akkoord, of wil je een ander subdomein?
-2. **Admin-account**: met welk e-mailadres (info@ of ben@ of een ander) wil je inloggen op `/admin/inzendingen`?
-3. **Partnerformulier**: wil je dat ik die in deze ronde meteen meeneem, of eerst alleen contact + "Stel je vraag" omzetten en partners later?
+Voordat ik implementeer, twee snelle keuzes:
+1. Klinkt "jullie mensen" goed als vervanging voor "achterban", of liever "jullie team", "jullie community", of "jullie achterban (gemeenteleden, vrijwilligers of deelnemers)"?
+2. Het nieuwe optionele veld "Type organisatie" toevoegen, of liever alleen de placeholders en opties verbreden zonder extra veld?
