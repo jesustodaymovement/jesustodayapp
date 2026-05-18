@@ -4,6 +4,7 @@ import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
 import { Button } from '@/components/ui/button';
 import { ScrollReveal } from '@/components/ScrollReveal';
+import { VideoSliderSection } from '@/components/sections/VideoSliderSection';
 import {
   Upload,
   Play,
@@ -13,6 +14,8 @@ import {
   Users,
   ExternalLink,
   Heart,
+  Sparkles,
+  BookOpen,
 } from 'lucide-react';
 
 const Hero = () => (
@@ -35,19 +38,18 @@ const Hero = () => (
         </ScrollReveal>
         <ScrollReveal delay={200}>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">
-            JesusToday is een platform voor persoonlijke videogetuigenissen,
+            JesusToday is een platform voor persoonlijke verhalen op video,
             gemaakt door en voor mensen die hun ervaring met Jezus willen delen.
-            Geen ingewikkelde taal, geen drempel.
           </p>
         </ScrollReveal>
         <ScrollReveal delay={300}>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button variant="hero" size="lg">
               <Upload className="w-5 h-5" />
-              Upload jouw getuigenis
+              Upload jouw verhaal
             </Button>
             <Button asChild variant="outline" size="lg">
-              <Link to="/getuigenissen">
+              <Link to="/verhaalsen">
                 <Play className="w-5 h-5" />
                 Bekijk verhalen
               </Link>
@@ -70,7 +72,7 @@ const GapSection = () => (
         </ScrollReveal>
         <ScrollReveal delay={100}>
           <p className="text-lg text-warm-white/80 leading-relaxed mb-8">
-            Nederland is het meest seculiere land van West-Europa. De generatie
+            Nederland is een van de meest seculiere landen van West-Europa. De generatie
             die we het meest willen bereiken loopt uit zichzelf nooit een kerk
             binnen. Tegelijk willen veel christenen hun verhaal delen, maar
             weten ze niet hoe. Beide groepen wachten op elkaar.
@@ -159,7 +161,7 @@ const FounderSection = () => (
 );
 
 const stats = [
-  { value: '200+', label: 'persoonlijke videogetuigenissen' },
+  { value: '200+', label: 'persoonlijke verhalen op video' },
   { value: '10+', label: 'samenwerkingen, o.a. Opwekking, The Send, New Wine, YWAM' },
   { value: '1', label: 'land actief (Zuid-Afrika)' },
   { value: '2', label: 'landen klaar voor opstart (India, Macedonië)' },
@@ -203,7 +205,7 @@ const steps = [
     icon: Video,
     nr: '01',
     title: 'Opnemen',
-    desc: 'Een gelovige neemt zijn persoonlijke getuigenis op via de JesusToday-app. Het verhaal komt op het platform.',
+    desc: 'Een gelovige neemt zijn persoonlijke verhaal op via de JesusToday-app. Het verhaal komt op het platform.',
   },
   {
     icon: QrCode,
@@ -311,29 +313,68 @@ const ScaleSection = () => (
 const CornerstoneSection = () => (
   <section className="py-24 bg-cream">
     <div className="container mx-auto px-6">
-      <div className="max-w-3xl mx-auto text-center">
-        <ScrollReveal>
-          <h2 className="text-3xl md:text-4xl font-bold text-anthracite mb-6">
-            Onder welke <span className="text-gold">vlag</span> we werken.
-          </h2>
-        </ScrollReveal>
-        <ScrollReveal delay={100}>
-          <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-            JesusToday is een initiatief van Stichting Cornerstone Ministries,
-            een ANBI-stichting. Cornerstone heeft drie pijlers: evangelisatie
-            (waaronder JesusToday), gebed, en onderwijs en events.
-          </p>
-        </ScrollReveal>
-        <ScrollReveal delay={200}>
-          <a
-            href="https://cornerstone-ministries.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-gold font-semibold hover:gap-3 transition-all"
-          >
-            Bezoek cornerstone-ministries.com
-            <ExternalLink className="w-4 h-4" />
-          </a>
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <ScrollReveal>
+            <span className="inline-block text-sm font-semibold text-gold uppercase tracking-wider mb-3">
+              Onze stichting
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-anthracite mb-6">
+              Stichting Cornerstone <span className="text-gold">Ministries</span>
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              JesusToday is een initiatief van Stichting Cornerstone Ministries, een ANBI-stichting.
+              Cornerstone werkt vanuit drie pijlers en zet zich in om het licht van Jezus te
+              verspreiden in Nederland en daarbuiten. JesusToday is het platform waarmee zij
+              persoonlijke verhalen een bereik geven dat verder gaat dan één kerk of één stad.
+            </p>
+          </ScrollReveal>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
+          {[
+            {
+              icon: Sparkles,
+              title: 'Evangelisatie',
+              desc: 'Via JesusToday verzamelt en verspreidt Cornerstone persoonlijke verhalen op video, zodat mensen op straat, op werk en online in aanraking komen met Jezus.',
+            },
+            {
+              icon: Heart,
+              title: 'Gebed',
+              desc: 'Cornerstone bouwt aan gebedsinitiatieven die het werk dragen. Elk verhaal dat via JesusToday wordt gedeeld, staat in een breder gebedsfundament.',
+            },
+            {
+              icon: BookOpen,
+              title: 'Onderwijs en events',
+              desc: 'Trainingen en samenkomsten waarin christenen worden toegerust om hun geloof te delen, ook praktisch via JesusToday.',
+            },
+          ].map((p, i) => (
+            <ScrollReveal key={p.title} delay={150 + i * 100}>
+              <div className="h-full p-8 rounded-2xl bg-white border border-anthracite/10 shadow-sm">
+                <div className="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-5">
+                  <p.icon className="w-6 h-6 text-gold" />
+                </div>
+                <h3 className="text-xl font-bold text-anthracite mb-3">{p.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{p.desc}</p>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+
+        <ScrollReveal delay={400}>
+          <div className="text-center">
+            <a
+              href="https://cornerstone-ministries.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-gold font-semibold hover:gap-3 transition-all"
+            >
+              Bezoek cornerstone-ministries.com
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          </div>
         </ScrollReveal>
       </div>
     </div>
@@ -359,10 +400,10 @@ const FinalCta = () => (
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button variant="hero" size="lg">
               <Upload className="w-5 h-5" />
-              Upload jouw getuigenis
+              Upload jouw verhaal
             </Button>
             <Button asChild variant="hero-outline" size="lg">
-              <Link to="/getuigenissen">
+              <Link to="/verhaalsen">
                 <ArrowRight className="w-5 h-5" />
                 Bekijk verhalen
               </Link>
@@ -381,7 +422,7 @@ const OverOns = () => {
         <title>Over JesusToday, ons verhaal</title>
         <meta
           name="description"
-          content="JesusToday is een platform voor persoonlijke videogetuigenissen. Lees hoe het begon met het verhaal van oprichter Alexander Keur."
+          content="JesusToday is een platform voor persoonlijke verhalen op video. Lees hoe het begon met het verhaal van oprichter Alexander Keur."
         />
         <link
           rel="canonical"
@@ -390,7 +431,7 @@ const OverOns = () => {
         <meta property="og:title" content="Over JesusToday, ons verhaal" />
         <meta
           property="og:description"
-          content="JesusToday is een platform voor persoonlijke videogetuigenissen, gemaakt door en voor mensen die hun ervaring met Jezus willen delen."
+          content="JesusToday is een platform voor persoonlijke verhalen op video, gemaakt door en voor mensen die hun ervaring met Jezus willen delen."
         />
         <meta
           property="og:url"
@@ -406,6 +447,7 @@ const OverOns = () => {
         <ProofSection />
         <PlanSection />
         <ScaleSection />
+        <VideoSliderSection />
         <CornerstoneSection />
         <FinalCta />
       </main>

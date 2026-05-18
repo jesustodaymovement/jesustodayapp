@@ -21,7 +21,7 @@ export const HeroSection = () => {
         <div className="max-w-4xl mx-auto space-y-8">
           {/* Headline */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-warm-white leading-tight animate-fade-up">
-            Deel jouw getuigenis.{' '}
+            Deel jouw verhaal.{' '}
             <span className="text-gold">Laat Jezus zichtbaar worden.</span>
           </h1>
 
@@ -33,7 +33,7 @@ export const HeroSection = () => {
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 animate-fade-up delay-200">
             <Button variant="hero" size="lg" className="min-w-[200px]">
-              Upload jouw getuigenis
+              Upload jouw verhaal
             </Button>
             <Button variant="hero-outline" size="lg" className="gap-2">
               Ontdek hoe eenvoudig je kan getuigen

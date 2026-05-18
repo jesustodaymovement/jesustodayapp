@@ -33,7 +33,7 @@ export const TestimonialsSection = () => {
 
           <ScrollReveal delay={100}>
             <p className="text-lg text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
-              Echte verhalen van echte mensen die hun getuigenis delen
+              Echte verhalen van echte mensen die hun verhaal delen
             </p>
           </ScrollReveal>
 
@@ -68,7 +68,7 @@ export const TestimonialsSection = () => {
           <ScrollReveal delay={450}>
             <div className="text-center mt-12">
               <Button variant="hero" size="lg">
-                Bekijk de getuigenissen van anderen
+                Bekijk de verhalen van anderen
               </Button>
             </div>
           </ScrollReveal>

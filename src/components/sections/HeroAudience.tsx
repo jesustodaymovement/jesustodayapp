@@ -13,7 +13,7 @@ export const HeroAudience = () => {
           headline: 'Jouw verhaal kan iemands leven veranderen.',
           accent: 'Deel het vandaag.',
           sub: 'Je voelt het verlangen om te getuigen, maar het is spannend. Wij helpen je om jouw verhaal eenvoudig en veilig te delen, op een manier die bij jou past.',
-          primaryLabel: 'Upload jouw getuigenis',
+          primaryLabel: 'Upload jouw verhaal',
           primaryIcon: Upload,
           secondaryLabel: 'Ontdek hoe het werkt',
           secondaryHref: '#hoe-werkt-het',
@@ -22,7 +22,7 @@ export const HeroAudience = () => {
           headline: 'Echte verhalen van mensen zoals jij.',
           accent: 'Ontdek wat geloof kan doen.',
           sub: 'Misschien zoek je antwoorden, rust of richting. Luister naar mensen die hetzelfde voelden, en ontdek hoe een ontmoeting met Jezus hen veranderde.',
-          primaryLabel: 'Bekijk getuigenissen',
+          primaryLabel: 'Bekijk verhalen',
           primaryIcon: Play,
           secondaryLabel: 'Stel je vraag',
           secondaryHref: '#stel-je-vraag',
@@ -68,7 +68,7 @@ export const HeroAudience = () => {
                 </Button>
               ) : (
                 <Button asChild variant="hero" size="lg" className="min-w-[220px]">
-                  <Link to="/getuigenissen">
+                  <Link to="/verhaalsen">
                     <PrimaryIcon className="w-5 h-5" />
                     {content.primaryLabel}
                   </Link>

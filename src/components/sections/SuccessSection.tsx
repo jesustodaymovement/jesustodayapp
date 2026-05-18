@@ -2,8 +2,8 @@ import { ScrollReveal } from '@/components/ScrollReveal';
 import { Ear, Heart, TrendingUp, Eye, Users, Sparkles } from 'lucide-react';
 
 const successPoints = [
-  { icon: Ear, text: 'Je getuigenis bereikt mensen' },
-  { icon: Heart, text: 'Mensen komen tot geloof door jouw getuigenis' },
+  { icon: Ear, text: 'Je verhaal bereikt mensen' },
+  { icon: Heart, text: 'Mensen komen tot geloof door jouw verhaal' },
   { icon: TrendingUp, text: 'Je groeit in vrijmoedigheid en in zekerheid over wie je bent in Jezus' },
   { icon: Sparkles, text: 'Je ontdekt dat God jou gebruikt' },
   { icon: Eye, text: 'Je wordt zichtbaar als christen' },
@@ -23,7 +23,7 @@ export const SuccessSection = () => {
 
           <ScrollReveal delay={100}>
             <p className="text-lg text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
-              Jouw getuigenis heeft meer impact dan je denkt
+              Jouw verhaal heeft meer impact dan je denkt
             </p>
           </ScrollReveal>
 
