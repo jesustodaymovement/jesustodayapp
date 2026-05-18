@@ -103,79 +103,90 @@ const TestimonyCard = ({ testimony }: { testimony: Testimony }) => {
 const Testimonies = () => {
   const [items, setItems] = useState<Testimony[]>([]);
   const [totalCount, setTotalCount] = useState(0);
+  const [globalTotal, setGlobalTotal] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [language, setLanguage] = useState('nl');
   const [search, setSearch] = useState('');
   const [churchFilter, setChurchFilter] = useState('all');
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
-  const [skip, setSkip] = useState(0);
-  const [allLoaded, setAllLoaded] = useState(false);
-  const [loadingAll, setLoadingAll] = useState(false);
 
-  const PAGE_SIZE = 12;
-
-  const fetchVideos = async (
-    lang: string,
-    skipCount: number,
-    append: boolean,
-    pageSize: number = PAGE_SIZE
-  ) => {
-    if (append) setLoadingMore(true);
-    else setLoading(true);
+  const fetchVideos = async (lang: string) => {
+    setLoading(true);
     setError(null);
     try {
-      const params = new URLSearchParams({
+      const headers = {
+        apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+        Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+      };
+      const base = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/get-testimonies`;
+      const probeParams = new URLSearchParams({
         LanguageCode: lang,
         Status: '50',
         Sorting: 'creationTime desc',
-        MaxResultCount: String(pageSize),
-        SkipCount: String(skipCount),
+        MaxResultCount: '1',
+        SkipCount: '0',
       });
-      const url = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/get-testimonies?${params.toString()}`;
-      const res = await fetch(url, {
-        headers: {
-          apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
-        },
+      const probe = await fetch(`${base}?${probeParams.toString()}`, { headers });
+      if (!probe.ok) throw new Error(`HTTP ${probe.status}`);
+      const probeData: ApiResponse = await probe.json();
+      const total = probeData.totalCount;
+      setTotalCount(total);
+
+      const fullParams = new URLSearchParams({
+        LanguageCode: lang,
+        Status: '50',
+        Sorting: 'creationTime desc',
+        MaxResultCount: String(Math.max(total, 1)),
+        SkipCount: '0',
       });
+      const res = await fetch(`${base}?${fullParams.toString()}`, { headers });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data: ApiResponse = await res.json();
-      setTotalCount(data.totalCount);
-      setItems((prev) => (append ? [...prev, ...data.items] : data.items));
-      if (!append && pageSize >= data.totalCount) {
-        setAllLoaded(true);
-      } else if (!append) {
-        setAllLoaded(false);
-      }
+      setItems(data.items);
     } catch (e) {
       console.error(e);
       setError('Er ging iets mis bij het ophalen van de getuigenissen.');
     } finally {
       setLoading(false);
-      setLoadingMore(false);
+    }
+  };
+
+  const fetchGlobalTotal = async () => {
+    try {
+      const headers = {
+        apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+        Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+      };
+      const base = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/get-testimonies`;
+      const totals = await Promise.all(
+        LANGUAGES.map(async (l) => {
+          const params = new URLSearchParams({
+            LanguageCode: l.code,
+            Status: '50',
+            Sorting: 'creationTime desc',
+            MaxResultCount: '1',
+            SkipCount: '0',
+          });
+          const res = await fetch(`${base}?${params.toString()}`, { headers });
+          if (!res.ok) return 0;
+          const data: ApiResponse = await res.json();
+          return data.totalCount ?? 0;
+        })
+      );
+      setGlobalTotal(totals.reduce((a, b) => a + b, 0));
+    } catch (e) {
+      console.error('global total error', e);
     }
   };
 
   useEffect(() => {
-    setSkip(0);
-    setAllLoaded(false);
-    fetchVideos(language, 0, false);
+    fetchVideos(language);
   }, [language]);
 
-  // When user starts searching/filtering, automatically load all videos
   useEffect(() => {
-    const isFiltering =
-      search.trim().length > 0 || churchFilter !== 'all' || selectedTopics.length > 0;
-    if (isFiltering && !allLoaded && !loadingAll && totalCount > 0) {
-      setLoadingAll(true);
-      fetchVideos(language, 0, false, totalCount).finally(() => {
-        setLoadingAll(false);
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search, churchFilter, selectedTopics, totalCount]);
+    fetchGlobalTotal();
+  }, []);
 
   const churches = useMemo(() => {
     const map = new Map<string, string>();
@@ -237,14 +248,6 @@ const Testimonies = () => {
   const hasActiveFilters =
     search.trim().length > 0 || churchFilter !== 'all' || selectedTopics.length > 0;
 
-  const loadMore = () => {
-    const newSkip = skip + PAGE_SIZE;
-    setSkip(newSkip);
-    fetchVideos(language, newSkip, true);
-  };
-
-  const hasMore = items.length < totalCount;
-
   return (
     <div className="min-h-screen bg-cream">
       <Helmet>
@@ -270,7 +273,7 @@ const Testimonies = () => {
             <ScrollReveal delay={100}>
               <p className="text-lg text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
                 Ontdek de verhalen van mensen die hun leven met Jezus delen.
-                {totalCount > 0 && ` ${totalCount} getuigenissen beschikbaar.`}
+                {globalTotal > 0 && ` ${globalTotal} getuigenissen beschikbaar.`}
               </p>
             </ScrollReveal>
 
@@ -357,12 +360,6 @@ const Testimonies = () => {
                 </div>
               </div>
 
-              {loadingAll && (
-                <p className="text-sm text-center text-muted-foreground -mt-6 mb-6 flex items-center justify-center gap-2">
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  Alle getuigenissen worden geladen voor de zoekfunctie...
-                </p>
-              )}
             </ScrollReveal>
 
             {/* Content */}
@@ -374,7 +371,7 @@ const Testimonies = () => {
               <div className="text-center py-24">
                 <p className="text-destructive mb-4">{error}</p>
                 <button
-                  onClick={() => fetchVideos(language, 0, false)}
+                  onClick={() => fetchVideos(language)}
                   className="text-gold underline"
                 >
                   Opnieuw proberen
@@ -391,25 +388,6 @@ const Testimonies = () => {
                     <TestimonyCard key={t.id} testimony={t} />
                   ))}
                 </div>
-
-                {hasMore && (
-                  <div className="flex justify-center mt-12">
-                    <button
-                      onClick={loadMore}
-                      disabled={loadingMore}
-                      className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-anthracite text-warm-white font-semibold hover:bg-gold hover:text-anthracite transition-all duration-300 disabled:opacity-50"
-                    >
-                      {loadingMore ? (
-                        <>
-                          <Loader2 className="w-5 h-5 animate-spin" />
-                          Laden...
-                        </>
-                      ) : (
-                        'Meer getuigenissen laden'
-                      )}
-                    </button>
-                  </div>
-                )}
               </>
             )}
           </div>
