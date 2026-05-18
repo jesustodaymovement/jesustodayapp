@@ -6,6 +6,7 @@ import { PlanSection } from '@/components/sections/PlanSection';
 import { CTASection } from '@/components/sections/CTASection';
 import { SuccessSection } from '@/components/sections/SuccessSection';
 import { ChurchSection } from '@/components/sections/ChurchSection';
+import { CornerstoneSection } from '@/components/sections/CornerstoneSection';
 import { VideoSliderSection } from '@/components/sections/VideoSliderSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { InstagramReelsSection } from '@/components/sections/InstagramReelsSection';
@@ -39,6 +40,7 @@ const Index = () => {
         <TestimonialsSection />
         <InstagramReelsSection />
         <ChurchSection />
+        <CornerstoneSection />
         <CTASection />
         <Footer />
       </main>
