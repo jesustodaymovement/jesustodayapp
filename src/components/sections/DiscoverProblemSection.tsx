@@ -3,7 +3,7 @@ import { Search, HelpCircle, Cloud, Heart } from 'lucide-react';
 
 const points = [
   { icon: Cloud, text: 'Soms voel je een leegte die je niet kunt benoemen' },
-  { icon: Search, text: 'Je zoekt naar zin, maar weet niet precies waar te kijken' },
+  { icon: Search, text: 'Je verlangt naar meer betekenis, maar weet niet waar je moet beginnen' },
   { icon: HelpCircle, text: 'Je hebt vragen over geloof die je nog nooit hardop stelde' },
   { icon: Heart, text: 'Je bent nieuwsgierig wie Jezus echt is' },
 ];

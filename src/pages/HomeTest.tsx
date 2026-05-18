@@ -39,7 +39,10 @@ const HomeTestContent = () => {
         ) : (
           <>
             <DiscoverProblemSection />
-            <VideoSliderSection />
+            <VideoSliderSection
+              title={<>Ontdek <span className="text-gold">verhalen</span></>}
+              subtitle="Ontdek hoe anderen hoop vonden in een wereld vol vragen."
+            />
             <DiscoverOutcomesSection />
             <NextStepsSection />
             <AskQuestionSection />
