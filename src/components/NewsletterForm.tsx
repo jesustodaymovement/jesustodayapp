@@ -76,9 +76,6 @@ export const NewsletterForm = () => {
           {done ? 'Aangemeld' : 'Aanmelden'}
         </button>
       </div>
-      <p className="text-warm-white/40 text-xs mt-2">
-        Geen spam, alleen bemoediging. Je kunt je altijd uitschrijven.
-      </p>
     </form>
   );
 };
