@@ -1,0 +1,21 @@
+# JesusToday
+
+> JesusToday is een Nederlands platform waar mensen hun persoonlijke verhaal met Jezus delen via korte video's.
+
+JesusToday helpt jongvolwassenen (16-29) om hun ervaring met Jezus eenvoudig en impactvol te delen. Het platform begeleidt mensen bij het opnemen, uploaden en verspreiden van hun getuigenis via video.
+
+## Pages
+
+- [Home](/): Introductie tot JesusToday en oproep om jouw verhaal te delen.
+- [Verhalen over Jezus](/verhalen-over-jezus): Verzameling van persoonlijke video-verhalen.
+- [Upload jouw verhaal](/upload): Begeleiding bij het opnemen en aanleveren van jouw video.
+- [Over ons](/over-ons): Het verhaal achter JesusToday en oprichter Alexander Keur.
+- [Partners](/partners): Samenwerking met kerken en organisaties.
+- [Doneren](/doneren): Steun JesusToday via Stichting Cornerstone Ministries (ANBI).
+- [Media](/media): Pers, mediabronnen en contact.
+- [Contact](/contact): Neem contact op met JesusToday.
+
+## Optional
+
+- [Privacyverklaring](/privacy): Hoe JesusToday omgaat met persoonsgegevens.
+- [Disclaimer](/disclaimer): Juridische voorwaarden.
