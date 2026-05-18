@@ -13,6 +13,7 @@ import Privacy from "./pages/Privacy";
 import Disclaimer from "./pages/Disclaimer";
 import OverOns from "./pages/OverOns";
 import Media from "./pages/Media";
+import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import { CookieConsent } from "./components/CookieConsent";
 
@@ -88,6 +89,7 @@ const App = () => (
             <Route path="/disclaimer" element={<Disclaimer />} />
             <Route path="/over-ons" element={<OverOns />} />
             <Route path="/media" element={<Media />} />
+            <Route path="/contact" element={<Contact />} />
             {legacyRedirects.flatMap(({ from, to }) => [
               <Route key={from} path={from} element={<Navigate to={to} replace />} />,
               <Route key={`${from}/`} path={`${from}/`} element={<Navigate to={to} replace />} />,
