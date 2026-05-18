@@ -39,11 +39,11 @@ const Contact = () => {
               </ScrollReveal>
               <ScrollReveal delay={300}>
                 <a
-                  href="mailto:hallo@jesustoday.nl"
+                  href="mailto:info@jesustoday.nl"
                   className="inline-flex items-center gap-2 mt-8 text-gold font-semibold hover:gap-3 transition-all"
                 >
                   <Mail className="w-5 h-5" />
-                  hallo@jesustoday.nl
+                  info@jesustoday.nl
                 </a>
               </ScrollReveal>
             </div>

@@ -19,7 +19,7 @@ export const AskQuestionSection = () => {
 
     const subject = encodeURIComponent(`Vraag van ${name || 'een bezoeker'}`);
     const body = encodeURIComponent(`Naam: ${name}\nE-mail: ${email}\n\nVraag:\n${question}`);
-    window.location.href = `mailto:hallo@jesustoday.nl?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:info@jesustoday.nl?subject=${subject}&body=${body}`;
 
     setSubmitted(true);
     toast({ title: 'Bedankt voor je vraag', description: 'Je e-mailprogramma is geopend.' });
