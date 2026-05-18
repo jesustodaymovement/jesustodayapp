@@ -16,6 +16,9 @@ import {
   Mail,
   ArrowRight,
   Church,
+  Sparkles,
+  Calendar,
+  UserCheck,
 } from 'lucide-react';
 
 import globalrize from '@/assets/partners/globalrize.png';
@@ -264,6 +267,61 @@ const Partners = () => {
                   </ScrollReveal>
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Spreken in jullie kerk */}
+        <section className="py-24 bg-cream">
+          <div className="container mx-auto px-6">
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center mb-12">
+                <ScrollReveal>
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/20 border border-gold/30 mb-6">
+                    <Sparkles className="w-4 h-4 text-anthracite" />
+                    <span className="text-anthracite text-sm font-medium">Bonus, extra mogelijkheid</span>
+                  </div>
+                </ScrollReveal>
+                <ScrollReveal delay={100}>
+                  <h2 className="text-3xl md:text-4xl font-bold text-anthracite mb-4">
+                    Laat ons spreken over <span className="text-gold">evangelisatie</span>
+                  </h2>
+                </ScrollReveal>
+                <ScrollReveal delay={200}>
+                  <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+                    Naast partner worden kunnen we ook langskomen om in jullie dienst, jongerenavond of leiderschapsteam te spreken over getuigen en evangelisatie.
+                  </p>
+                </ScrollReveal>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-6 mb-10">
+                {[
+                  { icon: Calendar, title: 'In de zondagsdienst', desc: 'Een inspirerende boodschap over getuigen, met praktische handvatten voor de gemeente.' },
+                  { icon: Users, title: 'Op een jongeren-/jeugdavond', desc: 'Een interactieve sessie waarin jongeren ontdekken hoe ze hun verhaal kunnen delen.' },
+                  { icon: UserCheck, title: 'Voor het leiderschapsteam', desc: 'Een verdiepend gesprek over evangelisatie als beweging binnen jullie gemeente.' },
+                ].map((item, i) => (
+                  <ScrollReveal key={item.title} delay={150 + i * 100}>
+                    <div className="h-full p-6 rounded-2xl bg-background border border-border/50 shadow-soft hover:shadow-card transition-all">
+                      <div className="w-11 h-11 rounded-lg bg-gold/20 flex items-center justify-center mb-4">
+                        <item.icon className="w-5 h-5 text-gold" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-anthracite mb-2">{item.title}</h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+                    </div>
+                  </ScrollReveal>
+                ))}
+              </div>
+
+              <ScrollReveal delay={450}>
+                <div className="text-center">
+                  <Button asChild variant="cta-light" size="lg">
+                    <a href="mailto:info@jesustoday.nl?subject=Spreker%20over%20evangelisatie">
+                      <Mic className="w-5 h-5" />
+                      Plan een spreker
+                    </a>
+                  </Button>
+                </div>
+              </ScrollReveal>
             </div>
           </div>
         </section>
