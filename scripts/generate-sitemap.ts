@@ -1,4 +1,3 @@
-import { writeFileSync } from "fs";
 import { readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
