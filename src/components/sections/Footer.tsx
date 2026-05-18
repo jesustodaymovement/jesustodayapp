@@ -1,5 +1,6 @@
 import { Instagram, Facebook, Youtube, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { NewsletterForm } from '@/components/NewsletterForm';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -8,6 +9,21 @@ export const Footer = () => {
     <footer className="bg-anthracite border-t border-warm-white/10">
       <div className="container mx-auto px-6 py-16">
         <div className="max-w-5xl mx-auto">
+          {/* Newsletter */}
+          <div className="mb-12 p-6 md:p-8 rounded-2xl bg-warm-white/5 border border-warm-white/10">
+            <div className="grid md:grid-cols-2 gap-6 items-center">
+              <div>
+                <h4 className="text-warm-white text-xl font-semibold mb-2">
+                  Blijf op de hoogte
+                </h4>
+                <p className="text-warm-white/60 text-sm leading-relaxed">
+                  Ontvang nieuwe getuigenissen, updates en bemoediging van JesusToday in je inbox.
+                </p>
+              </div>
+              <NewsletterForm />
+            </div>
+          </div>
+
           {/* Top Section */}
           <div className="grid md:grid-cols-3 gap-12 mb-12">
             {/* Brand */}
