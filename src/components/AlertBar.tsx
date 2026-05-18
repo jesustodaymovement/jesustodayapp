@@ -53,7 +53,7 @@ export const AlertBar = () => {
       aria-label="Aankondiging Opwekking"
     >
       <Link
-        to="/opwekking"
+        to="/aanmeldenopwekking2026"
         className="flex items-center justify-center gap-2 px-12 py-2.5 text-sm md:text-base font-semibold text-neutral-900 hover:bg-black/5 transition-colors text-center"
       >
         <Megaphone className="w-4 h-4 shrink-0" aria-hidden="true" />

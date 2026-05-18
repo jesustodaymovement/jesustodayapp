@@ -73,7 +73,7 @@ const legacyRedirects: { from: string; to: string }[] = [
   { from: "/languages", to: "/" },
   { from: "/aanmelden", to: "/" },
   { from: "/aanmelden-nieuwsbrief", to: "/" },
-  { from: "/aanmeldenopwekking2026", to: "/" },
+  { from: "/opwekking", to: "/aanmeldenopwekking2026" },
   { from: "/15c42-web-agency-gb-home", to: "/" },
   { from: "/15c42-web-agency-gb-portfolio", to: "/" },
   { from: "/15c42-web-agency-gb-portfolio-single", to: "/" },
@@ -101,7 +101,7 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/upload" element={<Upload />} />
             <Route path="/partners" element={<Partners />} />
-            <Route path="/opwekking" element={<Opwekking />} />
+            <Route path="/aanmeldenopwekking2026" element={<Opwekking />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin/inzendingen" element={<AdminSubmissions />} />
             <Route path="/admin" element={<Navigate to="/admin/inzendingen" replace />} />
