@@ -7,6 +7,14 @@ import { Footer } from "@/components/sections/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -20,6 +28,14 @@ const schema = z.object({
     .max(20)
     .regex(/^[0-9 +\-()]+$/, "Alleen cijfers, spaties en + - ( )"),
   email: z.string().trim().email("Vul een geldig e-mailadres in").max(255),
+  day: z.enum(["zaterdag", "zondag"], {
+    errorMap: () => ({ message: "Kies een dag" }),
+  }),
+  testimony: z
+    .string()
+    .trim()
+    .min(10, "Geef een korte omschrijving (minimaal 10 tekens)")
+    .max(1000, "Maximaal 1000 tekens"),
 });
 
 const drogredenen = [
@@ -30,12 +46,21 @@ const drogredenen = [
 ];
 
 const Opwekking = () => {
-  const [form, setForm] = useState({ first_name: "", last_name: "", phone: "", email: "" });
+  const [form, setForm] = useState({
+    first_name: "",
+    last_name: "",
+    phone: "",
+    email: "",
+    day: "" as "" | "zaterdag" | "zondag",
+    testimony: "",
+  });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
 
-  const update = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) =>
+  const update = (k: keyof typeof form) => (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
 
   const onSubmit = async (e: React.FormEvent) => {
@@ -52,15 +77,15 @@ const Opwekking = () => {
     }
     setErrors({});
     setSubmitting(true);
-    const { first_name, last_name, phone, email } = parsed.data;
+    const { first_name, last_name, phone, email, day, testimony } = parsed.data;
     const { error } = await supabase.from("submissions").insert({
       type: "opwekking",
       name: `${first_name} ${last_name}`,
       email,
       phone,
       subject: "Aanmelding getuigenisvideo Opwekking",
-      message: `Ja, ik wil een video maken tijdens Opwekking. Neem contact met me op via ${phone} of ${email}.`,
-      metadata: { first_name, last_name, source: "opwekking-page" },
+      message: `Ja, ik wil een video maken tijdens Opwekking.\n\nBeschikbaar op: ${day}\n\nKorte omschrijving getuigenis:\n${testimony}\n\nNeem contact met me op via ${phone} of ${email}.`,
+      metadata: { first_name, last_name, day, testimony, source: "opwekking-page" },
     });
     setSubmitting(false);
     if (error) {
@@ -82,7 +107,7 @@ const Opwekking = () => {
         <meta property="og:title" content="Opwekking, laat je getuigenis opnemen, JesusToday" />
         <meta property="og:description" content="Meld je aan voor het opnemen van jouw getuigenisvideo tijdens Opwekking." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://storybrand-share-grace.lovable.app/opwekking" />
+        <meta property="og:url" content="https://storybrand-share-grace.lovable.app/aanmeldenopwekking2026" />
         <meta name="twitter:title" content="Opwekking, laat je getuigenis opnemen, JesusToday" />
         <meta name="twitter:description" content="Meld je aan voor het opnemen van jouw getuigenisvideo tijdens Opwekking." />
       </Helmet>
