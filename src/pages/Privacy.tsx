@@ -11,10 +11,7 @@ const Privacy = () => {
           name="description"
           content="Lees hoe JesusToday omgaat met jouw persoonsgegevens, welke gegevens we verwerken en welke rechten je hebt."
         />
-        <link
-          rel="canonical"
-          href="https://storybrand-share-grace.lovable.app/privacy"
-        />
+        <link rel="canonical" href="/privacy" />
       </Helmet>
       <Header />
       <main className="bg-cream pt-32 pb-24">

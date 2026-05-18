@@ -257,6 +257,13 @@ const Testimonies = () => {
           content="Bekijk persoonlijke verhalen van mensen die hun ervaring met Jezus delen."
         />
         <link rel="canonical" href="/verhalen-over-jezus" />
+        <meta property="og:title" content="Verhalen op video, JesusToday" />
+        <meta
+          property="og:description"
+          content="Bekijk persoonlijke verhalen van mensen die hun ervaring met Jezus delen."
+        />
+        <meta property="og:url" content="/verhalen-over-jezus" />
+        <meta property="og:type" content="website" />
       </Helmet>
 
       <Header />

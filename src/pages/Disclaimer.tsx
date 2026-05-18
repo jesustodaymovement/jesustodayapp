@@ -11,10 +11,7 @@ const Disclaimer = () => {
           name="description"
           content="Lees de disclaimer van JesusToday voor www.JesusToday.app en www.jesustoday.nl, inclusief intellectueel eigendom en aansprakelijkheid."
         />
-        <link
-          rel="canonical"
-          href="https://storybrand-share-grace.lovable.app/disclaimer"
-        />
+        <link rel="canonical" href="/disclaimer" />
       </Helmet>
       <Header />
       <main className="bg-cream pt-32 pb-24">
