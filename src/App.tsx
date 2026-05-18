@@ -17,6 +17,8 @@ import Contact from "./pages/Contact";
 import Upload from "./pages/Upload";
 import Partners from "./pages/Partners";
 import NotFound from "./pages/NotFound";
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminSubmissions from "./pages/admin/AdminSubmissions";
 import { CookieConsent } from "./components/CookieConsent";
 
 import { useEffect, useState } from "react";
@@ -93,6 +95,9 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/upload" element={<Upload />} />
             <Route path="/partners" element={<Partners />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin/inzendingen" element={<AdminSubmissions />} />
+            <Route path="/admin" element={<Navigate to="/admin/inzendingen" replace />} />
             {legacyRedirects.flatMap(({ from, to }) => [
               <Route key={from} path={from} element={<Navigate to={to} replace />} />,
               <Route key={`${from}/`} path={`${from}/`} element={<Navigate to={to} replace />} />,
