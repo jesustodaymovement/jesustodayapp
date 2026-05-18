@@ -14,6 +14,7 @@ import TestimonyDetail from "./pages/TestimonyDetail";
 import Doneren from "./pages/Doneren";
 import Privacy from "./pages/Privacy";
 import Disclaimer from "./pages/Disclaimer";
+import OverOns from "./pages/OverOns";
 import NotFound from "./pages/NotFound";
 import { CookieConsent } from "./components/CookieConsent";
 
@@ -36,6 +37,7 @@ const App = () => (
             <Route path="/doneren" element={<Doneren />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/disclaimer" element={<Disclaimer />} />
+            <Route path="/over-ons" element={<OverOns />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

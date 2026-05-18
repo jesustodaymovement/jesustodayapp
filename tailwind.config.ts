@@ -67,6 +67,7 @@ export default {
       fontFamily: {
         heading: ["Poppins", "sans-serif"],
         body: ["Inter", "sans-serif"],
+        signature: ["Caveat", "cursive"],
       },
       borderRadius: {
         lg: "var(--radius)",
