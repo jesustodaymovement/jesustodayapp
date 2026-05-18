@@ -37,6 +37,8 @@ const queryClient = new QueryClient();
 const legacyRedirects: { from: string; to: string }[] = [
   { from: "/stories", to: "/verhalen-over-jezus" },
   { from: "/verhalen", to: "/verhalen-over-jezus" },
+  { from: "/getuigenissen", to: "/verhalen-over-jezus" },
+  { from: "/verhaalsen", to: "/verhalen-over-jezus" },
   { from: "/deel-jouw-verhaal", to: "/" },
   { from: "/jesus-today", to: "/" },
   { from: "/over-jesus-today", to: "/over-ons" },
