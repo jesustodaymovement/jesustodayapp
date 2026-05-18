@@ -31,6 +31,9 @@ import motionChurch from '@/assets/partners/motion-church.png';
 import stadskerk from '@/assets/partners/stadskerk.png';
 import agape from '@/assets/partners/agape.png';
 import r5 from '@/assets/partners/r5.png';
+import impactWorldTour from '@/assets/partners/impact-world-tour.png';
+import martinKoornstra from '@/assets/endorsements/martin-koornstra.jpg';
+import janPool from '@/assets/endorsements/jan-pool.jpg';
 
 const partners = [
   { name: 'GlobalRize', url: 'https://www.globalrize.nl/', logo: globalrize },
@@ -42,7 +45,23 @@ const partners = [
   { name: 'De Stadskerk VBG', url: 'https://destadskerk.nl/', logo: stadskerk },
   { name: 'Agapè Nederland', url: 'https://agape.nl/', logo: agape },
   { name: 'R5 Kerk & Bijbelschool', url: 'https://r5church.nl/', logo: r5 },
+  { name: 'Impact World Tour', url: 'https://impactworldtour.com/', logo: impactWorldTour },
 ];
+const endorsements = [
+  {
+    name: 'Martin Koornstra',
+    role: 'Spreker & oprichter Royal Mission',
+    photo: martinKoornstra,
+    quote: 'JesusToday helpt gelovigen om hun verhaal op een laagdrempelige manier te delen, precies waar de kerk vandaag de dag behoefte aan heeft.',
+  },
+  {
+    name: 'Jan Pool',
+    role: 'Spreker & auteur',
+    photo: janPool,
+    quote: 'Een prachtig initiatief dat ruimte maakt voor persoonlijke getuigenissen, dat is waar levens door veranderen.',
+  },
+];
+
 
 const benefits = [
   {
@@ -354,6 +373,51 @@ const Partners = () => {
                         className="max-h-full max-w-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
                       />
                     </a>
+                  </ScrollReveal>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Aanbevolen door */}
+        <section className="py-24 bg-cream">
+          <div className="container mx-auto px-6">
+            <div className="max-w-5xl mx-auto">
+              <ScrollReveal>
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/20 border border-gold/30 mb-6 mx-auto justify-center">
+                  <UserCheck className="w-4 h-4 text-anthracite" />
+                  <span className="text-anthracite text-sm font-medium">Aanbevolen door</span>
+                </div>
+              </ScrollReveal>
+              <ScrollReveal delay={100}>
+                <h2 className="text-3xl md:text-4xl font-bold text-center text-anthracite mb-4">
+                  Gewaardeerde stemmen achter <span className="text-gold">JesusToday</span>
+                </h2>
+              </ScrollReveal>
+              <ScrollReveal delay={200}>
+                <p className="text-lg text-center text-muted-foreground mb-14 max-w-2xl mx-auto">
+                  Sprekers en leiders uit het Nederlandse christelijke landschap staan achter onze missie.
+                </p>
+              </ScrollReveal>
+              <div className="grid md:grid-cols-2 gap-8">
+                {endorsements.map((e, i) => (
+                  <ScrollReveal key={e.name} delay={150 + i * 100}>
+                    <figure className="h-full p-8 rounded-2xl bg-background border border-border/50 shadow-soft hover:shadow-card transition-all duration-300 flex flex-col items-center text-center">
+                      <img
+                        src={e.photo}
+                        alt={`Foto van ${e.name}`}
+                        loading="lazy"
+                        className="w-24 h-24 rounded-full object-cover mb-5 ring-4 ring-gold/20 shadow-soft"
+                      />
+                      <blockquote className="text-anthracite/80 italic leading-relaxed mb-5">
+                        "{e.quote}"
+                      </blockquote>
+                      <figcaption>
+                        <div className="font-semibold text-anthracite">{e.name}</div>
+                        <div className="text-sm text-muted-foreground">{e.role}</div>
+                      </figcaption>
+                    </figure>
                   </ScrollReveal>
                 ))}
               </div>
