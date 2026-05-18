@@ -249,14 +249,6 @@ const Testimonies = () => {
   const hasActiveFilters =
     search.trim().length > 0 || churchFilter !== 'all' || selectedTopics.length > 0;
 
-  const loadMore = () => {
-    const newSkip = skip + PAGE_SIZE;
-    setSkip(newSkip);
-    fetchVideos(language, newSkip, true);
-  };
-
-  const hasMore = items.length < totalCount;
-
   return (
     <div className="min-h-screen bg-cream">
       <Helmet>
@@ -282,7 +274,7 @@ const Testimonies = () => {
             <ScrollReveal delay={100}>
               <p className="text-lg text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
                 Ontdek de verhalen van mensen die hun leven met Jezus delen.
-                {totalCount > 0 && ` ${totalCount} getuigenissen beschikbaar.`}
+                {globalTotal > 0 && ` ${globalTotal} getuigenissen beschikbaar.`}
               </p>
             </ScrollReveal>
 
@@ -369,12 +361,6 @@ const Testimonies = () => {
                 </div>
               </div>
 
-              {loadingAll && (
-                <p className="text-sm text-center text-muted-foreground -mt-6 mb-6 flex items-center justify-center gap-2">
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  Alle getuigenissen worden geladen voor de zoekfunctie...
-                </p>
-              )}
             </ScrollReveal>
 
             {/* Content */}
@@ -386,7 +372,7 @@ const Testimonies = () => {
               <div className="text-center py-24">
                 <p className="text-destructive mb-4">{error}</p>
                 <button
-                  onClick={() => fetchVideos(language, 0, false)}
+                  onClick={() => fetchVideos(language)}
                   className="text-gold underline"
                 >
                   Opnieuw proberen
@@ -403,25 +389,6 @@ const Testimonies = () => {
                     <TestimonyCard key={t.id} testimony={t} />
                   ))}
                 </div>
-
-                {hasMore && (
-                  <div className="flex justify-center mt-12">
-                    <button
-                      onClick={loadMore}
-                      disabled={loadingMore}
-                      className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-anthracite text-warm-white font-semibold hover:bg-gold hover:text-anthracite transition-all duration-300 disabled:opacity-50"
-                    >
-                      {loadingMore ? (
-                        <>
-                          <Loader2 className="w-5 h-5 animate-spin" />
-                          Laden...
-                        </>
-                      ) : (
-                        'Meer getuigenissen laden'
-                      )}
-                    </button>
-                  </div>
-                )}
               </>
             )}
           </div>
