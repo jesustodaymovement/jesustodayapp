@@ -5,6 +5,7 @@ import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { Download, Video, QrCode, Share2, Shield, Clock, Heart, ArrowRight, Camera, Users, Mail, HelpCircle, Quote } from 'lucide-react';
+import promoCard from '@/assets/jt-promo-card.jpg';
 
 const APP_STORE_URL = 'https://apps.apple.com/nl/app/jesus-today/id1623308816';
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=io.mxapps.jesustoday';
@@ -249,14 +250,12 @@ const Upload = () => {
                 </div>
               </ScrollReveal>
               <ScrollReveal delay={150}>
-                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-anthracite shadow-card">
-                  <iframe
-                    src="https://player.vimeo.com/video/947358616?title=0&byline=0&portrait=0"
-                    className="absolute inset-0 w-full h-full"
-                    frameBorder={0}
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowFullScreen
-                    title="JesusToday app preview"
+                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-cream shadow-card">
+                  <img
+                    src={promoCard}
+                    alt="JesusToday promokaartje met QR-code, voor- en achterkant"
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
                 </div>
               </ScrollReveal>
