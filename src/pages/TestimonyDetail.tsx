@@ -386,21 +386,21 @@ const TestimonyDetail = () => {
                           </span>
                         </div>
 
-                        <div className="grid gap-3 sm:grid-cols-3">
-                          <a href="#chat" onClick={openChat}>
-                            <Button variant="hero" className="w-full justify-between gap-2 px-4 text-sm whitespace-normal text-left h-auto min-h-11 py-3 leading-tight">
+                        <div className="grid gap-3 sm:grid-cols-3 items-stretch">
+                          <a href="#chat" onClick={openChat} className="h-full">
+                            <Button variant="hero" className="w-full h-full justify-between gap-2 px-4 text-sm whitespace-normal text-left min-h-11 py-3 leading-tight">
                               <span className="flex-1">Doorpraten</span>
                               <ChevronRight className="w-4 h-4 shrink-0" />
                             </Button>
                           </a>
-                          <a href={questionLink}>
-                            <Button variant="outline" className="w-full justify-between gap-2 px-4 text-sm whitespace-normal text-left h-auto min-h-11 py-3 leading-tight">
+                          <a href={questionLink} className="h-full">
+                            <Button variant="outline" className="w-full h-full justify-between gap-2 px-4 text-sm whitespace-normal text-left min-h-11 py-3 leading-tight">
                               <span className="flex-1">Stel een vraag</span>
                               <ChevronRight className="w-4 h-4 shrink-0" />
                             </Button>
                           </a>
-                          <Link to={contactLink}>
-                            <Button variant="outline" className="w-full justify-between gap-2 px-4 text-sm whitespace-normal text-left h-auto min-h-11 py-3 leading-tight">
+                          <Link to={contactLink} className="h-full">
+                            <Button variant="outline" className="w-full h-full justify-between gap-2 px-4 text-sm whitespace-normal text-left min-h-11 py-3 leading-tight">
                               <span className="flex-1">Neem contact op met {firstName}</span>
                               <ChevronRight className="w-4 h-4 shrink-0" />
                             </Button>
