@@ -54,10 +54,10 @@ const VideoCard = ({ testimony }: { testimony: Testimony }) => {
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
         <div className="absolute bottom-4 left-4 right-4">
-          <p className="text-gold font-bold text-xl uppercase tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
+          <p className="text-gold font-black text-2xl uppercase tracking-wider drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]" style={{ fontFamily: '"League Spartan", sans-serif' }}>
             {testimony.user.username}
           </p>
-          <p className="text-gold/90 text-sm font-semibold line-clamp-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]">
+          <p className="text-gold/90 text-sm font-bold uppercase tracking-wide line-clamp-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]" style={{ fontFamily: '"League Spartan", sans-serif' }}>
             "{testimony.quote}"
           </p>
         </div>
