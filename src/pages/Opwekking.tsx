@@ -243,6 +243,42 @@ const Opwekking = () => {
                       )}
                     </div>
                   </div>
+                  <div>
+                    <Label htmlFor="day">Op welke dag ben je beschikbaar?</Label>
+                    <Select
+                      value={form.day}
+                      onValueChange={(value) =>
+                        setForm((f) => ({ ...f, day: value as "zaterdag" | "zondag" }))
+                      }
+                    >
+                      <SelectTrigger id="day">
+                        <SelectValue placeholder="Kies een dag" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="zaterdag">Zaterdag</SelectItem>
+                        <SelectItem value="zondag">Zondag</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    {errors.day && (
+                      <p className="text-sm text-red-600 mt-1">{errors.day}</p>
+                    )}
+                  </div>
+                  <div>
+                    <Label htmlFor="testimony">
+                      Korte omschrijving van jouw getuigenis
+                    </Label>
+                    <Textarea
+                      id="testimony"
+                      value={form.testimony}
+                      onChange={update("testimony")}
+                      rows={5}
+                      placeholder="In een paar zinnen, waar gaat jouw getuigenis over?"
+                      required
+                    />
+                    {errors.testimony && (
+                      <p className="text-sm text-red-600 mt-1">{errors.testimony}</p>
+                    )}
+                  </div>
                   <Button
                     type="submit"
                     disabled={submitting}
