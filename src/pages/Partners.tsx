@@ -34,6 +34,7 @@ import r5 from '@/assets/partners/r5.png';
 import impactWorldTour from '@/assets/partners/impact-world-tour.png';
 import theMessage from '@/assets/partners/the-message.png';
 import ruah from '@/assets/partners/ruah.png';
+import outreachZutphen from '@/assets/partners/outreach-zutphen.png';
 import martinKoornstra from '@/assets/endorsements/martin-koornstra.jpg';
 import janPool from '@/assets/endorsements/jan-pool.jpg';
 import benVerboom from '@/assets/endorsements/ben-verboom.jpg';
@@ -52,6 +53,7 @@ const partners = [
   { name: 'Impact World Tour', url: 'https://impactworldtour.com/', logo: impactWorldTour },
   { name: 'The Message Nederland', url: 'https://www.themessage.nl/', logo: theMessage },
   { name: 'RUAH School van Profetie', url: 'https://www.prophesyandheal.com/', logo: ruah },
+  { name: 'Outreach Zutphen', url: 'https://www.instagram.com/outreachzutphen/', logo: outreachZutphen },
 ];
 const endorsements = [
   {
