@@ -1,6 +1,25 @@
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { Button } from '@/components/ui/button';
-import { Church, Calendar, Users } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Church, QrCode, Sparkles, HeartHandshake, ArrowRight } from 'lucide-react';
+
+const benefits = [
+  {
+    icon: HeartHandshake,
+    title: 'Samen evangelisatie activeren',
+    desc: 'We helpen jullie gemeente om getuigen weer een natuurlijke plek te geven.',
+  },
+  {
+    icon: QrCode,
+    title: 'QR-kaartjes in eigen huisstijl',
+    desc: 'Persoonlijke kaartjes en codes om verhalen makkelijk te delen.',
+  },
+  {
+    icon: Sparkles,
+    title: 'Spreken over evangelisatie',
+    desc: 'Optioneel komen we langs voor een dienst, jongerenavond of leiderschapsteam.',
+  },
+];
 
 export const ChurchSection = () => {
   return (
@@ -30,9 +49,11 @@ export const ChurchSection = () => {
               </ScrollReveal>
 
               <ScrollReveal delay={300}>
-                <Button variant="hero" size="lg" className="gap-2">
-                  <Calendar className="w-5 h-5" />
-                  Organiseer een opnamedag
+                <Button asChild variant="hero" size="lg" className="gap-2">
+                  <Link to="/partners">
+                    Ontdek partnership
+                    <ArrowRight className="w-5 h-5" />
+                  </Link>
                 </Button>
               </ScrollReveal>
             </div>
@@ -43,33 +64,17 @@ export const ChurchSection = () => {
                 <div className="absolute inset-0 bg-gold/20 rounded-3xl blur-2xl" />
                 <div className="relative p-8 rounded-2xl bg-warm-white/5 border border-warm-white/10 backdrop-blur-sm">
                   <div className="space-y-6">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center">
-                        <Church className="w-6 h-6 text-gold" />
+                    {benefits.map((b) => (
+                      <div key={b.title} className="flex items-start gap-4">
+                        <div className="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center flex-shrink-0">
+                          <b.icon className="w-6 h-6 text-gold" />
+                        </div>
+                        <div>
+                          <p className="text-warm-white font-semibold">{b.title}</p>
+                          <p className="text-warm-white/60 text-sm leading-relaxed">{b.desc}</p>
+                        </div>
                       </div>
-                      <div>
-                        <p className="text-warm-white font-semibold">50+ kerken</p>
-                        <p className="text-warm-white/60 text-sm">deden al mee</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center">
-                        <Users className="w-6 h-6 text-gold" />
-                      </div>
-                      <div>
-                        <p className="text-warm-white font-semibold">500+ verhalen</p>
-                        <p className="text-warm-white/60 text-sm">opgenomen</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center">
-                        <Calendar className="w-6 h-6 text-gold" />
-                      </div>
-                      <div>
-                        <p className="text-warm-white font-semibold">Flexibele planning</p>
-                        <p className="text-warm-white/60 text-sm">wij komen naar jullie</p>
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
               </div>
