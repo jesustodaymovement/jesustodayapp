@@ -16,15 +16,15 @@ const HomeVideo = () => {
   return (
     <>
       <Helmet>
-        <title>Jesus Today - Deel jouw getuigenis | Jouw verhaal, Gods impact</title>
+        <title>Jesus Today - Deel jouw verhaal | Jouw verhaal, Gods impact</title>
         <meta 
           name="description" 
-          content="Wil je over Jezus vertellen maar vind je het spannend? Jesus Today helpt je om jouw persoonlijke getuigenis eenvoudig en impactvol te delen via video en QR-codes." 
+          content="Wil je over Jezus vertellen maar vind je het spannend? Jesus Today helpt je om jouw persoonlijke verhaal eenvoudig en impactvol te delen via video en QR-codes." 
         />
-        <meta name="keywords" content="getuigenis, evangelisatie, christelijke app, Jezus delen, geloof delen, video getuigenis" />
+        <meta name="keywords" content="verhaal, evangelisatie, christelijke app, Jezus delen, geloof delen, verhaal op video" />
         <link rel="canonical" href="https://jesustoday.nl/video" />
-        <meta property="og:title" content="Jesus Today - Deel jouw getuigenis" />
-        <meta property="og:description" content="Jouw getuigenis. Eenvoudig gedeeld. Door God gebruikt." />
+        <meta property="og:title" content="Jesus Today - Deel jouw verhaal" />
+        <meta property="og:description" content="Jouw verhaal. Eenvoudig gedeeld. Door God gebruikt." />
         <meta property="og:type" content="website" />
       </Helmet>
 

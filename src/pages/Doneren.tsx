@@ -45,7 +45,7 @@ const Hero = () => (
         <ScrollReveal delay={200}>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">
             Help mee bouwen aan een beweging die een hele generatie bereikt. Jouw
-            gift maakt het mogelijk dat persoonlijke getuigenissen op straat,
+            gift maakt het mogelijk dat persoonlijke verhalen op straat,
             werk en school landen, daar waar deze generatie zich beweegt.
           </p>
         </ScrollReveal>
@@ -83,7 +83,7 @@ const ProblemSection = () => (
         </ScrollReveal>
         <ScrollReveal delay={100}>
           <p className="text-lg text-warm-white/80 text-center max-w-2xl mx-auto mb-14">
-            Nederland is het meest seculiere land van West-Europa, en die
+            Nederland is een van de meest seculiere landen van West-Europa, en die
             ontwikkeling versnelt.
           </p>
         </ScrollReveal>
@@ -170,7 +170,7 @@ const GuideSection = () => (
 );
 
 const stats = [
-  { value: '200+', label: 'persoonlijke videogetuigenissen' },
+  { value: '200+', label: 'persoonlijke verhalen op video' },
   { value: '10+', label: 'samenwerkingen, o.a. Opwekking, The Send, New Wine, YWAM' },
   { value: '1', label: 'land actief (Zuid-Afrika)' },
   { value: '2', label: 'landen klaar voor opstart (India, Macedonië)' },
@@ -215,7 +215,7 @@ const planSteps = [
     icon: Video,
     nr: '01',
     title: 'Opnemen',
-    desc: 'Een gelovige neemt zijn persoonlijke getuigenis op via de JesusToday-app. Het verhaal komt op het platform.',
+    desc: 'Een gelovige neemt zijn persoonlijke verhaal op via de JesusToday-app. Het verhaal komt op het platform.',
   },
   {
     icon: QrCode,
@@ -387,7 +387,7 @@ const packages = [
   },
   {
     amount: '€250',
-    title: 'Een videogetuigenis volledig geproduceerd',
+    title: 'Een verhaal op video volledig geproduceerd',
     desc: 'Van opname tot publicatie op het platform.',
   },
   {
@@ -398,7 +398,7 @@ const packages = [
   {
     amount: '€8.000',
     title: 'Een compleet nieuw land opgestart',
-    desc: 'Lokale coördinator, apparatuur, vertaling en eerste kaartjes-druk. Doel: 50 lokale getuigenis-video\'s binnen 6 maanden.',
+    desc: 'Lokale coördinator, apparatuur, vertaling en eerste kaartjes-druk. Doel: 50 lokale verhaal-video\'s binnen 6 maanden.',
     highlight: true,
   },
 ];

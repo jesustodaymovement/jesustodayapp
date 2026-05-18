@@ -73,7 +73,7 @@ const DEFAULT_COMMENTS: CommentItem[] = [
 ];
 
 const recommendationTitle = (testimony: Testimony) =>
-  testimony.user.username || testimony.churchName || 'Getuigenis';
+  testimony.user.username || testimony.churchName || 'Verhaal';
 
 const buildMailTo = (subject: string, body: string) =>
   `mailto:info@jesustoday.nl?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
@@ -103,7 +103,7 @@ const RelatedVideoCard = ({ video }: RelatedVideoCardProps) => {
         {thumb ? (
           <img
             src={thumb}
-            alt={`Getuigenis van ${recommendationTitle(video)}`}
+            alt={`Verhaal van ${recommendationTitle(video)}`}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
           />
@@ -183,7 +183,7 @@ const TestimonyDetail = () => {
           }
         }
 
-        if (!cancelled) setError('Getuigenis niet gevonden.');
+        if (!cancelled) setError('Verhaal niet gevonden.');
       } catch (fetchError) {
         console.error(fetchError);
         if (!cancelled) setError('Er ging iets mis bij het laden.');
@@ -218,7 +218,7 @@ const TestimonyDetail = () => {
 
   const questionLink = testimony
     ? buildMailTo(
-        `Vraag over getuigenis van ${fullName}`,
+        `Vraag over verhaal van ${fullName}`,
         `Hoi Jesus Today,%0D%0A%0D%0AIk heb een vraag na het zien van de video van ${fullName}:`
       )
     : '#';
@@ -254,15 +254,15 @@ const TestimonyDetail = () => {
       <Helmet>
         <title>
           {testimony
-            ? `${fullName}, video getuigenis | Jesus Today`
-            : 'Video getuigenis | Jesus Today'}
+            ? `${fullName}, verhaal op video | Jesus Today`
+            : 'Video verhaal | Jesus Today'}
         </title>
         <meta
           name="description"
           content={
             testimony
-              ? `${fullName} deelt een getuigenis en vervolgstappen voor wie verder wil ontdekken.`
-              : 'Bekijk een video getuigenis op Jesus Today.'
+              ? `${fullName} deelt een verhaal en vervolgstappen voor wie verder wil ontdekken.`
+              : 'Bekijk een verhaal op video op Jesus Today.'
           }
         />
         <link rel="canonical" href={`/getuigenissen/${vimeoId}`} />
@@ -278,7 +278,7 @@ const TestimonyDetail = () => {
               className="inline-flex items-center gap-2 text-anthracite hover:text-gold transition-colors mb-8 font-medium"
             >
               <ArrowLeft className="w-5 h-5" />
-              Terug naar alle getuigenissen
+              Terug naar alle verhalen
             </Link>
 
             {loading ? (
@@ -287,9 +287,9 @@ const TestimonyDetail = () => {
               </div>
             ) : error || !testimony ? (
               <div className="text-center py-24">
-                <p className="text-destructive mb-4">{error ?? 'Getuigenis niet gevonden.'}</p>
+                <p className="text-destructive mb-4">{error ?? 'Verhaal niet gevonden.'}</p>
                 <Link to="/getuigenissen" className="text-gold underline">
-                  Bekijk alle getuigenissen
+                  Bekijk alle verhalen
                 </Link>
               </div>
             ) : (
@@ -303,14 +303,14 @@ const TestimonyDetail = () => {
                           className="w-full h-full"
                           allow="autoplay; fullscreen; picture-in-picture"
                           allowFullScreen
-                          title={`Getuigenis van ${fullName}`}
+                          title={`Verhaal van ${fullName}`}
                         />
                       </div>
 
                       <div className="bg-warm-white rounded-2xl shadow-card p-8 space-y-5">
                         <div className="space-y-3">
                           <p className="text-sm font-semibold uppercase tracking-wide text-gold">
-                            Video getuigenis
+                            Video verhaal
                           </p>
                           <h1 className="text-3xl md:text-5xl font-bold text-anthracite">
                             {fullName}
@@ -441,7 +441,7 @@ const TestimonyDetail = () => {
                         <div>
                           <h2 className="text-2xl font-bold text-anthracite">Reacties bij deze video</h2>
                           <p className="text-muted-foreground">
-                            Laat weten wat deze getuigenis bij je oproept.
+                            Laat weten wat deze verhaal bij je oproept.
                           </p>
                         </div>
                       </div>
@@ -545,7 +545,7 @@ const TestimonyDetail = () => {
                       </h2>
                     </div>
                     <p className="text-muted-foreground max-w-2xl">
-                      Een visuele slider onderaan de pagina, zodat je intuïtief door meer getuigenissen kunt bladeren.
+                      Een visuele slider onderaan de pagina, zodat je intuïtief door meer verhalen kunt bladeren.
                     </p>
                   </div>
 

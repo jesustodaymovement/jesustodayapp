@@ -6,8 +6,8 @@ const steps = [
   {
     icon: Video,
     number: '01',
-    title: 'Neem jouw getuigenis op',
-    description: 'We helpen je om in enkele minuten jouw persoonlijke verhaal op video vast te leggen. Download vervolgens onze app en upload jouw getuigenis.',
+    title: 'Neem jouw verhaal op',
+    description: 'We helpen je om in enkele minuten jouw persoonlijke verhaal op video vast te leggen. Download vervolgens onze app en upload jouw verhaal.',
   },
   {
     icon: QrCode,
@@ -19,7 +19,7 @@ const steps = [
     icon: Share2,
     number: '03',
     title: 'Deel jouw verhaal in het dagelijks leven',
-    description: 'Geef de kaartjes weg waar je ook bent, inspireer anderen met Jezus en bereik nog meer mensen door je getuigenis ook op social media te delen.',
+    description: 'Geef de kaartjes weg waar je ook bent, inspireer anderen met Jezus en bereik nog meer mensen door je verhaal ook op social media te delen.',
   },
 ];
 
@@ -36,7 +36,7 @@ export const PlanSection = () => {
           
           <ScrollReveal delay={100}>
             <p className="text-lg text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
-              In drie eenvoudige stappen deel je jouw getuigenis met de wereld
+              In drie eenvoudige stappen deel je jouw verhaal met de wereld
             </p>
           </ScrollReveal>
 
@@ -71,7 +71,7 @@ export const PlanSection = () => {
           <ScrollReveal delay={450}>
             <div className="text-center">
               <Button variant="cta-light" size="lg">
-                Upload jouw getuigenis
+                Upload jouw verhaal
               </Button>
             </div>
           </ScrollReveal>

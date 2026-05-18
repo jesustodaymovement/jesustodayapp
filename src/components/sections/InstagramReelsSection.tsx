@@ -11,7 +11,7 @@ const reelsMockups = [
   },
   {
     username: 'lucas.faith',
-    caption: 'Mijn eerste getuigenis was zo awkward maar...',
+    caption: 'Mijn eerste verhaal was zo awkward maar...',
     likes: '4.123',
     comments: '289',
     thumbnail: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
@@ -46,7 +46,7 @@ export const InstagramReelsSection = () => {
                 Tieners die de stap hebben gezet
               </h2>
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-                Bekijk hoe andere jongeren hun getuigenis zijn gaan delen
+                Bekijk hoe andere jongeren hun verhaal zijn gaan delen
               </p>
             </div>
           </ScrollReveal>
@@ -120,7 +120,7 @@ export const InstagramReelsSection = () => {
           <ScrollReveal delay={500}>
             <div className="text-center mt-12">
               <p className="text-muted-foreground italic">
-                *Dit zijn mockups ter illustratie. Echte getuigenissen vind je in de app.
+                *Dit zijn mockups ter illustratie. Echte verhalen vind je in de app.
               </p>
             </div>
           </ScrollReveal>
