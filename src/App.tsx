@@ -15,6 +15,7 @@ import OverOns from "./pages/OverOns";
 import Media from "./pages/Media";
 import Contact from "./pages/Contact";
 import Upload from "./pages/Upload";
+import Partners from "./pages/Partners";
 import NotFound from "./pages/NotFound";
 import { CookieConsent } from "./components/CookieConsent";
 
@@ -91,6 +92,7 @@ const App = () => (
             <Route path="/media" element={<Media />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/upload" element={<Upload />} />
+            <Route path="/partners" element={<Partners />} />
             {legacyRedirects.flatMap(({ from, to }) => [
               <Route key={from} path={from} element={<Navigate to={to} replace />} />,
               <Route key={`${from}/`} path={`${from}/`} element={<Navigate to={to} replace />} />,
