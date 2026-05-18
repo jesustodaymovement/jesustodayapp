@@ -12,6 +12,29 @@ export const AlertBar = () => {
     if (!localStorage.getItem(STORAGE_KEY)) setVisible(true);
   }, []);
 
+  useEffect(() => {
+    const root = document.documentElement;
+    const body = document.body;
+    if (!visible) {
+      root.style.setProperty("--alert-h", "0px");
+      body.style.paddingTop = "";
+      return;
+    }
+    const update = () => {
+      const el = document.getElementById("jt-alert-bar");
+      const h = el ? el.offsetHeight : 0;
+      root.style.setProperty("--alert-h", `${h}px`);
+      body.style.paddingTop = `${h}px`;
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("resize", update);
+      root.style.setProperty("--alert-h", "0px");
+      body.style.paddingTop = "";
+    };
+  }, [visible]);
+
   if (!visible) return null;
 
   const dismiss = (e: React.MouseEvent) => {
@@ -23,7 +46,8 @@ export const AlertBar = () => {
 
   return (
     <div
-      className="relative w-full"
+      id="jt-alert-bar"
+      className="fixed top-0 left-0 right-0 z-[60] w-full"
       style={{ backgroundColor: "#fad150" }}
       role="region"
       aria-label="Aankondiging Opwekking"
