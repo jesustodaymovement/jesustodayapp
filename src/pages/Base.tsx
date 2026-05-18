@@ -32,8 +32,9 @@ const Base = () => {
         <meta name="twitter:description" content="Ontdek Jezus of vertel over Jezus. Kies de reis die bij jou past." />
       </Helmet>
 
-      <main className="min-h-screen flex flex-col items-center justify-center bg-cream px-6 py-16">
-        <div className="w-full max-w-3xl mx-auto text-center space-y-12">
+      <div className="min-h-screen flex flex-col bg-cream">
+      <main className="flex-1 flex flex-col items-center justify-center px-6 pt-12 pb-6">
+        <div className="w-full max-w-3xl mx-auto text-center space-y-10">
           <div className="flex flex-col items-center gap-6 animate-fade-up">
             <img src={logo} alt="JesusToday" className="h-12 w-auto" />
             <h1 className="text-3xl md:text-5xl font-bold text-anthracite leading-tight">
@@ -92,13 +93,13 @@ const Base = () => {
 
       <section
         aria-hidden="true"
-        className="w-full overflow-hidden leading-none select-none"
+        className="w-full overflow-hidden leading-none select-none -mt-2"
       >
         <h2
           className="font-black tracking-tighter text-center"
           style={{
             color: '#fad150',
-            fontSize: 'clamp(4rem, 22vw, 22rem)',
+            fontSize: 'clamp(3rem, 16vw, 16rem)',
             lineHeight: 0.85,
             letterSpacing: '-0.04em',
           }}
@@ -106,6 +107,7 @@ const Base = () => {
           JESUSTODAY
         </h2>
       </section>
+      </div>
     </>
   );
 };
