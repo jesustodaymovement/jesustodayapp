@@ -512,14 +512,15 @@ const OverOns = () => {
           name="description"
           content="JesusToday is een platform voor persoonlijke verhalen op video. Lees hoe het begon met het verhaal van oprichter Alexander Keur."
         />
-        <link rel="canonical" href="/over-ons" />
         <meta property="og:title" content="Over JesusToday, ons verhaal" />
         <meta
           property="og:description"
           content="JesusToday is een platform voor persoonlijke verhalen op video, gemaakt door en voor mensen die hun ervaring met Jezus willen delen."
         />
-        <meta property="og:url" content="/over-ons" />
+        <meta property="og:url" content="https://storybrand-share-grace.lovable.app/over-ons" />
         <meta property="og:type" content="website" />
+        <meta name="twitter:title" content="Over JesusToday, ons verhaal" />
+        <meta name="twitter:description" content="JesusToday is een platform voor persoonlijke verhalen op video." />
       </Helmet>
       <Header />
       <main>
