@@ -36,6 +36,7 @@ import theMessage from '@/assets/partners/the-message.png';
 import martinKoornstra from '@/assets/endorsements/martin-koornstra.jpg';
 import janPool from '@/assets/endorsements/jan-pool.jpg';
 import benVerboom from '@/assets/endorsements/ben-verboom.jpg';
+import boothSelfie from '@/assets/partners/jt-booth-selfie.jpg';
 
 const partners = [
   { name: 'GlobalRize', url: 'https://www.globalrize.nl/', logo: globalrize },
@@ -198,6 +199,28 @@ const Partners = () => {
         {/* Benefits */}
         <section className="py-24 bg-background">
           <div className="container mx-auto px-6">
+            <ScrollReveal>
+              <div className="max-w-5xl mx-auto mb-20">
+                <div className="relative rounded-3xl overflow-hidden shadow-card border border-border/50">
+                  <img
+                    src={boothSelfie}
+                    alt="JesusToday stand op een event met QR-kaartjes, banner en merchandise"
+                    className="w-full h-[280px] md:h-[420px] object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-anthracite/80 via-anthracite/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold/90 mb-3">
+                      <Sparkles className="w-3.5 h-3.5 text-anthracite" />
+                      <span className="text-anthracite text-xs font-semibold">In het veld met partners</span>
+                    </div>
+                    <p className="text-warm-white text-lg md:text-2xl font-semibold max-w-2xl leading-snug">
+                      Samen op pad, op events en in kerken, om verhalen over Jezus zichtbaar te maken.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
             <div className="max-w-5xl mx-auto">
               <ScrollReveal>
                 <h2 className="text-3xl md:text-4xl font-bold text-center text-anthracite mb-4">
