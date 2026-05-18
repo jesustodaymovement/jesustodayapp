@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import { Search, MessageCircle, ArrowRight, BookOpen, Megaphone } from 'lucide-react';
 import logo from '@/assets/jesus-today-logo.png';
 import { AudienceMode } from '@/contexts/AudienceContext';
@@ -6,6 +7,7 @@ import { AudienceMode } from '@/contexts/AudienceContext';
 const STORAGE_KEY = 'jt-audience-mode';
 
 const Base = () => {
+  const { t } = useTranslation();
   const choose = (mode: AudienceMode) => {
     if (typeof window !== 'undefined') {
       localStorage.setItem(STORAGE_KEY, mode);
@@ -18,19 +20,19 @@ const Base = () => {
   return (
     <>
       <Helmet>
-        <title>JesusToday, kies jouw reis</title>
+        <title>{t('JesusToday, kies jouw reis')}</title>
         <meta
           name="description"
-          content="Ontdek Jezus of vertel over Jezus. Kies de reis die bij jou past."
+          content={t('Ontdek Jezus of vertel over Jezus. Kies de reis die bij jou past.')}
         />
-        <meta property="og:title" content="JesusToday, kies jouw reis" />
-        <meta property="og:description" content="Ontdek Jezus of vertel over Jezus. Kies de reis die bij jou past." />
+        <meta property="og:title" content={t('JesusToday, kies jouw reis')} />
+        <meta property="og:description" content={t('Ontdek Jezus of vertel over Jezus. Kies de reis die bij jou past.')} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://storybrand-share-grace.lovable.app/" />
 
         <link rel="canonical" href="https://storybrand-share-grace.lovable.app/" />
-        <meta name="twitter:title" content="JesusToday, kies jouw reis" />
-        <meta name="twitter:description" content="Ontdek Jezus of vertel over Jezus. Kies de reis die bij jou past." />
+        <meta name="twitter:title" content={t('JesusToday, kies jouw reis')} />
+        <meta name="twitter:description" content={t('Ontdek Jezus of vertel over Jezus. Kies de reis die bij jou past.')} />
       </Helmet>
 
       <div className="min-h-screen w-full flex flex-col items-center justify-center bg-cream relative overflow-hidden px-6 py-12">
@@ -56,10 +58,10 @@ const Base = () => {
           {/* Hero header */}
           <div className="text-center mb-14">
             <h1 className="text-5xl md:text-7xl font-black text-anthracite mb-6 tracking-tighter leading-[1.05]">
-              Waar begint{' '}
+              {t('Waar begint')}{' '}
               <span className="relative inline-block">
                 <span className="relative z-10" style={{ color: '#fad150' }}>
-                  jouw reis?
+                  {t('jouw reis?')}
                 </span>
                 <svg
                   aria-hidden="true"
@@ -79,7 +81,7 @@ const Base = () => {
               </span>
             </h1>
             <p className="text-anthracite/70 text-lg md:text-xl max-w-md mx-auto leading-relaxed tracking-tight">
-              Kies wat bij jou past. Je kunt later altijd wisselen.
+              {t('Kies wat bij jou past. Je kunt later altijd wisselen.')}
             </p>
           </div>
 
@@ -106,13 +108,13 @@ const Base = () => {
                   <Search className="w-7 h-7 text-anthracite" strokeWidth={2.5} />
                 </div>
                 <h2 className="text-2xl font-extrabold text-anthracite mb-3 tracking-tight">
-                  Ontdek Jezus
+                  {t('Ontdek Jezus')}
                 </h2>
                 <p className="text-anthracite/70 mb-8 leading-snug">
-                  Luister naar echte verhalen en ontdek wat geloof kan doen.
+                  {t('Luister naar echte verhalen en ontdek wat geloof kan doen.')}
                 </p>
                 <div className="flex items-center gap-2 text-sm font-extrabold tracking-widest uppercase text-anthracite">
-                  Begin met ontdekken
+                  {t('Begin met ontdekken')}
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </div>
               </div>
@@ -139,16 +141,16 @@ const Base = () => {
                   <Megaphone className="w-7 h-7 text-anthracite" strokeWidth={2.5} />
                 </div>
                 <h2 className="text-2xl font-extrabold text-white mb-3 tracking-tight">
-                  Vertel over Jezus
+                  {t('Vertel over Jezus')}
                 </h2>
                 <p className="text-white/70 mb-8 leading-snug">
-                  Deel jouw verhaal eenvoudig en veilig met anderen.
+                  {t('Deel jouw verhaal eenvoudig en veilig met anderen.')}
                 </p>
                 <div
                   className="flex items-center gap-2 text-sm font-extrabold tracking-widest uppercase"
                   style={{ color: '#fad150' }}
                 >
-                  Deel jouw verhaal
+                  {t('Deel jouw verhaal')}
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </div>
               </div>
