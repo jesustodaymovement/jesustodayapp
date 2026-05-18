@@ -7,6 +7,8 @@ import { ScrollReveal } from '@/components/ScrollReveal';
 import { VideoSliderSection } from '@/components/sections/VideoSliderSection';
 import eventStand from '@/assets/team/event-stand.jpg';
 import teamQrShirts from '@/assets/team/team-qr-shirts.jpg';
+import teamGroupYellow from '@/assets/team/team-group-yellow.jpg';
+import teamCrewSelfie from '@/assets/team/team-crew-selfie.jpg';
 import {
   Upload,
   Play,
@@ -246,6 +248,21 @@ const InTheFieldSection = () => (
             </div>
           </ScrollReveal>
         </div>
+        <ScrollReveal delay={300}>
+          <div className="mt-6 relative overflow-hidden rounded-2xl shadow-card aspect-[21/9] bg-anthracite">
+            <img
+              src={teamGroupYellow}
+              alt="JesusToday team en vrijwilligers in gele shirts op een event"
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-x-0 bottom-0 p-5 md:p-6 bg-gradient-to-t from-anthracite/80 to-transparent">
+              <p className="text-warm-white text-sm md:text-base font-medium">
+                Eén team, één missie, met liefde Jezus zichtbaar maken.
+              </p>
+            </div>
+          </div>
+        </ScrollReveal>
       </div>
     </div>
   </section>
@@ -436,33 +453,51 @@ const FinalCta = () => (
   <section className="py-24 bg-anthracite relative overflow-hidden">
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/15 rounded-full blur-3xl" aria-hidden />
     <div className="container mx-auto px-6 relative z-10">
-      <div className="max-w-3xl mx-auto text-center">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 lg:gap-14 items-center">
         <ScrollReveal>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-warm-white mb-6">
-            Doe je <span className="text-gold">mee?</span>
-          </h2>
-        </ScrollReveal>
-        <ScrollReveal delay={100}>
-          <p className="text-lg text-warm-white/80 mb-10">
-            Jouw verhaal kan iemands leven veranderen.
-          </p>
-        </ScrollReveal>
-        <ScrollReveal delay={200}>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button asChild variant="hero" size="lg">
-              <Link to="/upload">
-                <Upload className="w-5 h-5" />
-                Upload jouw verhaal
-              </Link>
-            </Button>
-            <Button asChild variant="hero-outline" size="lg">
-              <Link to="/verhalen-over-jezus">
-                <ArrowRight className="w-5 h-5" />
-                Bekijk verhalen
-              </Link>
-            </Button>
+          <div className="relative">
+            <div className="absolute -top-4 -left-4 w-24 h-24 bg-gold/30 rounded-2xl blur-2xl" aria-hidden />
+            <div className="relative overflow-hidden rounded-3xl shadow-card aspect-[4/3] bg-anthracite-light ring-1 ring-warm-white/10">
+              <img
+                src={teamCrewSelfie}
+                alt="Vier crewleden van JesusToday in gele shirts op een event"
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
+            <div className="absolute -bottom-4 -right-4 px-4 py-2 rounded-full bg-gold text-anthracite text-sm font-semibold shadow-gold">
+              Crew JesusToday
+            </div>
           </div>
         </ScrollReveal>
+        <div className="text-center md:text-left">
+          <ScrollReveal delay={100}>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-warm-white mb-6">
+              Doe je <span className="text-gold">mee?</span>
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={200}>
+            <p className="text-lg text-warm-white/80 mb-10 leading-relaxed">
+              Jouw verhaal kan iemands leven veranderen. Word onderdeel van een groeiende beweging die Jezus zichtbaar maakt, in Nederland en daarbuiten.
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={300}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center">
+              <Button asChild variant="hero" size="lg">
+                <Link to="/upload">
+                  <Upload className="w-5 h-5" />
+                  Upload jouw verhaal
+                </Link>
+              </Button>
+              <Button asChild variant="hero-outline" size="lg">
+                <Link to="/verhalen-over-jezus">
+                  <ArrowRight className="w-5 h-5" />
+                  Bekijk verhalen
+                </Link>
+              </Button>
+            </div>
+          </ScrollReveal>
+        </div>
       </div>
     </div>
   </section>
