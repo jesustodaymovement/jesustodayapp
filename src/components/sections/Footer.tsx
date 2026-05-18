@@ -71,14 +71,19 @@ export const Footer = () => {
 
               {/* Social Links */}
               <div className="flex gap-3">
-                <a href="#" className="w-10 h-10 rounded-lg bg-warm-white/10 flex items-center justify-center hover:bg-gold/20 hover:text-gold transition-all text-warm-white/60">
+                <a href="https://www.instagram.com/jesustoday_?igshid=YmMyMTA2M2Y%3D" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-10 h-10 rounded-lg bg-warm-white/10 flex items-center justify-center hover:bg-gold/20 hover:text-gold transition-all text-warm-white/60">
                   <Instagram className="w-5 h-5" />
                 </a>
-                <a href="#" className="w-10 h-10 rounded-lg bg-warm-white/10 flex items-center justify-center hover:bg-gold/20 hover:text-gold transition-all text-warm-white/60">
+                <a href="https://facebook.com/jesustoday.nl" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-10 h-10 rounded-lg bg-warm-white/10 flex items-center justify-center hover:bg-gold/20 hover:text-gold transition-all text-warm-white/60">
                   <Facebook className="w-5 h-5" />
                 </a>
-                <a href="#" className="w-10 h-10 rounded-lg bg-warm-white/10 flex items-center justify-center hover:bg-gold/20 hover:text-gold transition-all text-warm-white/60">
+                <a href="https://www.youtube.com/@JesusTodayMovement" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="w-10 h-10 rounded-lg bg-warm-white/10 flex items-center justify-center hover:bg-gold/20 hover:text-gold transition-all text-warm-white/60">
                   <Youtube className="w-5 h-5" />
+                </a>
+                <a href="https://www.tiktok.com/@jesustodaymovement" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="w-10 h-10 rounded-lg bg-warm-white/10 flex items-center justify-center hover:bg-gold/20 hover:text-gold transition-all text-warm-white/60">
+                  <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor" aria-hidden="true">
+                    <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005.8 20.1a6.34 6.34 0 0010.86-4.43V8.62a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1.84-.05z"/>
+                  </svg>
                 </a>
               </div>
             </div>
