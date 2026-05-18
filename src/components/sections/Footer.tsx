@@ -56,21 +56,6 @@ export const Footer = () => {
                 <li>
                   <a href="/doneren" className="text-warm-white/60 hover:text-gold transition-colors">Doneren</a>
                 </li>
-                <li>
-                  <a href="/privacy" className="text-warm-white/60 hover:text-gold transition-colors">Privacybeleid</a>
-                </li>
-                <li>
-                  <a href="/disclaimer" className="text-warm-white/60 hover:text-gold transition-colors">Disclaimer</a>
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    onClick={() => window.dispatchEvent(new Event('open-cookie-settings'))}
-                    className="text-warm-white/60 hover:text-gold transition-colors text-left"
-                  >
-                    Cookie-instellingen
-                  </button>
-                </li>
               </ul>
             </div>
 
@@ -107,18 +92,31 @@ export const Footer = () => {
           {/* Divider */}
           <div className="border-t border-warm-white/10 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <p className="text-warm-white/40 text-sm">
+              <p className="text-warm-white/40 text-xs">
                 © {currentYear} Jesus Today. Alle rechten voorbehouden.
               </p>
-              <p className="text-warm-white/40 text-sm">
+              <nav aria-label="Juridisch" className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-warm-white/40">
+                <a href="/privacy" className="hover:text-gold transition-colors">Privacybeleid</a>
+                <span aria-hidden className="text-warm-white/20">·</span>
+                <a href="/disclaimer" className="hover:text-gold transition-colors">Disclaimer</a>
+                <span aria-hidden className="text-warm-white/20">·</span>
+                <button
+                  type="button"
+                  onClick={() => window.dispatchEvent(new Event('open-cookie-settings'))}
+                  className="hover:text-gold transition-colors"
+                >
+                  Cookie-instellingen
+                </button>
+              </nav>
+              <p className="text-warm-white/40 text-xs">
                 Website door{' '}
-                <a 
-                  href="https://shoopshoop.nl" 
-                  target="_blank" 
+                <a
+                  href="https://shoopshoop.nl"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="text-gold hover:text-gold/80 transition-colors"
                 >
-                  Shoop Shoop
+                  Shoop Shoop Marketing
                 </a>
               </p>
             </div>
