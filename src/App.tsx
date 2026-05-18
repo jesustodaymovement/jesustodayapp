@@ -57,7 +57,6 @@ const legacyRedirects: { from: string; to: string }[] = [
   { from: "/privacy-verklaring", to: "/privacy" },
   { from: "/privacy-verklaring-2", to: "/privacy" },
   { from: "/cookiebeleid-eu", to: "/privacy" },
-  { from: "/contact", to: "/" },
   { from: "/nieuws", to: "/media" },
   { from: "/vacatures", to: "/" },
   { from: "/vacature", to: "/" },
