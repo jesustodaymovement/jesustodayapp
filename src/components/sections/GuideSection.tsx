@@ -1,6 +1,6 @@
 import { ScrollReveal } from '@/components/ScrollReveal';
-import { Users, CheckCircle } from 'lucide-react';
-import guideImage from '@/assets/guide-image.jpg';
+import { Button } from '@/components/ui/button';
+import { Upload } from 'lucide-react';
 
 export const GuideSection = () => {
   return (
@@ -16,11 +16,14 @@ export const GuideSection = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Visual Left */}
             <ScrollReveal delay={100}>
-              <div className="relative rounded-2xl overflow-hidden">
-                <img 
-                  src={guideImage} 
-                  alt="Jongvolwassenen delen hun verhaal" 
-                  className="w-full h-auto rounded-2xl"
+              <div className="relative rounded-2xl overflow-hidden aspect-video bg-anthracite-light">
+                <iframe
+                  src="https://player.vimeo.com/video/1114232845?title=0&byline=0&portrait=0"
+                  className="absolute inset-0 w-full h-full"
+                  frameBorder={0}
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowFullScreen
+                  title="Je hoeft het niet alleen te doen"
                 />
               </div>
             </ScrollReveal>
@@ -40,15 +43,11 @@ export const GuideSection = () => {
                   We hebben al honderden christenen geholpen om hun verhaal eenvoudig, persoonlijk en impactvol te delen, in samenwerking met kerken en christelijke initiatieven die dit proces ondersteunen.
                 </p>
 
-                <div className="flex flex-wrap gap-3 pt-4">
-                  <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 text-gold text-sm font-medium">
-                    <Users className="w-4 h-4" />
-                    <span>500+ verhalen</span>
-                  </div>
-                  <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 text-gold text-sm font-medium">
-                    <CheckCircle className="w-4 h-4" />
-                    <span>50+ kerken</span>
-                  </div>
+                <div className="pt-4">
+                  <Button variant="cta-light" size="lg">
+                    <Upload className="w-5 h-5" />
+                    Upload jouw verhaal
+                  </Button>
                 </div>
               </div>
             </ScrollReveal>
