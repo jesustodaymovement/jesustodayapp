@@ -648,7 +648,7 @@ const Doneren = () => {
           content="https://storybrand-share-grace.lovable.app/doneren"
         />
         <meta property="og:type" content="website" />
-        <script src="https://donorbox.org/widget.js" paypalexpress="false" defer></script>
+        <script src="https://donorbox.org/widget.js" defer></script>
       </Helmet>
       <Header />
       <main>
