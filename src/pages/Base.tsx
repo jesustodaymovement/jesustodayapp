@@ -13,7 +13,7 @@ const Base = () => {
     if (typeof window !== 'undefined') {
       localStorage.setItem(STORAGE_KEY, mode);
     }
-    navigate('/hometest');
+    navigate('/');
   };
 
   return (
