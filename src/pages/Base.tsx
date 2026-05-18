@@ -24,7 +24,7 @@ const Base = () => {
           name="description"
           content="Ontdek Jezus of vertel over Jezus. Kies de reis die bij jou past."
         />
-        <link rel="canonical" href="https://jesustoday.nl/base" />
+        <link rel="canonical" href="https://jesustoday.nl/" />
       </Helmet>
 
       <main className="min-h-screen flex flex-col items-center justify-center bg-cream px-6 py-16">

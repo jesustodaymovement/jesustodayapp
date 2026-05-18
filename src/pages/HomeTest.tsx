@@ -65,7 +65,7 @@ const HomeTest = () => {
           name="description"
           content="Of je nu jouw verhaal wilt delen of God wilt ontdekken, Jesus Today begeleidt je in jouw reis. Kies wat bij jou past."
         />
-        <link rel="canonical" href="https://jesustoday.nl/hometest" />
+        <link rel="canonical" href="https://jesustoday.nl/" />
       </Helmet>
       <HomeTestContent />
     </AudienceProvider>
