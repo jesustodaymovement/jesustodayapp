@@ -62,7 +62,7 @@ export const Header = () => {
           <div className="hidden md:flex items-center gap-4">
             {audience && <AudienceSwitch variant="header" />}
             <Button variant="hero" size="default">
-              Upload jouw verhaal
+              Upload jouw getuigenis
             </Button>
           </div>
 
@@ -101,7 +101,7 @@ export const Header = () => {
               ))}
               <div className="px-6 py-4">
                 <Button variant="hero" size="default" className="w-full">
-                  Upload jouw verhaal
+                  Upload jouw getuigenis
                 </Button>
               </div>
             </nav>

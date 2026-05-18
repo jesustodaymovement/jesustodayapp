@@ -43,7 +43,7 @@ const Test22 = () => {
         <div className="text-xs tracking-[0.3em] mb-32 text-anthracite/60">(01)</div>
         <div className="text-xs tracking-[0.3em] mb-4 text-anthracite">JOUW VERHAAL</div>
         <p className="text-anthracite text-xl leading-snug font-medium">
-          Echte momenten, eerlijk gedeeld,<br />één verhaal tegelijk.
+          Echte momenten, eerlijk gedeeld,<br />één getuigenis tegelijk.
         </p>
       </div>
 
@@ -106,7 +106,7 @@ const Test22 = () => {
         </div>
         <div className="pt-12">
           <p>
-            Met één korte video, een QR-code en een glimlach wordt jouw verhaal een lichtpunt voor iemand die het vandaag nodig heeft.
+            Met één korte video, een QR-code en een glimlach wordt jouw getuigenis een lichtpunt voor iemand die het vandaag nodig heeft.
           </p>
         </div>
       </div>
@@ -116,7 +116,7 @@ const Test22 = () => {
         href="#"
         className="absolute bottom-20 left-1/2 -translate-x-1/2 z-30 inline-flex items-center gap-3 rounded-full bg-[#fad150] px-8 py-4 text-sm font-semibold text-anthracite shadow-xl shadow-[#fad150]/30 hover:scale-105 transition-transform"
       >
-        Upload jouw verhaal
+        Upload jouw getuigenis
         <span aria-hidden>→</span>
       </a>
 

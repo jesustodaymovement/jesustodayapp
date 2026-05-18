@@ -33,17 +33,17 @@ export const GuideSection = () => {
                 </p>
                 
                 <p className="text-lg text-warm-white/80 leading-relaxed">
-                  Jesus Today is opgezet door mensen die zelf door de verhaal van anderen geraakt en veranderd zijn. Wij weten hoe krachtig één verhaal kan zijn.
+                  Jesus Today is opgezet door mensen die zelf door de getuigenis van anderen geraakt en veranderd zijn. Wij weten hoe krachtig één verhaal kan zijn.
                 </p>
 
                 <p className="text-lg text-warm-white/80 leading-relaxed">
-                  We hebben al honderden christenen geholpen om hun verhaal eenvoudig, persoonlijk en impactvol te delen, in samenwerking met kerken en christelijke initiatieven die dit proces ondersteunen.
+                  We hebben al honderden christenen geholpen om hun getuigenis eenvoudig, persoonlijk en impactvol te delen, in samenwerking met kerken en christelijke initiatieven die dit proces ondersteunen.
                 </p>
 
                 <div className="flex flex-wrap gap-3 pt-4">
                   <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 text-gold text-sm font-medium">
                     <Users className="w-4 h-4" />
-                    <span>500+ verhalen</span>
+                    <span>500+ getuigenissen</span>
                   </div>
                   <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 text-gold text-sm font-medium">
                     <CheckCircle className="w-4 h-4" />

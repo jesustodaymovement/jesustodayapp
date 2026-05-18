@@ -35,7 +35,7 @@ const VideoCard = ({ testimony }: { testimony: Testimony }) => {
         {thumb ? (
           <img
             src={thumb}
-            alt={`Verhaal van ${testimony.user.username}`}
+            alt={`Getuigenis van ${testimony.user.username}`}
             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
             loading="lazy"
           />
@@ -120,13 +120,13 @@ export const VideoSliderSection = () => {
         <div className="max-w-6xl mx-auto">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-anthracite mb-4">
-              Ontdek onze <span className="text-gold">verhalen</span>
+              Bekijk <span className="text-gold">getuigenissen</span>
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={100}>
             <p className="text-lg text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-              De nieuwste video's van mensen die hun geloof delen
+              Ontdek de verhalen van anderen die hun geloof delen
             </p>
           </ScrollReveal>
 

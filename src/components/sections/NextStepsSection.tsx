@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const steps = [
   {
     icon: PlayCircle,
-    title: 'Bekijk meer verhalen',
+    title: 'Bekijk meer getuigenissen',
     description: 'Ontdek tientallen verhalen van mensen die God leerden kennen.',
     cta: 'Naar de verhalen',
     href: '/getuigenissen',

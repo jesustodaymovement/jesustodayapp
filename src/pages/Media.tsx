@@ -145,7 +145,7 @@ const PressCTA = () => (
           </h2>
           <p className="text-warm-white/80 leading-relaxed mb-8">
             Werk je aan een artikel, podcast of uitzending over geloof,
-            verhalen of JesusToday? We denken graag met je mee.
+            getuigenissen of JesusToday? We denken graag met je mee.
           </p>
           <Button asChild variant="hero" size="lg">
             <a href="mailto:info@jesustoday.nl">Neem contact op</a>
@@ -162,7 +162,7 @@ const Media = () => (
       <title>JesusToday in de media, pers & publicaties</title>
       <meta
         name="description"
-        content="JesusToday in de media: VPRO Tegenlicht, EO en NPO Radio 5 over de app en de verhalen van gewone mensen."
+        content="JesusToday in de media: VPRO Tegenlicht, EO en NPO Radio 5 over de app en de getuigenissen van gewone mensen."
       />
       <link rel="canonical" href="https://storybrand-share-grace.lovable.app/media" />
     </Helmet>
