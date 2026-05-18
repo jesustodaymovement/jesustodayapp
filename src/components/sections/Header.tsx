@@ -7,7 +7,7 @@ import { AudienceSwitch } from '@/components/AudienceSwitch';
 
 const navLinks = [
   { label: 'Verhalen', href: '#' },
-  { label: 'Over Ons', href: '#' },
+  { label: 'Over Ons', href: '/over-ons' },
   { label: 'Contact', href: '#' },
   { label: 'Doneren', href: '/doneren' },
 ];
