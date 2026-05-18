@@ -8,7 +8,6 @@ import HomeVideo from "./pages/HomeVideo";
 import Index from "./pages/Index";
 import HomeTest from "./pages/HomeTest";
 import Base from "./pages/Base";
-import Afrika from "./pages/Afrika";
 import Jong from "./pages/Jong";
 import Test22 from "./pages/Test22";
 import Test23 from "./pages/Test23";
@@ -29,7 +28,6 @@ const App = () => (
             <Route path="/" element={<HomeVideo />} />
             <Route path="/hometest" element={<HomeTest />} />
             <Route path="/base" element={<Base />} />
-            <Route path="/afrika" element={<Afrika />} />
             <Route path="/jong" element={<Jong />} />
             <Route path="/test22" element={<Test22 />} />
             <Route path="/test23" element={<Test23 />} />
