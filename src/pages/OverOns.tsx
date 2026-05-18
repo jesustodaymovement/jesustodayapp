@@ -4,6 +4,7 @@ import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
 import { Button } from '@/components/ui/button';
 import { ScrollReveal } from '@/components/ScrollReveal';
+import { VideoSliderSection } from '@/components/sections/VideoSliderSection';
 import {
   Upload,
   Play,
@@ -13,6 +14,9 @@ import {
   Users,
   ExternalLink,
   Heart,
+  Sparkles,
+  BookOpen,
+  Calendar,
 } from 'lucide-react';
 
 const Hero = () => (
@@ -37,7 +41,6 @@ const Hero = () => (
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">
             JesusToday is een platform voor persoonlijke verhalen op video,
             gemaakt door en voor mensen die hun ervaring met Jezus willen delen.
-            Geen ingewikkelde taal, geen drempel.
           </p>
         </ScrollReveal>
         <ScrollReveal delay={300}>
@@ -70,7 +73,7 @@ const GapSection = () => (
         </ScrollReveal>
         <ScrollReveal delay={100}>
           <p className="text-lg text-warm-white/80 leading-relaxed mb-8">
-            Nederland is het meest seculiere land van West-Europa. De generatie
+            Nederland is een van de meest seculiere landen van West-Europa. De generatie
             die we het meest willen bereiken loopt uit zichzelf nooit een kerk
             binnen. Tegelijk willen veel christenen hun verhaal delen, maar
             weten ze niet hoe. Beide groepen wachten op elkaar.
