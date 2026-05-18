@@ -148,7 +148,7 @@ const Partners = () => {
               </ScrollReveal>
               <ScrollReveal delay={200}>
                 <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">
-                  We helpen missionair gerichte kerken om getuigenissen van gemeenteleden vast te leggen, in kaartjes met QR-code, in jullie eigen huisstijl. Zo activeer je je gemeente om verhalen te delen in het dagelijks leven.
+                  We helpen missionair gerichte kerken om zelf getuigenissen van gemeenteleden vast te leggen en te delen via QR-kaartjes in jullie eigen huisstijl. Jullie nemen het eigenaarschap, wij denken mee en springen bij waar nodig.
                 </p>
               </ScrollReveal>
               <ScrollReveal delay={300}>
@@ -345,7 +345,7 @@ const Partners = () => {
               </ScrollReveal>
               <ScrollReveal delay={100}>
                 <p className="text-lg text-warm-white/80 mb-10 leading-relaxed">
-                  Laten we kennismaken. We komen graag langs voor een gesprek met jullie bestuur of plannen direct een filmdag.
+                  Laten we kennismaken. We denken graag met jullie mee over hoe getuigenissen een vaste plek krijgen in jullie gemeente.
                 </p>
               </ScrollReveal>
               <ScrollReveal delay={200}>
