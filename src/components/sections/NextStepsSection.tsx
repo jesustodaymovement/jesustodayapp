@@ -24,7 +24,7 @@ const steps = [
     title: 'Vind een kerk in de buurt',
     description: 'Kom in contact met andere gelovige mensen die hun geloof in het dagelijks leven beleven.',
     cta: 'Zoek een kerk',
-    href: 'https://www.kerkbuurt.nl',
+    href: 'https://www.christconnectapp.com/',
     external: true,
   },
 ];

@@ -392,7 +392,7 @@ const TestimonyDetail = () => {
                         </a>
 
                         <a
-                          href="https://www.google.com/search?q=kerk+in+de+buurt"
+                          href="https://www.christconnectapp.com/"
                           target="_blank"
                           rel="noreferrer"
                           className="block rounded-xl bg-warm-white/10 p-5 hover:bg-warm-white/15 transition-colors"
