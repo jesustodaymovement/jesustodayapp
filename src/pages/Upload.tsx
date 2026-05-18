@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
-import { Download, Video, QrCode, Share2, Shield, Clock, Heart, ArrowRight, Camera, Users, Mail, HelpCircle } from 'lucide-react';
+import { Download, Video, QrCode, Share2, Shield, Clock, Heart, ArrowRight, Camera, Users, Mail, HelpCircle, Quote } from 'lucide-react';
 
 const APP_STORE_URL = 'https://apps.apple.com/nl/app/jesus-today/id1623308816';
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=io.mxapps.jesustoday';
@@ -113,6 +113,17 @@ const faqs = [
   { icon: Heart, q: 'Is de app gratis?', a: 'Ja, JesusToday is volledig gratis te downloaden en te gebruiken.' },
   { icon: Clock, q: 'Hoe lang duurt het?', a: 'In ongeveer 5 minuten heb je jouw verhaal opgenomen en gedeeld.' },
   { icon: Shield, q: 'Wat gebeurt er met mijn video?', a: 'Je bepaalt zelf wat je deelt. Wij gaan zorgvuldig om met jouw verhaal en privacy.' },
+];
+
+const reviews = [
+  {
+    quote: 'Jezus heeft mijn leven veranderd. En iedereen mag dat horen.',
+    name: 'Daniel',
+  },
+  {
+    quote: 'Ik hou ervan om andere mensen te inspireren. Hoe kan dat beter dan vertellen wat ik zelf ontdekt heb over Jezus.',
+    name: 'Sam',
+  },
 ];
 
 const Upload = () => {
@@ -311,6 +322,37 @@ const Upload = () => {
                   </div>
                 </div>
               </ScrollReveal>
+            </div>
+          </div>
+        </section>
+
+        {/* REVIEWS */}
+        <section className="py-24 bg-anthracite">
+          <div className="container mx-auto px-6">
+            <div className="max-w-5xl mx-auto">
+              <ScrollReveal>
+                <h2 className="text-3xl md:text-4xl font-bold text-center text-warm-white mb-4">
+                  Verhalen van <span className="text-gold">gelovigen</span>
+                </h2>
+              </ScrollReveal>
+              <ScrollReveal delay={100}>
+                <p className="text-lg text-center text-warm-white/70 mb-12 max-w-2xl mx-auto">
+                  Waarom anderen hun verhaal delen via JesusToday.
+                </p>
+              </ScrollReveal>
+              <div className="grid md:grid-cols-2 gap-8">
+                {reviews.map((r, i) => (
+                  <ScrollReveal key={r.name} delay={150 + i * 100}>
+                    <figure className="relative h-full p-8 md:p-10 rounded-2xl bg-anthracite-light border border-warm-white/10">
+                      <Quote className="w-9 h-9 text-gold mb-5" aria-hidden />
+                      <blockquote className="text-xl md:text-2xl text-warm-white leading-relaxed font-medium">
+                        "{r.quote}"
+                      </blockquote>
+                      <figcaption className="mt-6 text-warm-white/70 font-semibold">{r.name}</figcaption>
+                    </figure>
+                  </ScrollReveal>
+                ))}
+              </div>
             </div>
           </div>
         </section>
