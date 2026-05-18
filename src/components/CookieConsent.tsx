@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -44,6 +45,7 @@ function writeConsent(c: Consent) {
 }
 
 export const CookieConsent = () => {
+  const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [draft, setDraft] = useState<Consent>(defaultConsent);
@@ -83,7 +85,7 @@ export const CookieConsent = () => {
         <div
           role="dialog"
           aria-live="polite"
-          aria-label="Cookie-toestemming"
+          aria-label={t('Cookie-toestemming')}
           className="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:bottom-6 md:max-w-md z-[100] bg-white border border-anthracite/15 rounded-2xl shadow-2xl p-6"
         >
           <div className="flex items-start gap-3 mb-4">
@@ -92,14 +94,12 @@ export const CookieConsent = () => {
             </div>
             <div>
               <h2 className="text-lg font-bold text-anthracite mb-1">
-                Wij gebruiken cookies
+                {t('Wij gebruiken cookies')}
               </h2>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                JesusToday gebruikt technische, functionele en analytische
-                cookies om de website goed te laten werken en te verbeteren. Lees
-                meer in onze{' '}
+                {t('JesusToday gebruikt technische, functionele en analytische cookies om de website goed te laten werken en te verbeteren. Lees meer in onze')}{' '}
                 <a href="/privacy" className="text-gold hover:underline">
-                  privacyverklaring
+                  {t('privacyverklaring')}
                 </a>
                 .
               </p>
@@ -113,7 +113,7 @@ export const CookieConsent = () => {
               onClick={acceptAll}
               className="flex-1"
             >
-              Alles accepteren
+              {t('Alles accepteren')}
             </Button>
             <Button
               variant="outline"
@@ -121,16 +121,16 @@ export const CookieConsent = () => {
               onClick={rejectAll}
               className="flex-1"
             >
-              Alleen noodzakelijk
+              {t('Alleen noodzakelijk')}
             </Button>
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setSettingsOpen(true)}
-              aria-label="Cookie-instellingen openen"
+              aria-label={t('Cookie-instellingen openen')}
             >
               <Settings2 className="w-4 h-4" />
-              Instellen
+              {t('Instellen')}
             </Button>
           </div>
         </div>
@@ -139,10 +139,9 @@ export const CookieConsent = () => {
       <Dialog open={settingsOpen} onOpenChange={setSettingsOpen}>
         <DialogContent className="max-w-lg">
           <DialogHeader>
-            <DialogTitle>Cookie-instellingen</DialogTitle>
+            <DialogTitle>{t('Cookie-instellingen')}</DialogTitle>
             <DialogDescription>
-              Kies per categorie welke cookies je toestaat. Je keuze kun je later
-              altijd aanpassen.
+              {t('Kies per categorie welke cookies je toestaat. Je keuze kun je later altijd aanpassen.')}
             </DialogDescription>
           </DialogHeader>
 
@@ -150,24 +149,22 @@ export const CookieConsent = () => {
             <div className="flex items-start justify-between gap-4 p-4 rounded-xl bg-cream border border-anthracite/10">
               <div>
                 <h3 className="font-semibold text-anthracite">
-                  Noodzakelijke cookies
+                  {t('Noodzakelijke cookies')}
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  Onmisbaar voor de technische werking van de website. Altijd
-                  actief.
+                  {t('Onmisbaar voor de technische werking van de website. Altijd actief.')}
                 </p>
               </div>
-              <Switch checked disabled aria-label="Noodzakelijke cookies, altijd aan" />
+              <Switch checked disabled aria-label={t('Noodzakelijke cookies, altijd aan')} />
             </div>
 
             <div className="flex items-start justify-between gap-4 p-4 rounded-xl bg-cream border border-anthracite/10">
               <div>
                 <h3 className="font-semibold text-anthracite">
-                  Functionele cookies
+                  {t('Functionele cookies')}
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  Onthouden bijvoorbeeld jouw voorkeursinstellingen voor extra
-                  gebruiksgemak.
+                  {t('Onthouden bijvoorbeeld jouw voorkeursinstellingen voor extra gebruiksgemak.')}
                 </p>
               </div>
               <Switch
@@ -175,18 +172,17 @@ export const CookieConsent = () => {
                 onCheckedChange={(v) =>
                   setDraft((d) => ({ ...d, functional: v }))
                 }
-                aria-label="Functionele cookies toestaan"
+                aria-label={t('Functionele cookies toestaan')}
               />
             </div>
 
             <div className="flex items-start justify-between gap-4 p-4 rounded-xl bg-cream border border-anthracite/10">
               <div>
                 <h3 className="font-semibold text-anthracite">
-                  Analytische cookies
+                  {t('Analytische cookies')}
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  Helpen ons de website te optimaliseren. Maken geen inbreuk op
-                  je privacy.
+                  {t('Helpen ons de website te optimaliseren. Maken geen inbreuk op je privacy.')}
                 </p>
               </div>
               <Switch
@@ -194,14 +190,14 @@ export const CookieConsent = () => {
                 onCheckedChange={(v) =>
                   setDraft((d) => ({ ...d, analytical: v }))
                 }
-                aria-label="Analytische cookies toestaan"
+                aria-label={t('Analytische cookies toestaan')}
               />
             </div>
           </div>
 
           <DialogFooter className="flex flex-col sm:flex-row gap-2">
             <Button variant="outline" size="sm" onClick={rejectAll}>
-              Alleen noodzakelijk
+              {t('Alleen noodzakelijk')}
             </Button>
             <Button
               variant="hero"
@@ -214,7 +210,7 @@ export const CookieConsent = () => {
                 })
               }
             >
-              Voorkeuren opslaan
+              {t('Voorkeuren opslaan')}
             </Button>
           </DialogFooter>
         </DialogContent>
