@@ -207,6 +207,21 @@ const Upload = () => {
                   </ScrollReveal>
                 ))}
               </div>
+
+              <ScrollReveal delay={400}>
+                <div className="mt-16 max-w-3xl mx-auto">
+                  <div className="relative aspect-video rounded-2xl overflow-hidden bg-anthracite-light shadow-card border border-warm-white/10">
+                    <iframe
+                      src="https://player.vimeo.com/video/947358616?title=0&byline=0&portrait=0"
+                      className="absolute inset-0 w-full h-full"
+                      frameBorder={0}
+                      allow="autoplay; fullscreen; picture-in-picture"
+                      allowFullScreen
+                      title="Zo werkt JesusToday"
+                    />
+                  </div>
+                </div>
+              </ScrollReveal>
             </div>
           </div>
         </section>
