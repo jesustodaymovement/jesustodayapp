@@ -8,7 +8,6 @@ import HomeVideo from "./pages/HomeVideo";
 import Index from "./pages/Index";
 import HomeTest from "./pages/HomeTest";
 import Base from "./pages/Base";
-import Test22 from "./pages/Test22";
 import Testimonies from "./pages/Testimonies";
 import TestimonyDetail from "./pages/TestimonyDetail";
 import Doneren from "./pages/Doneren";
@@ -32,7 +31,6 @@ const App = () => (
             <Route path="/" element={<HomeVideo />} />
             <Route path="/hometest" element={<HomeTest />} />
             <Route path="/base" element={<Base />} />
-            <Route path="/test22" element={<Test22 />} />
             <Route path="/getuigenissen" element={<Testimonies />} />
             <Route path="/getuigenissen/:vimeoId" element={<TestimonyDetail />} />
             <Route path="/doneren" element={<Doneren />} />
