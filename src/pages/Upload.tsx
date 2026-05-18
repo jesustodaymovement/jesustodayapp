@@ -326,7 +326,7 @@ const Upload = () => {
           </div>
         </section>
 
-        {/* FINAL CTA */}
+        {/* REVIEWS */}
         <section className="py-24 bg-anthracite">
           <div className="container mx-auto px-6">
             <div className="max-w-5xl mx-auto">
@@ -348,7 +348,7 @@ const Upload = () => {
                       <blockquote className="text-xl md:text-2xl text-warm-white leading-relaxed font-medium">
                         "{r.quote}"
                       </blockquote>
-                      <figcaption className="mt-6 text-warm-white/70 font-semibold">, {r.name}</figcaption>
+                      <figcaption className="mt-6 text-warm-white/70 font-semibold">{r.name}</figcaption>
                     </figure>
                   </ScrollReveal>
                 ))}
