@@ -28,14 +28,14 @@ const VideoCard = ({ testimony }: { testimony: Testimony }) => {
 
   return (
     <Link
-      to={`/getuigenissen/${testimony.vimeoUrl}`}
+      to={`/verhaalsen/${testimony.vimeoUrl}`}
       className="group relative rounded-2xl overflow-hidden bg-anthracite shadow-card hover:shadow-lg transition-all duration-300 block"
     >
       <div className="relative aspect-[3/4]">
         {thumb ? (
           <img
             src={thumb}
-            alt={`Getuigenis van ${testimony.user.username}`}
+            alt={`Verhaal van ${testimony.user.username}`}
             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
             loading="lazy"
           />
@@ -120,7 +120,7 @@ export const VideoSliderSection = () => {
         <div className="max-w-6xl mx-auto">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-anthracite mb-4">
-              Bekijk <span className="text-gold">getuigenissen</span>
+              Bekijk <span className="text-gold">verhalen</span>
             </h2>
           </ScrollReveal>
 

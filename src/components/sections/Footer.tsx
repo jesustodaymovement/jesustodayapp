@@ -15,7 +15,7 @@ export const Footer = () => {
                 Jesus <span className="text-gold">Today</span>
               </h3>
               <p className="text-warm-white/60 leading-relaxed mb-6">
-                Jouw getuigenis. Eenvoudig gedeeld. Door God gebruikt.
+                Jouw verhaal. Eenvoudig gedeeld. Door God gebruikt.
               </p>
               {/* App Buttons */}
               <div className="flex gap-3">
