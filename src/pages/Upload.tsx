@@ -234,7 +234,7 @@ const Upload = () => {
                 </div>
               </ScrollReveal>
               <ScrollReveal delay={150}>
-                <div className="relative aspect-video rounded-2xl overflow-hidden bg-anthracite shadow-card">
+                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-anthracite shadow-card">
                   <iframe
                     src="https://player.vimeo.com/video/947358616?title=0&byline=0&portrait=0"
                     className="absolute inset-0 w-full h-full"
