@@ -32,8 +32,10 @@ import stadskerk from '@/assets/partners/stadskerk.png';
 import agape from '@/assets/partners/agape.png';
 import r5 from '@/assets/partners/r5.png';
 import impactWorldTour from '@/assets/partners/impact-world-tour.png';
+import theMessage from '@/assets/partners/the-message.png';
 import martinKoornstra from '@/assets/endorsements/martin-koornstra.jpg';
 import janPool from '@/assets/endorsements/jan-pool.jpg';
+import benVerboom from '@/assets/endorsements/ben-verboom.jpg';
 
 const partners = [
   { name: 'GlobalRize', url: 'https://www.globalrize.nl/', logo: globalrize },
@@ -46,19 +48,26 @@ const partners = [
   { name: 'Agapè Nederland', url: 'https://agape.nl/', logo: agape },
   { name: 'R5 Kerk & Bijbelschool', url: 'https://r5church.nl/', logo: r5 },
   { name: 'Impact World Tour', url: 'https://impactworldtour.com/', logo: impactWorldTour },
+  { name: 'The Message Nederland', url: 'https://www.themessage.nl/', logo: theMessage },
 ];
 const endorsements = [
   {
     name: 'Martin Koornstra',
     role: 'Spreker & oprichter Royal Mission',
     photo: martinKoornstra,
-    quote: 'JesusToday helpt gelovigen om hun verhaal op een laagdrempelige manier te delen, precies waar de kerk vandaag de dag behoefte aan heeft.',
+    description: 'Bekend spreker en evangelist, oprichter van Royal Mission, die zich inzet voor toerusting van gelovigen in heel Nederland.',
   },
   {
     name: 'Jan Pool',
     role: 'Spreker & auteur',
     photo: janPool,
-    quote: 'Een prachtig initiatief dat ruimte maakt voor persoonlijke getuigenissen, dat is waar levens door veranderen.',
+    description: 'Ervaren spreker en auteur met een hart voor de kerk in Nederland en het delen van het evangelie.',
+  },
+  {
+    name: 'Ben Verboom',
+    role: 'R5 Church',
+    photo: benVerboom,
+    description: 'Voorganger en initiatiefnemer bij R5 Church, betrokken bij gemeenteopbouw en het activeren van gelovigen in hun roeping.',
   },
 ];
 
@@ -400,7 +409,7 @@ const Partners = () => {
                   Sprekers en leiders uit het Nederlandse christelijke landschap staan achter onze missie.
                 </p>
               </ScrollReveal>
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {endorsements.map((e, i) => (
                   <ScrollReveal key={e.name} delay={150 + i * 100}>
                     <figure className="h-full p-8 rounded-2xl bg-background border border-border/50 shadow-soft hover:shadow-card transition-all duration-300 flex flex-col items-center text-center">
@@ -410,13 +419,13 @@ const Partners = () => {
                         loading="lazy"
                         className="w-24 h-24 rounded-full object-cover mb-5 ring-4 ring-gold/20 shadow-soft"
                       />
-                      <blockquote className="text-anthracite/80 italic leading-relaxed mb-5">
-                        "{e.quote}"
-                      </blockquote>
-                      <figcaption>
+                      <figcaption className="mb-3">
                         <div className="font-semibold text-anthracite">{e.name}</div>
                         <div className="text-sm text-muted-foreground">{e.role}</div>
                       </figcaption>
+                      <p className="text-sm text-anthracite/75 leading-relaxed">
+                        {e.description}
+                      </p>
                     </figure>
                   </ScrollReveal>
                 ))}
