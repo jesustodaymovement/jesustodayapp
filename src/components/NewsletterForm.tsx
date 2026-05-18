@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
 import { Mail, Loader2, CheckCircle2 } from 'lucide-react';
 
 export const NewsletterForm = () => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
   const [loading, setLoading] = useState(false);
@@ -21,17 +23,17 @@ export const NewsletterForm = () => {
       if ((data as any)?.error) throw new Error((data as any).error);
       setDone(true);
       toast({
-        title: 'Bedankt voor je aanmelding',
+        title: t('Bedankt voor je aanmelding'),
         description: (data as any)?.alreadySubscribed
-          ? 'Je was al ingeschreven, fijn dat je erbij bent.'
-          : 'Je ontvangt voortaan updates van JesusToday.',
+          ? t('Je was al ingeschreven, fijn dat je erbij bent.')
+          : t('Je ontvangt voortaan updates van JesusToday.'),
       });
       setEmail('');
       setFirstName('');
     } catch (err: any) {
       toast({
-        title: 'Aanmelden mislukt',
-        description: err?.message ?? 'Probeer het later opnieuw.',
+        title: t('Aanmelden mislukt'),
+        description: err?.message ?? t('Probeer het later opnieuw.'),
         variant: 'destructive',
       });
     } finally {
@@ -46,8 +48,8 @@ export const NewsletterForm = () => {
           type="text"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
-          placeholder="Voornaam"
-          aria-label="Voornaam"
+          placeholder={t('Voornaam')}
+          aria-label={t('Voornaam')}
           maxLength={100}
           className="flex-1 min-w-0 h-11 rounded-lg bg-warm-white/10 border border-warm-white/20 px-3 text-warm-white placeholder:text-warm-white/70 focus:outline-none focus:ring-2 focus:ring-[#fad150]"
         />
@@ -56,8 +58,8 @@ export const NewsletterForm = () => {
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="jouw@email.nl"
-          aria-label="E-mailadres"
+          placeholder={t('jouw@email.nl')}
+          aria-label={t('E-mailadres')}
           maxLength={255}
           className="flex-[1.5] min-w-0 h-11 rounded-lg bg-warm-white/10 border border-warm-white/20 px-3 text-warm-white placeholder:text-warm-white/70 focus:outline-none focus:ring-2 focus:ring-[#fad150]"
         />
@@ -73,7 +75,7 @@ export const NewsletterForm = () => {
           ) : (
             <Mail className="w-4 h-4" />
           )}
-          {done ? 'Aangemeld' : 'Aanmelden'}
+          {done ? t('Aangemeld') : t('Aanmelden')}
         </button>
       </div>
     </form>
