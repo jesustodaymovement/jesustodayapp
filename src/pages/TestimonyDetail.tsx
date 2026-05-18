@@ -65,9 +65,9 @@ const LANGUAGES = ['nl', 'en', 'de', 'fr', 'es'];
 const DEFAULT_COMMENTS: CommentItem[] = [
   {
     id: 'welcome-1',
-    name: 'Jesus Today team',
+    name: 'JesusToday team',
     message:
-      'Welke gedachte of vraag blijft bij je hangen na deze video? Deel het gerust hieronder.',
+      'Welke gedachte of vraag blijft bij je hangen na deze getuigenis? Deel het gerust hieronder.',
     createdAtLabel: 'Zojuist',
   },
 ];
@@ -254,15 +254,15 @@ const TestimonyDetail = () => {
       <Helmet>
         <title>
           {testimony
-            ? `${fullName}, verhaal op video | Jesus Today`
-            : 'Verhaal op video | Jesus Today'}
+            ? `${fullName}, getuigenis op video | JesusToday`
+            : 'Getuigenis op video | JesusToday'}
         </title>
         <meta
           name="description"
           content={
             testimony
-              ? `${fullName} deelt een verhaal en vervolgstappen voor wie verder wil ontdekken.`
-              : 'Bekijk een verhaal op video op Jesus Today.'
+              ? `${fullName} deelt een persoonlijke getuigenis over Jezus. Bekijk de video en ontdek je volgende stap.`
+              : 'Bekijk een getuigenis op video bij JesusToday.'
           }
         />
         <link rel="canonical" href={`/verhalen-over-jezus/${vimeoId}`} />
@@ -278,7 +278,7 @@ const TestimonyDetail = () => {
               className="inline-flex items-center gap-2 text-anthracite hover:text-gold transition-colors mb-8 font-medium"
             >
               <ArrowLeft className="w-5 h-5" />
-              Terug naar alle verhalen
+              Terug naar alle getuigenissen
             </Link>
 
             {loading ? (
@@ -310,7 +310,7 @@ const TestimonyDetail = () => {
                       <div className="bg-warm-white rounded-2xl shadow-card p-8 space-y-5">
                         <div className="space-y-3">
                           <p className="text-sm font-semibold uppercase tracking-wide text-gold">
-                            Verhaal op video
+                            Getuigenis op video
                           </p>
                           <h1 className="text-3xl md:text-5xl font-bold text-anthracite">
                             {fullName}
@@ -342,13 +342,13 @@ const TestimonyDetail = () => {
                           </a>
                           <a href={questionLink}>
                             <Button variant="outline" className="w-full justify-between">
-                              Vraag stellen
+                              Stel een vraag
                               <ChevronRight className="w-4 h-4" />
                             </Button>
                           </a>
                           <a href={contactLink}>
                             <Button variant="outline" className="w-full justify-between">
-                              Contact leggen
+                              Neem contact op
                               <ChevronRight className="w-4 h-4" />
                             </Button>
                           </a>
@@ -361,13 +361,13 @@ const TestimonyDetail = () => {
                     <aside className="bg-anthracite rounded-2xl shadow-card p-8 space-y-6 text-warm-white">
                       <div>
                         <p className="text-sm font-semibold uppercase tracking-wide text-gold mb-3">
-                          Ontdek verder
+                          Zet een volgende stap
                         </p>
                         <h2 className="text-2xl font-bold mb-3">
-                          Wat wil je hierna doen?
+                          Wat past bij jou?
                         </h2>
                         <p className="text-warm-white/75 leading-relaxed">
-                          Een intuïtieve vervolgroute voor nieuw gelovigen, direct vanuit deze video.
+                          Geraakt door dit verhaal? Hieronder vind je drie laagdrempelige manieren om verder te ontdekken wie Jezus voor jou kan zijn.
                         </p>
                       </div>
 
@@ -383,9 +383,9 @@ const TestimonyDetail = () => {
                               <Users className="w-5 h-5 text-gold" />
                             </div>
                             <div>
-                              <h3 className="font-semibold text-lg">Meld je aan bij Alpha Nederland</h3>
+                              <h3 className="font-semibold text-lg">Meld je aan voor Alpha</h3>
                               <p className="text-warm-white/70 text-sm mt-1">
-                                Verken geloof samen met anderen in een veilige, laagdrempelige setting.
+                                Verken samen met anderen wat geloof betekent, op een open en laagdrempelige manier.
                               </p>
                             </div>
                           </div>
@@ -404,7 +404,7 @@ const TestimonyDetail = () => {
                             <div>
                               <h3 className="font-semibold text-lg">Vind een kerk in de buurt</h3>
                               <p className="text-warm-white/70 text-sm mt-1">
-                                Zoek direct naar een plek waar je mensen kunt ontmoeten en verder kunt groeien.
+                                Ontmoet mensen die je verder helpen op je reis met Jezus.
                               </p>
                             </div>
                           </div>
@@ -419,9 +419,9 @@ const TestimonyDetail = () => {
                               <MessagesSquare className="w-5 h-5 text-gold" />
                             </div>
                             <div>
-                              <h3 className="font-semibold text-lg">Stel je eerste vragen</h3>
+                              <h3 className="font-semibold text-lg">Stel je vraag aan ons</h3>
                               <p className="text-warm-white/70 text-sm mt-1">
-                                Deel waar je mee zit, wij helpen je met een volgende stap die bij jou past.
+                                Deel waar je mee zit, wij denken met je mee en helpen je verder.
                               </p>
                             </div>
                           </div>
@@ -439,9 +439,9 @@ const TestimonyDetail = () => {
                           <MessageCircle className="w-5 h-5 text-gold" />
                         </div>
                         <div>
-                          <h2 className="text-2xl font-bold text-anthracite">Reacties bij deze video</h2>
+                          <h2 className="text-2xl font-bold text-anthracite">Reacties op deze getuigenis</h2>
                           <p className="text-muted-foreground">
-                            Laat weten wat deze verhaal bij je oproept.
+                            Laat weten wat dit verhaal bij je oproept.
                           </p>
                         </div>
                       </div>
@@ -466,7 +466,7 @@ const TestimonyDetail = () => {
                         />
                         <div>
                           <Button type="submit" variant="hero">
-                            Reageer op deze video
+                            Plaats reactie
                           </Button>
                         </div>
                       </form>
@@ -488,28 +488,28 @@ const TestimonyDetail = () => {
                   <ScrollReveal delay={100}>
                     <div className="space-y-6">
                       <div className="bg-warm-white rounded-2xl shadow-card p-8">
-                        <h2 className="text-2xl font-bold text-anthracite mb-3">Vragen of contact</h2>
+                        <h2 className="text-2xl font-bold text-anthracite mb-3">Vragen of contact?</h2>
                         <p className="text-muted-foreground mb-6">
-                          Kies de route die het beste aansluit op wat je nu nodig hebt.
+                          Kies wat het beste aansluit op wat jij nu nodig hebt.
                         </p>
                         <div className="space-y-3">
                           <a href={discussionLink} className="block rounded-xl border border-border p-5 hover:border-gold transition-colors">
-                            <p className="font-semibold text-anthracite mb-1">Doorpraten over de video</p>
-                            <p className="text-sm text-muted-foreground">Start een gesprek over wat je hebt gezien.</p>
+                            <p className="font-semibold text-anthracite mb-1">Doorpraten over deze getuigenis</p>
+                            <p className="text-sm text-muted-foreground">Start een gesprek over wat dit verhaal bij jou losmaakt.</p>
                           </a>
                           <a href={questionLink} className="block rounded-xl border border-border p-5 hover:border-gold transition-colors">
                             <p className="font-semibold text-anthracite mb-1">Stel een persoonlijke vraag</p>
-                            <p className="text-sm text-muted-foreground">Voor geloofsvragen, twijfel of praktische vervolgstappen.</p>
+                            <p className="text-sm text-muted-foreground">Voor geloofsvragen, twijfel of een volgende stap.</p>
                           </a>
                           <a href={contactLink} className="block rounded-xl border border-border p-5 hover:border-gold transition-colors">
-                            <p className="font-semibold text-anthracite mb-1">Kom in contact met de spreker</p>
-                            <p className="text-sm text-muted-foreground">Wij kunnen helpen om het juiste contact te leggen.</p>
+                            <p className="font-semibold text-anthracite mb-1">In contact komen met de verteller</p>
+                            <p className="text-sm text-muted-foreground">Wij helpen je om het juiste contact te leggen.</p>
                           </a>
                         </div>
                       </div>
 
                       <div className="bg-warm-white rounded-2xl shadow-card p-8">
-                        <h2 className="text-2xl font-bold text-anthracite mb-6">Aanbevolen video&apos;s</h2>
+                        <h2 className="text-2xl font-bold text-anthracite mb-6">Andere getuigenissen</h2>
                         <div className="relative px-3 md:px-12">
                           <Carousel
                             opts={{ align: 'start', dragFree: true }}
@@ -541,11 +541,11 @@ const TestimonyDetail = () => {
                         Verder kijken
                       </p>
                       <h2 className="text-3xl font-bold text-anthracite">
-                        Ontdek meer gezichten en verhalen
+                        Ontdek meer verhalen over Jezus
                       </h2>
                     </div>
                     <p className="text-muted-foreground max-w-2xl">
-                      Een visuele slider onderaan de pagina, zodat je intuïtief door meer verhalen kunt bladeren.
+                      Blader door meer persoonlijke getuigenissen en laat je inspireren door wat anderen ontdekten.
                     </p>
                   </div>
 
