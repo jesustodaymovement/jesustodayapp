@@ -1,30 +1,32 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Upload, Play } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useAudience } from '@/contexts/AudienceContext';
 import { Link } from 'react-router-dom';
 import heroVideo from '@/assets/hero-banner.mp4';
 
 export const HeroAudience = () => {
+  const { t } = useTranslation();
   const { mode } = useAudience();
 
   const content =
     mode === 'share'
       ? {
-          headline: 'Jouw verhaal kan iemands leven veranderen.',
-          accent: 'Deel het vandaag.',
-          sub: 'Je voelt het verlangen om te getuigen, maar het is spannend. Wij helpen je om jouw verhaal eenvoudig en veilig te delen, op een manier die bij jou past.',
-          primaryLabel: 'Upload jouw verhaal',
+          headline: t('Jouw verhaal kan iemands leven veranderen.'),
+          accent: t('Deel het vandaag.'),
+          sub: t('Je voelt het verlangen om te getuigen, maar het is spannend. Wij helpen je om jouw verhaal eenvoudig en veilig te delen, op een manier die bij jou past.'),
+          primaryLabel: t('Upload jouw verhaal'),
           primaryIcon: Upload,
-          secondaryLabel: 'Ontdek hoe het werkt',
+          secondaryLabel: t('Ontdek hoe het werkt'),
           secondaryHref: '#hoe-werkt-het',
         }
       : {
-          headline: 'Echte verhalen van mensen zoals jij.',
-          accent: 'Ontdek wat geloof kan doen.',
-          sub: 'Misschien zoek je antwoorden, rust of richting. Luister naar mensen die hetzelfde voelden, en ontdek hoe een ontmoeting met Jezus hen veranderde.',
-          primaryLabel: 'Bekijk verhalen',
+          headline: t('Echte verhalen van mensen zoals jij.'),
+          accent: t('Ontdek wat geloof kan doen.'),
+          sub: t('Misschien zoek je antwoorden, rust of richting. Luister naar mensen die hetzelfde voelden, en ontdek hoe een ontmoeting met Jezus hen veranderde.'),
+          primaryLabel: t('Bekijk verhalen'),
           primaryIcon: Play,
-          secondaryLabel: 'Stel je vraag',
+          secondaryLabel: t('Stel je vraag'),
           secondaryHref: '#stel-je-vraag',
         };
 

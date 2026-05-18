@@ -1,4 +1,5 @@
 import { ScrollReveal } from '@/components/ScrollReveal';
+import { useTranslation } from 'react-i18next';
 import { Ear, Heart, TrendingUp, Eye, Users, Sparkles } from 'lucide-react';
 
 const successPoints = [
@@ -11,19 +12,20 @@ const successPoints = [
 ];
 
 export const SuccessSection = () => {
+  const { t } = useTranslation();
   return (
     <section className="py-24 bg-cream">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-anthracite mb-4">
-              Wat er gebeurt als je <span className="text-gold">deelt</span>
+              {t('Wat er gebeurt als je')} <span className="text-gold">{t('deelt')}</span>
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={100}>
             <p className="text-lg text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
-              Jouw verhaal heeft meer impact dan je denkt
+              {t('Jouw verhaal heeft meer impact dan je denkt')}
             </p>
           </ScrollReveal>
 
@@ -34,7 +36,7 @@ export const SuccessSection = () => {
                   <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center group-hover:bg-gold/20 transition-colors duration-300">
                     <point.icon className="w-5 h-5 text-gold" />
                   </div>
-                  <p className="text-foreground font-medium">{point.text}</p>
+                  <p className="text-foreground font-medium">{t(point.text)}</p>
                 </div>
               </ScrollReveal>
             ))}

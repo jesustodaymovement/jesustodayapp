@@ -1,9 +1,11 @@
 import { ScrollReveal } from '@/components/ScrollReveal';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const CTASection = () => {
+  const { t } = useTranslation();
   return (
     <section className="py-24 bg-cream relative overflow-hidden">
       {/* Background Glow */}
@@ -14,31 +16,31 @@ export const CTASection = () => {
           <ScrollReveal>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/20 border border-gold/30 mb-8">
               <Sparkles className="w-4 h-4 text-gold" />
-              <span className="text-anthracite text-sm font-medium">Begin vandaag</span>
+              <span className="text-anthracite text-sm font-medium">{t('Begin vandaag')}</span>
             </div>
           </ScrollReveal>
 
           <ScrollReveal delay={100}>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-anthracite mb-6">
-              Je kunt vandaag <span className="text-gold">beginnen</span>
+              {t('Je kunt vandaag')} <span className="text-gold">{t('beginnen')}</span>
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={200}>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
-              Misschien voelt het nog spannend. Maar stel je voor dat juist jouw verhaal iemand raakt. Dat God jouw woorden gebruikt om hoop te brengen.
+              {t('Misschien voelt het nog spannend. Maar stel je voor dat juist jouw verhaal iemand raakt. Dat God jouw woorden gebruikt om hoop te brengen.')}
             </p>
           </ScrollReveal>
 
           <ScrollReveal delay={300}>
             <p className="text-xl md:text-2xl text-gold font-semibold mb-10">
-              Je hoeft alleen maar te beginnen.
+              {t('Je hoeft alleen maar te beginnen.')}
             </p>
           </ScrollReveal>
 
           <ScrollReveal delay={400}>
             <Button asChild variant="hero" size="xl" className="mb-8">
-              <Link to="/upload">Upload jouw verhaal</Link>
+              <Link to="/upload">{t('Upload jouw verhaal')}</Link>
             </Button>
           </ScrollReveal>
 

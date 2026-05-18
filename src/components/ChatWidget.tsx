@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Mail, MessageCircle, X } from "lucide-react";
 
 const WHATSAPP_NUMBER = "31643798701";
 const EMAIL_ADDRESS = "info@vraagovergod.nl";
 
 export const ChatWidget = () => {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
@@ -43,7 +45,7 @@ export const ChatWidget = () => {
             href={`https://wa.me/${WHATSAPP_NUMBER}`}
             target="_blank"
             rel="nofollow noopener"
-            aria-label="Stel je vraag via WhatsApp"
+            aria-label={t("Stel je vraag via WhatsApp")}
             className="group flex items-center gap-3 animate-in fade-in slide-in-from-bottom-2"
             style={{ animationDuration: "200ms" }}
           >
@@ -61,12 +63,12 @@ export const ChatWidget = () => {
           </a>
           <a
             href={`mailto:${EMAIL_ADDRESS}`}
-            aria-label="Stel je vraag via e-mail"
+            aria-label={t("Stel je vraag via e-mail")}
             className="group flex items-center gap-3 animate-in fade-in slide-in-from-bottom-2"
             style={{ animationDuration: "260ms" }}
           >
             <span className="hidden sm:inline-block rounded-md bg-black/80 px-3 py-1 text-sm text-white opacity-0 transition-opacity group-hover:opacity-100">
-              E-mail
+              {t("E-mail")}
             </span>
             <span
               className="flex h-12 w-12 items-center justify-center rounded-full shadow-lg transition-transform hover:scale-110"
@@ -82,7 +84,7 @@ export const ChatWidget = () => {
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        aria-label={open ? "Chat sluiten" : "Vraag over God, chat openen"}
+        aria-label={open ? t("Chat sluiten") : t("Vraag over God, chat openen")}
         className="flex items-center gap-2 rounded-full px-4 py-3 text-neutral-900 shadow-xl transition-all hover:-translate-y-0.5 hover:shadow-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900"
         style={{ backgroundColor: "#fad150" }}
       >
@@ -92,7 +94,7 @@ export const ChatWidget = () => {
           <MessageCircle className="h-5 w-5" aria-hidden="true" />
         )}
         <span className="hidden sm:inline text-sm font-semibold">
-          {open ? "Sluiten" : "Vraag over God?"}
+          {open ? t("Sluiten") : t("Vraag over God?")}
         </span>
       </button>
     </div>

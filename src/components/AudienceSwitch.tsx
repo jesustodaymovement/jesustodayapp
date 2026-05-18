@@ -1,4 +1,5 @@
 import { useAudience, AudienceMode } from '@/contexts/AudienceContext';
+import { useTranslation } from 'react-i18next';
 import { Sparkles, Compass } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -7,13 +8,15 @@ interface AudienceSwitchProps {
   className?: string;
 }
 
-const options: { value: AudienceMode; label: string; sub: string; icon: typeof Sparkles }[] = [
+const baseOptions: { value: AudienceMode; label: string; sub: string; icon: typeof Sparkles }[] = [
   { value: 'share', label: 'Vertel over God', sub: 'Ik wil mijn verhaal delen', icon: Sparkles },
   { value: 'discover', label: 'Ontdek God', sub: 'Ik wil geïnspireerd worden', icon: Compass },
 ];
 
 export const AudienceSwitch = ({ variant = 'hero', className }: AudienceSwitchProps) => {
+  const { t } = useTranslation();
   const { mode, setMode } = useAudience();
+  const options = baseOptions.map((o) => ({ ...o, label: t(o.label), sub: t(o.sub) }));
 
   if (variant === 'header') {
     return (
@@ -23,7 +26,7 @@ export const AudienceSwitch = ({ variant = 'hero', className }: AudienceSwitchPr
           className,
         )}
         role="tablist"
-        aria-label="Kies jouw reis"
+        aria-label={t('Kies jouw reis')}
       >
         {options.map((opt) => {
           const active = mode === opt.value;
@@ -85,7 +88,7 @@ export const AudienceSwitch = ({ variant = 'hero', className }: AudienceSwitchPr
   return (
     <div className={cn('w-full max-w-2xl mx-auto', className)}>
       <p className="text-center text-warm-white/80 text-sm font-medium mb-3 tracking-wide uppercase">
-        Ik wil...
+        {t('Ik wil...')}
       </p>
       <div className="grid grid-cols-2 gap-2 p-2 rounded-2xl bg-warm-white/10 backdrop-blur-md border border-warm-white/20 shadow-2xl">
         {options.map((opt) => {

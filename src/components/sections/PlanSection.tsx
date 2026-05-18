@@ -1,4 +1,5 @@
 import { ScrollReveal } from '@/components/ScrollReveal';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Video, QrCode, Share2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -25,19 +26,20 @@ const steps = [
 ];
 
 export const PlanSection = () => {
+  const { t } = useTranslation();
   return (
     <section className="py-24 bg-cream">
       <div className="container mx-auto px-6">
         <div className="max-w-5xl mx-auto">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-anthracite mb-4">
-              Zo werkt het
+              {t('Zo werkt het')}
             </h2>
           </ScrollReveal>
           
           <ScrollReveal delay={100}>
             <p className="text-lg text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
-              In drie eenvoudige stappen deel je jouw verhaal met de wereld
+              {t('In drie eenvoudige stappen deel je jouw verhaal met de wereld')}
             </p>
           </ScrollReveal>
 
@@ -61,8 +63,8 @@ export const PlanSection = () => {
                       <step.icon className="w-7 h-7 text-anthracite" />
                     </div>
                     
-                    <h3 className="text-xl font-semibold text-foreground mb-3">{step.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed flex-grow">{step.description}</p>
+                    <h3 className="text-xl font-semibold text-foreground mb-3">{t(step.title)}</h3>
+                    <p className="text-muted-foreground leading-relaxed flex-grow">{t(step.description)}</p>
                   </div>
                 </div>
               </ScrollReveal>
@@ -72,7 +74,7 @@ export const PlanSection = () => {
           <ScrollReveal delay={450}>
             <div className="text-center">
               <Button asChild variant="cta-light" size="lg">
-                <Link to="/upload">Upload jouw verhaal</Link>
+                <Link to="/upload">{t('Upload jouw verhaal')}</Link>
               </Button>
             </div>
           </ScrollReveal>
