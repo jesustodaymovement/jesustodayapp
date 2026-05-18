@@ -314,29 +314,68 @@ const ScaleSection = () => (
 const CornerstoneSection = () => (
   <section className="py-24 bg-cream">
     <div className="container mx-auto px-6">
-      <div className="max-w-3xl mx-auto text-center">
-        <ScrollReveal>
-          <h2 className="text-3xl md:text-4xl font-bold text-anthracite mb-6">
-            Onder welke <span className="text-gold">vlag</span> we werken.
-          </h2>
-        </ScrollReveal>
-        <ScrollReveal delay={100}>
-          <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-            JesusToday is een initiatief van Stichting Cornerstone Ministries,
-            een ANBI-stichting. Cornerstone heeft drie pijlers: evangelisatie
-            (waaronder JesusToday), gebed, en onderwijs en events.
-          </p>
-        </ScrollReveal>
-        <ScrollReveal delay={200}>
-          <a
-            href="https://cornerstone-ministries.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-gold font-semibold hover:gap-3 transition-all"
-          >
-            Bezoek cornerstone-ministries.com
-            <ExternalLink className="w-4 h-4" />
-          </a>
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <ScrollReveal>
+            <span className="inline-block text-sm font-semibold text-gold uppercase tracking-wider mb-3">
+              Onze stichting
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-anthracite mb-6">
+              Stichting Cornerstone <span className="text-gold">Ministries</span>
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              JesusToday is een initiatief van Stichting Cornerstone Ministries, een ANBI-stichting.
+              Cornerstone werkt vanuit drie pijlers en zet zich in om het licht van Jezus te
+              verspreiden in Nederland en daarbuiten. JesusToday is het platform waarmee zij
+              persoonlijke verhalen een bereik geven dat verder gaat dan één kerk of één stad.
+            </p>
+          </ScrollReveal>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
+          {[
+            {
+              icon: Sparkles,
+              title: 'Evangelisatie',
+              desc: 'Via JesusToday verzamelt en verspreidt Cornerstone persoonlijke verhalen op video, zodat mensen op straat, op werk en online in aanraking komen met Jezus.',
+            },
+            {
+              icon: Heart,
+              title: 'Gebed',
+              desc: 'Cornerstone bouwt aan gebedsinitiatieven die het werk dragen. Elk verhaal dat via JesusToday wordt gedeeld, staat in een breder gebedsfundament.',
+            },
+            {
+              icon: BookOpen,
+              title: 'Onderwijs en events',
+              desc: 'Trainingen en samenkomsten waarin christenen worden toegerust om hun geloof te delen, ook praktisch via JesusToday.',
+            },
+          ].map((p, i) => (
+            <ScrollReveal key={p.title} delay={150 + i * 100}>
+              <div className="h-full p-8 rounded-2xl bg-white border border-anthracite/10 shadow-sm">
+                <div className="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-5">
+                  <p.icon className="w-6 h-6 text-gold" />
+                </div>
+                <h3 className="text-xl font-bold text-anthracite mb-3">{p.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{p.desc}</p>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+
+        <ScrollReveal delay={400}>
+          <div className="text-center">
+            <a
+              href="https://cornerstone-ministries.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-gold font-semibold hover:gap-3 transition-all"
+            >
+              Bezoek cornerstone-ministries.com
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          </div>
         </ScrollReveal>
       </div>
     </div>
