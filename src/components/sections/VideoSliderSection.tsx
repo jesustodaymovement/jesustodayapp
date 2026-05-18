@@ -28,7 +28,7 @@ const VideoCard = ({ testimony }: { testimony: Testimony }) => {
 
   return (
     <Link
-      to={`/verhaalsen/${testimony.vimeoUrl}`}
+      to={`/verhalen-over-jezus/${testimony.vimeoUrl}`}
       className="group relative rounded-2xl overflow-hidden bg-anthracite shadow-card hover:shadow-lg transition-all duration-300 block"
     >
       <div className="relative aspect-[3/4]">

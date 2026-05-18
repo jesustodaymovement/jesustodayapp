@@ -35,8 +35,10 @@ const queryClient = new QueryClient();
 
 // Legacy WordPress URL-redirects (jesustoday.app), SPA "soft redirects" via React Router.
 const legacyRedirects: { from: string; to: string }[] = [
-  { from: "/stories", to: "/getuigenissen" },
-  { from: "/verhalen", to: "/getuigenissen" },
+  { from: "/stories", to: "/verhalen-over-jezus" },
+  { from: "/verhalen", to: "/verhalen-over-jezus" },
+  { from: "/getuigenissen", to: "/verhalen-over-jezus" },
+  { from: "/verhaalsen", to: "/verhalen-over-jezus" },
   { from: "/deel-jouw-verhaal", to: "/" },
   { from: "/jesus-today", to: "/" },
   { from: "/over-jesus-today", to: "/over-ons" },
@@ -79,8 +81,8 @@ const App = () => (
           <Routes>
             <Route path="/" element={<HomeGate />} />
             <Route path="/base" element={<Base />} />
-            <Route path="/getuigenissen" element={<Testimonies />} />
-            <Route path="/getuigenissen/:vimeoId" element={<TestimonyDetail />} />
+            <Route path="/verhalen-over-jezus" element={<Testimonies />} />
+            <Route path="/verhalen-over-jezus/:vimeoId" element={<TestimonyDetail />} />
             <Route path="/doneren" element={<Doneren />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/disclaimer" element={<Disclaimer />} />
