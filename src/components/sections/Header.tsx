@@ -17,7 +17,45 @@ const navLinks = [
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [lang, setLang] = useState<'nl' | 'en'>(() => {
+    if (typeof window === 'undefined') return 'nl';
+    return (localStorage.getItem('jt-lang') as 'nl' | 'en') || 'nl';
+  });
   const audience = useAudienceOptional();
+
+  const setLanguage = (l: 'nl' | 'en') => {
+    setLang(l);
+    try { localStorage.setItem('jt-lang', l); } catch {}
+  };
+
+  const LanguageSwitch = ({ className = '' }: { className?: string }) => (
+    <div
+      className={`inline-flex items-center rounded-md border border-anthracite/15 overflow-hidden text-xs font-semibold ${className}`}
+      role="group"
+      aria-label="Taal kiezen"
+    >
+      <button
+        type="button"
+        onClick={() => setLanguage('nl')}
+        aria-pressed={lang === 'nl'}
+        className={`px-2.5 py-1.5 transition-colors ${
+          lang === 'nl' ? 'bg-[#fad150] text-anthracite' : 'bg-white text-anthracite/70 hover:text-anthracite'
+        }`}
+      >
+        NL
+      </button>
+      <button
+        type="button"
+        onClick={() => setLanguage('en')}
+        aria-pressed={lang === 'en'}
+        className={`px-2.5 py-1.5 transition-colors border-l border-anthracite/15 ${
+          lang === 'en' ? 'bg-[#fad150] text-anthracite' : 'bg-white text-anthracite/70 hover:text-anthracite'
+        }`}
+      >
+        EN
+      </button>
+    </div>
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -67,6 +105,7 @@ export const Header = () => {
             <Button asChild variant="hero" size="default">
               <Link to="/upload">Upload jouw verhaal</Link>
             </Button>
+            <LanguageSwitch />
           </div>
 
           {/* Mobile Menu Button */}
@@ -108,6 +147,9 @@ export const Header = () => {
                     Upload jouw verhaal
                   </Link>
                 </Button>
+                <div className="mt-3 flex justify-center">
+                  <LanguageSwitch />
+                </div>
               </div>
             </nav>
           </div>
