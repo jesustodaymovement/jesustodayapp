@@ -4,28 +4,31 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import HomeTest from "./pages/HomeTest";
-import Base from "./pages/Base";
-import Testimonies from "./pages/Testimonies";
-import TestimonyDetail from "./pages/TestimonyDetail";
-import Doneren from "./pages/Doneren";
-import Privacy from "./pages/Privacy";
-import Disclaimer from "./pages/Disclaimer";
-import OverOns from "./pages/OverOns";
-import Media from "./pages/Media";
-import Contact from "./pages/Contact";
-import Upload from "./pages/Upload";
-import Partners from "./pages/Partners";
-import NotFound from "./pages/NotFound";
-import AdminLogin from "./pages/admin/AdminLogin";
-import AdminSubmissions from "./pages/admin/AdminSubmissions";
 import { CookieConsent } from "./components/CookieConsent";
-import { ChatWidget } from "./components/ChatWidget";
 import { AlertBar } from "./components/AlertBar";
-import Opwekking from "./pages/Opwekking";
 import { ScrollToTop } from "./components/ScrollToTop";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
+
+const HomeTest = lazy(() => import("./pages/HomeTest"));
+const Base = lazy(() => import("./pages/Base"));
+const Testimonies = lazy(() => import("./pages/Testimonies"));
+const TestimonyDetail = lazy(() => import("./pages/TestimonyDetail"));
+const Doneren = lazy(() => import("./pages/Doneren"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const Disclaimer = lazy(() => import("./pages/Disclaimer"));
+const OverOns = lazy(() => import("./pages/OverOns"));
+const Media = lazy(() => import("./pages/Media"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Upload = lazy(() => import("./pages/Upload"));
+const Partners = lazy(() => import("./pages/Partners"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"));
+const AdminSubmissions = lazy(() => import("./pages/admin/AdminSubmissions"));
+const Opwekking = lazy(() => import("./pages/Opwekking"));
+const ChatWidget = lazy(() =>
+  import("./components/ChatWidget").then((m) => ({ default: m.ChatWidget }))
+);
 
 const AUDIENCE_KEY = "jt-audience-mode";
 
@@ -79,6 +82,26 @@ const legacyRedirects: { from: string; to: string }[] = [
   { from: "/15c42-web-agency-gb-portfolio-single", to: "/" },
 ];
 
+const ChatWidgetDeferred = () => {
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    const w = window as Window & { requestIdleCallback?: (cb: () => void) => number };
+    const onLoad = () => {
+      if (w.requestIdleCallback) w.requestIdleCallback(() => setShow(true));
+      else setTimeout(() => setShow(true), 1500);
+    };
+    if (document.readyState === "complete") onLoad();
+    else window.addEventListener("load", onLoad, { once: true });
+    return () => window.removeEventListener("load", onLoad);
+  }, []);
+  if (!show) return null;
+  return (
+    <Suspense fallback={null}>
+      <ChatWidget />
+    </Suspense>
+  );
+};
+
 const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
@@ -88,6 +111,7 @@ const App = () => (
         <BrowserRouter>
           <AlertBar />
           <ScrollToTop />
+          <Suspense fallback={null}>
           <Routes>
             <Route path="/" element={<HomeGate />} />
             <Route path="/base" element={<Base />} />
@@ -112,8 +136,9 @@ const App = () => (
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </Suspense>
           <CookieConsent />
-          <ChatWidget />
+          <ChatWidgetDeferred />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
