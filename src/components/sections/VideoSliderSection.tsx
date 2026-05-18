@@ -36,7 +36,7 @@ const VideoCard = ({ testimony }: { testimony: Testimony }) => {
           <img
             src={thumb}
             alt={`Getuigenis van ${testimony.user.username}`}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
             loading="lazy"
           />
         ) : (
@@ -51,11 +51,15 @@ const VideoCard = ({ testimony }: { testimony: Testimony }) => {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-anthracite to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
         <div className="absolute bottom-4 left-4 right-4">
-          <p className="text-warm-white font-semibold text-lg">{testimony.user.username}</p>
-          <p className="text-warm-white/70 text-sm line-clamp-2">"{testimony.quote}"</p>
+          <p className="text-gold font-bold text-xl uppercase tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
+            {testimony.user.username}
+          </p>
+          <p className="text-gold/90 text-sm font-semibold line-clamp-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]">
+            "{testimony.quote}"
+          </p>
         </div>
       </div>
     </Link>
