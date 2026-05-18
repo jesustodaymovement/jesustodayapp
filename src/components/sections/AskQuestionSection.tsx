@@ -5,24 +5,36 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { MessageCircle, Send, CheckCircle2 } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
+import { createSubmission, submissionSchema } from '@/lib/submissions';
 
 export const AskQuestionSection = () => {
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
-    const name = data.get('name') as string;
-    const email = data.get('email') as string;
-    const question = data.get('question') as string;
-
-    const subject = encodeURIComponent(`Vraag van ${name || 'een bezoeker'}`);
-    const body = encodeURIComponent(`Naam: ${name}\nE-mail: ${email}\n\nVraag:\n${question}`);
-    window.location.href = `mailto:info@jesustoday.nl?subject=${subject}&body=${body}`;
-
-    setSubmitted(true);
-    toast({ title: 'Bedankt voor je vraag', description: 'Je e-mailprogramma is geopend.' });
+    setLoading(true);
+    try {
+      const parsed = submissionSchema.parse({
+        type: 'vraag',
+        name: String(data.get('name') ?? ''),
+        email: String(data.get('email') ?? ''),
+        message: String(data.get('question') ?? ''),
+        subject: 'Vraag via website',
+      });
+      await createSubmission(parsed);
+      setSubmitted(true);
+      form.reset();
+      toast({ title: 'Bedankt voor je vraag', description: 'We nemen zo snel mogelijk persoonlijk contact met je op.' });
+    } catch (err: any) {
+      const msg = err?.errors?.[0]?.message ?? err?.message ?? 'Er ging iets mis. Probeer het opnieuw.';
+      toast({ title: 'Verzenden mislukt', description: msg, variant: 'destructive' });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -74,14 +86,14 @@ export const AskQuestionSection = () => {
                   placeholder="Schrijf hier waar je over nadenkt..."
                 />
               </div>
-              <Button type="submit" variant="hero" size="lg" className="w-full">
+              <Button type="submit" variant="hero" size="lg" className="w-full" disabled={loading}>
                 {submitted ? (
                   <>
                     <CheckCircle2 className="w-5 h-5" /> Verzonden
                   </>
                 ) : (
                   <>
-                    <Send className="w-5 h-5" /> Verstuur mijn vraag
+                    <Send className="w-5 h-5" /> {loading ? 'Versturen...' : 'Verstuur mijn vraag'}
                   </>
                 )}
               </Button>

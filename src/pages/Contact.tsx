@@ -3,6 +3,7 @@ import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
 import { AskQuestionSection } from '@/components/sections/AskQuestionSection';
 import { ScrollReveal } from '@/components/ScrollReveal';
+import { ContactForm } from '@/components/ContactForm';
 import { Mail, MessageCircle } from 'lucide-react';
 
 const Contact = () => {
@@ -45,6 +46,18 @@ const Contact = () => {
                   <Mail className="w-5 h-5" />
                   info@jesustoday.nl
                 </a>
+              </ScrollReveal>
+            </div>
+          </div>
+        </section>
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-6">
+            <div className="max-w-2xl mx-auto">
+              <ScrollReveal>
+                <h2 className="text-2xl md:text-3xl font-bold text-anthracite text-center mb-8">Stuur ons een bericht</h2>
+              </ScrollReveal>
+              <ScrollReveal delay={100}>
+                <ContactForm />
               </ScrollReveal>
             </div>
           </div>

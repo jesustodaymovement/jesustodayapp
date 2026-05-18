@@ -4,6 +4,7 @@ import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { Button } from '@/components/ui/button';
+import { PartnerForm } from '@/components/PartnerForm';
 import {
   Handshake,
   Users,
@@ -403,19 +404,8 @@ const Partners = () => {
                 </p>
               </ScrollReveal>
               <ScrollReveal delay={200}>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button asChild variant="hero" size="lg">
-                    <Link to="/upload">
-                      Meld je kerk aan
-                      <ArrowRight className="w-5 h-5" />
-                    </Link>
-                  </Button>
-                  <Button asChild variant="hero-outline" size="lg">
-                    <a href="mailto:info@jesustoday.nl?subject=Partnership%20met%20JesusToday">
-                      <Mail className="w-5 h-5" />
-                      info@jesustoday.nl
-                    </a>
-                  </Button>
+                <div className="text-left bg-background rounded-2xl p-2">
+                  <PartnerForm />
                 </div>
               </ScrollReveal>
             </div>
