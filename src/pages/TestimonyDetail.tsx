@@ -204,17 +204,12 @@ const TestimonyDetail = () => {
     return testimony.user.username.trim();
   }, [testimony]);
 
+  const firstName = useMemo(() => fullName.split(/\s+/)[0] || fullName, [fullName]);
+
   const churchName = useMemo(
     () => getChurchName(testimony?.churchName),
     [testimony?.churchName]
   );
-
-  const discussionLink = testimony
-    ? buildMailTo(
-        `Doorpraten over ${fullName}`,
-        `Hoi JesusToday,%0D%0A%0D%0AIk wil graag doorpraten over de video van ${fullName}.`
-      )
-    : '#';
 
   const questionLink = testimony
     ? buildMailTo(
@@ -224,11 +219,13 @@ const TestimonyDetail = () => {
     : '#';
 
   const contactLink = testimony
-    ? buildMailTo(
-        `In contact komen met ${fullName}`,
-        `Hoi JesusToday,%0D%0A%0D%0AIk zou graag in contact komen met ${fullName} naar aanleiding van deze video.`
-      )
+    ? `/contact?subject=${encodeURIComponent(`Neem contact op met ${firstName}`)}&message=${encodeURIComponent(`Hoi JesusToday,\n\nIk zou graag in contact komen met ${firstName} naar aanleiding van de getuigenisvideo.\n\n`)}`
     : '#';
+
+  const openChat = (event: React.MouseEvent) => {
+    event.preventDefault();
+    window.dispatchEvent(new CustomEvent('jt:open-chat'));
+  };
 
   const handleCommentSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -390,7 +387,7 @@ const TestimonyDetail = () => {
                         </div>
 
                         <div className="grid gap-3 sm:grid-cols-3">
-                          <a href={discussionLink}>
+                          <a href="#chat" onClick={openChat}>
                             <Button variant="hero" className="w-full justify-between">
                               Doorpraten
                               <ChevronRight className="w-4 h-4" />
@@ -402,12 +399,12 @@ const TestimonyDetail = () => {
                               <ChevronRight className="w-4 h-4" />
                             </Button>
                           </a>
-                          <a href={contactLink}>
+                          <Link to={contactLink}>
                             <Button variant="outline" className="w-full justify-between">
-                              Neem contact op
+                              Neem contact op met {firstName}
                               <ChevronRight className="w-4 h-4" />
                             </Button>
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -439,7 +436,7 @@ const TestimonyDetail = () => {
                               <Users className="w-5 h-5 text-gold" />
                             </div>
                             <div>
-                              <h3 className="font-semibold text-lg">Meld je aan voor Alpha</h3>
+                              <h3 className="font-semibold text-lg">Leer meer over het geloof</h3>
                               <p className="text-warm-white/70 text-sm mt-1">
                                 Verken samen met anderen wat geloof betekent, op een open en laagdrempelige manier.
                               </p>
@@ -549,18 +546,18 @@ const TestimonyDetail = () => {
                           Kies wat het beste aansluit op wat jij nu nodig hebt.
                         </p>
                         <div className="space-y-3">
-                          <a href={discussionLink} className="block rounded-xl border border-border p-5 hover:border-gold transition-colors">
+                          <a href="#chat" onClick={openChat} className="block rounded-xl border border-border p-5 hover:border-gold transition-colors">
                             <p className="font-semibold text-anthracite mb-1">Doorpraten over deze getuigenis</p>
-                            <p className="text-sm text-muted-foreground">Start een gesprek over wat dit verhaal bij jou losmaakt.</p>
+                            <p className="text-sm text-muted-foreground">Open de chat 'Vraag over God?' en stel je vraag direct.</p>
                           </a>
                           <a href={questionLink} className="block rounded-xl border border-border p-5 hover:border-gold transition-colors">
                             <p className="font-semibold text-anthracite mb-1">Stel een persoonlijke vraag</p>
                             <p className="text-sm text-muted-foreground">Voor geloofsvragen, twijfel of een volgende stap.</p>
                           </a>
-                          <a href={contactLink} className="block rounded-xl border border-border p-5 hover:border-gold transition-colors">
-                            <p className="font-semibold text-anthracite mb-1">In contact komen met de verteller</p>
-                            <p className="text-sm text-muted-foreground">Wij helpen je om het juiste contact te leggen.</p>
-                          </a>
+                          <Link to={contactLink} className="block rounded-xl border border-border p-5 hover:border-gold transition-colors">
+                            <p className="font-semibold text-anthracite mb-1">Neem contact op met {firstName}</p>
+                            <p className="text-sm text-muted-foreground">Open het contactformulier, de naam van {firstName} staat alvast klaar.</p>
+                          </Link>
                         </div>
                       </div>
 

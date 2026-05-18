@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -9,6 +10,9 @@ import { createSubmission, submissionSchema } from '@/lib/submissions';
 export const ContactForm = () => {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [searchParams] = useSearchParams();
+  const prefillSubject = searchParams.get('subject') ?? '';
+  const prefillMessage = searchParams.get('message') ?? '';
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,11 +53,11 @@ export const ContactForm = () => {
       </div>
       <div className="space-y-2">
         <label htmlFor="c-subject" className="text-sm font-medium text-foreground">Onderwerp</label>
-        <Input id="c-subject" name="subject" placeholder="Waar gaat het over?" />
+        <Input id="c-subject" name="subject" placeholder="Waar gaat het over?" defaultValue={prefillSubject} key={`subj-${prefillSubject}`} />
       </div>
       <div className="space-y-2">
         <label htmlFor="c-message" className="text-sm font-medium text-foreground">Bericht</label>
-        <Textarea id="c-message" name="message" required rows={5} placeholder="Schrijf hier je bericht..." />
+        <Textarea id="c-message" name="message" required rows={5} placeholder="Schrijf hier je bericht..." defaultValue={prefillMessage} key={`msg-${prefillMessage}`} />
       </div>
       <Button type="submit" variant="hero" size="lg" className="w-full" disabled={loading}>
         {submitted ? <><CheckCircle2 className="w-5 h-5" /> Verzonden</> : <><Send className="w-5 h-5" /> {loading ? 'Versturen...' : 'Verstuur bericht'}</>}
