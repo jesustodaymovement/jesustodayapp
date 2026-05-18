@@ -13,6 +13,8 @@ export const ContactForm = () => {
   const [searchParams] = useSearchParams();
   const prefillSubject = searchParams.get('subject') ?? '';
   const prefillMessage = searchParams.get('message') ?? '';
+  const prefillVimeoId = searchParams.get('vimeoId') ?? '';
+  const prefillTestimonyName = searchParams.get('testimonyName') ?? '';
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,6 +28,13 @@ export const ContactForm = () => {
         email: String(data.get('email') ?? ''),
         subject: String(data.get('subject') ?? ''),
         message: String(data.get('message') ?? ''),
+        metadata: prefillVimeoId
+          ? {
+              vimeoId: prefillVimeoId,
+              testimonyName: prefillTestimonyName || undefined,
+              testimonyUrl: `${window.location.origin}/verhalen-over-jezus/${prefillVimeoId}`,
+            }
+          : undefined,
       });
       await createSubmission(parsed);
       setSubmitted(true);
@@ -62,6 +71,11 @@ export const ContactForm = () => {
       <Button type="submit" variant="hero" size="lg" className="w-full" disabled={loading}>
         {submitted ? <><CheckCircle2 className="w-5 h-5" /> Verzonden</> : <><Send className="w-5 h-5" /> {loading ? 'Versturen...' : 'Verstuur bericht'}</>}
       </Button>
+      {prefillVimeoId && (
+        <p className="text-xs text-center text-muted-foreground">
+          Gekoppeld aan getuigenis{prefillTestimonyName ? ` van ${prefillTestimonyName}` : ''} (video {prefillVimeoId}).
+        </p>
+      )}
       <p className="text-xs text-center text-muted-foreground">We behandelen je bericht vertrouwelijk.</p>
     </form>
   );
