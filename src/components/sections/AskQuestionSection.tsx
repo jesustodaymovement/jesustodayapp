@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -8,6 +9,7 @@ import { toast } from '@/hooks/use-toast';
 import { createSubmission, submissionSchema } from '@/lib/submissions';
 
 export const AskQuestionSection = () => {
+  const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
 
   const [loading, setLoading] = useState(false);
@@ -28,10 +30,10 @@ export const AskQuestionSection = () => {
       await createSubmission(parsed);
       setSubmitted(true);
       form.reset();
-      toast({ title: 'Bedankt voor je vraag', description: 'We nemen zo snel mogelijk persoonlijk contact met je op.' });
+      toast({ title: t('Bedankt voor je vraag'), description: t('We nemen zo snel mogelijk persoonlijk contact met je op.') });
     } catch (err: any) {
-      const msg = err?.errors?.[0]?.message ?? err?.message ?? 'Er ging iets mis. Probeer het opnieuw.';
-      toast({ title: 'Verzenden mislukt', description: msg, variant: 'destructive' });
+      const msg = err?.errors?.[0]?.message ?? err?.message ?? t('Er ging iets mis. Probeer het opnieuw.');
+      toast({ title: t('Verzenden mislukt'), description: msg, variant: 'destructive' });
     } finally {
       setLoading(false);
     }
@@ -47,10 +49,10 @@ export const AskQuestionSection = () => {
                 <MessageCircle className="w-8 h-8 text-gold" />
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-anthracite mb-4">
-                Heb je een vraag over geloof?
+                {t('Heb je een vraag over geloof?')}
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                We luisteren. Stel je vraag, hoe groot of klein ook, en iemand neemt persoonlijk contact met je op.
+                {t('We luisteren. Stel je vraag, hoe groot of klein ook, en iemand neemt persoonlijk contact met je op.')}
               </p>
             </div>
           </ScrollReveal>
@@ -63,42 +65,42 @@ export const AskQuestionSection = () => {
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium text-foreground">
-                    Je naam
+                    {t('Je naam')}
                   </label>
-                  <Input id="name" name="name" required placeholder="Voornaam" />
+                  <Input id="name" name="name" required placeholder={t('Voornaam')} />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-sm font-medium text-foreground">
-                    E-mail
+                    {t('E-mail')}
                   </label>
-                  <Input id="email" name="email" type="email" required placeholder="jij@voorbeeld.nl" />
+                  <Input id="email" name="email" type="email" required placeholder={t('jij@voorbeeld.nl')} />
                 </div>
               </div>
               <div className="space-y-2">
                 <label htmlFor="question" className="text-sm font-medium text-foreground">
-                  Je vraag
+                  {t('Je vraag')}
                 </label>
                 <Textarea
                   id="question"
                   name="question"
                   required
                   rows={5}
-                  placeholder="Schrijf hier waar je over nadenkt..."
+                  placeholder={t('Schrijf hier waar je over nadenkt...')}
                 />
               </div>
               <Button type="submit" variant="hero" size="lg" className="w-full" disabled={loading}>
                 {submitted ? (
                   <>
-                    <CheckCircle2 className="w-5 h-5" /> Verzonden
+                    <CheckCircle2 className="w-5 h-5" /> {t('Verzonden')}
                   </>
                 ) : (
                   <>
-                    <Send className="w-5 h-5" /> {loading ? 'Versturen...' : 'Verstuur mijn vraag'}
+                    <Send className="w-5 h-5" /> {loading ? t('Versturen...') : t('Verstuur mijn vraag')}
                   </>
                 )}
               </Button>
               <p className="text-xs text-center text-muted-foreground">
-                We behandelen je vraag vertrouwelijk.
+                {t('We behandelen je vraag vertrouwelijk.')}
               </p>
             </form>
           </ScrollReveal>
