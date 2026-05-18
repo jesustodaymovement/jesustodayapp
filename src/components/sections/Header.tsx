@@ -9,7 +9,7 @@ const navLinks = [
   { label: 'Verhalen', href: '#' },
   { label: 'Over Ons', href: '#' },
   { label: 'Contact', href: '#' },
-  { label: 'Doneren', href: '#' },
+  { label: 'Doneren', href: '/doneren' },
 ];
 
 export const Header = () => {
