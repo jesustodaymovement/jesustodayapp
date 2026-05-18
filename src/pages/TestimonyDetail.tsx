@@ -388,21 +388,21 @@ const TestimonyDetail = () => {
 
                         <div className="grid gap-3 sm:grid-cols-3">
                           <a href="#chat" onClick={openChat}>
-                            <Button variant="hero" className="w-full justify-between">
-                              Doorpraten
-                              <ChevronRight className="w-4 h-4" />
+                            <Button variant="hero" className="w-full justify-between gap-2 px-4 text-sm whitespace-normal text-left h-auto min-h-11 py-3 leading-tight">
+                              <span className="flex-1">Doorpraten</span>
+                              <ChevronRight className="w-4 h-4 shrink-0" />
                             </Button>
                           </a>
                           <a href={questionLink}>
-                            <Button variant="outline" className="w-full justify-between">
-                              Stel een vraag
-                              <ChevronRight className="w-4 h-4" />
+                            <Button variant="outline" className="w-full justify-between gap-2 px-4 text-sm whitespace-normal text-left h-auto min-h-11 py-3 leading-tight">
+                              <span className="flex-1">Stel een vraag</span>
+                              <ChevronRight className="w-4 h-4 shrink-0" />
                             </Button>
                           </a>
                           <Link to={contactLink}>
-                            <Button variant="outline" className="w-full justify-between">
-                              Neem contact op met {firstName}
-                              <ChevronRight className="w-4 h-4" />
+                            <Button variant="outline" className="w-full justify-between gap-2 px-4 text-sm whitespace-normal text-left h-auto min-h-11 py-3 leading-tight">
+                              <span className="flex-1">Neem contact op met {firstName}</span>
+                              <ChevronRight className="w-4 h-4 shrink-0" />
                             </Button>
                           </Link>
                         </div>
