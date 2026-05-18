@@ -105,7 +105,6 @@ const Testimonies = () => {
   const [totalCount, setTotalCount] = useState(0);
   const [globalTotal, setGlobalTotal] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [language, setLanguage] = useState('nl');
   const [search, setSearch] = useState('');
