@@ -42,7 +42,7 @@ export const Header = () => {
           <a href="/" className="flex-shrink-0">
             <img
               src={logo}
-              alt="Jesus Today"
+              alt="JesusToday"
               className="h-10 w-auto"
             />
           </a>

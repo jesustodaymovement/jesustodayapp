@@ -37,7 +37,7 @@ export const GuideSection = () => {
                 </p>
                 
                 <p className="text-lg text-warm-white/80 leading-relaxed">
-                  Jesus Today is opgezet door mensen die zelf door de verhaal van anderen geraakt en veranderd zijn. Wij weten hoe krachtig één verhaal kan zijn.
+                  JesusToday is opgezet door mensen die zelf door het verhaal van anderen geraakt en veranderd zijn. Wij weten hoe krachtig één verhaal kan zijn.
                 </p>
 
                 <p className="text-lg text-warm-white/80 leading-relaxed">

@@ -166,7 +166,12 @@ const Partners = () => {
           name="description"
           content="Word partner van JesusToday. We helpen kerken en organisaties om verhalen van mensen uit jullie kerk of organisatie vast te leggen en te delen via QR-kaartjes in jullie eigen huisstijl."
         />
-        <link rel="canonical" href="/partners" />
+        <meta property="og:title" content="Partners, JesusToday voor kerken en organisaties" />
+        <meta property="og:description" content="Word partner van JesusToday. We helpen kerken en organisaties om verhalen vast te leggen en te delen via QR-kaartjes." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://storybrand-share-grace.lovable.app/partners" />
+        <meta name="twitter:title" content="Partners, JesusToday voor kerken en organisaties" />
+        <meta name="twitter:description" content="Word partner van JesusToday." />
       </Helmet>
       <Header />
       <main>

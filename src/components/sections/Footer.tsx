@@ -1,4 +1,5 @@
-import { Heart, Instagram, Facebook, Youtube, Mail } from 'lucide-react';
+import { Instagram, Facebook, Youtube, Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -12,10 +13,10 @@ export const Footer = () => {
             {/* Brand */}
             <div>
               <h3 className="text-2xl font-bold text-warm-white mb-4">
-                Jesus <span className="text-gold">Today</span>
+                Jesus<span className="text-gold">Today</span>
               </h3>
               <p className="text-warm-white/60 leading-relaxed mb-6">
-                Jouw verhaal. Eenvoudig gedeeld. Door God gebruikt.
+                Jouw verhaal, eenvoudig gedeeld. Door God gebruikt.
               </p>
               {/* App Buttons */}
               <div className="flex gap-3">
@@ -39,22 +40,25 @@ export const Footer = () => {
               <h4 className="text-warm-white font-semibold mb-4">Links</h4>
               <ul className="space-y-3">
                 <li>
-                  <a href="/verhalen-over-jezus" className="text-warm-white/60 hover:text-gold transition-colors">Verhalen</a>
+                  <Link to="/verhalen-over-jezus" className="text-warm-white/60 hover:text-gold transition-colors">Verhalen over Jezus</Link>
                 </li>
                 <li>
-                  <a href="/over-ons" className="text-warm-white/60 hover:text-gold transition-colors">Over Ons</a>
+                  <Link to="/upload" className="text-warm-white/60 hover:text-gold transition-colors">Upload jouw verhaal</Link>
                 </li>
                 <li>
-                  <a href="/partners" className="text-warm-white/60 hover:text-gold transition-colors">Partners</a>
+                  <Link to="/over-ons" className="text-warm-white/60 hover:text-gold transition-colors">Over JesusToday</Link>
                 </li>
                 <li>
-                  <a href="/media" className="text-warm-white/60 hover:text-gold transition-colors">Media</a>
+                  <Link to="/partners" className="text-warm-white/60 hover:text-gold transition-colors">Voor kerken en organisaties</Link>
                 </li>
                 <li>
-                  <a href="/contact" className="text-warm-white/60 hover:text-gold transition-colors">Contact</a>
+                  <Link to="/doneren" className="text-warm-white/60 hover:text-gold transition-colors">Steun JesusToday</Link>
                 </li>
                 <li>
-                  <a href="/doneren" className="text-warm-white/60 hover:text-gold transition-colors">Doneren</a>
+                  <Link to="/media" className="text-warm-white/60 hover:text-gold transition-colors">Pers en media</Link>
+                </li>
+                <li>
+                  <Link to="/contact" className="text-warm-white/60 hover:text-gold transition-colors">Neem contact op</Link>
                 </li>
               </ul>
             </div>
@@ -93,7 +97,7 @@ export const Footer = () => {
           <div className="border-t border-warm-white/10 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-warm-white/40 text-xs">
-                © {currentYear} Jesus Today. Alle rechten voorbehouden.
+                © {currentYear} JesusToday. Alle rechten voorbehouden.
               </p>
               <nav aria-label="Juridisch" className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-warm-white/40">
                 <a href="/privacy" className="hover:text-gold transition-colors">Privacybeleid</a>

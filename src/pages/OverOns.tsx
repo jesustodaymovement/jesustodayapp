@@ -114,7 +114,7 @@ const FounderSection = () => (
           <blockquote className="relative bg-white rounded-2xl border border-anthracite/10 shadow-sm p-8 md:p-12 border-l-4 border-l-gold">
             <div className="space-y-5 text-anthracite/90 text-lg leading-relaxed">
               <p>
-                Jesus Today is ontstaan uit een verlangen om mensen op een
+                JesusToday is ontstaan uit een verlangen om mensen op een
                 eenvoudige manier in aanraking te brengen met inspirerende
                 verhalen. Bijzondere verhalen van gewone mensen, met één
                 gemeenschappelijke deler: Jezus. Wie is deze persoon aan wie we
@@ -512,14 +512,15 @@ const OverOns = () => {
           name="description"
           content="JesusToday is een platform voor persoonlijke verhalen op video. Lees hoe het begon met het verhaal van oprichter Alexander Keur."
         />
-        <link rel="canonical" href="/over-ons" />
         <meta property="og:title" content="Over JesusToday, ons verhaal" />
         <meta
           property="og:description"
           content="JesusToday is een platform voor persoonlijke verhalen op video, gemaakt door en voor mensen die hun ervaring met Jezus willen delen."
         />
-        <meta property="og:url" content="/over-ons" />
+        <meta property="og:url" content="https://storybrand-share-grace.lovable.app/over-ons" />
         <meta property="og:type" content="website" />
+        <meta name="twitter:title" content="Over JesusToday, ons verhaal" />
+        <meta name="twitter:description" content="JesusToday is een platform voor persoonlijke verhalen op video." />
       </Helmet>
       <Header />
       <main>

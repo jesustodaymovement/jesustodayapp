@@ -212,21 +212,21 @@ const TestimonyDetail = () => {
   const discussionLink = testimony
     ? buildMailTo(
         `Doorpraten over ${fullName}`,
-        `Hoi Jesus Today,%0D%0A%0D%0AIk wil graag doorpraten over de video van ${fullName}.`
+        `Hoi JesusToday,%0D%0A%0D%0AIk wil graag doorpraten over de video van ${fullName}.`
       )
     : '#';
 
   const questionLink = testimony
     ? buildMailTo(
         `Vraag over verhaal van ${fullName}`,
-        `Hoi Jesus Today,%0D%0A%0D%0AIk heb een vraag na het zien van de video van ${fullName}:`
+        `Hoi JesusToday,%0D%0A%0D%0AIk heb een vraag na het zien van de video van ${fullName}:`
       )
     : '#';
 
   const contactLink = testimony
     ? buildMailTo(
         `In contact komen met ${fullName}`,
-        `Hoi Jesus Today,%0D%0A%0D%0AIk zou graag in contact komen met ${fullName} naar aanleiding van deze video.`
+        `Hoi JesusToday,%0D%0A%0D%0AIk zou graag in contact komen met ${fullName} naar aanleiding van deze video.`
       )
     : '#';
 
@@ -265,7 +265,6 @@ const TestimonyDetail = () => {
               : 'Bekijk een getuigenis op video bij JesusToday.'
           }
         />
-        <link rel="canonical" href={`/verhalen-over-jezus/${vimeoId}`} />
         {testimony && (
           <meta
             property="og:title"
@@ -278,8 +277,21 @@ const TestimonyDetail = () => {
             content={`${fullName} deelt een persoonlijke getuigenis over Jezus. Bekijk de video en ontdek je volgende stap.`}
           />
         )}
-        <meta property="og:url" content={`/verhalen-over-jezus/${vimeoId}`} />
+        <meta property="og:url" content={`https://storybrand-share-grace.lovable.app/verhalen-over-jezus/${vimeoId}`} />
         <meta property="og:type" content="video.other" />
+        {testimony && (
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: "https://storybrand-share-grace.lovable.app/" },
+                { "@type": "ListItem", position: 2, name: "Verhalen over Jezus", item: "https://storybrand-share-grace.lovable.app/verhalen-over-jezus" },
+                { "@type": "ListItem", position: 3, name: fullName, item: `https://storybrand-share-grace.lovable.app/verhalen-over-jezus/${vimeoId}` },
+              ],
+            })}
+          </script>
+        )}
         {testimony && (
           <script type="application/ld+json">
             {JSON.stringify({
@@ -300,12 +312,29 @@ const TestimonyDetail = () => {
       <main className="pt-32 pb-24">
         <div className="container mx-auto px-6">
           <div className="max-w-7xl mx-auto">
+            <nav aria-label="Kruimelpad" className="mb-8">
+              <ol className="flex flex-wrap items-center gap-2 text-sm text-anthracite/70">
+                <li>
+                  <Link to="/" className="hover:text-gold transition-colors">Home</Link>
+                </li>
+                <li aria-hidden className="text-anthracite/30">›</li>
+                <li>
+                  <Link to="/verhalen-over-jezus" className="hover:text-gold transition-colors">Verhalen over Jezus</Link>
+                </li>
+                {testimony && (
+                  <>
+                    <li aria-hidden className="text-anthracite/30">›</li>
+                    <li className="text-anthracite font-medium truncate max-w-[60vw]" aria-current="page">{fullName}</li>
+                  </>
+                )}
+              </ol>
+            </nav>
             <Link
               to="/verhalen-over-jezus"
               className="inline-flex items-center gap-2 text-anthracite hover:text-gold transition-colors mb-8 font-medium"
             >
               <ArrowLeft className="w-5 h-5" />
-              Terug naar alle getuigenissen
+              Bekijk alle verhalen
             </Link>
 
             {loading ? (

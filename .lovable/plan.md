@@ -1,68 +1,69 @@
-## Doel
+## Auditresultaat
 
-Twee verbeteringen doorvoeren:
-1. Vakjargon dat niet-christenen of mensen buiten kerken niet kennen, vervangen door duidelijke taal.
-2. Het partnerformulier verbreden zodat het niet alleen op kerken gericht lijkt, maar ook op andere organisaties (jeugdwerk, festivals, scholen, bedrijven, stichtingen).
+Basis is op orde: één h1 per pagina + h2-structuur, alle 15 img-tags hebben beschrijvende alt, alle pagina's hebben Helmet met title + description, robots.txt en sitemap.xml zijn aanwezig, llms.txt is netjes. Wat ik ga verbeteren staat hieronder.
 
-## 1. Taalcorrecties
+## 1. Merknaamconsistentie
 
-### Pagina Partners (`src/pages/Partners.tsx`)
-Het woord "achterban" en een paar andere kerktaal-uitdrukkingen vervangen:
+Memory: altijd "JesusToday" als één woord. Te fixen:
+- `index.html`: title, description, author, og:title
+- `src/pages/HomeTest.tsx` title
+- `src/pages/Base.tsx` title
+- `src/components/sections/Header.tsx` logo-alt
 
-- "jullie achterban" → "jullie mensen" of "jullie community" (afhankelijk van context)
-- "Activeer jullie achterban" → "Activeer jullie mensen"
-- "gemeenteleden" → "mensen uit jullie kerk of organisatie"
-- "leiderschapsteam" → "bestuur of kernteam"
-- "praktische handvatten voor jullie achterban" → "praktische handvatten voor jullie team"
+## 2. index.html aanvullen
 
-Specifiek per regel:
-- regel 90: "mensen uit jullie achterban" → "mensen uit jullie kerk, organisatie of team"
-- regel 94: "Activeer jullie achterban" → "Activeer jullie mensen"
-- regel 167 (meta description): "gemeenteleden" → "mensen uit jullie kerk of organisatie"
-- regel 190 (hero intro): "getuigenissen van jullie achterban" → "verhalen van mensen uit jullie kerk of organisatie"
-- regel 273: "jullie achterban die de straat op gaat" → "jullie mensen die de kaartjes uitdelen in het dagelijks leven"
-- regel 350: "leiderschapsteam" → "bestuur of kernteam"
-- regel 357: "voor jullie achterban" → "voor jullie team"
-- regel 359: "leiderschapsteam" → "bestuur of kernteam"
-- regel 504 (CTA-kop): "Samen jullie achterban activeren in getuigen?" → "Samen jullie mensen helpen hun verhaal te delen?"
+- `og:url`, `og:site_name`, `og:image` (1200×630, zie sectie 6)
+- `twitter:title`, `twitter:description`, `twitter:image`
+- `<link rel="canonical" href="https://storybrand-share-grace.lovable.app/" />` (sitewide, geen per-route canonicals)
+- JSON-LD uitbreiden met `WebSite` naast bestaande `Organization`
 
-De woorden "getuigen", "getuigenis" en "evangelisatie" blijven staan op de Partners-pagina want dat zijn precies de termen waar kerken en christelijke organisaties op zoeken. Wel in CTA's en intro's één keer toelichten met "verhalen over Jezus" zodat de betekenis duidelijk is.
+## 3. Per-route SEO-tags
 
-### Overige pagina's
-- `src/components/sections/ChurchSection.tsx` regel 47: "een vaste plek geven in de gemeente" → "een vaste plek geven binnen jullie kerk of organisatie"
-- Andere paginatekst (Verhalen, Upload, Over Ons, Home) blijft ongewijzigd: daar wordt "getuigenis" en "evangelisatie" als kernbegrip gebruikt en past dat bij het publiek.
+Elke Helmet aanvullen met `og:title`, `og:description`, `og:type`, `og:url`, `twitter:title`, `twitter:description` op: HomeTest, Base, Testimonies, OverOns, Upload, Partners, Doneren, Media, Contact, Privacy, Disclaimer. TestimonyDetail heeft dit al, behouden.
 
-## 2. Partnerformulier breder maken
+## 4. Performance
 
-### `src/components/PartnerForm.tsx`
+- `<link rel="preload" as="image" fetchpriority="high">` voor LCP hero
+- `<link rel="dns-prefetch">` naar `player.vimeo.com` en `i.vimeocdn.com`
+- Google Fonts non-blocking laden met `media="print" onload="this.media='all'"` + `<noscript>`-fallback
 
-Aanpassingen aan veldlabels, placeholders en opties zodat het niet alleen kerk-gericht klinkt:
+## 5. Sitemap
 
-- Label "Kerk of organisatie" blijft (was al neutraal), placeholder "Bijv. Stadskerk Groningen" → "Bijv. Stadskerk Groningen of Stichting Hoop"
-- E-mail placeholder "jij@kerk.nl" → "jij@organisatie.nl"
-- Selectlabel "Waar willen jullie over praten?" blijft staan
-- Opties uitbreiden:
-  - "Partnership met onze kerk" → "Partnership met onze kerk of organisatie"
-  - "Spreker over evangelisatie" blijft
-  - "Draaidag om verhalen op te nemen" blijft
-  - Nieuw toevoegen: "Samenwerking op een event of festival"
-  - "Iets anders" blijft
-- Toevoegen onder de selectbox: nieuw veld "Type organisatie" (optioneel select met opties: Kerk, Christelijke organisatie of stichting, Jeugd of jongerenwerk, Festival of event, School of onderwijs, Bedrijf, Anders). Wordt meegestuurd in `metadata.organizationType`.
-- Placeholder textarea "Wat hopen jullie te bereiken? Wat is jullie context?" blijft.
+Sitemap-generator uitbreiden zodat tijdens build de videolijst opgehaald wordt en per video een `/verhalen-over-jezus/:vimeoId` URL toegevoegd wordt. Eerst even kijken naar de huidige datasource in `src/pages/Testimonies.tsx`; lukt build-time fetch niet, dan blijft de statische lijst staan met een TODO.
 
-### `src/pages/Partners.tsx` formuliersectie (rond regel 504)
-Kopjes en omringende teksten breder maken:
-- "Samen jullie mensen helpen hun verhaal te delen?" (zie boven)
-- intro onder de kop: "Laten we kennismaken. We denken graag met jullie mee over hoe verhalen over Jezus een vaste plek krijgen binnen jullie kerk of organisatie." (woord "getuigenissen" → "verhalen over Jezus" voor toegankelijkheid)
+## 6. OG share-image
 
-## Niet in scope
+Genereer een 1200×630 OG-image met JesusToday-logo + tagline "Jouw verhaal, eenvoudig gedeeld" in de huisstijl (lichte achtergrond, gele accent `#fad150`). Opslaan als `public/og-image.jpg`.
 
-- Geen wijzigingen aan de databaseschema's; nieuw veld `organizationType` gaat mee in de bestaande `metadata` JSON-kolom van submissions.
-- Geen visuele of layout-veranderingen.
-- Geen wijzigingen aan andere formulieren (Contact, Upload).
+## 7. Google Search Console
 
-## Vragen voor jou
+Eén failing finding: GSC niet gekoppeld. Dit vereist OAuth, kan ik niet voor je doen. Ik laat de connector-knop staan als laatste stap.
 
-Voordat ik implementeer, twee snelle keuzes:
-1. Klinkt "jullie mensen" goed als vervanging voor "achterban", of liever "jullie team", "jullie community", of "jullie achterban (gemeenteleden, vrijwilligers of deelnemers)"?
-2. Het nieuwe optionele veld "Type organisatie" toevoegen, of liever alleen de placeholders en opties verbreden zonder extra veld?
+## 8. Interne linkstructuur (nieuw)
+
+### Contextuele cross-links in body copy
+- `/over-ons`: bestaande verwijzingen koppelen aan `/verhalen-over-jezus` en `/partners`
+- `/upload`: linkblok "Bekijk hoe anderen het deden" → `/verhalen-over-jezus`
+- `/partners`: links naar `/upload` en `/verhalen-over-jezus`
+- `/doneren`: links naar `/over-ons` (vertrouwen) en `/verhalen-over-jezus` (impact)
+- `/media`: links naar `/over-ons` en `/contact`
+- `/verhalen-over-jezus`: CTA-link naar `/upload`
+
+### Beschrijvende anchor text
+Generieke labels ("Lees meer", "Klik hier") vervangen door descriptieve teksten: "Bekijk alle verhalen", "Word partner met je kerk", "Steun via een eenmalige donatie", etc.
+
+### Breadcrumbs op TestimonyDetail
+`Home › Verhalen › [titel]` toevoegen bovenaan, plus `BreadcrumbList` JSON-LD in de Helmet zodat Google de kruimels in zoekresultaten kan tonen.
+
+### Related testimonies
+TestimonyDetail heeft al een "Andere verhalen"-blok, ik controleer dat de links beschrijvende anchor text (naam + titel) gebruiken in plaats van alleen een thumbnail.
+
+### Footer-uitbreiding
+Footer-linkkolom uitbreiden zodat álle hoofdroutes erin staan (nu ontbreken Upload, Partners, Doneren, Media, Contact in de Links-kolom). Dit geeft elke pagina een sitewide ingang en spreidt link equity.
+
+## Niet veranderen
+
+- Headingstructuur (al correct)
+- Alt-tags (al volledig)
+- robots.txt (al goed)
+- Geen nieuwe npm packages

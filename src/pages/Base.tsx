@@ -19,18 +19,23 @@ const Base = () => {
   return (
     <>
       <Helmet>
-        <title>Jesus Today, kies jouw reis</title>
+        <title>JesusToday, kies jouw reis</title>
         <meta
           name="description"
           content="Ontdek Jezus of vertel over Jezus. Kies de reis die bij jou past."
         />
-        <link rel="canonical" href="https://jesustoday.nl/" />
+        <meta property="og:title" content="JesusToday, kies jouw reis" />
+        <meta property="og:description" content="Ontdek Jezus of vertel over Jezus. Kies de reis die bij jou past." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://storybrand-share-grace.lovable.app/" />
+        <meta name="twitter:title" content="JesusToday, kies jouw reis" />
+        <meta name="twitter:description" content="Ontdek Jezus of vertel over Jezus. Kies de reis die bij jou past." />
       </Helmet>
 
       <main className="min-h-screen flex flex-col items-center justify-center bg-cream px-6 py-16">
         <div className="w-full max-w-3xl mx-auto text-center space-y-12">
           <div className="flex flex-col items-center gap-6 animate-fade-up">
-            <img src={logo} alt="Jesus Today" className="h-12 w-auto" />
+            <img src={logo} alt="JesusToday" className="h-12 w-auto" />
             <h1 className="text-3xl md:text-5xl font-bold text-anthracite leading-tight">
               Waar begint <span className="text-gold">jouw reis</span>?
             </h1>

@@ -62,12 +62,17 @@ const HomeTest = () => {
   return (
     <AudienceProvider>
       <Helmet>
-        <title>Jesus Today - Kies jouw reis | Vertel of ontdek</title>
+        <title>JesusToday, kies jouw reis, vertel of ontdek</title>
         <meta
           name="description"
-          content="Of je nu jouw verhaal wilt delen of God wilt ontdekken, Jesus Today begeleidt je in jouw reis. Kies wat bij jou past."
+          content="Of je nu jouw verhaal wilt delen of God wilt ontdekken, JesusToday begeleidt je in jouw reis. Kies wat bij jou past."
         />
-        <link rel="canonical" href="https://jesustoday.nl/" />
+        <meta property="og:title" content="JesusToday, kies jouw reis" />
+        <meta property="og:description" content="Of je nu jouw verhaal wilt delen of God wilt ontdekken, JesusToday begeleidt je in jouw reis." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://storybrand-share-grace.lovable.app/" />
+        <meta name="twitter:title" content="JesusToday, kies jouw reis" />
+        <meta name="twitter:description" content="Of je nu jouw verhaal wilt delen of God wilt ontdekken, JesusToday begeleidt je in jouw reis." />
       </Helmet>
       <HomeTestContent />
     </AudienceProvider>

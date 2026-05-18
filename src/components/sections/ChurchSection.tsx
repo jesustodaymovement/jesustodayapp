@@ -38,7 +38,7 @@ export const ChurchSection = () => {
 
               <ScrollReveal delay={100}>
                 <h2 className="text-3xl md:text-4xl font-bold text-warm-white mb-6">
-                  Jesus Today in <span className="text-gold">jouw kerk</span>
+                  JesusToday in <span className="text-gold">jouw kerk</span>
                 </h2>
               </ScrollReveal>
 
