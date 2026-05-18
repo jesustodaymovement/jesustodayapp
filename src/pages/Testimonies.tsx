@@ -396,6 +396,20 @@ const Testimonies = () => {
                     <TestimonyCard key={t.id} testimony={t} />
                   ))}
                 </div>
+                <div className="mt-16 p-8 md:p-10 bg-warm-white rounded-2xl shadow-card text-center">
+                  <h2 className="text-2xl md:text-3xl font-bold text-anthracite mb-3">
+                    Inspireert dit jou om jouw verhaal te delen?
+                  </h2>
+                  <p className="text-anthracite/70 mb-6 max-w-xl mx-auto">
+                    Net als deze mensen kan jouw verhaal anderen raken. Wij helpen je in 3 eenvoudige stappen.
+                  </p>
+                  <Link
+                    to="/upload"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-gold text-anthracite rounded-full font-semibold shadow-gold hover:shadow-lg transition-all"
+                  >
+                    Upload jouw verhaal
+                  </Link>
+                </div>
               </>
             )}
           </div>
