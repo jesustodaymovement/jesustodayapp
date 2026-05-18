@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
-import { Download, Video, QrCode, Share2, Shield, Clock, Heart, ArrowRight, Camera, Users, Mail, HelpCircle } from 'lucide-react';
+import { Download, Video, QrCode, Share2, Shield, Clock, Heart, ArrowRight, Camera, Users, Mail, HelpCircle, Quote } from 'lucide-react';
 
 const APP_STORE_URL = 'https://apps.apple.com/nl/app/jesus-today/id1623308816';
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=io.mxapps.jesustoday';
@@ -113,6 +113,17 @@ const faqs = [
   { icon: Heart, q: 'Is de app gratis?', a: 'Ja, JesusToday is volledig gratis te downloaden en te gebruiken.' },
   { icon: Clock, q: 'Hoe lang duurt het?', a: 'In ongeveer 5 minuten heb je jouw verhaal opgenomen en gedeeld.' },
   { icon: Shield, q: 'Wat gebeurt er met mijn video?', a: 'Je bepaalt zelf wat je deelt. Wij gaan zorgvuldig om met jouw verhaal en privacy.' },
+];
+
+const reviews = [
+  {
+    quote: 'Jezus heeft mijn leven veranderd. En iedereen mag dat horen.',
+    name: 'Daniel',
+  },
+  {
+    quote: 'Ik hou ervan om andere mensen te inspireren. Hoe kan dat beter dan vertellen wat ik zelf ontdekt heb over Jezus.',
+    name: 'Sam',
+  },
 ];
 
 const Upload = () => {
