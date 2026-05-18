@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import heroVideo from '@/assets/hero-banner.mp4';
 
 export const HeroSectionVideo = () => {
@@ -38,8 +39,8 @@ export const HeroSectionVideo = () => {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 animate-fade-up delay-200">
-            <Button variant="hero" size="lg" className="min-w-[200px]">
-              Upload jouw verhaal
+            <Button asChild variant="hero" size="lg" className="min-w-[200px]">
+              <Link to="/upload">Upload jouw verhaal</Link>
             </Button>
             <Button variant="hero-outline" size="lg" className="gap-2">
               <ArrowRight className="w-5 h-5" />

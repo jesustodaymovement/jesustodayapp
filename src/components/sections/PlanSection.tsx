@@ -1,6 +1,7 @@
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { Button } from '@/components/ui/button';
 import { Video, QrCode, Share2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const steps = [
   {
@@ -70,8 +71,8 @@ export const PlanSection = () => {
 
           <ScrollReveal delay={450}>
             <div className="text-center">
-              <Button variant="cta-light" size="lg">
-                Upload jouw verhaal
+              <Button asChild variant="cta-light" size="lg">
+                <Link to="/upload">Upload jouw verhaal</Link>
               </Button>
             </div>
           </ScrollReveal>

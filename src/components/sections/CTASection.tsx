@@ -1,6 +1,7 @@
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { Button } from '@/components/ui/button';
 import { Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export const CTASection = () => {
   return (
@@ -36,8 +37,8 @@ export const CTASection = () => {
           </ScrollReveal>
 
           <ScrollReveal delay={400}>
-            <Button variant="hero" size="xl" className="mb-8">
-              Upload jouw verhaal
+            <Button asChild variant="hero" size="xl" className="mb-8">
+              <Link to="/upload">Upload jouw verhaal</Link>
             </Button>
           </ScrollReveal>
 
