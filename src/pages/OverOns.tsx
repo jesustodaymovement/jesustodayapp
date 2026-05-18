@@ -5,6 +5,8 @@ import { Footer } from '@/components/sections/Footer';
 import { Button } from '@/components/ui/button';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { VideoSliderSection } from '@/components/sections/VideoSliderSection';
+import eventStand from '@/assets/team/event-stand.jpg';
+import teamQrShirts from '@/assets/team/team-qr-shirts.jpg';
 import {
   Upload,
   Play,
@@ -196,6 +198,53 @@ const ProofSection = () => (
               </div>
             </ScrollReveal>
           ))}
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+const InTheFieldSection = () => (
+  <section className="py-24 bg-cream">
+    <div className="container mx-auto px-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <ScrollReveal>
+            <span className="inline-block text-sm font-semibold text-gold uppercase tracking-wider mb-3">
+              In het veld
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-anthracite mb-6">
+              JesusToday is <span className="text-gold">in beweging.</span>
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              We staan op events, conferenties en in kerken door heel Nederland. Met QR-shirts, kaartjes en een verhaal dat persoonlijk is, brengen we mensen in aanraking met Jezus.
+            </p>
+          </ScrollReveal>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <ScrollReveal delay={150}>
+            <div className="relative overflow-hidden rounded-2xl shadow-card aspect-[4/3] bg-anthracite">
+              <img
+                src={teamQrShirts}
+                alt="JesusToday team met QR-code shirts op een event in Nederland"
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={250}>
+            <div className="relative overflow-hidden rounded-2xl shadow-card aspect-[4/3] bg-anthracite">
+              <img
+                src={eventStand}
+                alt="JesusToday stand met QR-banners en team op een conferentie"
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
+          </ScrollReveal>
         </div>
       </div>
     </div>
@@ -449,6 +498,7 @@ const OverOns = () => {
         <GapSection />
         <FounderSection />
         <ProofSection />
+        <InTheFieldSection />
         <PlanSection />
         <ScaleSection />
         <VideoSliderSection />
