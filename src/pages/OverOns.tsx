@@ -16,7 +16,6 @@ import {
   Heart,
   Sparkles,
   BookOpen,
-  Calendar,
 } from 'lucide-react';
 
 const Hero = () => (
