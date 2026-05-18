@@ -44,7 +44,7 @@ export const GuideSection = () => {
                 </p>
 
                 <div className="pt-4">
-                  <Button variant="cta" size="lg">
+                  <Button variant="cta-light" size="lg">
                     <Upload className="w-5 h-5" />
                     Upload jouw verhaal
                   </Button>
