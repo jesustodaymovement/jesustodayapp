@@ -120,13 +120,13 @@ export const VideoSliderSection = () => {
         <div className="max-w-6xl mx-auto">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-anthracite mb-4">
-              Bekijk <span className="text-gold">verhalen</span>
+              Ontdek onze <span className="text-gold">verhalen</span>
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={100}>
             <p className="text-lg text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-              Ontdek de verhalen van anderen die hun geloof delen
+              De nieuwste video's van mensen die hun geloof delen
             </p>
           </ScrollReveal>
 
