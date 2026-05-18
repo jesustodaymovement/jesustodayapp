@@ -44,7 +44,7 @@ const benefits = [
   {
     icon: HeartHandshake,
     title: 'Eigenaarschap in de gemeente',
-    description: 'Jullie kerk neemt zelf het stuur in handen om getuigenissen van gemeenteleden te verzamelen en te delen.',
+    description: 'Jullie kerk pakt zelf het stuur om getuigenissen van gemeenteleden te verzamelen en te delen, op jullie eigen tempo.',
   },
   {
     icon: Users,
@@ -58,8 +58,8 @@ const benefits = [
   },
   {
     icon: Camera,
-    title: 'Wij regelen het proces',
-    description: 'Van opname tot print, ons team neemt de techniek uit handen zodat jullie kunnen focussen op de mensen.',
+    title: 'Wij helpen waar nodig',
+    description: 'Wij denken mee, leveren handvatten en springen bij als jullie er zelf niet uitkomen.',
   },
 ];
 
@@ -72,9 +72,9 @@ const steps = [
   },
   {
     number: '02',
-    icon: Camera,
-    title: 'Filmdag in jullie kerk',
-    description: 'Wij komen langs en helpen gemeenteleden om hun verhaal in enkele minuten op video vast te leggen.',
+    icon: Mic,
+    title: 'Jullie nemen verhalen op',
+    description: 'Jullie gaan zelf aan de slag met het opnemen van getuigenissen. Wij geven jullie de handvatten en denken mee in de aanpak.',
   },
   {
     number: '03',
@@ -93,10 +93,10 @@ const steps = [
 const offering = [
   { icon: MessageCircle, title: '1-op-1 gesprek met het bestuur' },
   { icon: Users, title: 'Vast aanspreekpunt vanuit het JesusToday-team' },
-  { icon: Camera, title: 'Filmdagen op locatie in jullie kerk' },
   { icon: Mic, title: 'Spreekbeurt over evangelisatie en getuigen' },
   { icon: Palette, title: 'QR-kaartjes ontworpen in jullie huisstijl' },
   { icon: QrCode, title: 'Eigen QR-codes met directe link naar JesusToday' },
+  { icon: Camera, title: 'Optioneel: hulp bij opnemen als jullie er zelf niet uitkomen' },
 ];
 
 const faqs = [
@@ -105,12 +105,12 @@ const faqs = [
     a: 'We zoeken altijd naar wat passend is voor jullie kerk. Neem contact op, dan kijken we samen wat haalbaar is.',
   },
   {
-    q: 'Hoe lang duurt een filmdag?',
-    a: 'Meestal één dag, afhankelijk van het aantal gemeenteleden dat een verhaal wil delen. Per persoon rekenen we ongeveer 15 tot 20 minuten.',
+    q: 'Moeten we het zelf opnemen of komen jullie filmen?',
+    a: 'Het idee is dat jullie het zelf doen, dat geeft de meeste eigenaarschap in de gemeente. Lukt dat niet, dan kunnen we in overleg langskomen om te helpen met opnemen.',
   },
   {
     q: 'Wat als we geen ervaring hebben met video?',
-    a: 'Geen probleem. Ons team begeleidt het hele proces, van het stellen van vragen tot opname, montage en het drukken van de kaartjes.',
+    a: 'Geen probleem. We geven jullie praktische handvatten, voorbeeldvragen en tips zodat je zelf aan de slag kunt. Loop je vast, dan denken we mee.',
   },
   {
     q: 'Mogen we de verhalen ook zelf gebruiken?',
@@ -148,7 +148,7 @@ const Partners = () => {
               </ScrollReveal>
               <ScrollReveal delay={200}>
                 <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">
-                  We helpen missionair gerichte kerken om getuigenissen van gemeenteleden vast te leggen, in kaartjes met QR-code, in jullie eigen huisstijl. Zo activeer je je gemeente om verhalen te delen in het dagelijks leven.
+                  We helpen missionair gerichte kerken om zelf getuigenissen van gemeenteleden vast te leggen en te delen via QR-kaartjes in jullie eigen huisstijl. Jullie nemen het eigenaarschap, wij denken mee en springen bij waar nodig.
                 </p>
               </ScrollReveal>
               <ScrollReveal delay={300}>
@@ -345,7 +345,7 @@ const Partners = () => {
               </ScrollReveal>
               <ScrollReveal delay={100}>
                 <p className="text-lg text-warm-white/80 mb-10 leading-relaxed">
-                  Laten we kennismaken. We komen graag langs voor een gesprek met jullie bestuur of plannen direct een filmdag.
+                  Laten we kennismaken. We denken graag met jullie mee over hoe getuigenissen een vaste plek krijgen in jullie gemeente.
                 </p>
               </ScrollReveal>
               <ScrollReveal delay={200}>
