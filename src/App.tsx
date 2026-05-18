@@ -78,7 +78,6 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomeGate />} />
-            <Route path="/hometest" element={<Navigate to="/" replace />} />
             <Route path="/base" element={<Base />} />
             <Route path="/getuigenissen" element={<Testimonies />} />
             <Route path="/getuigenissen/:vimeoId" element={<TestimonyDetail />} />
