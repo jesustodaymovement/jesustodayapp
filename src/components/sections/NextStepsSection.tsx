@@ -1,4 +1,5 @@
 import { ScrollReveal } from '@/components/ScrollReveal';
+import { useTranslation } from 'react-i18next';
 import { ArrowRight, PlayCircle, Users, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -30,19 +31,20 @@ const steps = [
 ];
 
 export const NextStepsSection = () => {
+  const { t } = useTranslation();
   return (
     <section className="py-24 bg-anthracite" id="volgende-stap">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-warm-white mb-4">
-              Klaar voor een <span className="text-gold">volgende stap?</span>
+              {t('Klaar voor een')} <span className="text-gold">{t('volgende stap?')}</span>
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={100}>
             <p className="text-lg text-center text-warm-white/80 mb-16 max-w-2xl mx-auto">
-              Kies wat bij jou past. Geen druk, geen verplichting, gewoon een uitnodiging.
+              {t('Kies wat bij jou past. Geen druk, geen verplichting, gewoon een uitnodiging.')}
             </p>
           </ScrollReveal>
 
@@ -53,8 +55,8 @@ export const NextStepsSection = () => {
                   <div className="w-14 h-14 rounded-xl bg-gold/15 flex items-center justify-center mb-6 group-hover:bg-gold/25 transition-colors">
                     <step.icon className="w-7 h-7 text-gold" />
                   </div>
-                  <h3 className="text-2xl font-bold text-warm-white mb-3">{step.title}</h3>
-                  <p className="text-warm-white/70 leading-relaxed mb-6 flex-grow">{step.description}</p>
+                  <h3 className="text-2xl font-bold text-warm-white mb-3">{t(step.title)}</h3>
+                  <p className="text-warm-white/70 leading-relaxed mb-6 flex-grow">{t(step.description)}</p>
                   {step.external ? (
                     <a
                       href={step.href}
@@ -62,7 +64,7 @@ export const NextStepsSection = () => {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 text-gold font-semibold hover:gap-3 transition-all"
                     >
-                      {step.cta}
+                      {t(step.cta)}
                       <ArrowRight className="w-4 h-4" />
                     </a>
                   ) : (
@@ -70,7 +72,7 @@ export const NextStepsSection = () => {
                       to={step.href}
                       className="inline-flex items-center gap-2 text-gold font-semibold hover:gap-3 transition-all"
                     >
-                      {step.cta}
+                      {t(step.cta)}
                       <ArrowRight className="w-4 h-4" />
                     </Link>
                   )}
