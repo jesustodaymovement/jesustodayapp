@@ -1,8 +1,10 @@
 import { Instagram, Facebook, Youtube, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { NewsletterForm } from '@/components/NewsletterForm';
 
 export const Footer = () => {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -14,10 +16,10 @@ export const Footer = () => {
             <div className="grid md:grid-cols-2 gap-6 items-center">
               <div>
                 <h4 className="text-warm-white text-xl font-semibold mb-2">
-                  Blijf op de hoogte
+                  {t('Blijf op de hoogte')}
                 </h4>
                 <p className="text-warm-white/60 text-sm leading-relaxed">
-                  Ontvang nieuwe getuigenissen, updates en bemoediging van JesusToday in je inbox.
+                  {t('Ontvang nieuwe getuigenissen, updates en bemoediging van JesusToday in je inbox.')}
                 </p>
               </div>
               <NewsletterForm />
@@ -32,7 +34,7 @@ export const Footer = () => {
                 Jesus<span className="text-gold">Today</span>
               </h3>
               <p className="text-warm-white/60 leading-relaxed mb-6">
-                Jouw verhaal, eenvoudig gedeeld. Door God gebruikt.
+                {t('Jouw verhaal, eenvoudig gedeeld. Door God gebruikt.')}
               </p>
               {/* App Buttons */}
               <div className="flex gap-3">
@@ -53,35 +55,35 @@ export const Footer = () => {
 
             {/* Links */}
             <div>
-              <h4 className="text-warm-white font-semibold mb-4">Links</h4>
+              <h4 className="text-warm-white font-semibold mb-4">{t('Links')}</h4>
               <ul className="space-y-3">
                 <li>
-                  <Link to="/verhalen-over-jezus" className="text-warm-white/60 hover:text-gold transition-colors">Verhalen over Jezus</Link>
+                  <Link to="/verhalen-over-jezus" className="text-warm-white/60 hover:text-gold transition-colors">{t('Verhalen over Jezus')}</Link>
                 </li>
                 <li>
-                  <Link to="/upload" className="text-warm-white/60 hover:text-gold transition-colors">Upload jouw verhaal</Link>
+                  <Link to="/upload" className="text-warm-white/60 hover:text-gold transition-colors">{t('Upload jouw verhaal')}</Link>
                 </li>
                 <li>
-                  <Link to="/over-ons" className="text-warm-white/60 hover:text-gold transition-colors">Over JesusToday</Link>
+                  <Link to="/over-ons" className="text-warm-white/60 hover:text-gold transition-colors">{t('Over JesusToday')}</Link>
                 </li>
                 <li>
-                  <Link to="/partners" className="text-warm-white/60 hover:text-gold transition-colors">Voor kerken en organisaties</Link>
+                  <Link to="/partners" className="text-warm-white/60 hover:text-gold transition-colors">{t('Voor kerken en organisaties')}</Link>
                 </li>
                 <li>
-                  <Link to="/doneren" className="text-warm-white/60 hover:text-gold transition-colors">Steun JesusToday</Link>
+                  <Link to="/doneren" className="text-warm-white/60 hover:text-gold transition-colors">{t('Steun JesusToday')}</Link>
                 </li>
                 <li>
-                  <Link to="/media" className="text-warm-white/60 hover:text-gold transition-colors">Pers en media</Link>
+                  <Link to="/media" className="text-warm-white/60 hover:text-gold transition-colors">{t('Pers en media')}</Link>
                 </li>
                 <li>
-                  <Link to="/contact" className="text-warm-white/60 hover:text-gold transition-colors">Neem contact op</Link>
+                  <Link to="/contact" className="text-warm-white/60 hover:text-gold transition-colors">{t('Neem contact op')}</Link>
                 </li>
               </ul>
             </div>
 
             {/* Contact */}
             <div>
-              <h4 className="text-warm-white font-semibold mb-4">Contact</h4>
+              <h4 className="text-warm-white font-semibold mb-4">{t('Contact')}</h4>
               <div className="space-y-4 mb-6">
                 <a href="mailto:info@jesustoday.nl" className="flex items-center gap-2 text-warm-white/60 hover:text-gold transition-colors">
                   <Mail className="w-4 h-4" />
@@ -113,23 +115,23 @@ export const Footer = () => {
           <div className="border-t border-warm-white/10 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-warm-white/70 text-xs">
-                © {currentYear} JesusToday. Alle rechten voorbehouden.
+                {t('© {{year}} JesusToday. Alle rechten voorbehouden.', { year: currentYear })}
               </p>
-              <nav aria-label="Juridisch" className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-warm-white/70">
-                <a href="/privacy" className="hover:text-gold transition-colors">Privacybeleid</a>
+              <nav aria-label={t('Juridisch')} className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-warm-white/70">
+                <a href="/privacy" className="hover:text-gold transition-colors">{t('Privacybeleid')}</a>
                 <span aria-hidden className="text-warm-white/20">·</span>
-                <a href="/disclaimer" className="hover:text-gold transition-colors">Disclaimer</a>
+                <a href="/disclaimer" className="hover:text-gold transition-colors">{t('Disclaimer')}</a>
                 <span aria-hidden className="text-warm-white/20">·</span>
                 <button
                   type="button"
                   onClick={() => window.dispatchEvent(new Event('open-cookie-settings'))}
                   className="hover:text-gold transition-colors"
                 >
-                  Cookie-instellingen
+                  {t('Cookie-instellingen')}
                 </button>
               </nav>
               <p className="text-warm-white/70 text-xs">
-                Website door{' '}
+                {t('Website door')}{' '}
                 <a
                   href="https://shoopshoop.nl"
                   target="_blank"
