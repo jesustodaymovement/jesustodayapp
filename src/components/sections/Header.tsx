@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import logo from '@/assets/jesus-today-logo.png';
@@ -61,8 +62,8 @@ export const Header = () => {
           {/* Desktop CTA + audience switch */}
           <div className="hidden md:flex items-center gap-4">
             {audience && <AudienceSwitch variant="header" />}
-            <Button variant="hero" size="default">
-              Upload jouw verhaal
+            <Button asChild variant="hero" size="default">
+              <Link to="/upload">Upload jouw verhaal</Link>
             </Button>
           </div>
 
@@ -100,8 +101,10 @@ export const Header = () => {
                 </a>
               ))}
               <div className="px-6 py-4">
-                <Button variant="hero" size="default" className="w-full">
-                  Upload jouw verhaal
+                <Button asChild variant="hero" size="default" className="w-full">
+                  <Link to="/upload" onClick={() => setIsMobileMenuOpen(false)}>
+                    Upload jouw verhaal
+                  </Link>
                 </Button>
               </div>
             </nav>

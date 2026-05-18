@@ -44,9 +44,11 @@ const Hero = () => (
         </ScrollReveal>
         <ScrollReveal delay={300}>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button variant="hero" size="lg">
-              <Upload className="w-5 h-5" />
-              Upload jouw verhaal
+            <Button asChild variant="hero" size="lg">
+              <Link to="/upload">
+                <Upload className="w-5 h-5" />
+                Upload jouw verhaal
+              </Link>
             </Button>
             <Button asChild variant="outline" size="lg">
               <Link to="/verhalen-over-jezus">
@@ -398,9 +400,11 @@ const FinalCta = () => (
         </ScrollReveal>
         <ScrollReveal delay={200}>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button variant="hero" size="lg">
-              <Upload className="w-5 h-5" />
-              Upload jouw verhaal
+            <Button asChild variant="hero" size="lg">
+              <Link to="/upload">
+                <Upload className="w-5 h-5" />
+                Upload jouw verhaal
+              </Link>
             </Button>
             <Button asChild variant="hero-outline" size="lg">
               <Link to="/verhalen-over-jezus">

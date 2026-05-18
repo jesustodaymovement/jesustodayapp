@@ -62,9 +62,11 @@ export const HeroAudience = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2">
               {mode === 'share' ? (
-                <Button variant="hero" size="lg" className="min-w-[220px]">
-                  <PrimaryIcon className="w-5 h-5" />
-                  {content.primaryLabel}
+                <Button asChild variant="hero" size="lg" className="min-w-[220px]">
+                  <Link to="/upload">
+                    <PrimaryIcon className="w-5 h-5" />
+                    {content.primaryLabel}
+                  </Link>
                 </Button>
               ) : (
                 <Button asChild variant="hero" size="lg" className="min-w-[220px]">

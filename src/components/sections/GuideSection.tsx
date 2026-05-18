@@ -1,6 +1,7 @@
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { Button } from '@/components/ui/button';
 import { Upload } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export const GuideSection = () => {
   return (
@@ -44,9 +45,11 @@ export const GuideSection = () => {
                 </p>
 
                 <div className="pt-4">
-                  <Button variant="cta-light" size="lg">
-                    <Upload className="w-5 h-5" />
-                    Upload jouw verhaal
+                  <Button asChild variant="cta-light" size="lg">
+                    <Link to="/upload">
+                      <Upload className="w-5 h-5" />
+                      Upload jouw verhaal
+                    </Link>
                   </Button>
                 </div>
               </div>
