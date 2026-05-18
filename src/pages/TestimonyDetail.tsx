@@ -219,7 +219,7 @@ const TestimonyDetail = () => {
     : '#';
 
   const contactLink = testimony
-    ? `/contact?subject=${encodeURIComponent(`Neem contact op met ${firstName}`)}&message=${encodeURIComponent(`Hoi JesusToday,\n\nIk zou graag in contact komen met ${firstName} naar aanleiding van de getuigenisvideo.\n\n`)}`
+    ? `/contact?subject=${encodeURIComponent(`Neem contact op met ${firstName}`)}&message=${encodeURIComponent(`Hoi JesusToday,\n\nIk zou graag in contact komen met ${firstName} naar aanleiding van de getuigenisvideo (video ${testimony.vimeoUrl}).\n\n`)}&vimeoId=${encodeURIComponent(testimony.vimeoUrl)}&testimonyName=${encodeURIComponent(fullName)}`
     : '#';
 
   const openChat = (event: React.MouseEvent) => {
