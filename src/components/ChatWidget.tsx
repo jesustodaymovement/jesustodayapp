@@ -26,6 +26,12 @@ export const ChatWidget = () => {
     };
   }, [open]);
 
+  useEffect(() => {
+    const openHandler = () => setOpen(true);
+    window.addEventListener("jt:open-chat", openHandler);
+    return () => window.removeEventListener("jt:open-chat", openHandler);
+  }, []);
+
   return (
     <div
       ref={rootRef}
