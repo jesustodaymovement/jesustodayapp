@@ -114,7 +114,7 @@ const FounderSection = () => (
           <blockquote className="relative bg-white rounded-2xl border border-anthracite/10 shadow-sm p-8 md:p-12 border-l-4 border-l-gold">
             <div className="space-y-5 text-anthracite/90 text-lg leading-relaxed">
               <p>
-                Jesus Today is ontstaan uit een verlangen om mensen op een
+                JesusToday is ontstaan uit een verlangen om mensen op een
                 eenvoudige manier in aanraking te brengen met inspirerende
                 verhalen. Bijzondere verhalen van gewone mensen, met één
                 gemeenschappelijke deler: Jezus. Wie is deze persoon aan wie we

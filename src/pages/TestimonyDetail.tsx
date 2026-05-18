@@ -212,21 +212,21 @@ const TestimonyDetail = () => {
   const discussionLink = testimony
     ? buildMailTo(
         `Doorpraten over ${fullName}`,
-        `Hoi Jesus Today,%0D%0A%0D%0AIk wil graag doorpraten over de video van ${fullName}.`
+        `Hoi JesusToday,%0D%0A%0D%0AIk wil graag doorpraten over de video van ${fullName}.`
       )
     : '#';
 
   const questionLink = testimony
     ? buildMailTo(
         `Vraag over verhaal van ${fullName}`,
-        `Hoi Jesus Today,%0D%0A%0D%0AIk heb een vraag na het zien van de video van ${fullName}:`
+        `Hoi JesusToday,%0D%0A%0D%0AIk heb een vraag na het zien van de video van ${fullName}:`
       )
     : '#';
 
   const contactLink = testimony
     ? buildMailTo(
         `In contact komen met ${fullName}`,
-        `Hoi Jesus Today,%0D%0A%0D%0AIk zou graag in contact komen met ${fullName} naar aanleiding van deze video.`
+        `Hoi JesusToday,%0D%0A%0D%0AIk zou graag in contact komen met ${fullName} naar aanleiding van deze video.`
       )
     : '#';
 
