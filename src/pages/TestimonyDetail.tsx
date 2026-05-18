@@ -312,12 +312,29 @@ const TestimonyDetail = () => {
       <main className="pt-32 pb-24">
         <div className="container mx-auto px-6">
           <div className="max-w-7xl mx-auto">
+            <nav aria-label="Kruimelpad" className="mb-8">
+              <ol className="flex flex-wrap items-center gap-2 text-sm text-anthracite/70">
+                <li>
+                  <Link to="/" className="hover:text-gold transition-colors">Home</Link>
+                </li>
+                <li aria-hidden className="text-anthracite/30">›</li>
+                <li>
+                  <Link to="/verhalen-over-jezus" className="hover:text-gold transition-colors">Verhalen over Jezus</Link>
+                </li>
+                {testimony && (
+                  <>
+                    <li aria-hidden className="text-anthracite/30">›</li>
+                    <li className="text-anthracite font-medium truncate max-w-[60vw]" aria-current="page">{fullName}</li>
+                  </>
+                )}
+              </ol>
+            </nav>
             <Link
               to="/verhalen-over-jezus"
               className="inline-flex items-center gap-2 text-anthracite hover:text-gold transition-colors mb-8 font-medium"
             >
               <ArrowLeft className="w-5 h-5" />
-              Terug naar alle getuigenissen
+              Bekijk alle verhalen
             </Link>
 
             {loading ? (
