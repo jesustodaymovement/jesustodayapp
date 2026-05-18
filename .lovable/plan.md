@@ -1,69 +1,36 @@
-## Auditresultaat
+## Doel
 
-Basis is op orde: één h1 per pagina + h2-structuur, alle 15 img-tags hebben beschrijvende alt, alle pagina's hebben Helmet met title + description, robots.txt en sitemap.xml zijn aanwezig, llms.txt is netjes. Wat ik ga verbeteren staat hieronder.
+Een sitewide zwevende chat-widget (rechtsonder) toevoegen, vergelijkbaar met het Chaty-voorbeeld, met twee kanalen: WhatsApp en Email. Geen externe Chaty-plugin nodig, gewoon een lichte eigen React-component zodat we performance, styling en toegankelijkheid in eigen hand houden.
 
-## 1. Merknaamconsistentie
+## Gedrag
 
-Memory: altijd "JesusToday" als één woord. Te fixen:
-- `index.html`: title, description, author, og:title
-- `src/pages/HomeTest.tsx` title
-- `src/pages/Base.tsx` title
-- `src/components/sections/Header.tsx` logo-alt
+- Hoofdknop rechtsonder met label "Vraag over God?" en chat-icoon.
+- Klik opent een verticale lijst boven de knop met twee ronde kanaal-iconen:
+  1. WhatsApp, opent `https://wa.me/31643798701` in nieuw tabblad (groene cirkel, WhatsApp-glyph, kleur #49E670 zoals in de bron).
+  2. Email, opent `mailto:info@vraagovergod.nl` (gele cirkel met #fad150 zoals huisstijl, envelop-glyph).
+- Klik op de hoofdknop opnieuw, of buiten de widget, sluit het paneel.
+- Tooltip-label naast elk icoon ("WhatsApp", "Email") bij hover op desktop.
+- ESC sluit het paneel, focus-trap binnen open state, ARIA: `aria-expanded`, `aria-label="Chat openen"`, kanaal-links met eigen `aria-label`.
 
-## 2. index.html aanvullen
+## Stijl
 
-- `og:url`, `og:site_name`, `og:image` (1200×630, zie sectie 6)
-- `twitter:title`, `twitter:description`, `twitter:image`
-- `<link rel="canonical" href="https://storybrand-share-grace.lovable.app/" />` (sitewide, geen per-route canonicals)
-- JSON-LD uitbreiden met `WebSite` naast bestaande `Organization`
+- Knop: ronde pill, achtergrond #fad150, donkere tekst (anthracite), subtiele schaduw, hover lift.
+- Kanaal-iconen: 48px ronde cirkels, fade+slide-up animatie bij openen (gestaggerd 60ms).
+- Mobile: alleen icoon-only hoofdknop (geen tekst) om ruimte te besparen, paneel blijft identiek.
+- Geen em-dashes, komma's in alle tekst.
+- z-index hoog genoeg om boven Embla carousels en video-embeds te staan (z-50 of hoger).
 
-## 3. Per-route SEO-tags
+## Implementatie
 
-Elke Helmet aanvullen met `og:title`, `og:description`, `og:type`, `og:url`, `twitter:title`, `twitter:description` op: HomeTest, Base, Testimonies, OverOns, Upload, Partners, Doneren, Media, Contact, Privacy, Disclaimer. TestimonyDetail heeft dit al, behouden.
+1. Nieuwe component `src/components/ChatWidget.tsx`
+   - Client-side React, `useState` voor open/dicht, `useEffect` voor ESC + click-outside.
+   - Geen extra npm packages, iconen via inline SVG (WhatsApp glyph uit de meegestuurde HTML) of `lucide-react` (`Mail`, `MessageCircle`).
+2. Mount in `src/App.tsx` (of de huidige root layout) na de routes, zodat de widget op elke pagina zichtbaar is (inclusief Base, Home, Testimonies, etc.).
+3. Telefoonnummer en e-mailadres als consts bovenaan de component voor één-plek-onderhoud.
+4. Geen wijzigingen aan bestaande pagina's, layout of footer.
 
-## 4. Performance
+## Niet in scope
 
-- `<link rel="preload" as="image" fetchpriority="high">` voor LCP hero
-- `<link rel="dns-prefetch">` naar `player.vimeo.com` en `i.vimeocdn.com`
-- Google Fonts non-blocking laden met `media="print" onload="this.media='all'"` + `<noscript>`-fallback
-
-## 5. Sitemap
-
-Sitemap-generator uitbreiden zodat tijdens build de videolijst opgehaald wordt en per video een `/verhalen-over-jezus/:vimeoId` URL toegevoegd wordt. Eerst even kijken naar de huidige datasource in `src/pages/Testimonies.tsx`; lukt build-time fetch niet, dan blijft de statische lijst staan met een TODO.
-
-## 6. OG share-image
-
-Genereer een 1200×630 OG-image met JesusToday-logo + tagline "Jouw verhaal, eenvoudig gedeeld" in de huisstijl (lichte achtergrond, gele accent `#fad150`). Opslaan als `public/og-image.jpg`.
-
-## 7. Google Search Console
-
-Eén failing finding: GSC niet gekoppeld. Dit vereist OAuth, kan ik niet voor je doen. Ik laat de connector-knop staan als laatste stap.
-
-## 8. Interne linkstructuur (nieuw)
-
-### Contextuele cross-links in body copy
-- `/over-ons`: bestaande verwijzingen koppelen aan `/verhalen-over-jezus` en `/partners`
-- `/upload`: linkblok "Bekijk hoe anderen het deden" → `/verhalen-over-jezus`
-- `/partners`: links naar `/upload` en `/verhalen-over-jezus`
-- `/doneren`: links naar `/over-ons` (vertrouwen) en `/verhalen-over-jezus` (impact)
-- `/media`: links naar `/over-ons` en `/contact`
-- `/verhalen-over-jezus`: CTA-link naar `/upload`
-
-### Beschrijvende anchor text
-Generieke labels ("Lees meer", "Klik hier") vervangen door descriptieve teksten: "Bekijk alle verhalen", "Word partner met je kerk", "Steun via een eenmalige donatie", etc.
-
-### Breadcrumbs op TestimonyDetail
-`Home › Verhalen › [titel]` toevoegen bovenaan, plus `BreadcrumbList` JSON-LD in de Helmet zodat Google de kruimels in zoekresultaten kan tonen.
-
-### Related testimonies
-TestimonyDetail heeft al een "Andere verhalen"-blok, ik controleer dat de links beschrijvende anchor text (naam + titel) gebruiken in plaats van alleen een thumbnail.
-
-### Footer-uitbreiding
-Footer-linkkolom uitbreiden zodat álle hoofdroutes erin staan (nu ontbreken Upload, Partners, Doneren, Media, Contact in de Links-kolom). Dit geeft elke pagina een sitewide ingang en spreidt link equity.
-
-## Niet veranderen
-
-- Headingstructuur (al correct)
-- Alt-tags (al volledig)
-- robots.txt (al goed)
-- Geen nieuwe npm packages
+- Geen extra kanalen (Messenger, Telegram, etc.); makkelijk later uit te breiden via een config-array.
+- Geen analytics-tracking op clicks (kan later toegevoegd via een onClick-handler).
+- Geen contactformulier-popup, alleen directe deep-links naar WhatsApp en mail-client.

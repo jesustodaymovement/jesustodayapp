@@ -20,6 +20,7 @@ import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminSubmissions from "./pages/admin/AdminSubmissions";
 import { CookieConsent } from "./components/CookieConsent";
+import { ChatWidget } from "./components/ChatWidget";
 
 import { useEffect, useState } from "react";
 
@@ -106,6 +107,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
           <CookieConsent />
+          <ChatWidget />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
