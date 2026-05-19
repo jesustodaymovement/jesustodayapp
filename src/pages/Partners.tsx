@@ -134,7 +134,7 @@ const steps = [
 ];
 
 const offering = [
-  { icon: MessageCircle, title: '1-op-1 gesprek met het bestuur' },
+  { icon: MessageCircle, title: '1-op-1 gesprek met jullie bestuur' },
   { icon: Users, title: 'Vast aanspreekpunt vanuit het JesusToday-team' },
   { icon: Mic, title: 'Spreekbeurt over evangelisatie en getuigen' },
   { icon: Palette, title: 'QR-kaartjes ontworpen in jullie huisstijl' },
