@@ -1,11 +1,53 @@
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, PlayCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useAudienceOptional } from '@/contexts/AudienceContext';
 
 export const CTASection = () => {
   const { t } = useTranslation();
+  const audience = useAudienceOptional();
+  const isSeeker = audience?.mode === 'discover';
+
+  if (isSeeker) {
+    return (
+      <section className="py-24 bg-cream relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/20 rounded-full blur-3xl" />
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <ScrollReveal>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/20 border border-gold/30 mb-8">
+                <PlayCircle className="w-4 h-4 text-gold" />
+                <span className="text-anthracite text-sm font-medium">{t('Ontdek meer')}</span>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal delay={100}>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-anthracite mb-6">
+                {t('Nog één verhaal,')} <span className="text-gold">{t('en nog één')}</span>
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal delay={200}>
+              <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
+                {t('Echte mensen, echte ontmoetingen met God. Misschien herken je iets van jezelf in hun verhaal.')}
+              </p>
+            </ScrollReveal>
+            <ScrollReveal delay={300}>
+              <p className="text-xl md:text-2xl text-gold font-semibold mb-10">
+                {t('Laat je raken door wat God doet.')}
+              </p>
+            </ScrollReveal>
+            <ScrollReveal delay={400}>
+              <Button asChild variant="hero" size="xl" className="mb-8">
+                <Link to="/verhalen-over-jezus">{t('Bekijk meer verhalen')}</Link>
+              </Button>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="py-24 bg-cream relative overflow-hidden">
       {/* Background Glow */}
