@@ -34,7 +34,7 @@ export const ChurchSection = () => {
               <ScrollReveal>
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/20 mb-6">
                   <Church className="w-4 h-4 text-gold" />
-                  <span className="text-gold text-sm font-medium">{t('Voor kerken')}</span>
+                  <span className="text-gold text-sm font-medium">{t('Voor kerken en organisaties')}</span>
                 </div>
               </ScrollReveal>
 
