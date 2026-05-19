@@ -244,7 +244,7 @@ const Upload = () => {
                     Alles wat je nodig hebt, in <span className="text-gold">één app</span>
                   </h2>
                   <p className="text-lg text-muted-foreground leading-relaxed">
-                    Opnemen, uploaden en delen vanaf je telefoon. Geen techniek, geen gedoe. Je krijgt eenvoudige stappen die je helpen jouw verhaal helder en persoonlijk te vertellen.
+                    Opnemen, uploaden en delen vanaf je telefoon. Je krijgt eenvoudige stappen die je helpen jouw verhaal helder en persoonlijk te vertellen.
                   </p>
                   <ul className="space-y-3 pt-2">
                     {['Begeleide vragen om je verhaal vorm te geven', 'Direct opnemen vanuit de app', 'Eigen QR-code voor in het dagelijks leven'].map((item) => (
