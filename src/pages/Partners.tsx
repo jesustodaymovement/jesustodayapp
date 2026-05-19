@@ -128,7 +128,7 @@ const steps = [
   {
     number: '04',
     icon: Users,
-    title: 'De straat op',
+    title: 'Delen in het dagelijks leven',
     description: 'Jullie mensen delen de kaartjes in hun dagelijks leven, op werk, school, evenementen en in de buurt.',
   },
 ];
