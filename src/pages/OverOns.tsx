@@ -4,6 +4,7 @@ import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
 import { Button } from '@/components/ui/button';
 import { ScrollReveal } from '@/components/ScrollReveal';
+import { AnbiStamp } from '@/components/AnbiStamp';
 import { VideoSliderSection } from '@/components/sections/VideoSliderSection';
 import eventStand from '@/assets/team/event-stand.jpg';
 import teamQrShirts from '@/assets/team/team-qr-shirts.jpg';
@@ -374,6 +375,9 @@ const CornerstoneSection = () => (
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-anthracite mb-6">
               Stichting Cornerstone <span className="text-gold">Ministries</span>
             </h2>
+            <div className="flex justify-center mb-4">
+              <AnbiStamp size={96} rotate={-8} />
+            </div>
           </ScrollReveal>
           <ScrollReveal delay={100}>
             <p className="text-lg text-muted-foreground leading-relaxed">
