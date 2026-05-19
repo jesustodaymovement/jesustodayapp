@@ -117,12 +117,8 @@ const GuideSection = () => (
         <ScrollReveal delay={100}>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-anthracite mb-6">
             Een <span className="text-gold">ANBI-stichting</span> die Gods
-            Koninkrijk{' '}
-            <span className="inline-flex items-center gap-3 align-middle">
-              zichtbaar
-              <AnbiStamp size={64} rotate={-8} className="align-middle" />
-            </span>{' '}
-            maakt.
+            Koninkrijk zichtbaar maakt.
+            <AnbiStamp size={64} rotate={-8} className="ml-3 align-middle" />
           </h2>
         </ScrollReveal>
         <ScrollReveal delay={200}>
@@ -524,10 +520,8 @@ const AnbiSection = () => (
         <ScrollReveal delay={100}>
           <h2 className="text-3xl md:text-4xl font-bold text-warm-white mb-4">
             Transparant, betrouwbaar,{' '}
-            <span className="inline-flex items-center gap-3 align-middle">
-              <span className="text-gold">fiscaal aftrekbaar.</span>
-              <AnbiStamp size={64} rotate={-8} className="align-middle" />
-            </span>
+            <span className="text-gold">fiscaal aftrekbaar.</span>
+            <AnbiStamp size={64} rotate={-8} className="ml-3 align-middle" />
           </h2>
         </ScrollReveal>
         <ScrollReveal delay={200}>
