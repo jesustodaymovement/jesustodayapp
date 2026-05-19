@@ -373,10 +373,8 @@ const CornerstoneSection = () => (
               Onze stichting
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-anthracite mb-6">
-              <span className="inline-flex items-center gap-3 align-middle flex-wrap justify-center">
-                Stichting Cornerstone <span className="text-gold">Ministries</span>
-                <AnbiStamp size={64} rotate={-8} className="align-middle" />
-              </span>
+              Stichting Cornerstone <span className="text-gold">Ministries</span>
+              <AnbiStamp size={64} rotate={-8} className="ml-3 align-middle" />
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={100}>
