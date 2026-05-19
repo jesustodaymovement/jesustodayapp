@@ -7,7 +7,6 @@ import { ScrollReveal } from '@/components/ScrollReveal';
 import { VideoSliderSection } from '@/components/sections/VideoSliderSection';
 import eventStand from '@/assets/team/event-stand.jpg';
 import teamQrShirts from '@/assets/team/team-qr-shirts.jpg';
-import teamGroupYellow from '@/assets/team/team-group-yellow.jpg';
 import teamCrewSelfie from '@/assets/team/team-crew-selfie.jpg';
 import {
   Upload,
@@ -248,21 +247,6 @@ const InTheFieldSection = () => (
             </div>
           </ScrollReveal>
         </div>
-        <ScrollReveal delay={300}>
-          <div className="mt-6 relative overflow-hidden rounded-2xl shadow-card aspect-[21/9] bg-anthracite">
-            <img
-              src={teamGroupYellow}
-              alt="JesusToday team en vrijwilligers in gele shirts op een event"
-              loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            <div className="absolute inset-x-0 bottom-0 p-5 md:p-6 bg-gradient-to-t from-anthracite/80 to-transparent">
-              <p className="text-warm-white text-sm md:text-base font-medium">
-                Eén team, één missie, met liefde Jezus zichtbaar maken.
-              </p>
-            </div>
-          </div>
-        </ScrollReveal>
       </div>
     </div>
   </section>
