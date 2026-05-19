@@ -92,7 +92,7 @@ const benefits = [
   {
     icon: Users,
     title: 'Activeer jullie mensen',
-    description: 'Leden, vrijwilligers of deelnemers gaan zelf op pad met kaartjes om hun verhaal en geloof te delen met anderen.',
+    description: 'Jullie gaan zelf op pad met kaartjes om hun verhaal en geloof te delen met anderen.',
   },
   {
     icon: Palette,
