@@ -3,6 +3,7 @@ import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
 import { Button } from '@/components/ui/button';
 import { ScrollReveal } from '@/components/ScrollReveal';
+import { AnbiStamp } from '@/components/AnbiStamp';
 import {
   Heart,
   Video,
@@ -118,6 +119,11 @@ const GuideSection = () => (
             Een <span className="text-gold">ANBI-stichting</span> die Gods
             Koninkrijk zichtbaar maakt.
           </h2>
+        </ScrollReveal>
+        <ScrollReveal delay={150}>
+          <div className="mb-6">
+            <AnbiStamp size={88} rotate={-6} />
+          </div>
         </ScrollReveal>
         <ScrollReveal delay={200}>
           <p className="text-lg text-muted-foreground leading-relaxed mb-8">
@@ -520,6 +526,11 @@ const AnbiSection = () => (
             Transparant, betrouwbaar,{' '}
             <span className="text-gold">fiscaal aftrekbaar.</span>
           </h2>
+        </ScrollReveal>
+        <ScrollReveal delay={150}>
+          <div className="mb-6">
+            <AnbiStamp size={96} rotate={-8} />
+          </div>
         </ScrollReveal>
         <ScrollReveal delay={200}>
           <p className="text-warm-white/80 leading-relaxed mb-10 max-w-2xl">
