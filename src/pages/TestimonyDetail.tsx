@@ -47,6 +47,7 @@ interface ApiResponse {
 
 interface CommentDraft {
   name: string;
+  email: string;
   message: string;
 }
 
@@ -136,6 +137,7 @@ const TestimonyDetail = () => {
   const [error, setError] = useState<string | null>(null);
   const [commentDraft, setCommentDraft] = useState<CommentDraft>({
     name: '',
+    email: '',
     message: '',
   });
   const [comments, setComments] = useState<CommentItem[]>(DEFAULT_COMMENTS);
@@ -226,9 +228,10 @@ const TestimonyDetail = () => {
   const handleCommentSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const name = commentDraft.name.trim();
+    const email = commentDraft.email.trim();
     const message = commentDraft.message.trim();
 
-    if (!name || !message) return;
+    if (!name || !email || !message) return;
 
     setComments((current) => [
       ...current,
@@ -239,7 +242,7 @@ const TestimonyDetail = () => {
         createdAtLabel: 'Net geplaatst',
       },
     ]);
-    setCommentDraft({ name: '', message: '' });
+    setCommentDraft({ name: '', email: '', message: '' });
   };
 
   return (
@@ -483,9 +486,9 @@ const TestimonyDetail = () => {
                           <MessageCircle className="w-5 h-5 text-gold" />
                         </div>
                         <div>
-                          <h2 className="text-2xl font-bold text-anthracite">Reacties op deze getuigenis</h2>
+                           <h2 className="text-2xl font-bold text-anthracite">Reacties op deze getuigenis</h2>
                           <p className="text-muted-foreground">
-                            Laat weten wat dit verhaal bij je oproept.
+                            Laat de persoon uit de video weten wat dit verhaal bij je oproept.
                           </p>
                         </div>
                       </div>
@@ -498,6 +501,15 @@ const TestimonyDetail = () => {
                           }
                           placeholder="Jouw naam"
                           maxLength={80}
+                        />
+                        <Input
+                          type="email"
+                          value={commentDraft.email}
+                          onChange={(event) =>
+                            setCommentDraft((current) => ({ ...current, email: event.target.value }))
+                          }
+                          placeholder="Jouw e-mailadres"
+                          maxLength={120}
                         />
                         <Textarea
                           value={commentDraft.message}
