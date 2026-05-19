@@ -390,22 +390,16 @@ const TestimonyDetail = () => {
                         <div className="grid gap-3 sm:grid-cols-3 items-stretch">
                           <a href="#chat" onClick={openChat} className="h-full">
                             <Button variant="hero" className="w-full h-full justify-between gap-2 px-4 text-sm whitespace-normal text-left min-h-11 py-3 leading-tight">
-                              <span className="flex-1">Doorpraten</span>
+                              <span className="flex-1">Doorpraten over het geloof</span>
                               <ChevronRight className="w-4 h-4 shrink-0" />
                             </Button>
                           </a>
                           <a href={questionLink} className="h-full">
                             <Button variant="outline" className="w-full h-full justify-between gap-2 px-4 text-sm whitespace-normal text-left min-h-11 py-3 leading-tight">
-                              <span className="flex-1">Stel een vraag</span>
+                              <span className="flex-1">Stel een vraag aan JesusToday</span>
                               <ChevronRight className="w-4 h-4 shrink-0" />
                             </Button>
                           </a>
-                          <Link to={contactLink} className="h-full">
-                            <Button variant="outline" className="w-full h-full justify-between gap-2 px-4 text-sm whitespace-normal text-left min-h-11 py-3 leading-tight">
-                              <span className="flex-1">Neem contact op met {firstName}</span>
-                              <ChevronRight className="w-4 h-4 shrink-0" />
-                            </Button>
-                          </Link>
                         </div>
                       </div>
                     </div>
@@ -548,17 +542,13 @@ const TestimonyDetail = () => {
                         </p>
                         <div className="space-y-3">
                           <a href="#chat" onClick={openChat} className="block rounded-xl border border-border p-5 hover:border-gold transition-colors">
-                            <p className="font-semibold text-anthracite mb-1">Doorpraten over deze getuigenis</p>
+                            <p className="font-semibold text-anthracite mb-1">Doorpraten over het geloof</p>
                             <p className="text-sm text-muted-foreground">Open de chat 'Vraag over God?' en stel je vraag direct.</p>
                           </a>
                           <a href={questionLink} className="block rounded-xl border border-border p-5 hover:border-gold transition-colors">
-                            <p className="font-semibold text-anthracite mb-1">Stel een persoonlijke vraag</p>
+                            <p className="font-semibold text-anthracite mb-1">Stel een vraag aan JesusToday</p>
                             <p className="text-sm text-muted-foreground">Voor geloofsvragen, twijfel of een volgende stap.</p>
                           </a>
-                          <Link to={contactLink} className="block rounded-xl border border-border p-5 hover:border-gold transition-colors">
-                            <p className="font-semibold text-anthracite mb-1">Neem contact op met {firstName}</p>
-                            <p className="text-sm text-muted-foreground">Open het contactformulier, de naam van {firstName} staat alvast klaar.</p>
-                          </Link>
                         </div>
                       </div>
 
