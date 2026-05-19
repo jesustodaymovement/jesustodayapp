@@ -218,10 +218,6 @@ const TestimonyDetail = () => {
       )
     : '#';
 
-  const contactLink = testimony
-    ? `/contact?subject=${encodeURIComponent(`Neem contact op met ${firstName}`)}&message=${encodeURIComponent(`Hoi JesusToday,\n\nIk zou graag in contact komen met ${firstName} naar aanleiding van de getuigenisvideo (video ${testimony.vimeoUrl}).\n\n`)}&vimeoId=${encodeURIComponent(testimony.vimeoUrl)}&testimonyName=${encodeURIComponent(fullName)}`
-    : '#';
-
   const openChat = (event: React.MouseEvent) => {
     event.preventDefault();
     window.dispatchEvent(new CustomEvent('jt:open-chat'));
@@ -387,7 +383,7 @@ const TestimonyDetail = () => {
                           </span>
                         </div>
 
-                        <div className="grid gap-3 sm:grid-cols-3 items-stretch">
+                        <div className="grid gap-3 sm:grid-cols-2 items-stretch">
                           <a href="#chat" onClick={openChat} className="h-full">
                             <Button variant="hero" className="w-full h-full justify-between gap-2 px-4 text-sm whitespace-normal text-left min-h-11 py-3 leading-tight">
                               <span className="flex-1">Doorpraten over het geloof</span>
