@@ -1,44 +1,56 @@
-# Volledige website vertalen (NL/EN)
+## Doel
 
-De taalschakelaar in de header wisselt nu alleen een localStorage-waarde. Om de hele site echt te vertalen wordt er een i18n-systeem opgezet en wordt alle zichtbare tekst gemigreerd naar vertaal-keys.
+Een aparte landingspagina `/kerken` die alle informatie rondom JesusToday voor kerken samenbrengt op één plek, los van de bredere Partners-pagina (die ook organisaties/events bedient).
 
-## Aanpak
+## Wat komt op de pagina
 
-1. **i18n infrastructuur**
-   - `react-i18next` + `i18next` toevoegen.
-   - `src/i18n/index.ts` met config (NL default, EN fallback, taal uit localStorage `jt-lang`).
-   - Twee vertaalbestanden: `src/i18n/locales/nl.json` en `src/i18n/locales/en.json`.
-   - Initialiseren in `src/main.tsx`.
-   - `<html lang>` dynamisch updaten bij taalwissel.
+Samengesteld uit bestaande content (Partners-pagina, ChurchSection, missie/over-ons, getuigenissen):
 
-2. **Taalschakelaar koppelen**
-   - `Header.tsx` laat `i18n.changeLanguage()` aanroepen i.p.v. losse state.
-   - Actieve taal komt uit `useTranslation().i18n.language`.
+1. **Hero, speciaal voor kerken**
+   - Badge "Voor kerken"
+   - H1: "JesusToday in jouw kerk"
+   - Subtekst: kerken activeren in evangelisatie, getuigen weer een natuurlijke plek geven
+   - CTA's: "Plan een kennismaking" (mailto) + "Upload jouw getuigenis"
 
-3. **Tekst migreren naar `t()`**  
-   Alle zichtbare strings in:
-   - Header, Footer, AlertBar, CookieConsent, ChatWidget
-   - Home secties: HeroAudience, ProblemSection, GuideSection, PlanSection, SuccessSection, VideoSliderSection, ChurchSection, PartnersMarqueeSection, CTASection, DiscoverProblemSection, DiscoverOutcomesSection, NextStepsSection, AskQuestionSection, InstagramReelsSection
-   - Pagina's: Base, HomeTest, Testimonies, TestimonyDetail, Doneren, Privacy, Disclaimer, OverOns, Media, Contact, Upload, Partners, Opwekking, NotFound
-   - Formulieren: ContactForm, NewsletterForm, PartnerForm
-   - `Helmet` titels/descripties per pagina.
+2. **Waarom JesusToday voor kerken**
+   - 4 kernpunten: eigenaarschap bij de kerk, leden activeren, QR-kaartjes in eigen huisstijl, ondersteuning waar nodig
+   - Korte intro over getuigen als bijbels principe
 
-4. **Wat NIET vertaald wordt**
-   - Eigennamen: "JesusToday", "Shoop Shoop", partner-namen.
-   - Dynamische data uit de database (getuigenis-titels, sprekersnamen, etc.) blijven in de taal waarin ze zijn ingevoerd.
-   - Admin-paginas (`AdminLogin`, `AdminSubmissions`) blijven NL (interne tool).
+3. **Wat we voor jullie kerk doen**
+   - 1-op-1 gesprek met bestuur/voorganger
+   - Opnamedagen in de kerk
+   - QR-kaartjes in jullie huisstijl met eigen QR-codes
+   - Spreekbeurt over evangelisatie (dienst, jongerenavond, leiderschap)
+   - Vast aanspreekpunt
 
-5. **SEO**
-   - `index.html` blijft NL als basis (canonical / OG).
-   - Per pagina geen aparte `/en/` route, alleen client-side switch (kan later uitgebreid worden).
+4. **Zo werkt het, in 4 stappen**
+   - Kennismaking bestuur → opnemen verhalen → QR-kaartjes → de straat op
 
-## Technische details
+5. **Aanbevolen door** (endorsements van Martin Koornstra, Jan Pool, Ben Verboom)
 
-- Keys volgens namespace per sectie, bv. `header.nav.stories`, `hero.share.headline`, `footer.madeBy`.
-- Engelse merk- en toonregels: behoud "JesusToday" als één woord, gele accent #fad150 ongewijzigd, positieve toon.
-- Em-dashes worden in beide talen vermeden (komma's gebruiken).
-- Schatting: ~30 bestanden aangepast, ~300 vertaal-keys.
+6. **Kerken die al meedoen** (marquee/grid met alleen de kerk-partners: Europoort, Motion Church, Stadskerk, R5 Kerk, etc., plus relevante organisaties als Opwekking en The Send)
 
-## Wat je krijgt
+7. **Veelgestelde vragen voor kerken**
+   - Moeten we zelf opnemen?
+   - Wat als we geen video-ervaring hebben?
+   - Wat kost het?
+   - Mogen we de verhalen ook zelf gebruiken in diensten?
 
-Werkende NL/EN switch in de header die direct alle UI-tekst op de hele site omschakelt en de keuze onthoudt.
+8. **CTA-blok onderaan**
+   - "Plan een vrijblijvende kennismaking" met mailto naar info@jesustoday.nl + link naar `/upload`
+
+## Technische opzet
+
+- Nieuwe pagina: `src/pages/Kerken.tsx` (gebruikt `Header`, `Footer`, `ScrollReveal`, `Helmet`, dezelfde design tokens en `#fad150`/gold accent)
+- Route toevoegen in `src/App.tsx`: `<Route path="/kerken" element={<Kerken />} />` (lazy import)
+- Bestaande assets hergebruiken (`@/assets/partners/*`, `boothSelfie`, endorsement-foto's), geen nieuwe afbeeldingen genereren
+- Sitemap: `/kerken` toevoegen in `scripts/generate-sitemap.ts` en `public/sitemap.xml`
+- `public/llms.txt`: kerken-pagina toevoegen onder Pages
+- i18n: NL tekst direct in component via `t()` keys; EN-vertalingen toevoegen in `src/i18n/locales/en.json`
+- SEO: unieke `<title>`, meta description en canonical voor `/kerken`
+- Geen wijzigingen aan Partners-pagina; vanuit de Partners-pagina kort linken naar `/kerken` voor kerk-specifieke info (optioneel)
+
+## Buiten scope
+
+- Geen backend/formulierwijzigingen, geen nieuwe afbeeldingen, geen redesign van bestaande secties
+- Geen wijzigingen aan de Admin-omgeving
