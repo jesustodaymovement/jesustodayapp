@@ -27,6 +27,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"));
 const AdminSubmissions = lazy(() => import("./pages/admin/AdminSubmissions"));
 const Opwekking = lazy(() => import("./pages/Opwekking"));
+const Nieuwsbrief = lazy(() => import("./pages/Nieuwsbrief"));
 const ChatWidget = lazy(() =>
   import("./components/ChatWidget").then((m) => ({ default: m.ChatWidget }))
 );
@@ -76,7 +77,6 @@ const legacyRedirects: { from: string; to: string }[] = [
   { from: "/testen", to: "/" },
   { from: "/languages", to: "/" },
   { from: "/aanmelden", to: "/" },
-  { from: "/aanmelden-nieuwsbrief", to: "/" },
   { from: "/opwekking", to: "/aanmeldenopwekking2026" },
   { from: "/15c42-web-agency-gb-home", to: "/" },
   { from: "/15c42-web-agency-gb-portfolio", to: "/" },
@@ -128,6 +128,7 @@ const App = () => (
             <Route path="/partners" element={<Partners />} />
             <Route path="/kerken" element={<Kerken />} />
             <Route path="/aanmeldenopwekking2026" element={<Opwekking />} />
+            <Route path="/aanmelden-nieuwsbrief" element={<Nieuwsbrief />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin/inzendingen" element={<AdminSubmissions />} />
             <Route path="/admin" element={<Navigate to="/admin/inzendingen" replace />} />
