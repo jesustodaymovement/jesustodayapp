@@ -68,13 +68,17 @@ export const OpwekkingPopup = () => {
               id="opwekking-popup-title"
               className="text-2xl md:text-3xl font-bold text-anthracite leading-tight mb-3"
             >
-              Ben jij op <span className="text-gold">Opwekking</span> dit weekend?
+              Kom jij naar ons seminar over evangelisatie tijdens{' '}
+              <span className="text-gold">Opwekking?</span>
             </h2>
             <p className="text-anthracite/80 leading-relaxed mb-5">
               JesusToday loopt daar rond om jouw getuigenis op te nemen,
               en we spreken tijdens een seminar over evangelisatie.
             </p>
 
+            <p className="text-gold font-bold uppercase tracking-wide text-sm mb-2">
+              Seminar evangelisatie
+            </p>
             <div className="rounded-2xl bg-white border border-anthracite/10 p-4 mb-6 space-y-2">
               <div className="flex items-center gap-3 text-anthracite">
                 <Calendar className="w-5 h-5 text-gold shrink-0" />
@@ -91,7 +95,7 @@ export const OpwekkingPopup = () => {
               onClick={close}
               className="group w-full inline-flex items-center justify-center gap-2 h-14 px-6 rounded-xl bg-[#fad150] text-anthracite font-bold text-lg shadow-gold hover:brightness-95 hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
-              Meld je aan
+              Laat je getuigenis opnemen
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
 
