@@ -490,6 +490,42 @@ const FinalCta = () => (
   </section>
 );
 
+const NewsletterInvite = () => (
+  <section className="py-20 md:py-24 bg-cream">
+    <div className="container mx-auto px-6">
+      <div className="max-w-4xl mx-auto">
+        <ScrollReveal>
+          <div className="relative overflow-hidden rounded-3xl bg-white border border-anthracite/10 shadow-sm p-8 md:p-12">
+            <div className="absolute -top-16 -right-16 w-64 h-64 bg-[#fad150]/20 rounded-full blur-3xl" aria-hidden />
+            <div className="relative grid md:grid-cols-[auto,1fr,auto] gap-6 md:gap-8 items-center">
+              <div className="w-16 h-16 rounded-2xl bg-[#fad150]/20 flex items-center justify-center mx-auto md:mx-0">
+                <Mail className="w-8 h-8 text-gold" />
+              </div>
+              <div className="text-center md:text-left">
+                <h2 className="text-2xl md:text-3xl font-bold text-anthracite mb-2">
+                  Blijf verbonden met <span className="text-gold">JesusToday</span>
+                </h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  Meld je aan voor onze nieuwsbrief en ontvang nieuwe getuigenissen,
+                  updates en bemoediging in je inbox.
+                </p>
+              </div>
+              <div className="flex justify-center md:justify-end">
+                <Button asChild variant="hero" size="lg">
+                  <Link to="/aanmelden-nieuwsbrief">
+                    <Mail className="w-5 h-5" />
+                    Aanmelden nieuwsbrief
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+      </div>
+    </div>
+  </section>
+);
+
 const OverOns = () => {
   return (
     <>
@@ -522,6 +558,7 @@ const OverOns = () => {
         <ScaleSection />
         <VideoSliderSection />
         <CornerstoneSection />
+        <NewsletterInvite />
         <FinalCta />
       </main>
       <Footer />
