@@ -7,6 +7,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { CookieConsent } from "./components/CookieConsent";
 import { AlertBar } from "./components/AlertBar";
 import { ScrollToTop } from "./components/ScrollToTop";
+import { OpwekkingPopup } from "./components/OpwekkingPopup";
 
 import { useEffect, useState, lazy, Suspense } from "react";
 
@@ -141,6 +142,7 @@ const App = () => (
           </Routes>
           </Suspense>
           <CookieConsent />
+          <OpwekkingPopup />
           <ChatWidgetDeferred />
         </BrowserRouter>
       </TooltipProvider>
