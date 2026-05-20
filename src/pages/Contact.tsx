@@ -3,8 +3,34 @@ import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
 import { AskQuestionSection } from '@/components/sections/AskQuestionSection';
 import { ScrollReveal } from '@/components/ScrollReveal';
-import { ContactForm } from '@/components/ContactForm';
 import { Mail, MessageCircle } from 'lucide-react';
+import { useEffect, useRef } from 'react';
+
+const FilloutEmbed = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!containerRef.current) return;
+    // Check if script already injected
+    const existing = document.getElementById('fillout-embed-script') as HTMLScriptElement | null;
+    if (!existing) {
+      const script = document.createElement('script');
+      script.id = 'fillout-embed-script';
+      script.src = 'https://server.fillout.com/embed/v1/';
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, []);
+  return (
+    <div
+      ref={containerRef}
+      style={{ width: '100%', height: '500px' }}
+      data-fillout-id="i25Qhpu83Gus"
+      data-fillout-embed-type="standard"
+      data-fillout-inherit-parameters
+      data-fillout-dynamic-resize
+    />
+  );
+};
 
 const Contact = () => {
   return (
@@ -64,7 +90,7 @@ const Contact = () => {
                 <h2 className="text-2xl md:text-3xl font-bold text-anthracite text-center mb-8">Stuur ons een bericht</h2>
               </ScrollReveal>
               <ScrollReveal delay={100}>
-                <ContactForm />
+                <FilloutEmbed />
               </ScrollReveal>
             </div>
           </div>
