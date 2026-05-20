@@ -20,6 +20,7 @@ import {
   Heart,
   Sparkles,
   BookOpen,
+  Mail,
 } from 'lucide-react';
 
 const Hero = () => (
