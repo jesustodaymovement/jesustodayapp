@@ -3,8 +3,8 @@ import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
 import { AskQuestionSection } from '@/components/sections/AskQuestionSection';
 import { ScrollReveal } from '@/components/ScrollReveal';
-import { ContactForm } from '@/components/ContactForm';
 import { Mail, MessageCircle } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 
 const Contact = () => {
   return (
