@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { useState } from "react";
 import { z } from "zod";
-import { Megaphone, Mail, Phone, Globe, CheckCircle2 } from "lucide-react";
+import { Megaphone, Mail, Globe, CheckCircle2 } from "lucide-react";
 import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
 import { Button } from "@/components/ui/button";
@@ -174,7 +174,6 @@ const Opwekking = () => {
                   <p>Hartelijke groet en zegen namens het JesusToday Team</p>
                   <p className="mt-2 flex flex-col gap-1 items-center">
                     <a className="hover:underline" href="mailto:info@jesustoday.nl">info@jesustoday.nl</a>
-                    <a className="hover:underline" href="tel:+31683559808">06,83559808</a>
                     <a className="hover:underline" href="https://www.jesustoday.nl" target="_blank" rel="noopener">www.jesustoday.nl</a>
                   </p>
                 </div>
@@ -302,12 +301,6 @@ const Opwekking = () => {
                   <Mail className="w-4 h-4" aria-hidden="true" />
                   <a className="hover:underline" href="mailto:info@jesustoday.nl">
                     info@jesustoday.nl
-                  </a>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Phone className="w-4 h-4" aria-hidden="true" />
-                  <a className="hover:underline" href="tel:+31683559808">
-                    06,83559808
                   </a>
                 </li>
                 <li className="flex items-center gap-2">
