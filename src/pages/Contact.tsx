@@ -6,6 +6,32 @@ import { ScrollReveal } from '@/components/ScrollReveal';
 import { Mail, MessageCircle } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 
+const FilloutEmbed = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!containerRef.current) return;
+    // Check if script already injected
+    const existing = document.getElementById('fillout-embed-script') as HTMLScriptElement | null;
+    if (!existing) {
+      const script = document.createElement('script');
+      script.id = 'fillout-embed-script';
+      script.src = 'https://server.fillout.com/embed/v1/';
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, []);
+  return (
+    <div
+      ref={containerRef}
+      style={{ width: '100%', height: '500px' }}
+      data-fillout-id="i25Qhpu83Gus"
+      data-fillout-embed-type="standard"
+      data-fillout-inherit-parameters
+      data-fillout-dynamic-resize
+    />
+  );
+};
+
 const Contact = () => {
   return (
     <>
