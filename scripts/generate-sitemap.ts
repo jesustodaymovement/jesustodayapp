@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
-const BASE_URL = "https://storybrand-share-grace.lovable.app";
+const BASE_URL = "https://jesustoday.app";
 
 interface SitemapEntry {
   path: string;
