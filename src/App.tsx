@@ -78,7 +78,7 @@ const legacyRedirects: { from: string; to: string }[] = [
   { from: "/checklist", to: "/" },
   { from: "/testen", to: "/" },
   { from: "/languages", to: "/" },
-  { from: "/aanmelden", to: "/" },
+  { from: "/aanmelden", to: "/aanmeldenopwekking2026" },
   { from: "/opwekking", to: "/aanmeldenopwekking2026" },
   { from: "/15c42-web-agency-gb-home", to: "/" },
   { from: "/15c42-web-agency-gb-portfolio", to: "/" },
