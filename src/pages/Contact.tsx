@@ -64,7 +64,7 @@ const Contact = () => {
                 <h2 className="text-2xl md:text-3xl font-bold text-anthracite text-center mb-8">Stuur ons een bericht</h2>
               </ScrollReveal>
               <ScrollReveal delay={100}>
-                <ContactForm />
+                <FilloutEmbed />
               </ScrollReveal>
             </div>
           </div>
