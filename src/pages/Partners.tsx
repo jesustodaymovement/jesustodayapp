@@ -4,7 +4,7 @@ import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { Button } from '@/components/ui/button';
-import { PartnerForm } from '@/components/PartnerForm';
+import { useEffect } from 'react';
 import {
   Handshake,
   Users,
@@ -158,6 +158,14 @@ const faqs = [
 ];
 
 const Partners = () => {
+  useEffect(() => {
+    if (document.getElementById('fillout-embed-script')) return;
+    const script = document.createElement('script');
+    script.id = 'fillout-embed-script';
+    script.src = 'https://server.fillout.com/embed/v1/';
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
   return (
     <>
       <Helmet>
@@ -518,7 +526,13 @@ const Partners = () => {
               </ScrollReveal>
               <ScrollReveal delay={200}>
                 <div className="text-left bg-background rounded-2xl p-2">
-                  <PartnerForm />
+                  <div
+                    style={{ width: '100%', height: '500px' }}
+                    data-fillout-id="7DD1tiutDUus"
+                    data-fillout-embed-type="standard"
+                    data-fillout-inherit-parameters
+                    data-fillout-dynamic-resize
+                  />
                 </div>
               </ScrollReveal>
             </div>
