@@ -23,7 +23,6 @@ const Media = lazy(() => import("./pages/Media"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Upload = lazy(() => import("./pages/Upload"));
 const Partners = lazy(() => import("./pages/Partners"));
-const Kerken = lazy(() => import("./pages/Kerken"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"));
 const AdminSubmissions = lazy(() => import("./pages/admin/AdminSubmissions"));
@@ -83,6 +82,7 @@ const legacyRedirects: { from: string; to: string }[] = [
   { from: "/15c42-web-agency-gb-home", to: "/" },
   { from: "/15c42-web-agency-gb-portfolio", to: "/" },
   { from: "/15c42-web-agency-gb-portfolio-single", to: "/" },
+  { from: "/kerken", to: "/partners" },
 ];
 
 const ChatWidgetDeferred = () => {
@@ -128,7 +128,6 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/upload" element={<Upload />} />
             <Route path="/partners" element={<Partners />} />
-            <Route path="/kerken" element={<Kerken />} />
             <Route path="/aanmeldenopwekking2026" element={<Opwekking />} />
             <Route path="/aanmelden-nieuwsbrief" element={<Nieuwsbrief />} />
             <Route path="/opwekkinggetuigenissenform" element={<OpwekkingGetuigenissenForm />} />
