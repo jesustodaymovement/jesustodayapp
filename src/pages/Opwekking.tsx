@@ -13,10 +13,12 @@ const drogredenen = [
 
 const Opwekking = () => {
   useEffect(() => {
-    const existing = document.querySelector(
+    // Re-inject the Fillout script on each mount so the embed gets initialized
+    // even after client-side navigation (the script only scans on load).
+    const existing = document.querySelectorAll(
       'script[src="https://server.fillout.com/embed/v1/"]'
     );
-    if (existing) return;
+    existing.forEach((s) => s.remove());
     const script = document.createElement("script");
     script.src = "https://server.fillout.com/embed/v1/";
     script.async = true;
