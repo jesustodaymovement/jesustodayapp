@@ -485,51 +485,13 @@ const TestimonyDetail = () => {
                         </div>
                       </div>
 
-                      <form onSubmit={handleCommentSubmit} className="grid gap-4 mb-8">
-                        <Input
-                          value={commentDraft.name}
-                          onChange={(event) =>
-                            setCommentDraft((current) => ({ ...current, name: event.target.value }))
-                          }
-                          placeholder="Jouw naam"
-                          maxLength={80}
-                        />
-                        <Input
-                          type="email"
-                          value={commentDraft.email}
-                          onChange={(event) =>
-                            setCommentDraft((current) => ({ ...current, email: event.target.value }))
-                          }
-                          placeholder="Jouw e-mailadres"
-                          maxLength={120}
-                        />
-                        <Textarea
-                          value={commentDraft.message}
-                          onChange={(event) =>
-                            setCommentDraft((current) => ({ ...current, message: event.target.value }))
-                          }
-                          placeholder="Schrijf hier je reactie..."
-                          maxLength={500}
-                          className="min-h-[140px]"
-                        />
-                        <div>
-                          <Button type="submit" variant="hero">
-                            Plaats reactie
-                          </Button>
-                        </div>
-                      </form>
-
-                      <div className="space-y-4">
-                        {comments.map((comment) => (
-                          <div key={comment.id} className="rounded-xl border border-border bg-cream p-5">
-                            <div className="flex items-center justify-between gap-3 mb-2">
-                              <p className="font-semibold text-anthracite">{comment.name}</p>
-                              <span className="text-sm text-muted-foreground">{comment.createdAtLabel}</span>
-                            </div>
-                            <p className="text-anthracite/80 leading-relaxed">{comment.message}</p>
-                          </div>
-                        ))}
-                      </div>
+                      <div
+                        style={{ width: '100%', minHeight: 500 }}
+                        data-fillout-id="nRKLonnPqBus"
+                        data-fillout-embed-type="standard"
+                        data-fillout-inherit-parameters
+                        data-fillout-dynamic-resize
+                      />
                     </div>
                   </ScrollReveal>
 
@@ -576,16 +538,6 @@ const TestimonyDetail = () => {
                       </div>
                     </div>
                   </ScrollReveal>
-                </section>
-
-                <section className="bg-warm-white rounded-2xl shadow-card p-6 md:p-8">
-                  <div
-                    style={{ width: '100%', minHeight: 500 }}
-                    data-fillout-id="nRKLonnPqBus"
-                    data-fillout-embed-type="standard"
-                    data-fillout-inherit-parameters
-                    data-fillout-dynamic-resize
-                  />
                 </section>
 
                 <section className="bg-warm-white rounded-2xl shadow-card p-8 md:p-10">
