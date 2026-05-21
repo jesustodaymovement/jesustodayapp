@@ -142,6 +142,17 @@ const TestimonyDetail = () => {
   const [comments, setComments] = useState<CommentItem[]>(DEFAULT_COMMENTS);
 
   useEffect(() => {
+    const existing = document.querySelector(
+      'script[src="https://server.fillout.com/embed/v1/"]'
+    );
+    if (existing) return;
+    const script = document.createElement('script');
+    script.src = 'https://server.fillout.com/embed/v1/';
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+
+  useEffect(() => {
     if (!vimeoId) return;
     let cancelled = false;
 
@@ -564,6 +575,16 @@ const TestimonyDetail = () => {
                       </div>
                     </div>
                   </ScrollReveal>
+                </section>
+
+                <section className="bg-warm-white rounded-2xl shadow-card p-6 md:p-8">
+                  <div
+                    style={{ width: '100%', minHeight: 500 }}
+                    data-fillout-id="nRKLonnPqBus"
+                    data-fillout-embed-type="standard"
+                    data-fillout-inherit-parameters
+                    data-fillout-dynamic-resize
+                  />
                 </section>
 
                 <section className="bg-warm-white rounded-2xl shadow-card p-8 md:p-10">
