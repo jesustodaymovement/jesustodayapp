@@ -115,7 +115,7 @@ export const Footer = () => {
           <div className="border-t border-warm-white/10 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-warm-white/70 text-xs">
-                {t('© {{year}} JesusToday. Alle rechten voorbehouden.', { year: currentYear })}
+                © {currentYear} {t('JesusToday. Alle rechten voorbehouden.')}
               </p>
               <nav aria-label={t('Juridisch')} className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-warm-white/70">
                 <a href="/privacy" className="hover:text-gold transition-colors">{t('Privacybeleid')}</a>
