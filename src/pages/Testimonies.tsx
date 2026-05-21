@@ -188,6 +188,17 @@ const Testimonies = () => {
     fetchGlobalTotal();
   }, []);
 
+  useEffect(() => {
+    const existing = document.querySelector(
+      'script[src="https://server.fillout.com/embed/v1/"]'
+    );
+    if (existing) return;
+    const script = document.createElement('script');
+    script.src = 'https://server.fillout.com/embed/v1/';
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+
   const churches = useMemo(() => {
     const map = new Map<string, string>();
     items.forEach((i) => {
