@@ -1,6 +1,6 @@
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, PlayCircle, Users, MapPin } from 'lucide-react';
+import { ArrowRight, PlayCircle, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const steps = [
@@ -18,14 +18,6 @@ const steps = [
     description: 'Stel al je vragen in een veilige groep. Gratis, vrijblijvend en open.',
     cta: 'Vind een cursus bij jou in de buurt',
     href: 'https://www.alpha-cursus.nl',
-    external: true,
-  },
-  {
-    icon: MapPin,
-    title: 'Vind een kerk in de buurt',
-    description: 'Kom in contact met andere gelovige mensen die hun geloof in het dagelijks leven beleven.',
-    cta: 'Zoek een kerk',
-    href: 'https://www.christconnectapp.com/',
     external: true,
   },
 ];
@@ -48,7 +40,7 @@ export const NextStepsSection = () => {
             </p>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {steps.map((step, index) => (
               <ScrollReveal key={step.title} delay={150 + index * 100}>
                 <div className="h-full flex flex-col p-8 rounded-2xl bg-warm-white/5 border border-warm-white/10 hover:border-gold/40 hover:bg-warm-white/10 transition-all duration-300 group">

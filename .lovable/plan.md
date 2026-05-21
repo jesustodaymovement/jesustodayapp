@@ -1,56 +1,21 @@
 ## Doel
+Alle verwijzingen naar "Vind een kerk in de buurt" via Christ Connect verwijderen uit de seeker journey, zodat de seeker journey geen externe kerkzoeker meer aanbiedt.
 
-Een aparte landingspagina `/kerken` die alle informatie rondom JesusToday voor kerken samenbrengt op één plek, los van de bredere Partners-pagina (die ook organisaties/events bedient).
+## Wijzigingen
 
-## Wat komt op de pagina
+1. **`src/components/sections/NextStepsSection.tsx`** (gebruikt op de seeker-variant van de homepage)
+   - Verwijder het derde item uit `steps` (titel "Vind een kerk in de buurt", CTA "Zoek een kerk", href `https://www.christconnectapp.com/`).
+   - Grid van `md:grid-cols-3` aanpassen naar `md:grid-cols-2` zodat de twee resterende kaarten ("Bekijk meer verhalen" en "Volg een beginnerscursus") netjes naast elkaar staan, gecentreerd met `max-w-4xl mx-auto` op het grid.
 
-Samengesteld uit bestaande content (Partners-pagina, ChurchSection, missie/over-ons, getuigenissen):
+2. **`src/pages/TestimonyDetail.tsx`** (zijbalk op elke verhaal-detailpagina, onderdeel van de seeker journey)
+   - Verwijder de `<a>` met `href="https://www.christconnectapp.com/"` (regels ~441-458), inclusief het bijbehorende icoon en de tekst "Vind een kerk in de buurt".
+   - Pas de intro aan ("drie laagdrempelige manieren" → "twee laagdrempelige manieren") zodat het aantal klopt met de overgebleven kaarten ("Leer meer over het geloof" + "Stel je vraag aan ons").
+   - Verwijder de import van `Search` uit `lucide-react` als die nergens anders in het bestand wordt gebruikt.
 
-1. **Hero, speciaal voor kerken**
-   - Badge "Voor kerken"
-   - H1: "JesusToday in jouw kerk"
-   - Subtekst: kerken activeren in evangelisatie, getuigen weer een natuurlijke plek geven
-   - CTA's: "Plan een kennismaking" (mailto) + "Upload jouw getuigenis"
-
-2. **Waarom JesusToday voor kerken**
-   - 4 kernpunten: eigenaarschap bij de kerk, leden activeren, QR-kaartjes in eigen huisstijl, ondersteuning waar nodig
-   - Korte intro over getuigen als bijbels principe
-
-3. **Wat we voor jullie kerk doen**
-   - 1-op-1 gesprek met bestuur/voorganger
-   - Opnamedagen in de kerk
-   - QR-kaartjes in jullie huisstijl met eigen QR-codes
-   - Spreekbeurt over evangelisatie (dienst, jongerenavond, leiderschap)
-   - Vast aanspreekpunt
-
-4. **Zo werkt het, in 4 stappen**
-   - Kennismaking bestuur → opnemen verhalen → QR-kaartjes → de straat op
-
-5. **Aanbevolen door** (endorsements van Martin Koornstra, Jan Pool, Ben Verboom)
-
-6. **Kerken die al meedoen** (marquee/grid met alleen de kerk-partners: Europoort, Motion Church, Stadskerk, R5 Kerk, etc., plus relevante organisaties als Opwekking en The Send)
-
-7. **Veelgestelde vragen voor kerken**
-   - Moeten we zelf opnemen?
-   - Wat als we geen video-ervaring hebben?
-   - Wat kost het?
-   - Mogen we de verhalen ook zelf gebruiken in diensten?
-
-8. **CTA-blok onderaan**
-   - "Plan een vrijblijvende kennismaking" met mailto naar info@jesustoday.nl + link naar `/upload`
-
-## Technische opzet
-
-- Nieuwe pagina: `src/pages/Kerken.tsx` (gebruikt `Header`, `Footer`, `ScrollReveal`, `Helmet`, dezelfde design tokens en `#fad150`/gold accent)
-- Route toevoegen in `src/App.tsx`: `<Route path="/kerken" element={<Kerken />} />` (lazy import)
-- Bestaande assets hergebruiken (`@/assets/partners/*`, `boothSelfie`, endorsement-foto's), geen nieuwe afbeeldingen genereren
-- Sitemap: `/kerken` toevoegen in `scripts/generate-sitemap.ts` en `public/sitemap.xml`
-- `public/llms.txt`: kerken-pagina toevoegen onder Pages
-- i18n: NL tekst direct in component via `t()` keys; EN-vertalingen toevoegen in `src/i18n/locales/en.json`
-- SEO: unieke `<title>`, meta description en canonical voor `/kerken`
-- Geen wijzigingen aan Partners-pagina; vanuit de Partners-pagina kort linken naar `/kerken` voor kerk-specifieke info (optioneel)
+3. **`src/i18n/locales/en.json`**
+   - Verwijder de keys `"Vind een kerk in de buurt"`, `"Zoek een kerk"`, en (indien aanwezig) de bijbehorende beschrijving "Kom in contact met andere gelovige mensen die hun geloof in het dagelijks leven beleven."
 
 ## Buiten scope
-
-- Geen backend/formulierwijzigingen, geen nieuwe afbeeldingen, geen redesign van bestaande secties
-- Geen wijzigingen aan de Admin-omgeving
+- Geen wijzigingen aan de share-journey of aan `/kerken`, `/partners` (daar verwijzen we naar onze eigen partner-kerken, niet naar Christ Connect).
+- Geen nieuwe alternatieve kerkzoeker toevoegen.
+- Geen wijzigingen aan backend, formulieren of routes.

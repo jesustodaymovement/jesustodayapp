@@ -10,7 +10,6 @@ import {
   Mail,
   MapPin,
   PlayCircle,
-  Search,
   Users,
 } from 'lucide-react';
 import { Header } from '@/components/sections/Header';
@@ -414,7 +413,7 @@ const TestimonyDetail = () => {
                           Wat past bij jou?
                         </h2>
                         <p className="text-warm-white/75 leading-relaxed">
-                          Geraakt door dit verhaal? Hieronder vind je drie laagdrempelige manieren om verder te ontdekken wie Jezus voor jou kan zijn.
+                          Geraakt door dit verhaal? Hieronder vind je twee laagdrempelige manieren om verder te ontdekken wie Jezus voor jou kan zijn.
                         </p>
                       </div>
 
@@ -433,25 +432,6 @@ const TestimonyDetail = () => {
                               <h3 className="font-semibold text-lg">Leer meer over het geloof</h3>
                               <p className="text-warm-white/70 text-sm mt-1">
                                 Verken samen met anderen wat geloof betekent, op een open en laagdrempelige manier.
-                              </p>
-                            </div>
-                          </div>
-                        </a>
-
-                        <a
-                          href="https://www.christconnectapp.com/"
-                          target="_blank"
-                          rel="noreferrer"
-                          className="block rounded-xl bg-warm-white/10 p-5 hover:bg-warm-white/15 transition-colors"
-                        >
-                          <div className="flex items-start gap-4">
-                            <div className="rounded-lg bg-gold/20 p-3">
-                              <Search className="w-5 h-5 text-gold" />
-                            </div>
-                            <div>
-                              <h3 className="font-semibold text-lg">Vind een kerk in de buurt</h3>
-                              <p className="text-warm-white/70 text-sm mt-1">
-                                Ontmoet mensen die je verder helpen op je reis met Jezus.
                               </p>
                             </div>
                           </div>
