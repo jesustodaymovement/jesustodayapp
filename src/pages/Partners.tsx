@@ -158,6 +158,14 @@ const faqs = [
 ];
 
 const Partners = () => {
+  useEffect(() => {
+    if (document.getElementById('fillout-embed-script')) return;
+    const script = document.createElement('script');
+    script.id = 'fillout-embed-script';
+    script.src = 'https://server.fillout.com/embed/v1/';
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
   return (
     <>
       <Helmet>
