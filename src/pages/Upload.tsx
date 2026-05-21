@@ -130,6 +130,9 @@ const reviews = [
 
 const Upload = () => {
   const [platform, setPlatform] = useState<Platform>('other');
+  const { i18n } = useTranslation();
+  const isEnglish = i18n.language?.startsWith('en');
+  const vimeoId = isEnglish ? '1044611232' : '947358616';
 
   useEffect(() => {
     setPlatform(detectPlatform());
@@ -221,7 +224,8 @@ const Upload = () => {
                 <div className="mt-16 max-w-3xl mx-auto">
                   <div className="relative aspect-video rounded-2xl overflow-hidden bg-anthracite-light shadow-card border border-warm-white/10">
                     <iframe
-                      src="https://player.vimeo.com/video/947358616?title=0&byline=0&portrait=0"
+                      key={vimeoId}
+                      src={`https://player.vimeo.com/video/${vimeoId}?title=0&byline=0&portrait=0`}
                       className="absolute inset-0 w-full h-full"
                       frameBorder={0}
                       allow="autoplay; fullscreen; picture-in-picture"
