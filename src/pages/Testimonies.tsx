@@ -412,6 +412,15 @@ const Testimonies = () => {
                     Upload jouw verhaal
                   </Link>
                 </div>
+                <div className="mt-10 p-6 md:p-8 bg-warm-white rounded-2xl shadow-card">
+                  <div
+                    style={{ width: '100%', minHeight: 500 }}
+                    data-fillout-id="nRKLonnPqBus"
+                    data-fillout-embed-type="standard"
+                    data-fillout-inherit-parameters
+                    data-fillout-dynamic-resize
+                  />
+                </div>
               </>
             )}
           </div>
