@@ -142,15 +142,16 @@ const TestimonyDetail = () => {
   const [comments, setComments] = useState<CommentItem[]>(DEFAULT_COMMENTS);
 
   useEffect(() => {
+    if (!testimony) return;
     const existing = document.querySelector(
       'script[src="https://server.fillout.com/embed/v1/"]'
     );
-    if (existing) return;
+    if (existing) existing.remove();
     const script = document.createElement('script');
     script.src = 'https://server.fillout.com/embed/v1/';
     script.async = true;
     document.body.appendChild(script);
-  }, []);
+  }, [testimony?.vimeoUrl]);
 
   useEffect(() => {
     if (!vimeoId) return;
