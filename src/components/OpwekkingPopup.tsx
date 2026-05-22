@@ -1,18 +1,24 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { X, Sparkles, Calendar, MapPin, ArrowRight } from 'lucide-react';
 
 const STORAGE_KEY = 'jt-opwekking-popup-dismissed';
 
 export const OpwekkingPopup = () => {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const excludedPaths = ['/aanmeldenopwekking2026', '/opwekkinggetuigenissenform'];
+  const isExcluded = excludedPaths.some(
+    (p) => location.pathname.toLowerCase() === p.toLowerCase()
+  );
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
+    if (isExcluded) return;
     if (sessionStorage.getItem(STORAGE_KEY)) return;
     const timer = setTimeout(() => setOpen(true), 5000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [isExcluded]);
 
   const close = () => {
     setOpen(false);
@@ -21,7 +27,7 @@ export const OpwekkingPopup = () => {
     } catch {}
   };
 
-  if (!open) return null;
+  if (!open || isExcluded) return null;
 
   return (
     <div
