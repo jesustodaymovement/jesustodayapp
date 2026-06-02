@@ -111,7 +111,6 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <AlertBar />
           <ScrollToTop />
           <Suspense fallback={null}>
           <Routes>
