@@ -42,7 +42,7 @@ const HomeGate = () => {
     setReady(true);
   }, []);
   if (!ready) return null;
-  return hasMode ? <HomeTest /> : <Base />;
+  return hasMode ? <HomeTest /> : <Base onChoose={() => setHasMode(true)} />;
 };
 
 const queryClient = new QueryClient();

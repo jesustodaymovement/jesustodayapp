@@ -1,20 +1,31 @@
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { Search, MessageCircle, ArrowRight, BookOpen, Megaphone } from 'lucide-react';
 import logo from '@/assets/jesus-today-logo.png';
 import { AudienceMode } from '@/contexts/AudienceContext';
 
 const STORAGE_KEY = 'jt-audience-mode';
 
-const Base = () => {
+interface BaseProps {
+  /** Optioneel: aangeroepen wanneer de bezoeker een modus kiest (bv. om HomeGate te updaten). */
+  onChoose?: (mode: AudienceMode) => void;
+}
+
+const Base = ({ onChoose }: BaseProps) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const choose = (mode: AudienceMode) => {
     if (typeof window !== 'undefined') {
       localStorage.setItem(STORAGE_KEY, mode);
-      // Harde redirect zodat HomeGate de nieuwe modus daadwerkelijk leest
-      window.location.assign('/');
+    }
+    if (onChoose) {
+      // Gerenderd binnen HomeGate op "/": update direct, geen navigatie nodig.
+      onChoose(mode);
       return;
     }
+    // Gerenderd op de losse /base route: SPA-navigatie naar de homepage.
+    navigate('/');
   };
 
   return (
