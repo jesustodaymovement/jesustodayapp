@@ -7,14 +7,24 @@ import { AudienceMode } from '@/contexts/AudienceContext';
 
 const STORAGE_KEY = 'jt-audience-mode';
 
-const Base = () => {
+interface BaseProps {
+  /** Optioneel: aangeroepen wanneer de bezoeker een modus kiest (bv. om HomeGate te updaten). */
+  onChoose?: (mode: AudienceMode) => void;
+}
+
+const Base = ({ onChoose }: BaseProps) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const choose = (mode: AudienceMode) => {
     if (typeof window !== 'undefined') {
       localStorage.setItem(STORAGE_KEY, mode);
     }
-    // SPA-navigatie naar de homepage; HomeGate leest de zojuist opgeslagen modus.
+    if (onChoose) {
+      // Gerenderd binnen HomeGate op "/": update direct, geen navigatie nodig.
+      onChoose(mode);
+      return;
+    }
+    // Gerenderd op de losse /base route: SPA-navigatie naar de homepage.
     navigate('/');
   };
 
