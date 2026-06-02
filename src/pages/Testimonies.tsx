@@ -36,9 +36,6 @@ interface ApiResponse {
 const LANGUAGES = [
   { code: 'nl', label: 'Nederlands' },
   { code: 'en', label: 'English' },
-  { code: 'de', label: 'Deutsch' },
-  { code: 'fr', label: 'Français' },
-  { code: 'es', label: 'Español' },
 ];
 
 const TestimonyCard = ({ testimony }: { testimony: Testimony }) => {
