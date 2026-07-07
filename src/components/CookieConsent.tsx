@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -98,9 +99,9 @@ export const CookieConsent = () => {
               </h2>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 {t('JesusToday gebruikt technische, functionele en analytische cookies om de website goed te laten werken en te verbeteren. Lees meer in onze')}{' '}
-                <a href="/privacy" className="text-gold hover:underline">
+                <Link to="/privacy" className="text-gold hover:underline">
                   {t('privacyverklaring')}
-                </a>
+                </Link>
                 .
               </p>
             </div>

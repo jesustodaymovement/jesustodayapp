@@ -118,9 +118,9 @@ export const Footer = () => {
                 © {currentYear} {t('JesusToday. Alle rechten voorbehouden.')}
               </p>
               <nav aria-label={t('Juridisch')} className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-warm-white/70">
-                <a href="/privacy" className="hover:text-gold transition-colors">{t('Privacybeleid')}</a>
+                <Link to="/privacy" className="hover:text-gold transition-colors">{t('Privacybeleid')}</Link>
                 <span aria-hidden className="text-warm-white/20">·</span>
-                <a href="/disclaimer" className="hover:text-gold transition-colors">{t('Disclaimer')}</a>
+                <Link to="/disclaimer" className="hover:text-gold transition-colors">{t('Disclaimer')}</Link>
                 <span aria-hidden className="text-warm-white/20">·</span>
                 <button
                   type="button"
