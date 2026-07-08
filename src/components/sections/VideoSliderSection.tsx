@@ -150,22 +150,16 @@ export const VideoSliderSection = ({ title, subtitle }: VideoSliderSectionProps 
 
               {/* Carousel */}
               <div className="overflow-hidden" ref={emblaRef}>
-                {loading ? (
-                  <div className="flex items-center justify-center py-24">
-                    <Loader2 className="w-10 h-10 text-gold animate-spin" />
-                  </div>
-                ) : (
-                  <div className="flex gap-6">
-                    {videos.map((video) => (
-                      <div
-                        key={video.id}
-                        className="flex-[0_0_320px] md:flex-[0_0_400px] lg:flex-[0_0_450px] min-w-0"
-                      >
-                        <VideoCard testimony={video} />
-                      </div>
-                    ))}
-                  </div>
-                )}
+                <div className="flex gap-6">
+                  {videos.map((video) => (
+                    <div
+                      key={video.id}
+                      className="flex-[0_0_320px] md:flex-[0_0_400px] lg:flex-[0_0_450px] min-w-0"
+                    >
+                      <VideoCard testimony={video} />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </ScrollReveal>
