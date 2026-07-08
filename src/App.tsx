@@ -33,17 +33,11 @@ const ChatWidget = lazy(() =>
   import("./components/ChatWidget").then((m) => ({ default: m.ChatWidget }))
 );
 
-const AUDIENCE_KEY = "jt-audience-mode";
-
 const HomeGate = () => {
-  const [ready, setReady] = useState(false);
-  const [hasMode, setHasMode] = useState(false);
-  useEffect(() => {
-    setHasMode(!!localStorage.getItem(AUDIENCE_KEY));
-    setReady(true);
-  }, []);
-  if (!ready) return null;
-  return hasMode ? <HomeTest /> : <Base onChoose={() => setHasMode(true)} />;
+  // Toon altijd eerst het keuzescherm bij het openen van de site.
+  // Na een keuze (seeker/believer) wordt de bijbehorende pagina getoond.
+  const [chosen, setChosen] = useState(false);
+  return chosen ? <HomeTest /> : <Base onChoose={() => setChosen(true)} />;
 };
 
 const queryClient = new QueryClient();
