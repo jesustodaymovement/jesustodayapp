@@ -120,6 +120,7 @@ const App = () => (
             <Route path="/verhalen-over-jezus" element={<Testimonies />} />
             <Route path="/verhalen-over-jezus/:vimeoId" element={<TestimonyDetail />} />
             <Route path="/doneren" element={<Doneren />} />
+            <Route path="/steun" element={<Steun />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/disclaimer" element={<Disclaimer />} />
             <Route path="/over-ons" element={<OverOns />} />
