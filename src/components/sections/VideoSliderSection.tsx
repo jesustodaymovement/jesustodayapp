@@ -102,38 +102,8 @@ export const VideoSliderSection = ({ title, subtitle }: VideoSliderSectionProps 
     slidesToScroll: 1,
   });
 
-  const [videos, setVideos] = useState<Testimony[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const load = async () => {
-      try {
-        const headers = {
-          apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
-        };
-        const params = new URLSearchParams({
-          LanguageCode: 'nl',
-          Status: '50',
-          Sorting: 'creationTime desc',
-          MaxResultCount: '12',
-          SkipCount: '0',
-        });
-        const res = await fetch(
-          `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/get-testimonies?${params.toString()}`,
-          { headers }
-        );
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
-        setVideos(data.items ?? []);
-      } catch (e) {
-        console.error('VideoSlider fetch error', e);
-      } finally {
-        setLoading(false);
-      }
-    };
-    load();
-  }, []);
+  // Vaste selectie jonge mensen: geen backend-API-aanroep meer.
+  const videos = CURATED_TESTIMONIES;
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
