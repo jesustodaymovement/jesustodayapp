@@ -1,21 +1,49 @@
 ## Doel
-Alle verwijzingen naar "Vind een kerk in de buurt" via Christ Connect verwijderen uit de seeker journey, zodat de seeker journey geen externe kerkzoeker meer aanbiedt.
 
-## Wijzigingen
+Op de homepage (beide versies: "Vertel over God"/believer én "Ontdek God"/seeker) en op de "Over ons"-pagina worden de video's in de eerste slider niet meer live opgehaald via de backend-API. In plaats daarvan tonen we een vaste, handmatig gekozen selectie van jong ogende mensen (zoals Amélie).
 
-1. **`src/components/sections/NextStepsSection.tsx`** (gebruikt op de seeker-variant van de homepage)
-   - Verwijder het derde item uit `steps` (titel "Vind een kerk in de buurt", CTA "Zoek een kerk", href `https://www.christconnectapp.com/`).
-   - Grid van `md:grid-cols-3` aanpassen naar `md:grid-cols-2` zodat de twee resterende kaarten ("Bekijk meer verhalen" en "Volg een beginnerscursus") netjes naast elkaar staan, gecentreerd met `max-w-4xl mx-auto` op het grid.
+## Wat er verandert
 
-2. **`src/pages/TestimonyDetail.tsx`** (zijbalk op elke verhaal-detailpagina, onderdeel van de seeker journey)
-   - Verwijder de `<a>` met `href="https://www.christconnectapp.com/"` (regels ~441-458), inclusief het bijbehorende icoon en de tekst "Vind een kerk in de buurt".
-   - Pas de intro aan ("drie laagdrempelige manieren" → "twee laagdrempelige manieren") zodat het aantal klopt met de overgebleven kaarten ("Leer meer over het geloof" + "Stel je vraag aan ons").
-   - Verwijder de import van `Search` uit `lucide-react` als die nergens anders in het bestand wordt gebruikt.
+De component `src/components/sections/VideoSliderSection.tsx` haalt nu bij het laden een lijst op via de `get-testimonies` edge function (met de anon API-key). Die aanroep vervalt. In plaats daarvan komt er een vaste lijst met geselecteerde video's rechtstreeks in de code.
 
-3. **`src/i18n/locales/en.json`**
-   - Verwijder de keys `"Vind een kerk in de buurt"`, `"Zoek een kerk"`, en (indien aanwezig) de bijbehorende beschrijving "Kom in contact met andere gelovige mensen die hun geloof in het dagelijks leven beleven."
+Belangrijk: de video-thumbnails zelf blijven wel geladen worden via de publieke Vimeo-oembed (dat is geen beveiligde API-key en werkt zonder inlog). Alleen de backend-fetch met de API-key verdwijnt.
 
-## Buiten scope
-- Geen wijzigingen aan de share-journey of aan `/kerken`, `/partners` (daar verwijzen we naar onze eigen partner-kerken, niet naar Christ Connect).
-- Geen nieuwe alternatieve kerkzoeker toevoegen.
-- Geen wijzigingen aan backend, formulieren of routes.
+Zelfde vaste set voor beide homepage-versies én voor "Over ons".
+
+## Gekozen jonge mensen
+
+Op basis van de thumbnails heb ik deze jong ogende mensen geselecteerd (naam + Vimeo-ID). Elk item krijgt ook zijn quote mee zoals die nu al bij de video hoort:
+
+```text
+Bickel    1205452716
+Nawal     1205136000
+Jelle     1204289580
+Elijah    1204282360
+Daimy     1202930370
+Lianne    1202927777
+Julian    1198391877
+Lydia     1193339697
+Hanne     1187194889
+Marleen   1175120400
+Carlijn   1153711373
+Milou     1156442169
+Yannick   1144254694
+Youri     1114853054
+Amélie    1114232845
+Sem       1095244451
+```
+
+Deze 16 vullen de slider ruim; ik kan er makkelijk namen bij- of afhalen als je dat wilt.
+
+## Technische details
+
+- In `VideoSliderSection.tsx`:
+  - De `useEffect` met de `fetch(...)` naar `get-testimonies` en de `loading`/`videos` state-logica worden vervangen door een statische `const CURATED: Testimony[] = [...]` array met bovenstaande items (id, quote, vimeoUrl, user.username).
+  - De carousel rendert direct deze vaste lijst; de loading-spinner is niet meer nodig.
+  - `fetchThumbnail` (Vimeo oembed) blijft ongewijzigd in gebruik voor de beelden.
+- `HomeTest.tsx` en `OverOns.tsx` hoeven niet aangepast te worden: zij gebruiken `VideoSliderSection` en krijgen de vaste set automatisch. De `title`/`subtitle`-props (voor de seeker-variant) blijven werken.
+- De edge function `get-testimonies` blijft bestaan (wordt nog gebruikt door de pagina "Verhalen over Jezus"), maar wordt op de homepage/Over ons niet meer aangeroepen.
+
+## Verificatie
+
+Na de wijziging controleer ik met een browser-test (Playwright) dat op de homepage in beide modes (believer + seeker) én op "Over ons" de vaste jonge selectie zichtbaar is en dat er geen `get-testimonies`-request meer vanaf die pagina's wordt gedaan.
