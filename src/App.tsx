@@ -15,6 +15,7 @@ const Base = lazy(() => import("./pages/Base"));
 const Testimonies = lazy(() => import("./pages/Testimonies"));
 const TestimonyDetail = lazy(() => import("./pages/TestimonyDetail"));
 const Doneren = lazy(() => import("./pages/Doneren"));
+const Steun = lazy(() => import("./pages/Steun"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Disclaimer = lazy(() => import("./pages/Disclaimer"));
 const OverOns = lazy(() => import("./pages/OverOns"));
