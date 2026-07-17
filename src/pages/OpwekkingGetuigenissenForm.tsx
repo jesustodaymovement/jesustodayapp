@@ -33,7 +33,7 @@ const OpwekkingGetuigenissenForm = () => {
             >
               <Video className="w-4 h-4" style={{ color: "#b9930a" }} />
               <span className="text-anthracite text-sm font-medium">
-                Opwekking, op locatie
+                New Wine, op locatie
               </span>
             </div>
             <h1 className="text-3xl md:text-4xl font-bold text-anthracite mb-4 leading-tight">
