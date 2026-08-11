@@ -284,8 +284,8 @@ const TestimonyDetail = () => {
             content={`${fullName} deelt een persoonlijke getuigenis over Jezus. Bekijk de video en ontdek je volgende stap.`}
           />
         )}
-        <meta property="og:url" content={`https://storybrand-share-grace.lovable.app/verhalen-over-jezus/${vimeoId}`} />
-        <link rel="canonical" href={`https://storybrand-share-grace.lovable.app/verhalen-over-jezus/${vimeoId}`} />
+        <meta property="og:url" content={`https://jesustoday.app/verhalen-over-jezus/${vimeoId}`} />
+        <link rel="canonical" href={`https://jesustoday.app/verhalen-over-jezus/${vimeoId}`} />
         <meta property="og:type" content="video.other" />
         {testimony && (
           <script type="application/ld+json">
@@ -293,9 +293,9 @@ const TestimonyDetail = () => {
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
               itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Home", item: "https://storybrand-share-grace.lovable.app/" },
-                { "@type": "ListItem", position: 2, name: "Verhalen over Jezus", item: "https://storybrand-share-grace.lovable.app/verhalen-over-jezus" },
-                { "@type": "ListItem", position: 3, name: fullName, item: `https://storybrand-share-grace.lovable.app/verhalen-over-jezus/${vimeoId}` },
+                { "@type": "ListItem", position: 1, name: "Home", item: "https://jesustoday.app/" },
+                { "@type": "ListItem", position: 2, name: "Verhalen over Jezus", item: "https://jesustoday.app/verhalen-over-jezus" },
+                { "@type": "ListItem", position: 3, name: fullName, item: `https://jesustoday.app/verhalen-over-jezus/${vimeoId}` },
               ],
             })}
           </script>

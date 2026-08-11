@@ -646,9 +646,9 @@ const Doneren = () => {
           property="og:description"
           content="Help mee bouwen aan een beweging die een hele generatie bereikt."
         />
-        <meta property="og:url" content="https://storybrand-share-grace.lovable.app/doneren" />
+        <meta property="og:url" content="https://jesustoday.app/doneren" />
 
-        <link rel="canonical" href="https://storybrand-share-grace.lovable.app/doneren" />
+        <link rel="canonical" href="https://jesustoday.app/doneren" />
         <meta property="og:type" content="website" />
         <meta name="twitter:title" content="Doneren aan JesusToday" />
         <meta name="twitter:description" content="Help mee bouwen aan een beweging die een hele generatie bereikt." />
