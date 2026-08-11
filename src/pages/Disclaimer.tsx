@@ -14,9 +14,9 @@ const Disclaimer = () => {
         <meta property="og:title" content="Disclaimer, JesusToday" />
         <meta property="og:description" content="Disclaimer van JesusToday, inclusief intellectueel eigendom en aansprakelijkheid." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://storybrand-share-grace.lovable.app/disclaimer" />
+        <meta property="og:url" content="https://jesustoday.app/disclaimer" />
 
-        <link rel="canonical" href="https://storybrand-share-grace.lovable.app/disclaimer" />
+        <link rel="canonical" href="https://jesustoday.app/disclaimer" />
         <meta name="twitter:title" content="Disclaimer, JesusToday" />
         <meta name="twitter:description" content="Disclaimer van JesusToday." />
       </Helmet>

@@ -56,8 +56,8 @@ const Steun = () => {
           content="Doneer aan JesusToday en help persoonlijke verhalen over Jezus verspreiden. Veilig en fiscaal aftrekbaar via onze ANBI-status."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://storybrand-share-grace.lovable.app/steun" />
-        <link rel="canonical" href="https://storybrand-share-grace.lovable.app/steun" />
+        <meta property="og:url" content="https://jesustoday.app/steun" />
+        <link rel="canonical" href="https://jesustoday.app/steun" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Steun JesusToday, doneer vandaag" />
         <meta name="twitter:description" content="Doneer aan JesusToday en help persoonlijke verhalen over Jezus verspreiden." />
