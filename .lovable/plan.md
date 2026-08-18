@@ -7,11 +7,15 @@
 - E-mailadres: van `info@vraagovergod.nl` naar **jesustoday@vraagovergod.nl**
 
 **Verhalenpagina (detailpagina van een getuigenis)**
-De twee "Stel een vraag aan JesusToday" knoppen (plus de derde variant in de zijbalk) openen nu een mail naar `info@jesustoday.nl`. Die worden gericht op **jesustoday@vraagovergod.nl**, met dezelfde onderwerpregel en begintekst als nu.
+De knop "Doorpraten over het geloof" staat er twee keer (bovenaan bij de video en in het blok "Vragen of contact?"). Beide openen nu de chatwidget. Dat wordt:
+- de bovenste knop: opent direct een mail naar **jesustoday@vraagovergod.nl** (met onderwerp over het bekeken verhaal)
+- de knop in "Vragen of contact?": opent direct **WhatsApp** naar +31 6 57450632
+
+De "Stel een vraag aan JesusToday" knoppen gaan ook naar **jesustoday@vraagovergod.nl** in plaats van `info@jesustoday.nl`.
 
 ## Techniek
 - `src/components/ChatWidget.tsx`: constanten `WHATSAPP_NUMBER` en `EMAIL_ADDRESS` aanpassen.
-- `src/pages/TestimonyDetail.tsx`: het adres in `buildMailTo` aanpassen naar `jesustoday@vraagovergod.nl` (wordt door alle drie de knoppen gebruikt).
-
-## Aanname
-De knoppen op de verhalenpagina blijven mailto-links (nu naar het nieuwe adres). Wil je in plaats daarvan dat ze naar een extern vraagovergod-formulier linken, geef dan de URL door, dan zet ik dat erin.
+- `src/pages/TestimonyDetail.tsx`:
+  - adres in `buildMailTo` naar `jesustoday@vraagovergod.nl`
+  - bovenste "Doorpraten over het geloof": `openChat` vervangen door de mailto-link
+  - tweede "Doorpraten over het geloof": `openChat` vervangen door `https://wa.me/31657450632` (nieuw tabblad), tekst eronder aangepast naar WhatsApp in plaats van de chat
