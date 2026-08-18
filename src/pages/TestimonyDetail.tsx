@@ -76,7 +76,9 @@ const recommendationTitle = (testimony: Testimony) =>
   testimony.user.username || testimony.churchName || 'Verhaal';
 
 const buildMailTo = (subject: string, body: string) =>
-  `mailto:info@jesustoday.nl?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  `mailto:jesustoday@vraagovergod.nl?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+const WHATSAPP_LINK = 'https://wa.me/31657450632';
 
 const RelatedVideoCard = ({ video }: RelatedVideoCardProps) => {
   const [thumb, setThumb] = useState<string | null>(null);
