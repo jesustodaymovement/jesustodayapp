@@ -400,7 +400,7 @@ const TestimonyDetail = () => {
                         </div>
 
                         <div className="grid gap-3 sm:grid-cols-2 items-stretch">
-                          <a href="#chat" onClick={openChat} className="h-full">
+                          <a href={questionLink} className="h-full">
                             <Button variant="hero" className="w-full h-full justify-between gap-2 px-4 text-sm whitespace-normal text-left min-h-11 py-3 leading-tight">
                               <span className="flex-1">Doorpraten over het geloof</span>
                               <ChevronRight className="w-4 h-4 shrink-0" />
@@ -505,9 +505,14 @@ const TestimonyDetail = () => {
                           Kies wat het beste aansluit op wat jij nu nodig hebt.
                         </p>
                         <div className="space-y-3">
-                          <a href="#chat" onClick={openChat} className="block rounded-xl border border-border p-5 hover:border-gold transition-colors">
+                          <a
+                            href={WHATSAPP_LINK}
+                            target="_blank"
+                            rel="nofollow noopener"
+                            className="block rounded-xl border border-border p-5 hover:border-gold transition-colors"
+                          >
                             <p className="font-semibold text-anthracite mb-1">Doorpraten over het geloof</p>
-                            <p className="text-sm text-muted-foreground">Open de chat 'Vraag over God?' en stel je vraag direct.</p>
+                            <p className="text-sm text-muted-foreground">Stel je vraag direct via WhatsApp.</p>
                           </a>
                           <a href={questionLink} className="block rounded-xl border border-border p-5 hover:border-gold transition-colors">
                             <p className="font-semibold text-anthracite mb-1">Stel een vraag aan JesusToday</p>
