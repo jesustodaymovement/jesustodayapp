@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Mail, MessageCircle, X } from "lucide-react";
 
-const WHATSAPP_NUMBER = "31643798701";
-const EMAIL_ADDRESS = "info@vraagovergod.nl";
+const WHATSAPP_NUMBER = "31657450632";
+const EMAIL_ADDRESS = "jesustoday@vraagovergod.nl";
 
 export const ChatWidget = () => {
   const { t } = useTranslation();
