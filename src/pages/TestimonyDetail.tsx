@@ -233,11 +233,6 @@ const TestimonyDetail = () => {
       )
     : '#';
 
-  const openChat = (event: React.MouseEvent) => {
-    event.preventDefault();
-    window.dispatchEvent(new CustomEvent('jt:open-chat'));
-  };
-
   const handleCommentSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const name = commentDraft.name.trim();
