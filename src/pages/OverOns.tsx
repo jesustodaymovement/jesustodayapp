@@ -168,7 +168,7 @@ const FounderSection = () => (
 );
 
 const stats = [
-  { value: '200+', label: 'persoonlijke verhalen op video' },
+  { value: '300+', label: 'persoonlijke verhalen op video' },
   { value: '10+', label: 'samenwerkingen, o.a. Opwekking, The Send, New Wine, YWAM' },
   { value: '1', label: 'land actief (Zuid-Afrika)' },
   { value: '2', label: 'landen klaar voor opstart (India, Macedonië)' },
