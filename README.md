@@ -235,19 +235,11 @@ Secundair: Ontdek hoe het werkt
 
 Tertiair: Organiseer opnamedag
 
-✅ EINDE LOVABLE PROMPT
+## JesusToday
 
-This project was built with [Lovable](https://lovable.dev).
+Officiële website van JesusToday.
 
-**Live app**: https://jesustodayapp.lovable.app
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/227c3c0c-ef57-4930-8749-a52f960b40ba).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+**Live**: https://jesustoday.app
 
 ## Development
 
