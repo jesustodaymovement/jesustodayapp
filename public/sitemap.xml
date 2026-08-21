@@ -61,6 +61,21 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://jesustoday.app/verhalen-over-jezus/1219828017</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://jesustoday.app/verhalen-over-jezus/1219827372</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://jesustoday.app/verhalen-over-jezus/1219826087</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://jesustoday.app/verhalen-over-jezus/1219825096</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -1181,37 +1196,19 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://jesustoday.app/verhalen-over-jezus/711624867
-</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://jesustoday.app/verhalen-over-jezus/572754494
 </loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://jesustoday.app/verhalen-over-jezus/711624867
+</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://jesustoday.app/verhalen-over-jezus/572757655
-</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://jesustoday.app/verhalen-over-jezus/572963465
-</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://jesustoday.app/verhalen-over-jezus/699311249
-</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://jesustoday.app/verhalen-over-jezus/572756361
 </loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -1229,13 +1226,19 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://jesustoday.app/verhalen-over-jezus/572961554
+    <loc>https://jesustoday.app/verhalen-over-jezus/699311249
 </loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://jesustoday.app/verhalen-over-jezus/659665958
+    <loc>https://jesustoday.app/verhalen-over-jezus/572756361
+</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://jesustoday.app/verhalen-over-jezus/572963465
 </loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -1247,13 +1250,25 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://jesustoday.app/verhalen-over-jezus/572747328
+    <loc>https://jesustoday.app/verhalen-over-jezus/659665958
 </loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://jesustoday.app/verhalen-over-jezus/659615954
+</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://jesustoday.app/verhalen-over-jezus/572961554
+</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://jesustoday.app/verhalen-over-jezus/572747328
 </loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -1292,32 +1307,22 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://jesustoday.app/verhalen-over-jezus/572751546</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://jesustoday.app/verhalen-over-jezus/572753363</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://jesustoday.app/verhalen-over-jezus/659612192</loc>
+    <loc>https://jesustoday.app/verhalen-over-jezus/572758696</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://jesustoday.app/verhalen-over-jezus/659665313</loc>
+    <loc>https://jesustoday.app/verhalen-over-jezus/572751546</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://jesustoday.app/verhalen-over-jezus/572609149</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://jesustoday.app/verhalen-over-jezus/572758696</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1342,12 +1347,12 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://jesustoday.app/verhalen-over-jezus/799099884</loc>
+    <loc>https://jesustoday.app/verhalen-over-jezus/659612192</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://jesustoday.app/verhalen-over-jezus/664781936</loc>
+    <loc>https://jesustoday.app/verhalen-over-jezus/659665313</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1368,6 +1373,16 @@
   </url>
   <url>
     <loc>https://jesustoday.app/verhalen-over-jezus/659614912</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://jesustoday.app/verhalen-over-jezus/799099884</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://jesustoday.app/verhalen-over-jezus/664781936</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
