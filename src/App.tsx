@@ -17,6 +17,7 @@ const TestimonyDetail = lazy(() => import("./pages/TestimonyDetail"));
 const Doneren = lazy(() => import("./pages/Doneren"));
 const Steun = lazy(() => import("./pages/Steun"));
 const Privacy = lazy(() => import("./pages/Privacy"));
+const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
 const Disclaimer = lazy(() => import("./pages/Disclaimer"));
 const OverOns = lazy(() => import("./pages/OverOns"));
 const Media = lazy(() => import("./pages/Media"));
@@ -115,6 +116,8 @@ const App = () => (
             <Route path="/verhalen-over-jezus/:vimeoId" element={<TestimonyDetail />} />
             <Route path="/doneren" element={<Doneren />} />
             <Route path="/steun" element={<Steun />} />
+            <Route path="/afmelden" element={<Unsubscribe />} />
+            <Route path="/unsubscribe" element={<Unsubscribe />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/disclaimer" element={<Disclaimer />} />
             <Route path="/over-ons" element={<OverOns />} />
