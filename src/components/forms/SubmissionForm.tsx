@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -55,11 +55,6 @@ export const SubmissionForm = ({
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const openedAt = useRef(Date.now());
-
-  const messageField = useMemo(
-    () => fields.find((f) => f.name === 'message') ?? null,
-    [fields],
-  );
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -209,7 +204,6 @@ export const SubmissionForm = ({
       <p className="text-center text-xs text-muted-foreground">
         {t('We behandelen je gegevens vertrouwelijk en sturen je een bevestiging per e-mail.')}
       </p>
-      {messageField ? null : null}
     </form>
   );
 };
