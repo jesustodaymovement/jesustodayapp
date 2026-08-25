@@ -20,8 +20,15 @@ export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const audience = useAudienceOptional();
-  const lang = (i18n.language?.startsWith('en') ? 'en' : 'nl') as 'nl' | 'en';
-  const setLanguage = (l: 'nl' | 'en') => {
+  const langOptions = [
+    { code: 'en', label: 'EN' },
+    { code: 'nl', label: 'NL' },
+    { code: 'es', label: 'ES' },
+    { code: 'fil', label: 'FIL' },
+  ] as const;
+  const current = i18n.language?.split('-')[0] ?? 'en';
+  const lang = langOptions.some((o) => o.code === current) ? current : 'en';
+  const setLanguage = (l: string) => {
     i18n.changeLanguage(l);
   };
 
@@ -31,26 +38,21 @@ export const Header = () => {
       role="group"
       aria-label={t('Taal kiezen')}
     >
-      <button
-        type="button"
-        onClick={() => setLanguage('nl')}
-        aria-pressed={lang === 'nl'}
-        className={`px-2.5 py-1.5 transition-colors ${
-          lang === 'nl' ? 'bg-[#fad150] text-anthracite' : 'bg-white text-anthracite/70 hover:text-anthracite'
-        }`}
-      >
-        NL
-      </button>
-      <button
-        type="button"
-        onClick={() => setLanguage('en')}
-        aria-pressed={lang === 'en'}
-        className={`px-2.5 py-1.5 transition-colors border-l border-anthracite/15 ${
-          lang === 'en' ? 'bg-[#fad150] text-anthracite' : 'bg-white text-anthracite/70 hover:text-anthracite'
-        }`}
-      >
-        EN
-      </button>
+      {langOptions.map((opt, i) => (
+        <button
+          key={opt.code}
+          type="button"
+          onClick={() => setLanguage(opt.code)}
+          aria-pressed={lang === opt.code}
+          className={`px-2.5 py-1.5 transition-colors ${i > 0 ? 'border-l border-anthracite/15' : ''} ${
+            lang === opt.code
+              ? 'bg-[#fad150] text-anthracite'
+              : 'bg-white text-anthracite/70 hover:text-anthracite'
+          }`}
+        >
+          {opt.label}
+        </button>
+      ))}
     </div>
   );
 
