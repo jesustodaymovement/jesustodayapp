@@ -26,6 +26,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { fetchThumbnail, getChurchName } from '@/lib/testimonies';
+import { SubmissionForm } from '@/components/forms/SubmissionForm';
 
 interface Testimony {
   id: string;
@@ -142,18 +143,6 @@ const TestimonyDetail = () => {
     message: '',
   });
   const [comments, setComments] = useState<CommentItem[]>(DEFAULT_COMMENTS);
-
-  useEffect(() => {
-    if (!testimony) return;
-    const existing = document.querySelector(
-      'script[src="https://server.fillout.com/embed/v1/"]'
-    );
-    if (existing) existing.remove();
-    const script = document.createElement('script');
-    script.src = 'https://server.fillout.com/embed/v1/';
-    script.async = true;
-    document.body.appendChild(script);
-  }, [testimony?.vimeoUrl]);
 
   useEffect(() => {
     if (!vimeoId) return;
@@ -484,7 +473,7 @@ const TestimonyDetail = () => {
 
                       <SubmissionForm
                         type="reactie"
-                        formName={`Reactie op getuigenis${testimony?.name ? ` van ${testimony.name}` : ''}`}
+                        formName={`Reactie op getuigenis${testimony?.user?.username ? ` van ${testimony.user.username}` : ''}`}
                         submitLabel="Verstuur je reactie"
                         successTitle="Je reactie is verstuurd"
                         successText="Dankjewel, we geven je reactie door aan de persoon uit de video."
@@ -492,7 +481,7 @@ const TestimonyDetail = () => {
                         className="border-0 p-0 shadow-none md:p-0"
                         metadata={{
                           vimeoId: vimeoId ?? undefined,
-                          testimonyName: testimony?.name ?? undefined,
+                          testimonyName: testimony?.user?.username ?? undefined,
                           testimonyUrl: typeof window !== 'undefined' ? window.location.href : undefined,
                         }}
                         fields={[
