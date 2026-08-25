@@ -482,13 +482,33 @@ const TestimonyDetail = () => {
                         </div>
                       </div>
 
-                      <div
-                        style={{ width: '100%', minHeight: 500 }}
-                        data-fillout-id="nRKLonnPqBus"
-                        data-fillout-embed-type="standard"
-                        data-fillout-inherit-parameters
-                        data-fillout-dynamic-resize
+                      <SubmissionForm
+                        type="reactie"
+                        formName={`Reactie op getuigenis${testimony?.name ? ` van ${testimony.name}` : ''}`}
+                        submitLabel="Verstuur je reactie"
+                        successTitle="Je reactie is verstuurd"
+                        successText="Dankjewel, we geven je reactie door aan de persoon uit de video."
+                        confirmationIntro="Dankjewel voor je reactie op deze getuigenis. We geven hem door aan de persoon uit de video."
+                        className="border-0 p-0 shadow-none md:p-0"
+                        metadata={{
+                          vimeoId: vimeoId ?? undefined,
+                          testimonyName: testimony?.name ?? undefined,
+                          testimonyUrl: typeof window !== 'undefined' ? window.location.href : undefined,
+                        }}
+                        fields={[
+                          { name: 'name', label: 'Je naam', required: true, placeholder: 'Voornaam' },
+                          { name: 'email', label: 'E-mail', type: 'email', required: true, placeholder: 'jij@voorbeeld.nl' },
+                          {
+                            name: 'message',
+                            label: 'Je reactie',
+                            type: 'textarea',
+                            required: true,
+                            rows: 5,
+                            placeholder: 'Wat roept dit verhaal bij je op?',
+                          },
+                        ]}
                       />
+
                     </div>
                   </ScrollReveal>
 
