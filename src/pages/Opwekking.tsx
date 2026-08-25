@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
-import { useEffect } from "react";
 import { Megaphone, Mail, Globe } from "lucide-react";
+import { SubmissionForm } from "@/components/forms/SubmissionForm";
 import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
 
@@ -12,19 +12,6 @@ const drogredenen = [
 ];
 
 const Opwekking = () => {
-  useEffect(() => {
-    // Re-inject the Fillout script on each mount so the embed gets initialized
-    // even after client-side navigation (the script only scans on load).
-    const existing = document.querySelectorAll(
-      'script[src="https://server.fillout.com/embed/v1/"]'
-    );
-    existing.forEach((s) => s.remove());
-    const script = document.createElement("script");
-    script.src = "https://server.fillout.com/embed/v1/";
-    script.async = true;
-    document.body.appendChild(script);
-  }, []);
-
   return (
     <>
       <Helmet>
@@ -94,12 +81,30 @@ const Opwekking = () => {
                 Om jou te helpen hebben we je gegevens nodig zodat we contact
                 met je kunnen opnemen. Doe mee, laat je niet tegenhouden.
               </p>
-              <div
-                style={{ width: "100%", minHeight: 500 }}
-                data-fillout-id="e2Mxh5GW7qus"
-                data-fillout-embed-type="standard"
-                data-fillout-inherit-parameters
-                data-fillout-dynamic-resize
+              <SubmissionForm
+                type="opwekking"
+                formName="Aanmelding getuigenisvideo Opwekking"
+                submitLabel="Meld je aan"
+                successTitle="Aanmelding ontvangen"
+                successText="Wat mooi, we nemen snel contact met je op om je video te plannen."
+                confirmationIntro="Wat mooi dat je je aanmeldt om jouw getuigenis op te nemen. We nemen snel contact met je op om alles af te stemmen."
+                className="border-0 p-0 shadow-none md:p-0"
+                fields={[
+                  { name: 'name', label: 'Je naam', required: true, placeholder: 'Voornaam Achternaam' },
+                  { name: 'email', label: 'E-mail', type: 'email', required: true, placeholder: 'jij@voorbeeld.nl' },
+                  { name: 'phone', label: 'Telefoonnummer', type: 'tel', required: true, placeholder: '06 12345678' },
+                  { name: 'plaats', label: 'Woonplaats', placeholder: 'Waar woon je?' },
+                  { name: 'leeftijd', label: 'Leeftijd', placeholder: 'Bijvoorbeeld 24' },
+                  { name: 'kerk', label: 'Kerk of gemeente', placeholder: 'Optioneel' },
+                  {
+                    name: 'message',
+                    label: 'Waar gaat jouw verhaal over?',
+                    type: 'textarea',
+                    required: true,
+                    rows: 5,
+                    placeholder: 'Vertel in een paar regels wat Jezus in jouw leven heeft gedaan...',
+                  },
+                ]}
               />
             </div>
 

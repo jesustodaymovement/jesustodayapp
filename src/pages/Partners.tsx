@@ -4,7 +4,7 @@ import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { Button } from '@/components/ui/button';
-import { useEffect } from 'react';
+import { SubmissionForm } from '@/components/forms/SubmissionForm';
 import {
   Handshake,
   Users,
@@ -158,14 +158,6 @@ const faqs = [
 ];
 
 const Partners = () => {
-  useEffect(() => {
-    if (document.getElementById('fillout-embed-script')) return;
-    const script = document.createElement('script');
-    script.id = 'fillout-embed-script';
-    script.src = 'https://server.fillout.com/embed/v1/';
-    script.async = true;
-    document.body.appendChild(script);
-  }, []);
   return (
     <>
       <Helmet>
@@ -525,13 +517,30 @@ const Partners = () => {
                 </p>
               </ScrollReveal>
               <ScrollReveal delay={200}>
-                <div className="text-left bg-background rounded-2xl p-2">
-                  <div
-                    style={{ width: '100%', height: '500px' }}
-                    data-fillout-id="7DD1tiutDUus"
-                    data-fillout-embed-type="standard"
-                    data-fillout-inherit-parameters
-                    data-fillout-dynamic-resize
+                <div className="text-left">
+                  <SubmissionForm
+                    type="partner"
+                    formName="Partner worden"
+                    submitLabel="Verstuur aanvraag"
+                    successTitle="Aanvraag ontvangen"
+                    successText="Dankjewel, we nemen snel contact op om kennis te maken."
+                    confirmationIntro="We hebben jullie aanvraag om partner te worden ontvangen. We nemen snel contact op om kennis te maken en samen te kijken wat past."
+                    fields={[
+                      { name: 'name', label: 'Je naam', required: true, placeholder: 'Voornaam Achternaam' },
+                      { name: 'email', label: 'E-mail', type: 'email', required: true, placeholder: 'jij@voorbeeld.nl' },
+                      { name: 'organization', label: 'Kerk of organisatie', required: true, placeholder: 'Naam van jullie kerk of organisatie' },
+                      { name: 'phone', label: 'Telefoonnummer', type: 'tel', placeholder: 'Optioneel' },
+                      { name: 'role', label: 'Jouw rol', placeholder: 'Bijvoorbeeld voorganger of jeugdleider' },
+                      { name: 'plaats', label: 'Plaats', placeholder: 'Waar zijn jullie gevestigd?' },
+                      {
+                        name: 'message',
+                        label: 'Waar denken jullie aan?',
+                        type: 'textarea',
+                        required: true,
+                        rows: 5,
+                        placeholder: 'Vertel kort wat jullie zoeken of willen bereiken...',
+                      },
+                    ]}
                   />
                 </div>
               </ScrollReveal>

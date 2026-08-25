@@ -1,19 +1,10 @@
-import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollReveal } from '@/components/ScrollReveal';
+import { SubmissionForm } from '@/components/forms/SubmissionForm';
 import { MessageCircle } from 'lucide-react';
 
 export const AskQuestionSection = () => {
   const { t } = useTranslation();
-
-  useEffect(() => {
-    if (document.getElementById('fillout-embed-script')) return;
-    const script = document.createElement('script');
-    script.id = 'fillout-embed-script';
-    script.src = 'https://server.fillout.com/embed/v1/';
-    script.async = true;
-    document.body.appendChild(script);
-  }, []);
 
   return (
     <section className="py-24 bg-cream" id="stel-je-vraag">
@@ -34,12 +25,25 @@ export const AskQuestionSection = () => {
           </ScrollReveal>
 
           <ScrollReveal delay={150}>
-            <div
-              style={{ width: '100%', height: '500px' }}
-              data-fillout-id="mQpEP3ZHmtus"
-              data-fillout-embed-type="standard"
-              data-fillout-inherit-parameters
-              data-fillout-dynamic-resize
+            <SubmissionForm
+              type="vraag"
+              formName="Vraag over geloof"
+              submitLabel="Stel je vraag"
+              successTitle="Je vraag is verstuurd"
+              successText="Dankjewel, iemand van ons team neemt persoonlijk contact met je op."
+              confirmationIntro="We hebben je vraag ontvangen. Iemand van ons team leest hem persoonlijk en neemt zo snel als het kan contact met je op."
+              fields={[
+                { name: 'name', label: 'Je naam', required: true, placeholder: 'Voornaam' },
+                { name: 'email', label: 'E-mail', type: 'email', required: true, placeholder: 'jij@voorbeeld.nl' },
+                {
+                  name: 'message',
+                  label: 'Je vraag',
+                  type: 'textarea',
+                  required: true,
+                  rows: 5,
+                  placeholder: 'Stel hier je vraag, hoe groot of klein ook...',
+                },
+              ]}
             />
           </ScrollReveal>
         </div>

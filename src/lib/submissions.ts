@@ -1,8 +1,19 @@
 import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
 
+export const SUBMISSION_TYPES = [
+  "contact",
+  "vraag",
+  "partner",
+  "opwekking",
+  "locatie",
+  "reactie",
+] as const;
+
+export type SubmissionType = (typeof SUBMISSION_TYPES)[number];
+
 export const submissionSchema = z.object({
-  type: z.enum(["contact", "vraag", "partner"]),
+  type: z.enum(SUBMISSION_TYPES),
   name: z.string().trim().min(1, "Vul je naam in").max(100),
   email: z.string().trim().email("Geen geldig e-mailadres").max(255),
   phone: z.string().trim().max(50).optional().or(z.literal("")),
@@ -14,8 +25,18 @@ export const submissionSchema = z.object({
 
 export type SubmissionInput = z.infer<typeof submissionSchema>;
 
-export async function createSubmission(input: SubmissionInput) {
-  const parsed = submissionSchema.parse(input);
+export interface CreateSubmissionOptions extends SubmissionInput {
+  /** Human readable form name used in the notification email */
+  formName: string;
+  /** Extra label/value pairs shown in the notification email */
+  extraFields?: { label: string; value?: string }[];
+  /** Optional custom first paragraph of the confirmation email */
+  confirmationIntro?: string;
+}
+
+export async function createSubmission(input: CreateSubmissionOptions) {
+  const { formName, extraFields, confirmationIntro, ...rest } = input;
+  const parsed = submissionSchema.parse(rest);
   const id = crypto.randomUUID();
 
   const { error } = await supabase.from("submissions").insert({
@@ -31,14 +52,53 @@ export async function createSubmission(input: SubmissionInput) {
   });
   if (error) throw error;
 
-  // Stuur notificatie en bevestiging (faalt stil, bericht is al opgeslagen)
-  try {
-    await supabase.functions.invoke("notify-submission", {
-      body: { submissionId: id },
+  const fields = [
+    parsed.subject ? { label: "Onderwerp", value: parsed.subject } : null,
+    parsed.phone ? { label: "Telefoon", value: parsed.phone } : null,
+    parsed.organization ? { label: "Organisatie", value: parsed.organization } : null,
+    ...(extraFields ?? []).filter((f) => f && f.value),
+  ].filter(Boolean);
+
+  // Notificatie naar het team, en bevestiging naar de inzender.
+  // Faalt dit, dan blijft de inzending bewaard in het adminoverzicht.
+  const submittedAt = new Date().toLocaleString("nl-NL", {
+    dateStyle: "long",
+    timeStyle: "short",
+  });
+
+  await Promise.allSettled([
+    supabase.functions.invoke("send-transactional-email", {
+      body: {
+        templateName: "submission-notification",
+        idempotencyKey: `submission-notify-${id}`,
+        templateData: {
+          formName,
+          name: parsed.name,
+          email: parsed.email,
+          fields,
+          message: parsed.message,
+          submittedAt,
+        },
+      },
+    }),
+    supabase.functions.invoke("send-transactional-email", {
+      body: {
+        templateName: "submission-confirmation",
+        recipientEmail: parsed.email,
+        idempotencyKey: `submission-confirm-${id}`,
+        templateData: {
+          name: parsed.name.split(" ")[0],
+          formName: "je bericht",
+          message: parsed.message,
+          intro: confirmationIntro,
+        },
+      },
+    }),
+  ]).then((results) => {
+    results.forEach((r) => {
+      if (r.status === "rejected") console.warn("E-mail versturen mislukt", r.reason);
     });
-  } catch (e) {
-    console.warn("Notify failed", e);
-  }
+  });
 
   return id;
 }
