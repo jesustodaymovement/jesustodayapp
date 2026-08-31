@@ -23,6 +23,7 @@ const Media = lazy(() => import("./pages/Media"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Upload = lazy(() => import("./pages/Upload"));
 const Partners = lazy(() => import("./pages/Partners"));
+const Nations = lazy(() => import("./pages/Nations"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"));
 const AdminSubmissions = lazy(() => import("./pages/admin/AdminSubmissions"));
@@ -122,6 +123,7 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/upload" element={<Upload />} />
             <Route path="/partners" element={<Partners />} />
+            <Route path="/nations" element={<Nations />} />
             <Route path="/aanmeldenopwekking2026" element={<Opwekking />} />
             <Route path="/aanmelden-nieuwsbrief" element={<Nieuwsbrief />} />
             <Route path="/opwekkinggetuigenissenform" element={<OpwekkingGetuigenissenForm />} />
