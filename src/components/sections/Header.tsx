@@ -176,7 +176,15 @@ export const Header = () => {
                 </div>
               )}
             </div>
+
+            <a
+              href={contactLink.href}
+              className="text-anthracite/80 hover:text-gold transition-colors font-medium"
+            >
+              {t(contactLink.label)}
+            </a>
           </nav>
+
 
           {/* Desktop CTA + audience switch */}
           <div className="hidden md:flex items-center gap-4">
