@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
 import { AskQuestionSection } from '@/components/sections/AskQuestionSection';
@@ -7,22 +8,27 @@ import { Mail, MessageCircle } from 'lucide-react';
 import { SubmissionForm } from '@/components/forms/SubmissionForm';
 
 const Contact = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <Helmet>
-        <title>Contact, JesusToday</title>
+        <title>{t('Contact, JesusToday')}</title>
         <meta
           name="description"
-          content="Neem contact op met JesusToday. Stel je vraag of deel je verhaal, we luisteren graag."
+          content={t('Neem contact op met JesusToday. Stel je vraag of deel je verhaal, we luisteren graag.')}
         />
-        <meta property="og:title" content="Contact, JesusToday" />
-        <meta property="og:description" content="Neem contact op met JesusToday. Stel je vraag of deel je verhaal." />
+        <meta property="og:title" content={t('Contact, JesusToday')} />
+        <meta
+          property="og:description"
+          content={t('Neem contact op met JesusToday. Stel je vraag of deel je verhaal.')}
+        />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://jesustoday.app/contact" />
 
         <link rel="canonical" href="https://jesustoday.app/contact" />
-        <meta name="twitter:title" content="Contact, JesusToday" />
-        <meta name="twitter:description" content="Neem contact op met JesusToday." />
+        <meta name="twitter:title" content={t('Contact, JesusToday')} />
+        <meta name="twitter:description" content={t('Neem contact op met JesusToday.')} />
       </Helmet>
       <Header />
       <main>
@@ -32,17 +38,17 @@ const Contact = () => {
               <ScrollReveal>
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/20 border border-gold/30 mb-6">
                   <MessageCircle className="w-4 h-4 text-gold" />
-                  <span className="text-anthracite text-sm font-medium">Contact</span>
+                  <span className="text-anthracite text-sm font-medium">{t('Contact')}</span>
                 </div>
               </ScrollReveal>
               <ScrollReveal delay={100}>
                 <h1 className="text-4xl md:text-5xl font-bold text-anthracite mb-6">
-                  Laten we <span className="text-gold">kennismaken</span>
+                  {t('Laten we')} <span className="text-gold">{t('kennismaken')}</span>
                 </h1>
               </ScrollReveal>
               <ScrollReveal delay={200}>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Heb je een vraag, idee of wil je samenwerken? Stuur ons gerust een bericht, we reageren persoonlijk.
+                  {t('Heb je een vraag, idee of wil je samenwerken? Stuur ons gerust een bericht, we reageren persoonlijk.')}
                 </p>
               </ScrollReveal>
               <ScrollReveal delay={300}>
@@ -61,7 +67,9 @@ const Contact = () => {
           <div className="container mx-auto px-6">
             <div className="max-w-2xl mx-auto">
               <ScrollReveal>
-                <h2 className="text-2xl md:text-3xl font-bold text-anthracite text-center mb-8">Stuur ons een bericht</h2>
+                <h2 className="text-2xl md:text-3xl font-bold text-anthracite text-center mb-8">
+                  {t('Stuur ons een bericht')}
+                </h2>
               </ScrollReveal>
               <ScrollReveal delay={100}>
                 <SubmissionForm
