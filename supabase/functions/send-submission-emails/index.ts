@@ -29,6 +29,8 @@ function str(value: unknown, max: number): string {
   return typeof value === 'string' ? value.trim().slice(0, max) : ''
 }
 
+const TEAM_EMAIL = 'info@jesustoday.nl'
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 Deno.serve(async (req) => {
@@ -117,6 +119,8 @@ Deno.serve(async (req) => {
     templateData: Record<string, unknown>,
     idempotencyKey: string,
   ) => {
+    // submission-notification carries a fixed team recipient in the template.
+    const logRecipient = templateName === 'submission-notification' ? TEAM_EMAIL : recipient
     try {
       const result = await sendTemplateEmail(templateName, recipient, {
         templateData,
@@ -124,9 +128,9 @@ Deno.serve(async (req) => {
         replyTo: templateName === 'submission-notification' ? email : undefined,
       })
       if (result.sent) {
-        await logSend(templateName, recipient, 'sent')
+        await logSend(templateName, logRecipient, 'sent')
       } else {
-        await logSend(templateName, recipient, 'suppressed')
+        await logSend(templateName, logRecipient, 'suppressed')
       }
       return result.sent
     } catch (error) {
@@ -136,10 +140,10 @@ Deno.serve(async (req) => {
           : (error as Error)?.message ?? 'Unknown error'
       console.error('Failed to send submission email', {
         templateName,
-        recipient_redacted: redactEmail(recipient),
+        recipient_redacted: redactEmail(logRecipient),
         error: msg,
       })
-      await logSend(templateName, recipient, 'failed', msg)
+      await logSend(templateName, logRecipient, 'failed', msg)
       return false
     }
   }
