@@ -104,8 +104,8 @@ export const SubmissionForm = ({
       setSubmitted(true);
       form.reset();
       toast({
-        title: successTitle ?? t('Bericht verstuurd'),
-        description: successText ?? t('Dankjewel, we reageren persoonlijk zodra het kan.'),
+        title: t(successTitle ?? 'Bericht verstuurd'),
+        description: t(successText ?? 'Dankjewel, we reageren persoonlijk zodra het kan.'),
       });
     } catch (err: any) {
       const msg = err?.errors?.[0]?.message ?? err?.message ?? t('Er ging iets mis. Probeer het opnieuw.');
@@ -122,10 +122,10 @@ export const SubmissionForm = ({
           <CheckCircle2 className="h-7 w-7 text-gold" />
         </div>
         <h3 className="mb-2 text-xl font-bold text-anthracite">
-          {successTitle ?? t('Bericht verstuurd')}
+          {t(successTitle ?? 'Bericht verstuurd')}
         </h3>
         <p className="text-muted-foreground">
-          {successText ?? t('Dankjewel, we reageren persoonlijk zodra het kan.')}
+          {t(successText ?? 'Dankjewel, we reageren persoonlijk zodra het kan.')}
         </p>
       </div>
     );
