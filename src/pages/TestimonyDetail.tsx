@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import {
   ArrowLeft,
   ChevronRight,
+  ExternalLink,
   Loader2,
   MessageCircle,
   MessagesSquare,
