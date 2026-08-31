@@ -48,8 +48,11 @@ const Nations = () => {
                     rel="noopener noreferrer"
                     className="group flex h-full items-center gap-4 rounded-2xl border border-anthracite/10 bg-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-card"
                   >
-                    <span className="text-3xl" aria-hidden="true">
-                      {nation.flag}
+                    <span
+                      aria-hidden="true"
+                      className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-gold/15 text-sm font-bold tracking-wide text-anthracite/70"
+                    >
+                      {nation.code}
                     </span>
                     <span className="min-w-0 flex-1">
                       <span className="block font-bold text-anthracite">

@@ -149,7 +149,12 @@ export const Header = () => {
                         rel="noopener noreferrer"
                         className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-anthracite/80 hover:bg-anthracite/5 hover:text-gold transition-colors font-medium"
                       >
-                        <span aria-hidden="true">{nation.flag}</span>
+                        <span
+                          aria-hidden="true"
+                          className="rounded border border-anthracite/15 bg-anthracite/5 px-1.5 py-0.5 text-[10px] font-bold tracking-wide text-anthracite/70"
+                        >
+                          {nation.code}
+                        </span>
                         <span className="flex-1">{t(nation.name)}</span>
                         <ArrowUpRight className="w-4 h-4 text-gold" />
                       </a>
@@ -233,7 +238,12 @@ export const Header = () => {
                       className="flex items-center gap-3 pl-10 pr-6 py-3 text-anthracite/80 hover:text-gold transition-colors font-medium"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      <span aria-hidden="true">{nation.flag}</span>
+                      <span
+                        aria-hidden="true"
+                        className="rounded border border-anthracite/15 bg-anthracite/5 px-1.5 py-0.5 text-[10px] font-bold tracking-wide text-anthracite/70"
+                      >
+                        {nation.code}
+                      </span>
                       <span className="flex-1">{t(nation.name)}</span>
                       <ArrowUpRight className="w-4 h-4 text-gold" />
                     </a>
