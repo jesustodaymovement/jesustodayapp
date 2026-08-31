@@ -39,7 +39,33 @@ const Nations = () => {
               </div>
             </ScrollReveal>
 
+            <ScrollReveal>
+              <a
+                href="https://jesustoday.app"
+                className="group mb-4 flex items-center gap-4 rounded-2xl bg-anthracite p-6 shadow-card transition-all hover:-translate-y-0.5"
+              >
+                <span
+                  aria-hidden="true"
+                  className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-gold/20"
+                >
+                  <Globe className="h-6 w-6 text-gold" />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block text-xs font-semibold uppercase tracking-wide text-gold">
+                    {t('Hoofdorganisatie')}
+                  </span>
+                  <span className="block font-bold text-warm-white">JesusToday</span>
+                  <span className="block text-sm text-warm-white/70">jesustoday.app</span>
+                  <span className="mt-2 block text-sm text-warm-white/80">
+                    {t('De wereldwijde beweging en app achter alle JesusToday landenwebsites.')}
+                  </span>
+                </span>
+                <ArrowUpRight className="h-5 w-5 flex-shrink-0 text-gold transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            </ScrollReveal>
+
             <div className="grid gap-4 sm:grid-cols-2">
+
               {NATIONS.map((nation, i) => (
                 <ScrollReveal key={nation.code} delay={100 + i * 100}>
                   <a
