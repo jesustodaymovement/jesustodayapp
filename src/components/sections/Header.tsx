@@ -269,6 +269,15 @@ export const Header = () => {
                   </Link>
                 </div>
               )}
+
+              <a
+                href={contactLink.href}
+                className="px-6 py-3 text-anthracite/80 hover:text-gold hover:bg-anthracite/5 transition-colors font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t(contactLink.label)}
+              </a>
+
               <div className="px-6 py-4">
                 <Button asChild variant="hero" size="default" className="w-full">
                   <Link to="/upload" onClick={() => setIsMobileMenuOpen(false)}>
