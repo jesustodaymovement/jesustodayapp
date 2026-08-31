@@ -104,8 +104,8 @@ export const SubmissionForm = ({
       setSubmitted(true);
       form.reset();
       toast({
-        title: successTitle ?? t('Bericht verstuurd'),
-        description: successText ?? t('Dankjewel, we reageren persoonlijk zodra het kan.'),
+        title: t(successTitle ?? 'Bericht verstuurd'),
+        description: t(successText ?? 'Dankjewel, we reageren persoonlijk zodra het kan.'),
       });
     } catch (err: any) {
       const msg = err?.errors?.[0]?.message ?? err?.message ?? t('Er ging iets mis. Probeer het opnieuw.');
