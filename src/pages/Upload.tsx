@@ -21,7 +21,9 @@ const detectPlatform = (): Platform => {
   return 'other';
 };
 
-const AppleBadge = ({ primary = false }: { primary?: boolean }) => (
+const AppleBadge = ({ primary = false }: { primary?: boolean }) => {
+  const { t } = useTranslation();
+  return (
   <a
     href={APP_STORE_URL}
     target="_blank"
@@ -31,19 +33,22 @@ const AppleBadge = ({ primary = false }: { primary?: boolean }) => (
         ? 'bg-gold text-anthracite px-7 py-4 shadow-gold hover:scale-105'
         : 'bg-anthracite/10 text-anthracite border border-anthracite/20 px-5 py-3 hover:bg-anthracite/20'
     }`}
-    aria-label="Download in de App Store"
+    aria-label={t('Download in de App Store')}
   >
     <svg viewBox="0 0 24 24" className="w-7 h-7" fill="currentColor" aria-hidden>
       <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
     </svg>
     <div className="text-left leading-tight">
-      <span className="block text-xs opacity-70">Download in de</span>
+      <span className="block text-xs opacity-70">{t('Download in de')}</span>
       <span className="block font-semibold text-base">App Store</span>
     </div>
   </a>
-);
+  );
+};
 
-const GoogleBadge = ({ primary = false }: { primary?: boolean }) => (
+const GoogleBadge = ({ primary = false }: { primary?: boolean }) => {
+  const { t } = useTranslation();
+  return (
   <a
     href={PLAY_STORE_URL}
     target="_blank"
@@ -53,17 +58,18 @@ const GoogleBadge = ({ primary = false }: { primary?: boolean }) => (
         ? 'bg-gold text-anthracite px-7 py-4 shadow-gold hover:scale-105'
         : 'bg-anthracite/10 text-anthracite border border-anthracite/20 px-5 py-3 hover:bg-anthracite/20'
     }`}
-    aria-label="Download in Google Play"
+    aria-label={t('Download in Google Play')}
   >
     <svg viewBox="0 0 24 24" className="w-7 h-7" fill="currentColor" aria-hidden>
       <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 010 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z" />
     </svg>
     <div className="text-left leading-tight">
-      <span className="block text-xs opacity-70">Ontvang in</span>
+      <span className="block text-xs opacity-70">{t('Ontvang in')}</span>
       <span className="block font-semibold text-base">Google Play</span>
     </div>
   </a>
-);
+  );
+};
 
 const StoreButtons = ({ platform }: { platform: Platform }) => {
   if (platform === 'ios') {
@@ -90,49 +96,52 @@ const StoreButtons = ({ platform }: { platform: Platform }) => {
   );
 };
 
-const steps = [
+const getSteps = (t: (key: string) => string) => [
   {
     icon: Download,
     number: '01',
-    title: 'Download de app',
-    description: 'Gratis beschikbaar in de App Store en Google Play. Maak een account aan in minder dan een minuut.',
+    title: t('Download de app'),
+    description: t('Gratis beschikbaar in de App Store en Google Play. Maak een account aan in minder dan een minuut.'),
   },
   {
     icon: Video,
     number: '02',
-    title: 'Neem jouw verhaal op',
-    description: 'Een korte video direct in de app. Geen ervaring nodig, we helpen je met simpele vragen om je verhaal te vormen.',
+    title: t('Neem jouw verhaal op'),
+    description: t('Een korte video direct in de app. Geen ervaring nodig, we helpen je met simpele vragen om je verhaal te vormen.'),
   },
   {
     icon: Share2,
     number: '03',
-    title: 'Deel via een QR-code',
-    description: 'Je ontvangt een unieke QR-code en kaartjes. Deel jouw verhaal in het dagelijks leven of op social media.',
+    title: t('Deel via een QR-code'),
+    description: t('Je ontvangt een unieke QR-code en kaartjes. Deel jouw verhaal in het dagelijks leven of op social media.'),
   },
 ];
 
-const faqs = [
-  { icon: Heart, q: 'Is de app gratis?', a: 'Ja, JesusToday is volledig gratis te downloaden en te gebruiken.' },
-  { icon: Clock, q: 'Hoe lang duurt het?', a: 'In ongeveer 5 minuten heb je jouw verhaal opgenomen en gedeeld.' },
-  { icon: Shield, q: 'Wat gebeurt er met mijn video?', a: 'Je bepaalt zelf wat je deelt. Wij gaan zorgvuldig om met jouw verhaal en privacy.' },
+const getFaqs = (t: (key: string) => string) => [
+  { icon: Heart, q: t('Is de app gratis?'), a: t('Ja, JesusToday is volledig gratis te downloaden en te gebruiken.') },
+  { icon: Clock, q: t('Hoe lang duurt het?'), a: t('In ongeveer 5 minuten heb je jouw verhaal opgenomen en gedeeld.') },
+  { icon: Shield, q: t('Wat gebeurt er met mijn video?'), a: t('Je bepaalt zelf wat je deelt. Wij gaan zorgvuldig om met jouw verhaal en privacy.') },
 ];
 
-const reviews = [
+const getReviews = (t: (key: string) => string) => [
   {
-    quote: 'Jezus heeft mijn leven veranderd. En iedereen mag dat horen.',
+    quote: t('Jezus heeft mijn leven veranderd. En iedereen mag dat horen.'),
     name: 'Daniel',
   },
   {
-    quote: 'Ik hou ervan om andere mensen te inspireren. Hoe kan dat beter dan vertellen wat ik zelf ontdekt heb over Jezus.',
+    quote: t('Ik hou ervan om andere mensen te inspireren. Hoe kan dat beter dan vertellen wat ik zelf ontdekt heb over Jezus.'),
     name: 'Sam',
   },
 ];
 
 const Upload = () => {
   const [platform, setPlatform] = useState<Platform>('other');
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isEnglish = i18n.language?.startsWith('en');
   const vimeoId = isEnglish ? '1044611232' : '947358616';
+  const steps = getSteps(t);
+  const faqs = getFaqs(t);
+  const reviews = getReviews(t);
 
   useEffect(() => {
     setPlatform(detectPlatform());
@@ -141,19 +150,19 @@ const Upload = () => {
   return (
     <>
       <Helmet>
-        <title>Upload jouw verhaal, JesusToday</title>
+        <title>{t('Upload jouw verhaal, JesusToday')}</title>
         <meta
           name="description"
-          content="Deel jouw verhaal over Jezus in 3 simpele stappen. Eenvoudig, veilig en gratis via JesusToday."
+          content={t('Deel jouw verhaal over Jezus in 3 simpele stappen. Eenvoudig, veilig en gratis via JesusToday.')}
         />
-        <meta property="og:title" content="Upload jouw verhaal, JesusToday" />
-        <meta property="og:description" content="Deel jouw verhaal over Jezus in 3 simpele stappen." />
+        <meta property="og:title" content={t('Upload jouw verhaal, JesusToday')} />
+        <meta property="og:description" content={t('Deel jouw verhaal over Jezus in 3 simpele stappen.')} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://jesustoday.app/upload" />
 
         <link rel="canonical" href="https://jesustoday.app/upload" />
-        <meta name="twitter:title" content="Upload jouw verhaal, JesusToday" />
-        <meta name="twitter:description" content="Deel jouw verhaal over Jezus in 3 simpele stappen." />
+        <meta name="twitter:title" content={t('Upload jouw verhaal, JesusToday')} />
+        <meta name="twitter:description" content={t('Deel jouw verhaal over Jezus in 3 simpele stappen.')} />
       </Helmet>
 
       <Header />
@@ -165,24 +174,24 @@ const Upload = () => {
             <div className="max-w-3xl mx-auto text-center">
               <ScrollReveal>
                 <span className="inline-block px-4 py-2 rounded-full bg-gold/20 border border-gold/30 text-anthracite text-sm font-medium mb-6">
-                  Zo deel je jouw verhaal
+                  {t('Zo deel je jouw verhaal')}
                 </span>
               </ScrollReveal>
               <ScrollReveal delay={100}>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-anthracite leading-tight mb-6">
-                  Jouw verhaal, in <span className="text-gold">3 stappen</span> gedeeld
+                  {t('Jouw verhaal, in')} <span className="text-gold">{t('3 stappen')}</span> {t('gedeeld')}
                 </h1>
               </ScrollReveal>
               <ScrollReveal delay={200}>
                 <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">
-                  Download de JesusToday app, neem in een paar minuten jouw verhaal op en deel het met mensen om je heen via een eigen QR-code.
+                  {t('Download de JesusToday app, neem in een paar minuten jouw verhaal op en deel het met mensen om je heen via een eigen QR-code.')}
                 </p>
               </ScrollReveal>
               <ScrollReveal delay={300}>
                 <StoreButtons platform={platform} />
               </ScrollReveal>
               <ScrollReveal delay={400}>
-                <p className="text-sm text-muted-foreground mt-6">Gratis, voor iPhone en Android.</p>
+                <p className="text-sm text-muted-foreground mt-6">{t('Gratis, voor iPhone en Android.')}</p>
               </ScrollReveal>
             </div>
           </div>
@@ -194,12 +203,12 @@ const Upload = () => {
             <div className="max-w-5xl mx-auto">
               <ScrollReveal>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-warm-white mb-4">
-                  Zo <span className="text-gold">werkt het</span>
+                  {t('Zo')} <span className="text-gold">{t('werkt het')}</span>
                 </h2>
               </ScrollReveal>
               <ScrollReveal delay={100}>
                 <p className="text-lg text-center text-warm-white/70 mb-16 max-w-2xl mx-auto">
-                  In drie eenvoudige stappen sta jouw verhaal online.
+                  {t('In drie eenvoudige stappen sta jouw verhaal online.')}
                 </p>
               </ScrollReveal>
 
@@ -230,7 +239,7 @@ const Upload = () => {
                       frameBorder={0}
                       allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
-                      title="Zo werkt JesusToday"
+title={t('Zo werkt JesusToday')}
                     />
                   </div>
                 </div>
@@ -246,13 +255,13 @@ const Upload = () => {
               <ScrollReveal>
                 <div className="space-y-5">
                   <h2 className="text-3xl md:text-4xl font-bold text-anthracite leading-tight">
-                    Alles wat je nodig hebt, in <span className="text-gold">één app</span>
+                    {t('Alles wat je nodig hebt, in')} <span className="text-gold">{t('één app')}</span>
                   </h2>
                   <p className="text-lg text-muted-foreground leading-relaxed">
-                    Opnemen, uploaden en delen vanaf je telefoon. Je krijgt eenvoudige stappen die je helpen jouw verhaal helder en persoonlijk te vertellen.
+                    {t('Opnemen, uploaden en delen vanaf je telefoon. Je krijgt eenvoudige stappen die je helpen jouw verhaal helder en persoonlijk te vertellen.')}
                   </p>
                   <ul className="space-y-3 pt-2">
-                    {['Begeleide vragen om je verhaal vorm te geven', 'Direct opnemen vanuit de app', 'Eigen QR-code voor in het dagelijks leven'].map((item) => (
+                    {[t('Begeleide vragen om je verhaal vorm te geven'), t('Direct opnemen vanuit de app'), t('Eigen QR-code voor in het dagelijks leven')].map((item) => (
                       <li key={item} className="flex items-start gap-3 text-anthracite">
                         <QrCode className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" />
                         <span>{item}</span>
@@ -265,7 +274,7 @@ const Upload = () => {
                 <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-cream shadow-card">
                   <img
                     src={promoCard}
-                    alt="JesusToday promokaartje met QR-code, voor- en achterkant"
+alt={t('JesusToday promokaartje met QR-code, voor- en achterkant')}
                     loading="lazy"
                     className="absolute inset-0 w-full h-full object-cover"
                   />
@@ -281,7 +290,7 @@ const Upload = () => {
             <div className="max-w-4xl mx-auto">
               <ScrollReveal>
                 <h2 className="text-3xl md:text-4xl font-bold text-center text-warm-white mb-12">
-                  Goed om te <span className="text-gold">weten</span>
+                  {t('Goed om te')} <span className="text-gold">{t('weten')}</span>
                 </h2>
               </ScrollReveal>
               <div className="grid md:grid-cols-3 gap-6">
@@ -311,15 +320,15 @@ const Upload = () => {
                     <Camera className="w-7 h-7 text-gold" />
                   </div>
                   <h3 className="text-2xl md:text-3xl font-bold text-anthracite mb-4">
-                    Wij komen ook langs voor draaidagen
+                    {t('Wij komen ook langs voor draaidagen')}
                   </h3>
                   <p className="text-muted-foreground leading-relaxed mb-6">
-                    We organiseren draaidagen binnen kerken en organisaties en komen graag langs om jouw getuigenis vast te leggen, of om te helpen met het samenstellen en opnemen van getuigenissen van meerdere mensen.
+                    {t('We organiseren draaidagen binnen kerken en organisaties en komen graag langs om jouw getuigenis vast te leggen, of om te helpen met het samenstellen en opnemen van getuigenissen van meerdere mensen.')}
                   </p>
                   <ul className="space-y-2 mb-6 text-anthracite">
-                    <li className="flex items-start gap-3"><Users className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" /><span>Draaidagen in kerken en organisaties</span></li>
-                    <li className="flex items-start gap-3"><Video className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" /><span>Hulp bij opnemen en monteren</span></li>
-                    <li className="flex items-start gap-3"><Heart className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" /><span>Persoonlijke begeleiding bij jouw verhaal</span></li>
+                    <li className="flex items-start gap-3"><Users className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" /><span>{t('Draaidagen in kerken en organisaties')}</span></li>
+                    <li className="flex items-start gap-3"><Video className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" /><span>{t('Hulp bij opnemen en monteren')}</span></li>
+                    <li className="flex items-start gap-3"><Heart className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" /><span>{t('Persoonlijke begeleiding bij jouw verhaal')}</span></li>
                   </ul>
                   <a href="mailto:info@jesustoday.nl?subject=Draaidag%20aanvragen" className="inline-flex items-center gap-2 text-gold font-semibold hover:gap-3 transition-all">
                     <Mail className="w-5 h-5" /> info@jesustoday.nl
@@ -333,17 +342,17 @@ const Upload = () => {
                     <HelpCircle className="w-7 h-7 text-gold" />
                   </div>
                   <h3 className="text-2xl md:text-3xl font-bold text-anthracite mb-4">
-                    Liever je video op een andere manier delen?
+                    {t('Liever je video op een andere manier delen?')}
                   </h3>
                   <p className="text-muted-foreground leading-relaxed mb-6">
-                    Geen probleem. Wil je jouw video liever via WeTransfer, e-mail of een ander kanaal sturen, of heb je hulp nodig bij het opnemen? Neem contact met ons op, we denken graag met je mee.
+                    {t('Geen probleem. Wil je jouw video liever via WeTransfer, e-mail of een ander kanaal sturen, of heb je hulp nodig bij het opnemen? Neem contact met ons op, we denken graag met je mee.')}
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3">
                     <a href="mailto:info@jesustoday.nl?subject=Hulp%20bij%20mijn%20verhaal" className="inline-flex items-center justify-center gap-2 rounded-xl bg-gold text-anthracite px-5 py-3 font-semibold shadow-gold hover:scale-105 transition-all">
-                      <Mail className="w-5 h-5" /> Stuur ons een mail
+                      <Mail className="w-5 h-5" /> {t('Stuur ons een mail')}
                     </a>
                     <Link to="/contact" className="inline-flex items-center justify-center gap-2 rounded-xl bg-anthracite/10 text-anthracite border border-anthracite/20 px-5 py-3 font-semibold hover:bg-anthracite/20 transition-all">
-                      Naar contactpagina <ArrowRight className="w-4 h-4" />
+                      {t('Naar contactpagina')} <ArrowRight className="w-4 h-4" />
                     </Link>
                   </div>
                 </div>
@@ -358,12 +367,12 @@ const Upload = () => {
             <div className="max-w-5xl mx-auto">
               <ScrollReveal>
                 <h2 className="text-3xl md:text-4xl font-bold text-center text-warm-white mb-4">
-                  Verhalen van <span className="text-gold">gelovigen</span>
+                  {t('Verhalen van')} <span className="text-gold">{t('gelovigen')}</span>
                 </h2>
               </ScrollReveal>
               <ScrollReveal delay={100}>
                 <p className="text-lg text-center text-warm-white/70 mb-12 max-w-2xl mx-auto">
-                  Waarom anderen hun verhaal delen via JesusToday.
+                  {t('Waarom anderen hun verhaal delen via JesusToday.')}
                 </p>
               </ScrollReveal>
               <div className="grid md:grid-cols-2 gap-8">
@@ -390,12 +399,12 @@ const Upload = () => {
             <div className="max-w-3xl mx-auto text-center">
               <ScrollReveal>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-anthracite mb-6">
-                  Klaar om te <span className="text-gold">beginnen?</span>
+                  {t('Klaar om te')} <span className="text-gold">{t('beginnen?')}</span>
                 </h2>
               </ScrollReveal>
               <ScrollReveal delay={100}>
                 <p className="text-lg text-muted-foreground mb-10">
-                  Download de app en deel jouw verhaal vandaag nog.
+                  {t('Download de app en deel jouw verhaal vandaag nog.')}
                 </p>
               </ScrollReveal>
               <ScrollReveal delay={200}>
@@ -404,7 +413,7 @@ const Upload = () => {
               <ScrollReveal delay={300}>
                 <div className="mt-10">
                   <Link to="/verhalen-over-jezus" className="inline-flex items-center gap-2 text-anthracite hover:text-gold transition-colors font-medium">
-                    Eerst andere verhalen bekijken
+                    {t('Eerst andere verhalen bekijken')}
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>

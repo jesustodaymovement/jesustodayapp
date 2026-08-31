@@ -6,6 +6,7 @@ import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { Input } from '@/components/ui/input';
+import { useTranslation } from 'react-i18next';
 import { fetchThumbnail, getChurchKey, getChurchName } from '@/lib/testimonies';
 import { TOPICS, testimonyMatchesTopics } from '@/lib/topics';
 import {
@@ -39,6 +40,7 @@ const LANGUAGES = [
 ];
 
 const TestimonyCard = ({ testimony }: { testimony: Testimony }) => {
+  const { t } = useTranslation();
   const [thumb, setThumb] = useState<string | null>(null);
   const churchName = getChurchName(testimony.churchName);
 
@@ -61,7 +63,7 @@ const TestimonyCard = ({ testimony }: { testimony: Testimony }) => {
         {thumb ? (
           <img
             src={thumb}
-            alt={`Verhaal van ${testimony.user.username}`}
+alt={t('Verhaal van {{name}}', { name: testimony.user.username })}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
           />
@@ -98,6 +100,7 @@ const TestimonyCard = ({ testimony }: { testimony: Testimony }) => {
 };
 
 const Testimonies = () => {
+  const { t } = useTranslation();
   const [items, setItems] = useState<Testimony[]>([]);
   const [totalCount, setTotalCount] = useState(0);
   const [globalTotal, setGlobalTotal] = useState(0);
@@ -143,7 +146,7 @@ const Testimonies = () => {
       setItems(data.items);
     } catch (e) {
       console.error(e);
-      setError('Er ging iets mis bij het ophalen van de verhalen.');
+      setError(t('Er ging iets mis bij het ophalen van de verhalen.'));
     } finally {
       setLoading(false);
     }
@@ -248,22 +251,22 @@ const Testimonies = () => {
   return (
     <div className="min-h-screen bg-cream">
       <Helmet>
-        <title>Verhalen op video, JesusToday</title>
+        <title>{t('Verhalen op video, JesusToday')}</title>
         <meta
           name="description"
-          content="Bekijk persoonlijke verhalen van mensen die hun ervaring met Jezus delen."
+          content={t('Bekijk persoonlijke verhalen van mensen die hun ervaring met Jezus delen.')}
         />
-        <meta property="og:title" content="Verhalen op video, JesusToday" />
+        <meta property="og:title" content={t('Verhalen op video, JesusToday')} />
         <meta
           property="og:description"
-          content="Bekijk persoonlijke verhalen van mensen die hun ervaring met Jezus delen."
+          content={t('Bekijk persoonlijke verhalen van mensen die hun ervaring met Jezus delen.')}
         />
         <meta property="og:url" content="https://jesustoday.app/verhalen-over-jezus" />
 
         <link rel="canonical" href="https://jesustoday.app/verhalen-over-jezus" />
         <meta property="og:type" content="website" />
-        <meta name="twitter:title" content="Verhalen op video, JesusToday" />
-        <meta name="twitter:description" content="Bekijk persoonlijke verhalen van mensen die hun ervaring met Jezus delen." />
+        <meta name="twitter:title" content={t('Verhalen op video, JesusToday')} />
+        <meta name="twitter:description" content={t('Bekijk persoonlijke verhalen van mensen die hun ervaring met Jezus delen.')} />
       </Helmet>
 
       <Header />
@@ -273,14 +276,14 @@ const Testimonies = () => {
           <div className="max-w-6xl mx-auto">
             <ScrollReveal>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-anthracite mb-4">
-                Verhalen over <span className="text-gold">Jezus</span>
+                {t('Verhalen over')} <span className="text-gold">{t('Jezus')}</span>
               </h1>
             </ScrollReveal>
 
             <ScrollReveal delay={100}>
               <p className="text-lg text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-                Echte verhalen van mensen die ontdekten wie Jezus voor hen is.
-                {globalTotal > 0 && ` ${globalTotal} verhalen te bekijken.`}
+                {t('Echte verhalen van mensen die ontdekten wie Jezus voor hen is.')}
+                {globalTotal > 0 && ` ${t('{{count}} verhalen te bekijken.', { count: globalTotal })}`}
               </p>
             </ScrollReveal>
 
@@ -291,7 +294,7 @@ const Testimonies = () => {
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                   <Input
                     type="text"
-                    placeholder="Zoek op naam, quote of kerk..."
+                    placeholder={t('Zoek op naam, quote of kerk...')}
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     className="pl-10 h-12"
@@ -300,7 +303,7 @@ const Testimonies = () => {
 
                 <Select value={language} onValueChange={setLanguage}>
                   <SelectTrigger className="md:w-48 h-12">
-                    <SelectValue placeholder="Taal" />
+                    <SelectValue placeholder={t('Taal')} />
                   </SelectTrigger>
                   <SelectContent>
                     {LANGUAGES.map((l) => (
@@ -313,10 +316,10 @@ const Testimonies = () => {
 
                 <Select value={churchFilter} onValueChange={setChurchFilter}>
                   <SelectTrigger className="md:w-56 h-12">
-                    <SelectValue placeholder="Kerk" />
+                    <SelectValue placeholder={t('Kerk')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">Alle kerken</SelectItem>
+                    <SelectItem value="all">{t('Alle kerken')}</SelectItem>
                      {churches.map((church) => (
                        <SelectItem key={church.value} value={church.value}>
                          {church.label}
@@ -329,13 +332,13 @@ const Testimonies = () => {
               {/* Topic chips */}
               <div className="mb-6 p-4 bg-warm-white rounded-2xl shadow-card">
                 <div className="flex items-center justify-between mb-3">
-                  <p className="text-sm font-semibold text-anthracite">Onderwerpen</p>
+                  <p className="text-sm font-semibold text-anthracite">{t('Onderwerpen')}</p>
                   {hasActiveFilters && (
                     <button
                       onClick={clearFilters}
                       className="text-xs font-medium text-anthracite/70 hover:text-gold transition-colors underline-offset-2 hover:underline"
                     >
-                      Wis filters
+                      {t('Wis filters')}
                     </button>
                   )}
                 </div>
@@ -381,12 +384,12 @@ const Testimonies = () => {
                   onClick={() => fetchVideos(language)}
                   className="text-gold underline"
                 >
-                  Opnieuw proberen
+                  {t('Opnieuw proberen')}
                 </button>
               </div>
             ) : filtered.length === 0 ? (
               <div className="text-center py-24 text-muted-foreground">
-                Geen verhalen gevonden met deze filters.
+                {t('Geen verhalen gevonden met deze filters.')}
               </div>
             ) : (
               <>
@@ -397,16 +400,16 @@ const Testimonies = () => {
                 </div>
                 <div className="mt-16 p-8 md:p-10 bg-warm-white rounded-2xl shadow-card text-center">
                   <h2 className="text-2xl md:text-3xl font-bold text-anthracite mb-3">
-                    Inspireert dit jou om jouw verhaal te delen?
+                    {t('Inspireert dit jou om jouw verhaal te delen?')}
                   </h2>
                   <p className="text-anthracite/70 mb-6 max-w-xl mx-auto">
-                    Net als deze mensen kan jouw verhaal anderen raken. Wij helpen je in 3 eenvoudige stappen.
+                    {t('Net als deze mensen kan jouw verhaal anderen raken. Wij helpen je in 3 eenvoudige stappen.')}
                   </p>
                   <Link
                     to="/upload"
                     className="inline-flex items-center gap-2 px-6 py-3 bg-gold text-anthracite rounded-full font-semibold shadow-gold hover:shadow-lg transition-all"
                   >
-                    Upload jouw verhaal
+                    {t('Upload jouw verhaal')}
                   </Link>
                 </div>
               </>

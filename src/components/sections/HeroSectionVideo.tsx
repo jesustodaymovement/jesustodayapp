@@ -2,8 +2,10 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import heroVideo from '@/assets/hero-banner.mp4';
+import { useTranslation } from 'react-i18next';
 
 export const HeroSectionVideo = () => {
+  const { t } = useTranslation();
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-anthracite pt-20">
       {/* Video Background */}
@@ -28,23 +30,23 @@ export const HeroSectionVideo = () => {
         <div className="max-w-4xl mx-auto space-y-8">
           {/* Headline */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-warm-white leading-tight animate-fade-up">
-            Deel jouw verhaal.{' '}
-            <span className="text-gold">Laat Jezus zichtbaar worden.</span>
+            {t('Deel jouw verhaal.')}{' '}
+            <span className="text-gold">{t('Laat Jezus zichtbaar worden.')}</span>
           </h1>
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-warm-white/90 max-w-2xl mx-auto leading-relaxed animate-fade-up delay-100 drop-shadow-lg">
-            Je wilt delen, maar het voelt spannend, misschien zelfs ongemakkelijk. Wij helpen je om jouw verhaal eenvoudig en veilig te delen, op een manier die bij jou past. God kan het gebruiken om anderen te raken.
+            {t('Je wilt delen, maar het voelt spannend, misschien zelfs ongemakkelijk. Wij helpen je om jouw verhaal eenvoudig en veilig te delen, op een manier die bij jou past. God kan het gebruiken om anderen te raken.')}
           </p>
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 animate-fade-up delay-200">
             <Button asChild variant="hero" size="lg" className="min-w-[200px]">
-              <Link to="/upload">Upload jouw verhaal</Link>
+              <Link to="/upload">{t('Upload jouw verhaal')}</Link>
             </Button>
             <Button variant="hero-outline" size="lg" className="gap-2">
               <ArrowRight className="w-5 h-5" />
-              Ontdek hoe eenvoudig je kan getuigen
+              {t('Ontdek hoe eenvoudig je kan getuigen')}
             </Button>
           </div>
 

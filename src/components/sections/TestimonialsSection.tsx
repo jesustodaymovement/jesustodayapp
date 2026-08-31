@@ -1,6 +1,7 @@
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { Quote } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useTranslation } from 'react-i18next';
 
 const testimonials = [
   {
@@ -21,19 +22,20 @@ const testimonials = [
 ];
 
 export const TestimonialsSection = () => {
+  const { t } = useTranslation();
   return (
     <section className="py-24 bg-cream">
       <div className="container mx-auto px-6">
         <div className="max-w-5xl mx-auto">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-anthracite mb-4">
-              Wat anderen <span className="text-gold">zeggen</span>
+              {t('Wat anderen')} <span className="text-gold">{t('zeggen')}</span>
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={100}>
             <p className="text-lg text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
-              Echte verhalen van echte mensen die hun verhaal delen
+              {t('Echte verhalen van echte mensen die hun verhaal delen')}
             </p>
           </ScrollReveal>
 
@@ -47,7 +49,7 @@ export const TestimonialsSection = () => {
                   </div>
 
                   <p className="text-foreground leading-relaxed mb-6 pt-2">
-                    "{testimonial.quote}"
+                    "{t(testimonial.quote)}"
                   </p>
 
                   <div className="flex items-center gap-3">
@@ -56,7 +58,7 @@ export const TestimonialsSection = () => {
                     </div>
                     <div>
                       <p className="font-semibold text-foreground">{testimonial.name}</p>
-                      <p className="text-sm text-muted-foreground">{testimonial.age}</p>
+                      <p className="text-sm text-muted-foreground">{t(testimonial.age)}</p>
                     </div>
                   </div>
                 </div>
@@ -68,7 +70,7 @@ export const TestimonialsSection = () => {
           <ScrollReveal delay={450}>
             <div className="text-center mt-12">
               <Button variant="hero" size="lg">
-                Bekijk de verhalen van anderen
+                {t('Bekijk de verhalen van anderen')}
               </Button>
             </div>
           </ScrollReveal>

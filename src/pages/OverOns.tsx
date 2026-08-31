@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
@@ -23,7 +24,9 @@ import {
   Mail,
 } from 'lucide-react';
 
-const Hero = () => (
+const Hero = () => {
+  const { t } = useTranslation();
+  return (
   <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-cream overflow-hidden">
     <div className="absolute top-1/3 -left-32 w-[500px] h-[500px] bg-gold/20 rounded-full blur-3xl" aria-hidden />
     <div className="absolute bottom-0 -right-32 w-[400px] h-[400px] bg-gold/15 rounded-full blur-3xl" aria-hidden />
@@ -32,19 +35,18 @@ const Hero = () => (
         <ScrollReveal>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/20 border border-gold/30 mb-8">
             <Heart className="w-4 h-4 text-gold" />
-            <span className="text-anthracite text-sm font-medium">Over ons</span>
+            <span className="text-anthracite text-sm font-medium">{t('Over ons')}</span>
           </div>
         </ScrollReveal>
         <ScrollReveal delay={100}>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-anthracite leading-tight mb-6">
-            Echte verhalen, van gewone mensen, over{' '}
-            <span className="text-gold">één bijzondere Persoon.</span>
+            {t('Echte verhalen, van gewone mensen, over')}{' '}
+            <span className="text-gold">{t('één bijzondere Persoon.')}</span>
           </h1>
         </ScrollReveal>
         <ScrollReveal delay={200}>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">
-            JesusToday is een platform voor persoonlijke verhalen op video,
-            gemaakt door en voor mensen die hun ervaring met Jezus willen delen.
+            {t('JesusToday is een platform voor persoonlijke verhalen op video, gemaakt door en voor mensen die hun ervaring met Jezus willen delen.')}
           </p>
         </ScrollReveal>
         <ScrollReveal delay={300}>
@@ -52,13 +54,13 @@ const Hero = () => (
             <Button asChild variant="hero" size="lg">
               <Link to="/upload">
                 <Upload className="w-5 h-5" />
-                Upload jouw verhaal
+                {t('Upload jouw verhaal')}
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg">
               <Link to="/verhalen-over-jezus">
                 <Play className="w-5 h-5" />
-                Bekijk verhalen
+                {t('Bekijk verhalen')}
               </Link>
             </Button>
           </div>
@@ -66,47 +68,50 @@ const Hero = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
-const GapSection = () => (
+const GapSection = () => {
+  const { t } = useTranslation();
+  return (
   <section className="py-24 bg-anthracite">
     <div className="container mx-auto px-6">
       <div className="max-w-3xl mx-auto text-center">
         <ScrollReveal>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-warm-white mb-6">
-            Wij zien een <span className="text-gold">gat.</span>
+            {t('Wij zien een')} <span className="text-gold">{t('gat.')}</span>
           </h2>
         </ScrollReveal>
         <ScrollReveal delay={100}>
           <p className="text-lg text-warm-white/80 leading-relaxed mb-8">
-            Nederland is een van de meest seculiere landen van West-Europa. De generatie
-            die we het meest willen bereiken loopt uit zichzelf nooit een kerk
-            binnen. Tegelijk willen veel christenen hun verhaal delen, maar
-            weten ze niet hoe. Beide groepen wachten op elkaar.
+            {t('Nederland is een van de meest seculiere landen van West-Europa. De generatie die we het meest willen bereiken loopt uit zichzelf nooit een kerk binnen. Tegelijk willen veel christenen hun verhaal delen, maar weten ze niet hoe. Beide groepen wachten op elkaar.')}
           </p>
         </ScrollReveal>
         <ScrollReveal delay={200}>
           <p className="text-xl md:text-2xl text-gold font-semibold">
-            JesusToday slaat een brug.
+            {t('JesusToday slaat een brug.')}
           </p>
         </ScrollReveal>
       </div>
     </div>
   </section>
-);
+  );
+};
 
-const FounderSection = () => (
+const FounderSection = () => {
+  const { t } = useTranslation();
+  return (
   <section className="py-24 bg-cream">
     <div className="container mx-auto px-6">
       <div className="max-w-3xl mx-auto">
         <ScrollReveal>
           <div className="text-center mb-10">
             <span className="inline-block text-sm font-semibold text-gold uppercase tracking-wider mb-3">
-              Hoe het begon
+              {t('Hoe het begon')}
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-anthracite">
-              JesusToday begon met een{' '}
-              <span className="text-gold">persoonlijk verhaal.</span>
+              {t('JesusToday begon met een')}{' '}
+              <span className="text-gold">{t('persoonlijk verhaal.')}</span>
             </h2>
           </div>
         </ScrollReveal>
@@ -115,38 +120,19 @@ const FounderSection = () => (
           <blockquote className="relative bg-white rounded-2xl border border-anthracite/10 shadow-sm p-8 md:p-12 border-l-4 border-l-gold">
             <div className="space-y-5 text-anthracite/90 text-lg leading-relaxed">
               <p>
-                JesusToday is ontstaan uit een verlangen om mensen op een
-                eenvoudige manier in aanraking te brengen met inspirerende
-                verhalen. Bijzondere verhalen van gewone mensen, met één
-                gemeenschappelijke deler: Jezus. Wie is deze persoon aan wie we
-                de jaartelling te danken hebben? Waarom spreken we na ruim 2000
-                jaar nog steeds over hem? En wat is zijn impact vandaag de dag?
+                {t('JesusToday is ontstaan uit een verlangen om mensen op een eenvoudige manier in aanraking te brengen met inspirerende verhalen. Bijzondere verhalen van gewone mensen, met één gemeenschappelijke deler: Jezus. Wie is deze persoon aan wie we de jaartelling te danken hebben? Waarom spreken we na ruim 2000 jaar nog steeds over hem? En wat is zijn impact vandaag de dag?')}
               </p>
               <p>
-                In 2010 kwam ik (Alexander Keur) na een crisisjaar op Kerstavond
-                in een kerk terecht waar ik normaal gesproken nooit kwam. Hier
-                werd de geboorte van Jezus Christus, de Zoon van God, gevierd.
-                Ik had nauwelijks kennis van de Bijbel, de kerk en de
-                christelijke traditie, en ik had hier ook veel kanttekeningen en
-                zelfs vooroordelen bij. Er werd iets getriggerd die avond. Je
-                kunt het terughoren in mijn eigen verhaal.
+                {t('In 2010 kwam ik (Alexander Keur) na een crisisjaar op Kerstavond in een kerk terecht waar ik normaal gesproken nooit kwam. Hier werd de geboorte van Jezus Christus, de Zoon van God, gevierd. Ik had nauwelijks kennis van de Bijbel, de kerk en de christelijke traditie, en ik had hier ook veel kanttekeningen en zelfs vooroordelen bij. Er werd iets getriggerd die avond. Je kunt het terughoren in mijn eigen verhaal.')}
               </p>
               <p>
-                Ik had geen idee waar ik met deze nieuwe interesse in mijn leven
-                terecht kon. Er staat van alles op internet, zoveel verschillende
-                kerken en organisaties. Wie kon mij verder helpen en waar kon ik
-                gewoon ervaringen uit de eerste hand krijgen? Gewoon van mensen
-                zoals ik, die vertellen over wat ze persoonlijk met Jezus hebben
-                meegemaakt.
+                {t('Ik had geen idee waar ik met deze nieuwe interesse in mijn leven terecht kon. Er staat van alles op internet, zoveel verschillende kerken en organisaties. Wie kon mij verder helpen en waar kon ik gewoon ervaringen uit de eerste hand krijgen? Gewoon van mensen zoals ik, die vertellen over wat ze persoonlijk met Jezus hebben meegemaakt.')}
               </p>
               <p>
-                Er bleken veel mensen te zijn die een persoonlijk verhaal over
-                Jezus hebben en dat graag wilden delen. Zodoende zijn we samen
-                met een team enthousiastelingen dit online platform begonnen.
+                {t('Er bleken veel mensen te zijn die een persoonlijk verhaal over Jezus hebben en dat graag wilden delen. Zodoende zijn we samen met een team enthousiastelingen dit online platform begonnen.')}
               </p>
               <p>
-                We hopen dat deze verhalen jou, net als ons, ook weten te
-                verrassen!
+                {t('We hopen dat deze verhalen jou, net als ons, ook weten te verrassen!')}
               </p>
             </div>
 
@@ -156,7 +142,7 @@ const FounderSection = () => (
                   Alexander Keur
                 </span>
                 <span className="block text-sm text-muted-foreground">
-                  Oprichter JesusToday
+                  {t('Oprichter JesusToday')}
                 </span>
               </cite>
             </footer>
@@ -165,27 +151,34 @@ const FounderSection = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
-const stats = [
-  { value: '300+', label: 'persoonlijke verhalen op video' },
-  { value: '10+', label: 'samenwerkingen, o.a. Opwekking, The Send, New Wine, YWAM' },
-  { value: '1', label: 'land actief (Zuid-Afrika)' },
-  { value: '2', label: 'landen klaar voor opstart (India, Macedonië)' },
-];
+const useStats = () => {
+  const { t } = useTranslation();
+  return [
+    { value: '300+', label: t('persoonlijke verhalen op video') },
+    { value: '10+', label: t('samenwerkingen, o.a. Opwekking, The Send, New Wine, YWAM') },
+    { value: '1', label: t('land actief (Zuid-Afrika)') },
+    { value: '2', label: t('landen klaar voor opstart (India, Macedonië)') },
+  ];
+};
 
-const ProofSection = () => (
+const ProofSection = () => {
+  const { t } = useTranslation();
+  const stats = useStats();
+  return (
   <section className="py-24 bg-anthracite">
     <div className="container mx-auto px-6">
       <div className="max-w-5xl mx-auto">
         <ScrollReveal>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-warm-white text-center mb-4">
-            Waar we <span className="text-gold">nu staan.</span>
+            {t('Waar we')} <span className="text-gold">{t('nu staan.')}</span>
           </h2>
         </ScrollReveal>
         <ScrollReveal delay={100}>
           <p className="text-lg text-warm-white/80 text-center max-w-2xl mx-auto mb-14">
-            Het platform draait. De methode werkt.
+            {t('Het platform draait. De methode werkt.')}
           </p>
         </ScrollReveal>
         <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
@@ -205,24 +198,27 @@ const ProofSection = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
-const InTheFieldSection = () => (
+const InTheFieldSection = () => {
+  const { t } = useTranslation();
+  return (
   <section className="py-24 bg-cream">
     <div className="container mx-auto px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <ScrollReveal>
             <span className="inline-block text-sm font-semibold text-gold uppercase tracking-wider mb-3">
-              In het veld
+              {t('In het veld')}
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-anthracite mb-6">
-              JesusToday is <span className="text-gold">in beweging.</span>
+              {t('JesusToday is')} <span className="text-gold">{t('in beweging.')}</span>
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={100}>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              We staan op events, conferenties en in kerken door heel Nederland. Met QR-shirts, kaartjes en een verhaal dat persoonlijk is, brengen we mensen in aanraking met Jezus.
+              {t('We staan op events, conferenties en in kerken door heel Nederland. Met QR-shirts, kaartjes en een verhaal dat persoonlijk is, brengen we mensen in aanraking met Jezus.')}
             </p>
           </ScrollReveal>
         </div>
@@ -232,7 +228,7 @@ const InTheFieldSection = () => (
             <div className="relative overflow-hidden rounded-2xl shadow-card aspect-[4/3] bg-anthracite">
               <img
                 src={teamQrShirts}
-                alt="JesusToday team met QR-code shirts op een event in Nederland"
+                alt={t('JesusToday team met QR-code shirts op een event in Nederland')}
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover"
               />
@@ -242,7 +238,7 @@ const InTheFieldSection = () => (
             <div className="relative overflow-hidden rounded-2xl shadow-card aspect-[4/3] bg-anthracite">
               <img
                 src={eventStand}
-                alt="JesusToday stand met QR-banners en team op een conferentie"
+                alt={t('JesusToday stand met QR-banners en team op een conferentie')}
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover"
               />
@@ -252,41 +248,48 @@ const InTheFieldSection = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
-const steps = [
-  {
-    icon: Video,
-    nr: '01',
-    title: 'Opnemen',
-    desc: 'Een gelovige neemt zijn persoonlijke verhaal op via de JesusToday-app. Het verhaal komt op het platform.',
-  },
-  {
-    icon: QrCode,
-    nr: '02',
-    title: 'Uitdelen',
-    desc: 'Hij ontvangt visitekaartjes met een QR-code die rechtstreeks naar zijn eigen verhaal leidt.',
-  },
-  {
-    icon: Users,
-    nr: '03',
-    title: 'Bereiken',
-    desc: 'Op werk, op straat, na een gesprek deelt hij ze uit. De ontvanger scant in eigen tempo en wordt geraakt door iets echts.',
-  },
-];
+const useSteps = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      icon: Video,
+      nr: '01',
+      title: t('Opnemen'),
+      desc: t('Een gelovige neemt zijn persoonlijke verhaal op via de JesusToday-app. Het verhaal komt op het platform.'),
+    },
+    {
+      icon: QrCode,
+      nr: '02',
+      title: t('Uitdelen'),
+      desc: t('Hij ontvangt visitekaartjes met een QR-code die rechtstreeks naar zijn eigen verhaal leidt.'),
+    },
+    {
+      icon: Users,
+      nr: '03',
+      title: t('Bereiken'),
+      desc: t('Op werk, op straat, na een gesprek deelt hij ze uit. De ontvanger scant in eigen tempo en wordt geraakt door iets echts.'),
+    },
+  ];
+};
 
-const PlanSection = () => (
+const PlanSection = () => {
+  const { t } = useTranslation();
+  const steps = useSteps();
+  return (
   <section className="py-24 bg-cream">
     <div className="container mx-auto px-6">
       <div className="max-w-5xl mx-auto">
         <ScrollReveal>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-anthracite text-center mb-4">
-            Drie <span className="text-gold">stappen.</span>
+            {t('Drie')} <span className="text-gold">{t('stappen.')}</span>
           </h2>
         </ScrollReveal>
         <ScrollReveal delay={100}>
           <p className="text-lg text-muted-foreground text-center max-w-2xl mx-auto mb-14">
-            Eenvoudig, schaalbaar, en bewezen.
+            {t('Eenvoudig, schaalbaar, en bewezen.')}
           </p>
         </ScrollReveal>
         <div className="grid md:grid-cols-3 gap-6">
@@ -314,22 +317,24 @@ const PlanSection = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
-const ScaleSection = () => (
+const ScaleSection = () => {
+  const { t } = useTranslation();
+  return (
   <section className="py-24 bg-anthracite">
     <div className="container mx-auto px-6">
       <div className="max-w-5xl mx-auto text-center">
         <ScrollReveal>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-warm-white mb-6">
-            Wat zou er gebeuren{' '}
-            <span className="text-gold">als we dit samen doen?</span>
+            {t('Wat zou er gebeuren')}{' '}
+            <span className="text-gold">{t('als we dit samen doen?')}</span>
           </h2>
         </ScrollReveal>
         <ScrollReveal delay={100}>
           <p className="text-lg text-warm-white/80 max-w-2xl mx-auto mb-14">
-            Twee kaartjes per week, in het dagelijks leven, via iemand die ze
-            kennen.
+            {t('Twee kaartjes per week, in het dagelijks leven, via iemand die ze kennen.')}
           </p>
         </ScrollReveal>
         <ScrollReveal delay={200}>
@@ -338,40 +343,60 @@ const ScaleSection = () => (
               <div className="text-4xl md:text-5xl font-bold text-gold mb-2">
                 100.000
               </div>
-              <p className="text-warm-white/80">ambassadeurs</p>
+              <p className="text-warm-white/80">{t('ambassadeurs')}</p>
             </div>
             <div className="p-8 rounded-2xl bg-warm-white/5 border border-warm-white/10">
               <div className="text-4xl md:text-5xl font-bold text-gold mb-2">
                 × 100
               </div>
-              <p className="text-warm-white/80">kaartjes per jaar</p>
+              <p className="text-warm-white/80">{t('kaartjes per jaar')}</p>
             </div>
             <div className="p-8 rounded-2xl bg-gold/15 border border-gold/40">
               <div className="text-4xl md:text-5xl font-bold text-gold mb-2">
                 10.000.000
               </div>
-              <p className="text-warm-white">Nederlanders bereikt</p>
+              <p className="text-warm-white">{t('Nederlanders bereikt')}</p>
             </div>
           </div>
         </ScrollReveal>
         <ScrollReveal delay={300}>
           <p className="text-warm-white/70 max-w-2xl mx-auto">
-            En we willen dit internationaal uitrollen.
+            {t('En we willen dit internationaal uitrollen.')}
           </p>
         </ScrollReveal>
       </div>
     </div>
   </section>
-);
+  );
+};
 
-const CornerstoneSection = () => (
+const CornerstoneSection = () => {
+  const { t } = useTranslation();
+  const pillars = [
+    {
+      icon: Sparkles,
+      title: t('Evangelisatie'),
+      desc: t('Via JesusToday verzamelt en verspreidt Cornerstone persoonlijke verhalen op video, zodat mensen op straat, op werk en online in aanraking komen met Jezus.'),
+    },
+    {
+      icon: Heart,
+      title: t('Gebed'),
+      desc: t('Cornerstone bouwt aan gebedsinitiatieven die het werk dragen. Elk verhaal dat via JesusToday wordt gedeeld, staat in een breder gebedsfundament.'),
+    },
+    {
+      icon: BookOpen,
+      title: t('Onderwijs en events'),
+      desc: t('Trainingen en samenkomsten waarin christenen worden toegerust om hun geloof te delen, ook praktisch via JesusToday.'),
+    },
+  ];
+  return (
   <section className="py-24 bg-cream">
     <div className="container mx-auto px-6">
       <div className="max-w-5xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-14">
           <ScrollReveal>
             <span className="inline-block text-sm font-semibold text-gold uppercase tracking-wider mb-3">
-              Onze stichting
+              {t('Onze stichting')}
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-anthracite mb-6">
               Stichting Cornerstone <span className="text-gold">Ministries</span>
@@ -380,32 +405,13 @@ const CornerstoneSection = () => (
           </ScrollReveal>
           <ScrollReveal delay={100}>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              JesusToday is een initiatief van Stichting Cornerstone Ministries, een ANBI-stichting.
-              Cornerstone werkt vanuit drie pijlers en zet zich in om het licht van Jezus te
-              verspreiden in Nederland en daarbuiten. JesusToday is het platform waarmee zij
-              persoonlijke verhalen een bereik geven dat verder gaat dan één kerk of één stad.
+              {t('JesusToday is een initiatief van Stichting Cornerstone Ministries, een ANBI-stichting. Cornerstone werkt vanuit drie pijlers en zet zich in om het licht van Jezus te verspreiden in Nederland en daarbuiten. JesusToday is het platform waarmee zij persoonlijke verhalen een bereik geven dat verder gaat dan één kerk of één stad.')}
             </p>
           </ScrollReveal>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 mb-12">
-          {[
-            {
-              icon: Sparkles,
-              title: 'Evangelisatie',
-              desc: 'Via JesusToday verzamelt en verspreidt Cornerstone persoonlijke verhalen op video, zodat mensen op straat, op werk en online in aanraking komen met Jezus.',
-            },
-            {
-              icon: Heart,
-              title: 'Gebed',
-              desc: 'Cornerstone bouwt aan gebedsinitiatieven die het werk dragen. Elk verhaal dat via JesusToday wordt gedeeld, staat in een breder gebedsfundament.',
-            },
-            {
-              icon: BookOpen,
-              title: 'Onderwijs en events',
-              desc: 'Trainingen en samenkomsten waarin christenen worden toegerust om hun geloof te delen, ook praktisch via JesusToday.',
-            },
-          ].map((p, i) => (
+          {pillars.map((p, i) => (
             <ScrollReveal key={p.title} delay={150 + i * 100}>
               <div className="h-full p-8 rounded-2xl bg-white border border-anthracite/10 shadow-sm">
                 <div className="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-5">
@@ -426,7 +432,7 @@ const CornerstoneSection = () => (
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-gold font-semibold hover:gap-3 transition-all"
             >
-              Bezoek cornerstone-ministries.com
+              {t('Bezoek cornerstone-ministries.com')}
               <ExternalLink className="w-4 h-4" />
             </a>
           </div>
@@ -434,9 +440,12 @@ const CornerstoneSection = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
-const FinalCta = () => (
+const FinalCta = () => {
+  const { t } = useTranslation();
+  return (
   <section className="py-24 bg-anthracite relative overflow-hidden">
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/15 rounded-full blur-3xl" aria-hidden />
     <div className="container mx-auto px-6 relative z-10">
@@ -447,25 +456,25 @@ const FinalCta = () => (
             <div className="relative overflow-hidden rounded-3xl shadow-card aspect-[4/3] bg-anthracite-light ring-1 ring-warm-white/10">
               <img
                 src={teamCrewSelfie}
-                alt="Vier crewleden van JesusToday in gele shirts op een event"
+                alt={t('Vier crewleden van JesusToday in gele shirts op een event')}
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
             <div className="absolute -bottom-4 -right-4 px-4 py-2 rounded-full bg-gold text-anthracite text-sm font-semibold shadow-gold">
-              Crew JesusToday
+              {t('Crew JesusToday')}
             </div>
           </div>
         </ScrollReveal>
         <div className="text-center md:text-left">
           <ScrollReveal delay={100}>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-warm-white mb-6">
-              Doe je <span className="text-gold">mee?</span>
+              {t('Doe je')} <span className="text-gold">{t('mee?')}</span>
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={200}>
             <p className="text-lg text-warm-white/80 mb-10 leading-relaxed">
-              Jouw verhaal kan iemands leven veranderen. Word onderdeel van een groeiende beweging die Jezus zichtbaar maakt, in Nederland en daarbuiten.
+              {t('Jouw verhaal kan iemands leven veranderen. Word onderdeel van een groeiende beweging die Jezus zichtbaar maakt, in Nederland en daarbuiten.')}
             </p>
           </ScrollReveal>
           <ScrollReveal delay={300}>
@@ -473,13 +482,13 @@ const FinalCta = () => (
               <Button asChild variant="hero" size="lg">
                 <Link to="/upload">
                   <Upload className="w-5 h-5" />
-                  Upload jouw verhaal
+                  {t('Upload jouw verhaal')}
                 </Link>
               </Button>
               <Button asChild variant="hero-outline" size="lg">
                 <Link to="/verhalen-over-jezus">
                   <ArrowRight className="w-5 h-5" />
-                  Bekijk verhalen
+                  {t('Bekijk verhalen')}
                 </Link>
               </Button>
             </div>
@@ -488,9 +497,12 @@ const FinalCta = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
-const NewsletterInvite = () => (
+const NewsletterInvite = () => {
+  const { t } = useTranslation();
+  return (
   <section className="py-20 md:py-24 bg-cream">
     <div className="container mx-auto px-6">
       <div className="max-w-4xl mx-auto">
@@ -503,18 +515,17 @@ const NewsletterInvite = () => (
               </div>
               <div className="text-center md:text-left">
                 <h2 className="text-2xl md:text-3xl font-bold text-anthracite mb-2">
-                  Blijf verbonden met <span className="text-gold">JesusToday</span>
+                  {t('Blijf verbonden met')} <span className="text-gold">JesusToday</span>
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Meld je aan voor onze nieuwsbrief en ontvang nieuwe getuigenissen,
-                  updates en bemoediging in je inbox.
+                  {t('Meld je aan voor onze nieuwsbrief en ontvang nieuwe getuigenissen, updates en bemoediging in je inbox.')}
                 </p>
               </div>
               <div className="flex justify-center md:justify-end">
                 <Button asChild variant="hero" size="lg">
                   <Link to="/aanmelden-nieuwsbrief">
                     <Mail className="w-5 h-5" />
-                    Aanmelden nieuwsbrief
+                    {t('Aanmelden nieuwsbrief')}
                   </Link>
                 </Button>
               </div>
@@ -524,28 +535,30 @@ const NewsletterInvite = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 const OverOns = () => {
+  const { t } = useTranslation();
   return (
     <>
       <Helmet>
-        <title>Over JesusToday, ons verhaal</title>
+        <title>{t('Over JesusToday, ons verhaal')}</title>
         <meta
           name="description"
-          content="JesusToday is een platform voor persoonlijke verhalen op video. Lees hoe het begon met het verhaal van oprichter Alexander Keur."
+          content={t('JesusToday is een platform voor persoonlijke verhalen op video. Lees hoe het begon met het verhaal van oprichter Alexander Keur.')}
         />
-        <meta property="og:title" content="Over JesusToday, ons verhaal" />
+        <meta property="og:title" content={t('Over JesusToday, ons verhaal')} />
         <meta
           property="og:description"
-          content="JesusToday is een platform voor persoonlijke verhalen op video, gemaakt door en voor mensen die hun ervaring met Jezus willen delen."
+          content={t('JesusToday is een platform voor persoonlijke verhalen op video, gemaakt door en voor mensen die hun ervaring met Jezus willen delen.')}
         />
         <meta property="og:url" content="https://jesustoday.app/over-ons" />
 
         <link rel="canonical" href="https://jesustoday.app/over-ons" />
         <meta property="og:type" content="website" />
-        <meta name="twitter:title" content="Over JesusToday, ons verhaal" />
-        <meta name="twitter:description" content="JesusToday is een platform voor persoonlijke verhalen op video." />
+        <meta name="twitter:title" content={t('Over JesusToday, ons verhaal')} />
+        <meta name="twitter:description" content={t('JesusToday is een platform voor persoonlijke verhalen op video.')} />
       </Helmet>
       <Header />
       <main>
