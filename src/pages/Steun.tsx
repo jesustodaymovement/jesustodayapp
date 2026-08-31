@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Footer } from '@/components/sections/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { AnbiStamp } from '@/components/AnbiStamp';
+import { DonorboxWidget } from '@/components/DonorboxWidget';
 import { Heart, ShieldCheck, CreditCard, CheckCircle2 } from 'lucide-react';
 import logo from '@/assets/jesus-today-logo.png';
 
@@ -24,23 +25,6 @@ const packages = [
   { amount: '€1.000', title: 'Eerste videografie-apparatuur voor een nieuw land' },
 ];
 
-const DonorboxWidget = () => (
-  <div className="flex justify-center">
-    <iframe
-      src="https://donorbox.org/embed/donatie-voor-jesus-today"
-      name="donorbox"
-      allow="payment"
-      seamless
-      frameBorder={0}
-      scrolling="no"
-      height="900px"
-      width="100%"
-      style={{ maxWidth: 500, minWidth: 250, maxHeight: 'none' }}
-      title="Doneer aan JesusToday via Donorbox"
-    />
-  </div>
-);
-
 const Steun = () => {
   return (
     <>
@@ -61,7 +45,6 @@ const Steun = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Steun JesusToday, doneer vandaag" />
         <meta name="twitter:description" content="Doneer aan JesusToday en help persoonlijke verhalen over Jezus verspreiden." />
-        <script src="https://donorbox.org/widget.js" defer></script>
       </Helmet>
 
       {/* Slanke koptekst, minder afleiding voor e-mailverkeer */}

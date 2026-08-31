@@ -4,6 +4,7 @@ import { Footer } from '@/components/sections/Footer';
 import { Button } from '@/components/ui/button';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { AnbiStamp } from '@/components/AnbiStamp';
+import { DonorboxWidget } from '@/components/DonorboxWidget';
 import {
   Heart,
   Video,
@@ -350,25 +351,9 @@ const WidgetSection = () => (
         </ScrollReveal>
 
         <ScrollReveal delay={300}>
-          <div className="flex justify-center">
-            <iframe
-              src="https://donorbox.org/embed/donatie-voor-jesus-today"
-              name="donorbox"
-              allow="payment"
-              seamless
-              frameBorder={0}
-              scrolling="no"
-              height="900px"
-              width="100%"
-              style={{
-                maxWidth: 500,
-                minWidth: 250,
-                maxHeight: 'none',
-              }}
-              title="Doneer aan JesusToday via Donorbox"
-            />
-          </div>
+          <DonorboxWidget />
         </ScrollReveal>
+
 
         <ScrollReveal delay={400}>
           <p className="text-sm text-muted-foreground mt-8">
@@ -652,7 +637,6 @@ const Doneren = () => {
         <meta property="og:type" content="website" />
         <meta name="twitter:title" content="Doneren aan JesusToday" />
         <meta name="twitter:description" content="Help mee bouwen aan een beweging die een hele generatie bereikt." />
-        <script src="https://donorbox.org/widget.js" defer></script>
       </Helmet>
       <Header />
       <main>
