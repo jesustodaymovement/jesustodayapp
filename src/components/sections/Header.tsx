@@ -20,6 +20,9 @@ export const Header = () => {
   const { t, i18n } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isNationsOpen, setIsNationsOpen] = useState(false);
+  const [isMobileNationsOpen, setIsMobileNationsOpen] = useState(false);
+  const nationsRef = useRef<HTMLDivElement>(null);
   const audience = useAudienceOptional();
   const langOptions = [
     { code: 'en', label: 'EN' },
@@ -56,6 +59,23 @@ export const Header = () => {
       ))}
     </div>
   );
+
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (nationsRef.current && !nationsRef.current.contains(e.target as Node)) {
+        setIsNationsOpen(false);
+      }
+    };
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsNationsOpen(false);
+    };
+    document.addEventListener('mousedown', handleClick);
+    document.addEventListener('keydown', handleKey);
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+      document.removeEventListener('keydown', handleKey);
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -97,6 +117,54 @@ export const Header = () => {
                 {t(link.label)}
               </a>
             ))}
+
+            {/* Nations dropdown, losstaand van de taalkeuze */}
+            <div
+              ref={nationsRef}
+              className="relative"
+              onMouseEnter={() => setIsNationsOpen(true)}
+              onMouseLeave={() => setIsNationsOpen(false)}
+            >
+              <button
+                type="button"
+                onClick={() => setIsNationsOpen((o) => !o)}
+                aria-expanded={isNationsOpen}
+                aria-haspopup="true"
+                className="flex items-center gap-1 text-anthracite/80 hover:text-gold transition-colors font-medium"
+              >
+                {t('Nations')}
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform ${isNationsOpen ? 'rotate-180' : ''}`}
+                />
+              </button>
+
+              {isNationsOpen && (
+                <div className="absolute left-0 top-full pt-3">
+                  <div className="w-60 rounded-xl border border-anthracite/10 bg-white p-2 shadow-lg">
+                    {NATIONS.map((nation) => (
+                      <a
+                        key={nation.code}
+                        href={nation.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-anthracite/80 hover:bg-anthracite/5 hover:text-gold transition-colors font-medium"
+                      >
+                        <span aria-hidden="true">{nation.flag}</span>
+                        <span className="flex-1">{t(nation.name)}</span>
+                        <ArrowUpRight className="w-4 h-4 text-gold" />
+                      </a>
+                    ))}
+                    <Link
+                      to="/nations"
+                      onClick={() => setIsNationsOpen(false)}
+                      className="mt-1 block border-t border-anthracite/10 px-3 pt-2.5 pb-1 text-sm text-anthracite/60 hover:text-gold transition-colors"
+                    >
+                      {t('Alle landen bekijken')}
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
           </nav>
 
           {/* Desktop CTA + audience switch */}
@@ -141,6 +209,44 @@ export const Header = () => {
                   {t(link.label)}
                 </a>
               ))}
+
+              {/* Nations in het mobiele menu, uitklapbaar */}
+              <button
+                type="button"
+                onClick={() => setIsMobileNationsOpen((o) => !o)}
+                aria-expanded={isMobileNationsOpen}
+                className="flex items-center justify-between px-6 py-3 text-anthracite/80 hover:text-gold hover:bg-anthracite/5 transition-colors font-medium"
+              >
+                {t('Nations')}
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform ${isMobileNationsOpen ? 'rotate-180' : ''}`}
+                />
+              </button>
+              {isMobileNationsOpen && (
+                <div className="bg-anthracite/[0.03]">
+                  {NATIONS.map((nation) => (
+                    <a
+                      key={nation.code}
+                      href={nation.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 pl-10 pr-6 py-3 text-anthracite/80 hover:text-gold transition-colors font-medium"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <span aria-hidden="true">{nation.flag}</span>
+                      <span className="flex-1">{t(nation.name)}</span>
+                      <ArrowUpRight className="w-4 h-4 text-gold" />
+                    </a>
+                  ))}
+                  <Link
+                    to="/nations"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block pl-10 pr-6 py-3 text-sm text-anthracite/60 hover:text-gold transition-colors"
+                  >
+                    {t('Alle landen bekijken')}
+                  </Link>
+                </div>
+              )}
               <div className="px-6 py-4">
                 <Button asChild variant="hero" size="default" className="w-full">
                   <Link to="/upload" onClick={() => setIsMobileMenuOpen(false)}>
