@@ -4,6 +4,7 @@ import { Footer } from '@/components/sections/Footer';
 import { Button } from '@/components/ui/button';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { AnbiStamp } from '@/components/AnbiStamp';
+import { DonorboxWidget } from '@/components/DonorboxWidget';
 import {
   Heart,
   Video,
@@ -636,7 +637,6 @@ const Doneren = () => {
         <meta property="og:type" content="website" />
         <meta name="twitter:title" content="Doneren aan JesusToday" />
         <meta name="twitter:description" content="Help mee bouwen aan een beweging die een hele generatie bereikt." />
-        <script src="https://donorbox.org/widget.js" defer></script>
       </Helmet>
       <Header />
       <main>
