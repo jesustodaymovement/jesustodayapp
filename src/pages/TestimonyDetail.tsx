@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import {
   ArrowLeft,
   ChevronRight,
+  ExternalLink,
   Loader2,
   MessageCircle,
   MessagesSquare,
@@ -552,6 +553,37 @@ const TestimonyDetail = () => {
                 </section>
 
                 <section className="bg-warm-white rounded-2xl shadow-card p-8 md:p-10">
+                  <h2 className="text-3xl font-bold text-anthracite mb-2">Het leven van Jezus</h2>
+                  <p className="text-muted-foreground mb-6">
+                    Bekijk de film over het leven van Jezus en ontdek wie Hij is.
+                  </p>
+                  <div className="relative w-full overflow-hidden rounded-2xl aspect-video bg-anthracite">
+                    <iframe
+                      src="https://www.youtube-nocookie.com/embed/2mgUPt2KI08"
+                      title="Het leven van Jezus"
+                      className="absolute inset-0 h-full w-full"
+                      frameBorder={0}
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    />
+                  </div>
+                  <div className="mt-6">
+                    <Button asChild size="lg">
+                      <a
+                        href="https://www.youtube.com/watch?v=2mgUPt2KI08"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ExternalLink className="w-5 h-5" />
+                        Bekijk op YouTube
+                      </a>
+                    </Button>
+                  </div>
+                </section>
+
+                <section className="bg-warm-white rounded-2xl shadow-card p-8 md:p-10">
+
                   <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-8">
                     <div>
                       <p className="text-sm font-semibold uppercase tracking-wide text-gold mb-2">
