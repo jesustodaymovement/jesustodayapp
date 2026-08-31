@@ -339,20 +339,20 @@ const ScaleSection = () => {
         </ScrollReveal>
         <ScrollReveal delay={200}>
           <div className="grid sm:grid-cols-3 gap-6 items-center mb-10">
-            <div className="p-8 rounded-2xl bg-warm-white/5 border border-warm-white/10">
-              <div className="text-4xl md:text-5xl font-bold text-gold mb-2">
+            <div className="p-6 lg:p-8 rounded-2xl bg-warm-white/5 border border-warm-white/10">
+              <div className="text-3xl sm:text-2xl lg:text-4xl xl:text-5xl font-bold text-gold mb-2 break-words">
                 100.000
               </div>
               <p className="text-warm-white/80">{t('ambassadeurs')}</p>
             </div>
-            <div className="p-8 rounded-2xl bg-warm-white/5 border border-warm-white/10">
-              <div className="text-4xl md:text-5xl font-bold text-gold mb-2">
+            <div className="p-6 lg:p-8 rounded-2xl bg-warm-white/5 border border-warm-white/10">
+              <div className="text-3xl sm:text-2xl lg:text-4xl xl:text-5xl font-bold text-gold mb-2 break-words">
                 × 100
               </div>
               <p className="text-warm-white/80">{t('kaartjes per jaar')}</p>
             </div>
-            <div className="p-8 rounded-2xl bg-gold/15 border border-gold/40">
-              <div className="text-4xl md:text-5xl font-bold text-gold mb-2">
+            <div className="p-6 lg:p-8 rounded-2xl bg-gold/15 border border-gold/40">
+              <div className="text-3xl sm:text-2xl lg:text-4xl xl:text-5xl font-bold text-gold mb-2 break-words">
                 10.000.000
               </div>
               <p className="text-warm-white">{t('Nederlanders bereikt')}</p>

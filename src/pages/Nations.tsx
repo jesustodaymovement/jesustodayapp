@@ -12,11 +12,18 @@ const Nations = () => {
   return (
     <>
       <Helmet>
-        <title>Nations, JesusToday per land</title>
+        <title>{t('Nations, JesusToday per land')}</title>
         <meta
           name="description"
-          content="Kies jouw land en ga naar de officiële JesusToday website van Nederland of Zuid-Afrika."
+          content={t('Kies jouw land en ga naar de officiële JesusToday website van Nederland of Zuid-Afrika.')}
         />
+        <meta property="og:title" content={t('Nations, JesusToday per land')} />
+        <meta
+          property="og:description"
+          content={t('Kies jouw land en ga naar de officiële JesusToday website van Nederland of Zuid-Afrika.')}
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://jesustoday.app/nations" />
         <link rel="canonical" href="https://jesustoday.app/nations" />
       </Helmet>
 

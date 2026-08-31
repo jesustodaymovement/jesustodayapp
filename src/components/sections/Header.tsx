@@ -115,7 +115,7 @@ export const Header = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.label}
@@ -187,7 +187,7 @@ export const Header = () => {
 
 
           {/* Desktop CTA + audience switch */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-4">
             {audience && <AudienceSwitch variant="header" />}
             <Button asChild variant="hero" size="default">
               <Link to="/upload">{t('Upload jouw verhaal')}</Link>
@@ -198,7 +198,7 @@ export const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-anthracite p-2"
+            className="lg:hidden text-anthracite p-2"
             aria-label={t('Toggle menu')}
           >
             {isMobileMenuOpen ? (
@@ -211,7 +211,7 @@ export const Header = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-20 left-0 right-0 bg-white shadow-lg border-t border-anthracite/10">
+          <div className="lg:hidden absolute top-20 left-0 right-0 bg-white shadow-lg border-t border-anthracite/10">
             <nav className="flex flex-col py-4">
               {audience && (
                 <div className="px-6 py-3 flex justify-center">

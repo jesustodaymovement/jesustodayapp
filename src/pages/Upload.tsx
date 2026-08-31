@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
@@ -179,7 +179,10 @@ const Upload = () => {
               </ScrollReveal>
               <ScrollReveal delay={100}>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-anthracite leading-tight mb-6">
-                  {t('Jouw verhaal, in')} <span className="text-gold">{t('3 stappen')}</span> {t('gedeeld')}
+                  <Trans
+                    i18nKey="Jouw verhaal, in <1>3 stappen</1> gedeeld"
+                    components={[<span key="0" />, <span key="1" className="text-gold" />]}
+                  />
                 </h1>
               </ScrollReveal>
               <ScrollReveal delay={200}>

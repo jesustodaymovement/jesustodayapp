@@ -39,6 +39,8 @@ const Nieuwsbrief = () => {
           property="og:description"
           content={t('Blijf op de hoogte van nieuwe verhalen over Jezus en updates van de JesusToday-beweging.')}
         />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://jesustoday.app/aanmelden-nieuwsbrief" />
         <link rel="canonical" href="https://jesustoday.app/aanmelden-nieuwsbrief" />
       </Helmet>
       <Header />
