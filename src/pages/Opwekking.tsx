@@ -3,6 +3,7 @@ import { Megaphone, Mail, Globe } from "lucide-react";
 import { SubmissionForm } from "@/components/forms/SubmissionForm";
 import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
+import { useTranslation } from "react-i18next";
 
 const drogredenen = [
   "Je bent nu druk, volgende keer heb je meer tijd.",
@@ -12,22 +13,23 @@ const drogredenen = [
 ];
 
 const Opwekking = () => {
+  const { t } = useTranslation();
   return (
     <>
       <Helmet>
-        <title>Opwekking, laat je getuigenis opnemen, JesusToday</title>
+        <title>{t('Opwekking, laat je getuigenis opnemen, JesusToday')}</title>
         <meta
           name="description"
-          content="Meld je aan om tijdens Opwekking jouw getuigenisvideo te laten opnemen door het JesusToday team."
+          content={t('Meld je aan om tijdens Opwekking jouw getuigenisvideo te laten opnemen door het JesusToday team.')}
         />
-        <meta property="og:title" content="Opwekking, laat je getuigenis opnemen, JesusToday" />
-        <meta property="og:description" content="Meld je aan voor het opnemen van jouw getuigenisvideo tijdens Opwekking." />
+        <meta property="og:title" content={t('Opwekking, laat je getuigenis opnemen, JesusToday')} />
+        <meta property="og:description" content={t('Meld je aan voor het opnemen van jouw getuigenisvideo tijdens Opwekking.')} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://jesustoday.app/aanmeldenopwekking2026" />
 
         <link rel="canonical" href="https://jesustoday.app/aanmeldenopwekking2026" />
-        <meta name="twitter:title" content="Opwekking, laat je getuigenis opnemen, JesusToday" />
-        <meta name="twitter:description" content="Meld je aan voor het opnemen van jouw getuigenisvideo tijdens Opwekking." />
+        <meta name="twitter:title" content={t('Opwekking, laat je getuigenis opnemen, JesusToday')} />
+        <meta name="twitter:description" content={t('Meld je aan voor het opnemen van jouw getuigenisvideo tijdens Opwekking.')} />
       </Helmet>
       <Header />
       <main>
@@ -38,14 +40,13 @@ const Opwekking = () => {
               style={{ backgroundColor: "rgba(250,209,80,0.25)" }}
             >
               <Megaphone className="w-4 h-4" style={{ color: "#b9930a" }} />
-              <span className="text-anthracite text-sm font-medium">Opwekking</span>
+              <span className="text-anthracite text-sm font-medium">{t('Opwekking')}</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-anthracite mb-6 leading-tight">
-              Ja, ik wil een <span style={{ color: "#fad150" }}>video maken</span>
+              {t('Ja, ik wil een')} <span style={{ color: "#fad150" }}>{t('video maken')}</span>
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Wat mooi dat je je aanmeldt. Wij gaan je helpen om een impactvolle
-              getuigenisvideo te maken.
+              {t('Wat mooi dat je je aanmeldt. Wij gaan je helpen om een impactvolle getuigenisvideo te maken.')}
             </p>
           </div>
         </section>
@@ -54,55 +55,50 @@ const Opwekking = () => {
           <div className="container mx-auto px-6 max-w-3xl space-y-8">
             <div className="rounded-2xl border border-anthracite/10 bg-cream/60 p-6 md:p-8">
               <h2 className="text-xl md:text-2xl font-bold text-anthracite mb-3">
-                Goed om vooraf te weten
+                {t('Goed om vooraf te weten')}
               </h2>
               <p className="text-anthracite/80 leading-relaxed mb-4">
-                Jouw verhaal gaat mensenlevens veranderen, en dat is iets wat de
-                vijand van God niet wil. Hij zal je daarom bestoken met allerlei
-                drogredenen waarom je dit toch niet moet doen. Een paar voorbeelden:
+                {t('Jouw verhaal gaat mensenlevens veranderen, en dat is iets wat de vijand van God niet wil. Hij zal je daarom bestoken met allerlei drogredenen waarom je dit toch niet moet doen. Een paar voorbeelden:')}
               </p>
               <ul className="space-y-2 text-anthracite/80 list-disc pl-5 mb-4">
                 {drogredenen.map((d) => (
-                  <li key={d}>{d}</li>
+                  <li key={d}>{t(d)}</li>
                 ))}
               </ul>
               <p className="text-anthracite/80 leading-relaxed">
-                Maar jouw authentieke verhaal doet er weldegelijk toe en wij gaan
-                je helpen, zodat jij een gezegend Jezus-getuige bent. Gehoorzaam
-                aan Zijn 'Grote opdracht'.
+                {t("Maar jouw authentieke verhaal doet er weldegelijk toe en wij gaan je helpen, zodat jij een gezegend Jezus-getuige bent. Gehoorzaam aan Zijn 'Grote opdracht'.")}
               </p>
             </div>
 
             <div className="rounded-2xl border border-anthracite/10 bg-white p-6 md:p-8 shadow-sm">
               <h2 className="text-xl md:text-2xl font-bold text-anthracite mb-2">
-                Laat je gegevens achter
+                {t('Laat je gegevens achter')}
               </h2>
               <p className="text-anthracite/70 mb-6">
-                Om jou te helpen hebben we je gegevens nodig zodat we contact
-                met je kunnen opnemen. Doe mee, laat je niet tegenhouden.
+                {t('Om jou te helpen hebben we je gegevens nodig zodat we contact met je kunnen opnemen. Doe mee, laat je niet tegenhouden.')}
               </p>
               <SubmissionForm
                 type="opwekking"
                 formName="Aanmelding getuigenisvideo Opwekking"
-                submitLabel="Meld je aan"
-                successTitle="Aanmelding ontvangen"
-                successText="Wat mooi, we nemen snel contact met je op om je video te plannen."
-                confirmationIntro="Wat mooi dat je je aanmeldt om jouw getuigenis op te nemen. We nemen snel contact met je op om alles af te stemmen."
+                submitLabel={t('Meld je aan')}
+                successTitle={t('Aanmelding ontvangen')}
+                successText={t('Wat mooi, we nemen snel contact met je op om je video te plannen.')}
+                confirmationIntro={t('Wat mooi dat je je aanmeldt om jouw getuigenis op te nemen. We nemen snel contact met je op om alles af te stemmen.')}
                 className="border-0 p-0 shadow-none md:p-0"
                 fields={[
-                  { name: 'name', label: 'Je naam', required: true, placeholder: 'Voornaam Achternaam' },
-                  { name: 'email', label: 'E-mail', type: 'email', required: true, placeholder: 'jij@voorbeeld.nl' },
-                  { name: 'phone', label: 'Telefoonnummer', type: 'tel', required: true, placeholder: '06 12345678' },
-                  { name: 'plaats', label: 'Woonplaats', placeholder: 'Waar woon je?' },
-                  { name: 'leeftijd', label: 'Leeftijd', placeholder: 'Bijvoorbeeld 24' },
-                  { name: 'kerk', label: 'Kerk of gemeente', placeholder: 'Optioneel' },
+                  { name: 'name', label: t('Je naam'), required: true, placeholder: t('Voornaam Achternaam') },
+                  { name: 'email', label: t('E-mail'), type: 'email', required: true, placeholder: 'jij@voorbeeld.nl' },
+                  { name: 'phone', label: t('Telefoonnummer'), type: 'tel', required: true, placeholder: '06 12345678' },
+                  { name: 'plaats', label: t('Woonplaats'), placeholder: t('Waar woon je?') },
+                  { name: 'leeftijd', label: t('Leeftijd'), placeholder: t('Bijvoorbeeld 24') },
+                  { name: 'kerk', label: t('Kerk of gemeente'), placeholder: t('Optioneel') },
                   {
                     name: 'message',
-                    label: 'Waar gaat jouw verhaal over?',
+                    label: t('Waar gaat jouw verhaal over?'),
                     type: 'textarea',
                     required: true,
                     rows: 5,
-                    placeholder: 'Vertel in een paar regels wat Jezus in jouw leven heeft gedaan...',
+                    placeholder: t('Vertel in een paar regels wat Jezus in jouw leven heeft gedaan...'),
                   },
                 ]}
               />
@@ -110,7 +106,7 @@ const Opwekking = () => {
 
             <div className="rounded-2xl border border-anthracite/10 bg-cream/60 p-6 md:p-8">
               <h2 className="text-lg font-bold text-anthracite mb-4">
-                Liever direct contact?
+                {t('Liever direct contact?')}
               </h2>
               <ul className="space-y-2 text-anthracite/80">
                 <li className="flex items-center gap-2">

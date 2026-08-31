@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
@@ -61,119 +62,145 @@ const partners = [
   { name: 'Jesus in the Streets', url: 'https://jesusinthestreets.nu/', logo: jesusInTheStreets },
   { name: 'Our World Needs Jesus', url: 'https://ourworldneedsjesus.com/', logo: ownj },
 ];
-const endorsements = [
-  {
-    name: 'Martin Koornstra',
-    role: 'Spreker & oprichter Royal Mission',
-    photo: martinKoornstra,
-    description: 'Bekend spreker en evangelist, oprichter van Royal Mission, die zich inzet voor toerusting van gelovigen in heel Nederland.',
-  },
-  {
-    name: 'Jan Pool',
-    role: 'Spreker & auteur',
-    photo: janPool,
-    description: 'Ervaren spreker en auteur met een hart voor de kerk in Nederland en het delen van het evangelie.',
-  },
-  {
-    name: 'Ben Verboom',
-    role: 'R5 Church',
-    photo: benVerboom,
-    description: 'Voorganger en initiatiefnemer bij R5 Church, betrokken bij gemeenteopbouw en het activeren van gelovigen in hun roeping.',
-  },
-];
+const useEndorsements = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      name: 'Martin Koornstra',
+      role: t('Spreker & oprichter Royal Mission'),
+      photo: martinKoornstra,
+      description: t('Bekend spreker en evangelist, oprichter van Royal Mission, die zich inzet voor toerusting van gelovigen in heel Nederland.'),
+    },
+    {
+      name: 'Jan Pool',
+      role: t('Spreker & auteur'),
+      photo: janPool,
+      description: t('Ervaren spreker en auteur met een hart voor de kerk in Nederland en het delen van het evangelie.'),
+    },
+    {
+      name: 'Ben Verboom',
+      role: 'R5 Church',
+      photo: benVerboom,
+      description: t('Voorganger en initiatiefnemer bij R5 Church, betrokken bij gemeenteopbouw en het activeren van gelovigen in hun roeping.'),
+    },
+  ];
+};
 
 
-const benefits = [
-  {
-    icon: HeartHandshake,
-    title: 'Eigenaarschap bij jullie',
-    description: 'Jullie kerk of organisatie pakt zelf het stuur om verhalen van mensen uit jullie kerk, organisatie of team te verzamelen en te delen, op jullie eigen tempo.',
-  },
-  {
-    icon: Users,
-    title: 'Activeer jullie mensen',
-    description: 'Jullie gaan zelf op pad met kaartjes om hun verhaal en geloof te delen met anderen.',
-  },
-  {
-    icon: Palette,
-    title: 'Kaartjes in jullie huisstijl',
-    description: 'QR-kaartjes ontworpen in de kleuren en met het logo van jullie kerk of organisatie, herkenbaar en eigen.',
-  },
-  {
-    icon: Camera,
-    title: 'Wij helpen waar nodig',
-    description: 'Wij denken mee, leveren handvatten en springen bij als jullie er zelf niet uitkomen.',
-  },
-];
+const useBenefits = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      icon: HeartHandshake,
+      title: t('Eigenaarschap bij jullie'),
+      description: t('Jullie kerk of organisatie pakt zelf het stuur om verhalen van mensen uit jullie kerk, organisatie of team te verzamelen en te delen, op jullie eigen tempo.'),
+    },
+    {
+      icon: Users,
+      title: t('Activeer jullie mensen'),
+      description: t('Jullie gaan zelf op pad met kaartjes om hun verhaal en geloof te delen met anderen.'),
+    },
+    {
+      icon: Palette,
+      title: t('Kaartjes in jullie huisstijl'),
+      description: t('QR-kaartjes ontworpen in de kleuren en met het logo van jullie kerk of organisatie, herkenbaar en eigen.'),
+    },
+    {
+      icon: Camera,
+      title: t('Wij helpen waar nodig'),
+      description: t('Wij denken mee, leveren handvatten en springen bij als jullie er zelf niet uitkomen.'),
+    },
+  ];
+};
 
-const steps = [
-  {
-    number: '01',
-    icon: MessageCircle,
-    title: 'Kennismaking met het bestuur',
-    description: 'We komen langs voor een 1-op-1 gesprek met jullie bestuur om visie, wensen en mogelijkheden te verkennen.',
-  },
-  {
-    number: '02',
-    icon: Mic,
-    title: 'Jullie nemen verhalen op',
-    description: 'Jullie gaan zelf aan de slag met het opnemen van getuigenissen. Wij geven jullie de handvatten en denken mee in de aanpak.',
-  },
-  {
-    number: '03',
-    icon: QrCode,
-    title: 'QR-kaartjes in jullie huisstijl',
-    description: 'Elk verhaal krijgt een uniek kaartje, in jullie kleuren en met jullie logo, klaar om uit te delen.',
-  },
-  {
-    number: '04',
-    icon: Users,
-    title: 'Delen in het dagelijks leven',
-    description: 'Jullie mensen delen de kaartjes in hun dagelijks leven, op werk, school, evenementen en in de buurt.',
-  },
-];
+const useSteps = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      number: '01',
+      icon: MessageCircle,
+      title: t('Kennismaking met het bestuur'),
+      description: t('We komen langs voor een 1-op-1 gesprek met jullie bestuur om visie, wensen en mogelijkheden te verkennen.'),
+    },
+    {
+      number: '02',
+      icon: Mic,
+      title: t('Jullie nemen verhalen op'),
+      description: t('Jullie gaan zelf aan de slag met het opnemen van getuigenissen. Wij geven jullie de handvatten en denken mee in de aanpak.'),
+    },
+    {
+      number: '03',
+      icon: QrCode,
+      title: t('QR-kaartjes in jullie huisstijl'),
+      description: t('Elk verhaal krijgt een uniek kaartje, in jullie kleuren en met jullie logo, klaar om uit te delen.'),
+    },
+    {
+      number: '04',
+      icon: Users,
+      title: t('Delen in het dagelijks leven'),
+      description: t('Jullie mensen delen de kaartjes in hun dagelijks leven, op werk, school, evenementen en in de buurt.'),
+    },
+  ];
+};
 
-const offering = [
-  { icon: MessageCircle, title: '1-op-1 gesprek met jullie bestuur' },
-  { icon: Users, title: 'Vast aanspreekpunt vanuit het JesusToday-team' },
-  { icon: Mic, title: 'Spreekbeurt over evangelisatie en getuigen' },
-  { icon: Palette, title: 'QR-kaartjes ontworpen in jullie huisstijl' },
-  { icon: QrCode, title: 'Eigen QR-codes met directe link naar JesusToday' },
-  { icon: Camera, title: 'Optioneel: hulp bij opnemen als jullie er zelf niet uitkomen' },
-];
+const useOffering = () => {
+  const { t } = useTranslation();
+  return [
+    { icon: MessageCircle, title: t('1-op-1 gesprek met jullie bestuur') },
+    { icon: Users, title: t('Vast aanspreekpunt vanuit het JesusToday-team') },
+    { icon: Mic, title: t('Spreekbeurt over evangelisatie en getuigen') },
+    { icon: Palette, title: t('QR-kaartjes ontworpen in jullie huisstijl') },
+    { icon: QrCode, title: t('Eigen QR-codes met directe link naar JesusToday') },
+    { icon: Camera, title: t('Optioneel: hulp bij opnemen als jullie er zelf niet uitkomen') },
+  ];
+};
 
-const faqs = [
-  {
-    q: 'Moeten we het zelf opnemen of komen jullie filmen?',
-    a: 'Het idee is dat jullie het zelf doen, dat geeft de meeste eigenaarschap binnen jullie kerk of organisatie. Lukt dat niet, dan kunnen we in overleg langskomen om te helpen met opnemen.',
-  },
-  {
-    q: 'Wat als we geen ervaring hebben met video?',
-    a: 'Geen probleem. We geven jullie praktische handvatten, voorbeeldvragen en tips zodat je zelf aan de slag kunt. Loop je vast, dan denken we mee.',
-  },
-  {
-    q: 'Mogen we de verhalen ook zelf gebruiken?',
-    a: 'Ja, jullie krijgen toegang tot de getuigenissen en mogen deze ook delen via eigen kanalen, social media, in een dienst of op een event.',
-  },
-];
+const useFaqs = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      q: t('Moeten we het zelf opnemen of komen jullie filmen?'),
+      a: t('Het idee is dat jullie het zelf doen, dat geeft de meeste eigenaarschap binnen jullie kerk of organisatie. Lukt dat niet, dan kunnen we in overleg langskomen om te helpen met opnemen.'),
+    },
+    {
+      q: t('Wat als we geen ervaring hebben met video?'),
+      a: t('Geen probleem. We geven jullie praktische handvatten, voorbeeldvragen en tips zodat je zelf aan de slag kunt. Loop je vast, dan denken we mee.'),
+    },
+    {
+      q: t('Mogen we de verhalen ook zelf gebruiken?'),
+      a: t('Ja, jullie krijgen toegang tot de getuigenissen en mogen deze ook delen via eigen kanalen, social media, in een dienst of op een event.'),
+    },
+  ];
+};
 
 const Partners = () => {
+  const { t } = useTranslation();
+  const benefits = useBenefits();
+  const steps = useSteps();
+  const offering = useOffering();
+  const faqs = useFaqs();
+  const endorsements = useEndorsements();
+  const speakingItems = [
+    { icon: Calendar, title: t('In een dienst of bijeenkomst'), desc: t('Een inspirerende boodschap over getuigen, met praktische handvatten voor jullie team.') },
+    { icon: Users, title: t('Op een jongeren-/jeugdavond'), desc: t('Een interactieve sessie waarin jongeren ontdekken hoe ze hun verhaal kunnen delen.') },
+    { icon: UserCheck, title: t('Voor het bestuur of kernteam'), desc: t('Een verdiepend gesprek over het delen van verhalen over Jezus als beweging binnen jullie kerk of organisatie.') },
+  ];
   return (
     <>
       <Helmet>
-        <title>Partners, JesusToday voor kerken en organisaties</title>
+        <title>{t('Partners, JesusToday voor kerken en organisaties')}</title>
         <meta
           name="description"
-          content="Word partner van JesusToday. We helpen kerken en organisaties om verhalen van mensen uit jullie kerk of organisatie vast te leggen en te delen via QR-kaartjes in jullie eigen huisstijl."
+          content={t('Word partner van JesusToday. We helpen kerken en organisaties om verhalen van mensen uit jullie kerk of organisatie vast te leggen en te delen via QR-kaartjes in jullie eigen huisstijl.')}
         />
-        <meta property="og:title" content="Partners, JesusToday voor kerken en organisaties" />
-        <meta property="og:description" content="Word partner van JesusToday. We helpen kerken en organisaties om verhalen vast te leggen en te delen via QR-kaartjes." />
+        <meta property="og:title" content={t('Partners, JesusToday voor kerken en organisaties')} />
+        <meta property="og:description" content={t('Word partner van JesusToday. We helpen kerken en organisaties om verhalen vast te leggen en te delen via QR-kaartjes.')} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://jesustoday.app/partners" />
 
         <link rel="canonical" href="https://jesustoday.app/partners" />
-        <meta name="twitter:title" content="Partners, JesusToday voor kerken en organisaties" />
-        <meta name="twitter:description" content="Word partner van JesusToday." />
+        <meta name="twitter:title" content={t('Partners, JesusToday voor kerken en organisaties')} />
+        <meta name="twitter:description" content={t('Word partner van JesusToday.')} />
       </Helmet>
       <Header />
       <main>
@@ -184,27 +211,27 @@ const Partners = () => {
               <ScrollReveal>
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/20 border border-gold/30 mb-6">
                   <Handshake className="w-4 h-4 text-anthracite" />
-                  <span className="text-anthracite text-sm font-medium">Voor kerken en organisaties</span>
+                  <span className="text-anthracite text-sm font-medium">{t('Voor kerken en organisaties')}</span>
                 </div>
               </ScrollReveal>
               <ScrollReveal delay={100}>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-anthracite mb-6">
-                  Word partner van <span className="text-gold">JesusToday</span>
+                  {t('Word partner van')} <span className="text-gold">JesusToday</span>
                 </h1>
               </ScrollReveal>
               <ScrollReveal delay={200}>
                 <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">
-                  We werken samen met missionair gerichte kerken én organisaties, zoals The Send en Opwekking, om verhalen van mensen uit jullie kerk of organisatie vast te leggen en te delen via QR-kaartjes in jullie eigen huisstijl. Jullie nemen het eigenaarschap, wij denken mee en springen bij waar nodig.
+                  {t('We werken samen met missionair gerichte kerken én organisaties, zoals The Send en Opwekking, om verhalen van mensen uit jullie kerk of organisatie vast te leggen en te delen via QR-kaartjes in jullie eigen huisstijl. Jullie nemen het eigenaarschap, wij denken mee en springen bij waar nodig.')}
                 </p>
               </ScrollReveal>
               <ScrollReveal delay={300}>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button asChild variant="cta-light" size="lg">
-                    <Link to="/upload">Meld jullie aan</Link>
+                    <Link to="/upload">{t('Meld jullie aan')}</Link>
                   </Button>
                   <Button asChild variant="outline" size="lg">
                     <a href="mailto:info@jesustoday.nl?subject=Partnership%20met%20JesusToday">
-                      Plan een kennismaking
+                      {t('Plan een kennismaking')}
                     </a>
                   </Button>
                 </div>
@@ -221,7 +248,7 @@ const Partners = () => {
                 <div className="relative rounded-3xl overflow-hidden shadow-card border border-border/50">
                   <img
                     src={boothSelfie}
-                    alt="JesusToday stand op een event met QR-kaartjes, banner en merchandise"
+                    alt={t('JesusToday stand op een event met QR-kaartjes, banner en merchandise')}
                     className="w-full h-[280px] md:h-[420px] object-cover"
                     loading="lazy"
                   />
@@ -229,10 +256,10 @@ const Partners = () => {
                   <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold/90 mb-3">
                       <Sparkles className="w-3.5 h-3.5 text-anthracite" />
-                      <span className="text-anthracite text-xs font-semibold">In het veld met partners</span>
+                      <span className="text-anthracite text-xs font-semibold">{t('In het veld met partners')}</span>
                     </div>
                     <p className="text-warm-white text-lg md:text-2xl font-semibold max-w-2xl leading-snug">
-                      Samen op pad, op events en in kerken, om verhalen over Jezus zichtbaar te maken.
+                      {t('Samen op pad, op events en in kerken, om verhalen over Jezus zichtbaar te maken.')}
                     </p>
                   </div>
                 </div>
@@ -241,12 +268,12 @@ const Partners = () => {
             <div className="max-w-5xl mx-auto">
               <ScrollReveal>
                 <h2 className="text-3xl md:text-4xl font-bold text-center text-anthracite mb-4">
-                  Waarom partner worden?
+                  {t('Waarom partner worden?')}
                 </h2>
               </ScrollReveal>
               <ScrollReveal delay={100}>
                 <p className="text-lg text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
-                  Samen bouwen we aan een cultuur waarin verhalen over Jezus een vaste plek krijgen binnen jullie kerk of organisatie.
+                  {t('Samen bouwen we aan een cultuur waarin verhalen over Jezus een vaste plek krijgen binnen jullie kerk of organisatie.')}
                 </p>
               </ScrollReveal>
               <div className="grid md:grid-cols-2 gap-6">
@@ -272,12 +299,12 @@ const Partners = () => {
             <div className="max-w-6xl mx-auto">
               <ScrollReveal>
                 <h2 className="text-3xl md:text-4xl font-bold text-center text-anthracite mb-4">
-                  Zo werkt een partnership
+                  {t('Zo werkt een partnership')}
                 </h2>
               </ScrollReveal>
               <ScrollReveal delay={100}>
                 <p className="text-lg text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
-                  In vier overzichtelijke stappen van kennismaking tot jullie mensen die de kaartjes uitdelen in het dagelijks leven.
+                  {t('In vier overzichtelijke stappen van kennismaking tot jullie mensen die de kaartjes uitdelen in het dagelijks leven.')}
                 </p>
               </ScrollReveal>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -307,17 +334,17 @@ const Partners = () => {
               <ScrollReveal>
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/20 mb-6 mx-auto justify-center">
                   <Church className="w-4 h-4 text-gold" />
-                  <span className="text-gold text-sm font-medium">Wat we bieden</span>
+                  <span className="text-gold text-sm font-medium">{t('Wat we bieden')}</span>
                 </div>
               </ScrollReveal>
               <ScrollReveal delay={100}>
                 <h2 className="text-3xl md:text-4xl font-bold text-center text-warm-white mb-4">
-                  Alles wat jullie nodig hebben
+                  {t('Alles wat jullie nodig hebben')}
                 </h2>
               </ScrollReveal>
               <ScrollReveal delay={200}>
                 <p className="text-lg text-center text-warm-white/70 mb-16 max-w-2xl mx-auto">
-                  Een compleet pakket aan ondersteuning, persoonlijk contact en praktische middelen.
+                  {t('Een compleet pakket aan ondersteuning, persoonlijk contact en praktische middelen.')}
                 </p>
               </ScrollReveal>
               <div className="grid md:grid-cols-2 gap-4">
@@ -344,27 +371,23 @@ const Partners = () => {
                 <ScrollReveal>
                   <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/20 border border-gold/30 mb-6">
                     <Sparkles className="w-4 h-4 text-anthracite" />
-                    <span className="text-anthracite text-sm font-medium">Bonus, extra mogelijkheid</span>
+                    <span className="text-anthracite text-sm font-medium">{t('Bonus, extra mogelijkheid')}</span>
                   </div>
                 </ScrollReveal>
                 <ScrollReveal delay={100}>
                   <h2 className="text-3xl md:text-4xl font-bold text-anthracite mb-4">
-                    Laat ons spreken over <span className="text-gold">evangelisatie</span>
+                    {t('Laat ons spreken over')} <span className="text-gold">{t('evangelisatie')}</span>
                   </h2>
                 </ScrollReveal>
                 <ScrollReveal delay={200}>
                   <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-                    Naast partner worden kunnen we ook langskomen om in jullie dienst, jongerenavond of bestuur of kernteam te spreken over getuigen en het delen van verhalen over Jezus.
+                    {t('Naast partner worden kunnen we ook langskomen om in jullie dienst, jongerenavond of bestuur of kernteam te spreken over getuigen en het delen van verhalen over Jezus.')}
                   </p>
                 </ScrollReveal>
               </div>
 
               <div className="grid md:grid-cols-3 gap-6 mb-10">
-                {[
-                  { icon: Calendar, title: 'In een dienst of bijeenkomst', desc: 'Een inspirerende boodschap over getuigen, met praktische handvatten voor jullie team.' },
-                  { icon: Users, title: 'Op een jongeren-/jeugdavond', desc: 'Een interactieve sessie waarin jongeren ontdekken hoe ze hun verhaal kunnen delen.' },
-                  { icon: UserCheck, title: 'Voor het bestuur of kernteam', desc: 'Een verdiepend gesprek over het delen van verhalen over Jezus als beweging binnen jullie kerk of organisatie.' },
-                ].map((item, i) => (
+                {speakingItems.map((item, i) => (
                   <ScrollReveal key={item.title} delay={150 + i * 100}>
                     <div className="h-full p-6 rounded-2xl bg-background border border-border/50 shadow-soft hover:shadow-card transition-all">
                       <div className="w-11 h-11 rounded-lg bg-gold/20 flex items-center justify-center mb-4">
@@ -382,7 +405,7 @@ const Partners = () => {
                   <Button asChild variant="cta-light" size="lg">
                     <a href="mailto:info@jesustoday.nl?subject=Spreker%20over%20evangelisatie">
                       <Mic className="w-5 h-5" />
-                      Plan een spreker
+                      {t('Plan een spreker')}
                     </a>
                   </Button>
                 </div>
@@ -397,12 +420,12 @@ const Partners = () => {
             <div className="max-w-6xl mx-auto">
               <ScrollReveal>
                 <h2 className="text-3xl md:text-4xl font-bold text-center text-anthracite mb-4">
-                  Onze partners
+                  {t('Onze partners')}
                 </h2>
               </ScrollReveal>
               <ScrollReveal delay={100}>
                 <p className="text-lg text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
-                  We werken samen met kerken en christelijke organisaties die zich inzetten om Jezus zichtbaar te maken in Nederland.
+                  {t('We werken samen met kerken en christelijke organisaties die zich inzetten om Jezus zichtbaar te maken in Nederland.')}
                 </p>
               </ScrollReveal>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -417,7 +440,7 @@ const Partners = () => {
                     >
                       <img
                         src={p.logo}
-                        alt={`${p.name} logo`}
+                        alt={t('{{name}} logo', { name: p.name })}
                         loading="lazy"
                         className="max-h-full max-w-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
                       />
@@ -436,17 +459,17 @@ const Partners = () => {
               <ScrollReveal>
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/20 border border-gold/30 mb-6 mx-auto justify-center">
                   <UserCheck className="w-4 h-4 text-anthracite" />
-                  <span className="text-anthracite text-sm font-medium">Aanbevolen door</span>
+                  <span className="text-anthracite text-sm font-medium">{t('Aanbevolen door')}</span>
                 </div>
               </ScrollReveal>
               <ScrollReveal delay={100}>
                 <h2 className="text-3xl md:text-4xl font-bold text-center text-anthracite mb-4">
-                  Gewaardeerde stemmen achter <span className="text-gold">JesusToday</span>
+                  {t('Gewaardeerde stemmen achter')} <span className="text-gold">JesusToday</span>
                 </h2>
               </ScrollReveal>
               <ScrollReveal delay={200}>
                 <p className="text-lg text-center text-muted-foreground mb-14 max-w-2xl mx-auto">
-                  Sprekers en leiders uit het Nederlandse christelijke landschap staan achter onze missie.
+                  {t('Sprekers en leiders uit het Nederlandse christelijke landschap staan achter onze missie.')}
                 </p>
               </ScrollReveal>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -455,7 +478,7 @@ const Partners = () => {
                     <figure className="h-full p-8 rounded-2xl bg-background border border-border/50 shadow-soft hover:shadow-card transition-all duration-300 flex flex-col items-center text-center">
                       <img
                         src={e.photo}
-                        alt={`Foto van ${e.name}`}
+                        alt={t('Foto van {{name}}', { name: e.name })}
                         loading="lazy"
                         className="w-24 h-24 rounded-full object-cover mb-5 ring-4 ring-gold/20 shadow-soft"
                       />
@@ -480,12 +503,12 @@ const Partners = () => {
             <div className="max-w-3xl mx-auto">
               <ScrollReveal>
                 <h2 className="text-3xl md:text-4xl font-bold text-center text-anthracite mb-4">
-                  Veelgestelde vragen
+                  {t('Veelgestelde vragen')}
                 </h2>
               </ScrollReveal>
               <ScrollReveal delay={100}>
                 <p className="text-lg text-center text-muted-foreground mb-12">
-                  Nog vragen? Neem gerust contact met ons op.
+                  {t('Nog vragen? Neem gerust contact met ons op.')}
                 </p>
               </ScrollReveal>
               <div className="space-y-4">
@@ -508,37 +531,37 @@ const Partners = () => {
             <div className="max-w-3xl mx-auto text-center">
               <ScrollReveal>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-warm-white mb-6">
-                  Samen jullie mensen <span className="text-gold">helpen</span> hun verhaal te delen?
+                  {t('Samen jullie mensen')} <span className="text-gold">{t('helpen')}</span> {t('hun verhaal te delen?')}
                 </h2>
               </ScrollReveal>
               <ScrollReveal delay={100}>
                 <p className="text-lg text-warm-white/80 mb-10 leading-relaxed">
-                  Laten we kennismaken. We denken graag met jullie mee over hoe verhalen over Jezus een vaste plek krijgen binnen jullie kerk of organisatie.
+                  {t('Laten we kennismaken. We denken graag met jullie mee over hoe verhalen over Jezus een vaste plek krijgen binnen jullie kerk of organisatie.')}
                 </p>
               </ScrollReveal>
               <ScrollReveal delay={200}>
                 <div className="text-left">
                   <SubmissionForm
                     type="partner"
-                    formName="Partner worden"
-                    submitLabel="Verstuur aanvraag"
-                    successTitle="Aanvraag ontvangen"
-                    successText="Dankjewel, we nemen snel contact op om kennis te maken."
-                    confirmationIntro="We hebben jullie aanvraag om partner te worden ontvangen. We nemen snel contact op om kennis te maken en samen te kijken wat past."
+                    formName={t('Partner worden')}
+                    submitLabel={t('Verstuur aanvraag')}
+                    successTitle={t('Aanvraag ontvangen')}
+                    successText={t('Dankjewel, we nemen snel contact op om kennis te maken.')}
+                    confirmationIntro={t('We hebben jullie aanvraag om partner te worden ontvangen. We nemen snel contact op om kennis te maken en samen te kijken wat past.')}
                     fields={[
-                      { name: 'name', label: 'Je naam', required: true, placeholder: 'Voornaam Achternaam' },
-                      { name: 'email', label: 'E-mail', type: 'email', required: true, placeholder: 'jij@voorbeeld.nl' },
-                      { name: 'organization', label: 'Kerk of organisatie', required: true, placeholder: 'Naam van jullie kerk of organisatie' },
-                      { name: 'phone', label: 'Telefoonnummer', type: 'tel', placeholder: 'Optioneel' },
-                      { name: 'role', label: 'Jouw rol', placeholder: 'Bijvoorbeeld voorganger of jeugdleider' },
-                      { name: 'plaats', label: 'Plaats', placeholder: 'Waar zijn jullie gevestigd?' },
+                      { name: 'name', label: t('Je naam'), required: true, placeholder: t('Voornaam Achternaam') },
+                      { name: 'email', label: t('E-mail'), type: 'email', required: true, placeholder: 'jij@voorbeeld.nl' },
+                      { name: 'organization', label: t('Kerk of organisatie'), required: true, placeholder: t('Naam van jullie kerk of organisatie') },
+                      { name: 'phone', label: t('Telefoonnummer'), type: 'tel', placeholder: t('Optioneel') },
+                      { name: 'role', label: t('Jouw rol'), placeholder: t('Bijvoorbeeld voorganger of jeugdleider') },
+                      { name: 'plaats', label: t('Plaats'), placeholder: t('Waar zijn jullie gevestigd?') },
                       {
                         name: 'message',
-                        label: 'Waar denken jullie aan?',
+                        label: t('Waar denken jullie aan?'),
                         type: 'textarea',
                         required: true,
                         rows: 5,
-                        placeholder: 'Vertel kort wat jullie zoeken of willen bereiken...',
+                        placeholder: t('Vertel kort wat jullie zoeken of willen bereiken...'),
                       },
                     ]}
                   />

@@ -4,6 +4,7 @@ import { Footer } from '@/components/sections/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { NewsletterForm } from '@/components/NewsletterForm';
 import { Mail, Sparkles, Heart, Video } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const benefits = [
   {
@@ -24,18 +25,19 @@ const benefits = [
 ];
 
 const Nieuwsbrief = () => {
+  const { t } = useTranslation();
   return (
     <>
       <Helmet>
-        <title>Aanmelden nieuwsbrief, JesusToday</title>
+        <title>{t('Aanmelden nieuwsbrief, JesusToday')}</title>
         <meta
           name="description"
-          content="Meld je aan voor de JesusToday nieuwsbrief en ontvang nieuwe getuigenissen, updates en bemoediging in je inbox."
+          content={t('Meld je aan voor de JesusToday nieuwsbrief en ontvang nieuwe getuigenissen, updates en bemoediging in je inbox.')}
         />
-        <meta property="og:title" content="Aanmelden nieuwsbrief, JesusToday" />
+        <meta property="og:title" content={t('Aanmelden nieuwsbrief, JesusToday')} />
         <meta
           property="og:description"
-          content="Blijf op de hoogte van nieuwe verhalen over Jezus en updates van de JesusToday-beweging."
+          content={t('Blijf op de hoogte van nieuwe verhalen over Jezus en updates van de JesusToday-beweging.')}
         />
         <link rel="canonical" href="https://jesustoday.app/aanmelden-nieuwsbrief" />
       </Helmet>
@@ -49,18 +51,17 @@ const Nieuwsbrief = () => {
               <ScrollReveal>
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#fad150]/20 border border-[#fad150]/40 mb-8">
                   <Mail className="w-4 h-4 text-anthracite" />
-                  <span className="text-anthracite text-sm font-medium">Nieuwsbrief</span>
+                  <span className="text-anthracite text-sm font-medium">{t('Nieuwsbrief')}</span>
                 </div>
               </ScrollReveal>
               <ScrollReveal delay={100}>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-anthracite leading-tight mb-6">
-                  Blijf op de hoogte van <span className="text-gold">JesusToday.</span>
+                  {t('Blijf op de hoogte van')} <span className="text-gold">JesusToday.</span>
                 </h1>
               </ScrollReveal>
               <ScrollReveal delay={200}>
                 <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">
-                  Ontvang nieuwe getuigenissen, updates en bemoediging rechtstreeks in je inbox.
-                  Geen spam, alleen verhalen die je raken.
+                  {t('Ontvang nieuwe getuigenissen, updates en bemoediging rechtstreeks in je inbox. Geen spam, alleen verhalen die je raken.')}
                 </p>
               </ScrollReveal>
             </div>
@@ -71,10 +72,10 @@ const Nieuwsbrief = () => {
           <div className="container mx-auto px-6">
             <div className="max-w-2xl mx-auto p-8 md:p-10 rounded-2xl bg-warm-white/5 border border-warm-white/10">
               <h2 className="text-warm-white text-2xl md:text-3xl font-bold mb-3 text-center">
-                Meld je aan
+                {t('Meld je aan')}
               </h2>
               <p className="text-warm-white/70 text-center mb-8">
-                Vul je gegevens in en je staat op de lijst.
+                {t('Vul je gegevens in en je staat op de lijst.')}
               </p>
               <NewsletterForm />
             </div>
@@ -91,8 +92,8 @@ const Nieuwsbrief = () => {
                       <div className="w-12 h-12 rounded-xl bg-[#fad150]/20 flex items-center justify-center mb-5">
                         <b.icon className="w-6 h-6 text-gold" />
                       </div>
-                      <h3 className="text-xl font-bold text-anthracite mb-3">{b.title}</h3>
-                      <p className="text-muted-foreground leading-relaxed">{b.desc}</p>
+                      <h3 className="text-xl font-bold text-anthracite mb-3">{t(b.title)}</h3>
+                      <p className="text-muted-foreground leading-relaxed">{t(b.desc)}</p>
                     </div>
                   </ScrollReveal>
                 ))}

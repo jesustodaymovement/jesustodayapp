@@ -1,44 +1,14 @@
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { Button } from '@/components/ui/button';
 import { Newspaper, Radio, Video, ExternalLink } from 'lucide-react';
 
-const mediaItems = [
-  {
-    type: 'TV',
-    icon: Video,
-    outlet: 'VPRO Tegenlicht',
-    title: 'JesusToday in Tegenlicht',
-    description:
-      'In de documentaire van VPRO Tegenlicht komt JesusToday aan bod als voorbeeld van hoe geloof in Nederland op nieuwe manieren gedeeld wordt.',
-    href: 'https://www.youtube.com/watch?v=fhIZR5INDX8&t=2s',
-    cta: 'Bekijk op YouTube',
-  },
-  {
-    type: 'Online',
-    icon: Newspaper,
-    outlet: 'EO',
-    title: 'De app JesusToday helpt je je geloof te delen',
-    description:
-      'De Evangelische Omroep schrijft over de app JesusToday en hoe gewone mensen op een laagdrempelige manier hun verhaal met Jezus delen.',
-    href: 'https://www.eo.nl/artikel/de-app-jesus-today-helpt-je-je-geloof-te-delen',
-    cta: 'Lees het artikel',
-  },
-  {
-    type: 'Radio',
-    icon: Radio,
-    outlet: 'NPO Radio 5, Thuis op 5',
-    title: 'Alexander Keur over JesusToday',
-    description:
-      'Op NPO Radio 5 is oprichter Alexander Keur geïnterviewd over JesusToday en de app: getuigen van je geloof, nu ook via je telefoon.',
-    href: 'https://www.nporadio5.nl/fragmenten/thuisop5/63290b99-68e7-4418-9bdb-4519e62349ca/2023-02-05-getuigen-van-je-geloof-nu-ook-via-de-app',
-    cta: 'Luister het fragment',
-  },
-];
-
-const Hero = () => (
+const Hero = () => {
+  const { t } = useTranslation();
+  return (
   <section className="relative pt-24 pb-0 bg-anthracite overflow-hidden">
     <div className="relative w-full aspect-video max-h-[70vh] overflow-hidden">
       <iframe
@@ -56,19 +26,17 @@ const Hero = () => (
             <ScrollReveal>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/20 border border-gold/30 mb-6 backdrop-blur-sm">
                 <Newspaper className="w-4 h-4 text-gold" />
-                <span className="text-warm-white text-sm font-medium">Pers & media</span>
+                <span className="text-warm-white text-sm font-medium">{t('Pers & media')}</span>
               </div>
             </ScrollReveal>
             <ScrollReveal delay={100}>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-warm-white leading-tight">
-                JesusToday <span className="text-gold">in de media.</span>
+                JesusToday <span className="text-gold">{t('in de media.')}</span>
               </h1>
             </ScrollReveal>
             <ScrollReveal delay={200}>
               <p className="text-lg md:text-xl text-warm-white/80 leading-relaxed mt-6 max-w-2xl">
-                Van landelijke televisie tot radio en online artikelen, ontdek
-                waar JesusToday in beeld komt en hoe gewone mensen hun verhaal
-                delen.
+                {t('Van landelijke televisie tot radio en online artikelen, ontdek waar JesusToday in beeld komt en hoe gewone mensen hun verhaal delen.')}
               </p>
             </ScrollReveal>
           </div>
@@ -76,19 +44,52 @@ const Hero = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
-const MediaGrid = () => (
+const MediaGrid = () => {
+  const { t } = useTranslation();
+
+  const mediaItems = [
+    {
+      type: t('TV'),
+      icon: Video,
+      outlet: 'VPRO Tegenlicht',
+      title: t('JesusToday in Tegenlicht'),
+      description: t('In de documentaire van VPRO Tegenlicht komt JesusToday aan bod als voorbeeld van hoe geloof in Nederland op nieuwe manieren gedeeld wordt.'),
+      href: 'https://www.youtube.com/watch?v=fhIZR5INDX8&t=2s',
+      cta: t('Bekijk op YouTube'),
+    },
+    {
+      type: t('Online'),
+      icon: Newspaper,
+      outlet: 'EO',
+      title: t('De app JesusToday helpt je je geloof te delen'),
+      description: t('De Evangelische Omroep schrijft over de app JesusToday en hoe gewone mensen op een laagdrempelige manier hun verhaal met Jezus delen.'),
+      href: 'https://www.eo.nl/artikel/de-app-jesus-today-helpt-je-je-geloof-te-delen',
+      cta: t('Lees het artikel'),
+    },
+    {
+      type: t('Radio'),
+      icon: Radio,
+      outlet: 'NPO Radio 5, Thuis op 5',
+      title: t('Alexander Keur over JesusToday'),
+      description: t('Op NPO Radio 5 is oprichter Alexander Keur geïnterviewd over JesusToday en de app: getuigen van je geloof, nu ook via je telefoon.'),
+      href: 'https://www.nporadio5.nl/fragmenten/thuisop5/63290b99-68e7-4418-9bdb-4519e62349ca/2023-02-05-getuigen-van-je-geloof-nu-ook-via-de-app',
+      cta: t('Luister het fragment'),
+    },
+  ];
+
+  return (
   <section className="py-24 bg-cream">
     <div className="container mx-auto px-6">
       <div className="max-w-5xl mx-auto">
         <ScrollReveal>
           <h2 className="text-3xl md:text-4xl font-bold text-anthracite mb-4 text-center">
-            Nieuws & <span className="text-gold">media</span>
+            {t('Nieuws &')} <span className="text-gold">{t('media')}</span>
           </h2>
           <p className="text-muted-foreground text-center mb-16 max-w-2xl mx-auto">
-            Een overzicht van publicaties en uitzendingen waarin JesusToday is
-            besproken.
+            {t('Een overzicht van publicaties en uitzendingen waarin JesusToday is besproken.')}
           </p>
         </ScrollReveal>
 
@@ -133,45 +134,50 @@ const MediaGrid = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
-const PressCTA = () => (
+const PressCTA = () => {
+  const { t } = useTranslation();
+  return (
   <section className="py-20 bg-anthracite">
     <div className="container mx-auto px-6">
       <div className="max-w-2xl mx-auto text-center">
         <ScrollReveal>
           <h2 className="text-3xl md:text-4xl font-bold text-warm-white mb-4">
-            Pers <span className="text-gold">vragen?</span>
+            {t('Pers')} <span className="text-gold">{t('vragen?')}</span>
           </h2>
           <p className="text-warm-white/80 leading-relaxed mb-8">
-            Werk je aan een artikel, podcast of uitzending over geloof,
-            verhalen of JesusToday? We denken graag met je mee.
+            {t('Werk je aan een artikel, podcast of uitzending over geloof, verhalen of JesusToday? We denken graag met je mee.')}
           </p>
           <Button asChild variant="hero" size="lg">
-            <a href="mailto:info@jesustoday.nl">Neem contact op</a>
+            <a href="mailto:info@jesustoday.nl">{t('Neem contact op')}</a>
           </Button>
         </ScrollReveal>
       </div>
     </div>
   </section>
-);
+  );
+};
 
-const Media = () => (
+const Media = () => {
+  const { t } = useTranslation();
+  return (
   <>
     <Helmet>
-      <title>JesusToday in de media, pers & publicaties</title>
+      <title>{t('JesusToday in de media, pers & publicaties')}</title>
       <meta
         name="description"
-        content="JesusToday in de media: VPRO Tegenlicht, EO en NPO Radio 5 over de app en de verhalen van gewone mensen."
+        content={t('JesusToday in de media: VPRO Tegenlicht, EO en NPO Radio 5 over de app en de verhalen van gewone mensen.')}
       />
-      <meta property="og:title" content="JesusToday in de media, pers en publicaties" />
-      <meta property="og:description" content="JesusToday in de media: VPRO Tegenlicht, EO en NPO Radio 5 over de app en de verhalen van gewone mensen." />
+      <meta property="og:title" content={t('JesusToday in de media, pers en publicaties')} />
+      <meta property="og:description" content={t('JesusToday in de media: VPRO Tegenlicht, EO en NPO Radio 5 over de app en de verhalen van gewone mensen.')} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://jesustoday.app/media" />
 
       <link rel="canonical" href="https://jesustoday.app/media" />
-      <meta name="twitter:title" content="JesusToday in de media" />
-      <meta name="twitter:description" content="JesusToday in de media: VPRO Tegenlicht, EO en NPO Radio 5." />
+      <meta name="twitter:title" content={t('JesusToday in de media')} />
+      <meta name="twitter:description" content={t('JesusToday in de media: VPRO Tegenlicht, EO en NPO Radio 5.')} />
     </Helmet>
     <Header />
     <main>
@@ -181,6 +187,7 @@ const Media = () => (
     </main>
     <Footer />
   </>
-);
+  );
+};
 
 export default Media;

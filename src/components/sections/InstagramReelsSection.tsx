@@ -1,5 +1,6 @@
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { Play, Heart, MessageCircle, Send, Bookmark } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const reelsMockups = [
   {
@@ -33,6 +34,7 @@ const reelsMockups = [
 ];
 
 export const InstagramReelsSection = () => {
+  const { t } = useTranslation();
   return (
     <section className="py-24 bg-cream">
       <div className="container mx-auto px-6">
@@ -43,10 +45,10 @@ export const InstagramReelsSection = () => {
                 📱 Instagram Reels
               </span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-anthracite mb-4">
-                Tieners die de stap hebben gezet
+                {t('Tieners die de stap hebben gezet')}
               </h2>
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-                Bekijk hoe andere jongeren hun verhaal zijn gaan delen
+                {t('Bekijk hoe andere jongeren hun verhaal zijn gaan delen')}
               </p>
             </div>
           </ScrollReveal>
@@ -100,7 +102,7 @@ export const InstagramReelsSection = () => {
                       {/* Bottom Caption */}
                       <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/60 to-transparent">
                         <p className="text-white text-xs font-medium line-clamp-2 pr-10">
-                          {reel.caption}
+                          {t(reel.caption)}
                         </p>
                       </div>
 
@@ -120,7 +122,7 @@ export const InstagramReelsSection = () => {
           <ScrollReveal delay={500}>
             <div className="text-center mt-12">
               <p className="text-muted-foreground italic">
-                *Dit zijn mockups ter illustratie. Echte verhalen vind je in de app.
+                {t('*Dit zijn mockups ter illustratie. Echte verhalen vind je in de app.')}
               </p>
             </div>
           </ScrollReveal>
