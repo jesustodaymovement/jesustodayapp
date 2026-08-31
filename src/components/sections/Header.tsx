@@ -37,28 +37,34 @@ export const Header = () => {
   };
 
   const LanguageSwitch = ({ className = '' }: { className?: string }) => (
-    <div
-      className={`inline-flex items-center rounded-md border border-anthracite/15 overflow-hidden text-xs font-semibold ${className}`}
-      role="group"
-      aria-label={t('Taal kiezen')}
-    >
-      {langOptions.map((opt, i) => (
-        <button
-          key={opt.code}
-          type="button"
-          onClick={() => setLanguage(opt.code)}
-          aria-pressed={lang === opt.code}
-          className={`px-2.5 py-1.5 transition-colors ${i > 0 ? 'border-l border-anthracite/15' : ''} ${
-            lang === opt.code
-              ? 'bg-[#fad150] text-anthracite'
-              : 'bg-white text-anthracite/70 hover:text-anthracite'
-          }`}
-        >
-          {opt.label}
-        </button>
-      ))}
+    <div className={`flex flex-col items-center gap-1 ${className}`}>
+      <span className="text-[10px] font-semibold uppercase tracking-wide text-anthracite/60">
+        {t('Choose language')}
+      </span>
+      <div
+        className="inline-flex items-center rounded-md border border-anthracite/15 overflow-hidden text-xs font-semibold"
+        role="group"
+        aria-label={t('Taal kiezen')}
+      >
+        {langOptions.map((opt, i) => (
+          <button
+            key={opt.code}
+            type="button"
+            onClick={() => setLanguage(opt.code)}
+            aria-pressed={lang === opt.code}
+            className={`px-2.5 py-1.5 transition-colors ${i > 0 ? 'border-l border-anthracite/15' : ''} ${
+              lang === opt.code
+                ? 'bg-[#fad150] text-anthracite'
+                : 'bg-white text-anthracite/70 hover:text-anthracite'
+            }`}
+          >
+            {opt.label}
+          </button>
+        ))}
+      </div>
     </div>
   );
+
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
