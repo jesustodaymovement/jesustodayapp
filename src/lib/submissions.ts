@@ -66,39 +66,19 @@ export async function createSubmission(input: CreateSubmissionOptions) {
     timeStyle: "short",
   });
 
-  await Promise.allSettled([
-    supabase.functions.invoke("send-transactional-email", {
-      body: {
-        templateName: "submission-notification",
-        idempotencyKey: `submission-notify-${id}`,
-        templateData: {
-          formName,
-          name: parsed.name,
-          email: parsed.email,
-          fields,
-          message: parsed.message,
-          submittedAt,
-        },
-      },
-    }),
-    supabase.functions.invoke("send-transactional-email", {
-      body: {
-        templateName: "submission-confirmation",
-        recipientEmail: parsed.email,
-        idempotencyKey: `submission-confirm-${id}`,
-        templateData: {
-          name: parsed.name.split(" ")[0],
-          formName: "je bericht",
-          message: parsed.message,
-          intro: confirmationIntro,
-        },
-      },
-    }),
-  ]).then((results) => {
-    results.forEach((r) => {
-      if (r.status === "rejected") console.warn("E-mail versturen mislukt", r.reason);
-    });
+  const { error: emailError } = await supabase.functions.invoke("send-submission-emails", {
+    body: {
+      submissionId: id,
+      formName,
+      name: parsed.name,
+      email: parsed.email,
+      message: parsed.message,
+      fields,
+      submittedAt,
+      confirmationIntro,
+    },
   });
+  if (emailError) console.warn("E-mail versturen mislukt", emailError);
 
   return id;
 }
