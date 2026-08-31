@@ -356,7 +356,7 @@ const Testimonies = () => {
                             : 'bg-warm-white text-anthracite/80 border-anthracite/15 hover:border-gold hover:text-anthracite'
                         }`}
                       >
-                        <span>{topic.label}</span>
+                        <span>{t(topic.label)}</span>
                         <span
                           className={`text-xs ${
                             active ? 'text-anthracite/70' : 'text-anthracite/50'
