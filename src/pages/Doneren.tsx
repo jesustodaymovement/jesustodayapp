@@ -300,20 +300,20 @@ const ImpactScaleSection = () => {
 
         <ScrollReveal delay={200}>
           <div className="grid sm:grid-cols-3 gap-6 items-center mb-10">
-            <div className="p-8 rounded-2xl bg-warm-white/5 border border-warm-white/10">
-              <div className="text-4xl md:text-5xl font-bold text-gold mb-2">
+            <div className="p-6 lg:p-8 rounded-2xl bg-warm-white/5 border border-warm-white/10">
+              <div className="text-3xl sm:text-2xl lg:text-4xl xl:text-5xl font-bold text-gold mb-2 break-words">
                 100.000
               </div>
               <p className="text-warm-white/80">{t('ambassadeurs')}</p>
             </div>
-            <div className="p-8 rounded-2xl bg-warm-white/5 border border-warm-white/10">
-              <div className="text-4xl md:text-5xl font-bold text-gold mb-2">
+            <div className="p-6 lg:p-8 rounded-2xl bg-warm-white/5 border border-warm-white/10">
+              <div className="text-3xl sm:text-2xl lg:text-4xl xl:text-5xl font-bold text-gold mb-2 break-words">
                 × 100
               </div>
               <p className="text-warm-white/80">{t('kaartjes per jaar')}</p>
             </div>
-            <div className="p-8 rounded-2xl bg-gold/15 border border-gold/40">
-              <div className="text-4xl md:text-5xl font-bold text-gold mb-2">
+            <div className="p-6 lg:p-8 rounded-2xl bg-gold/15 border border-gold/40">
+              <div className="text-3xl sm:text-2xl lg:text-4xl xl:text-5xl font-bold text-gold mb-2 break-words">
                 10.000.000
               </div>
               <p className="text-warm-white">
@@ -530,7 +530,7 @@ const AnbiSection = () => {
 
         <div className="grid md:grid-cols-2 gap-6">
           <ScrollReveal delay={300}>
-            <div className="p-8 rounded-2xl bg-warm-white/5 border border-warm-white/10">
+            <div className="p-6 lg:p-8 rounded-2xl bg-warm-white/5 border border-warm-white/10">
               <h3 className="text-xl font-bold text-warm-white mb-4">
                 {t('Organisatiegegevens')}
               </h3>
@@ -552,7 +552,7 @@ const AnbiSection = () => {
           </ScrollReveal>
 
           <ScrollReveal delay={400}>
-            <div className="p-8 rounded-2xl bg-warm-white/5 border border-warm-white/10">
+            <div className="p-6 lg:p-8 rounded-2xl bg-warm-white/5 border border-warm-white/10">
               <h3 className="text-xl font-bold text-warm-white mb-4">{t('Contact')}</h3>
               <ul className="space-y-3">
                 <li>
