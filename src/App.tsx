@@ -125,6 +125,7 @@ const App = () => (
             <Route path="/upload" element={<Upload />} />
             <Route path="/partners" element={<Partners />} />
             <Route path="/nations" element={<Nations />} />
+            <Route path="/shoop-shoop-partners" element={<ShoopShoopPartners />} />
             <Route path="/aanmeldenopwekking2026" element={<Opwekking />} />
             <Route path="/aanmelden-nieuwsbrief" element={<Nieuwsbrief />} />
             <Route path="/opwekkinggetuigenissenform" element={<OpwekkingGetuigenissenForm />} />
