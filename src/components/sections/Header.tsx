@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowUpRight } from 'lucide-react';
 import logo from '@/assets/jesus-today-logo.png';
 import { useAudienceOptional } from '@/contexts/AudienceContext';
 import { AudienceSwitch } from '@/components/AudienceSwitch';
+import { NATIONS } from '@/lib/nations';
 
 const navLinks = [
   { label: 'Verhalen', href: '/verhalen-over-jezus' },
