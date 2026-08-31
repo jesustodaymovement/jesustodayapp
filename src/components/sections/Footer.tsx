@@ -132,14 +132,12 @@ export const Footer = () => {
               </nav>
               <p className="text-warm-white/70 text-xs">
                 {t('Website door')}{' '}
-                <a
-                  href="https://shoopshoop.nl"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to="/shoop-shoop-partners"
                   className="text-gold hover:text-gold/80 transition-colors"
                 >
                   Shoop Shoop Marketing
-                </a>
+                </Link>
               </p>
             </div>
           </div>
