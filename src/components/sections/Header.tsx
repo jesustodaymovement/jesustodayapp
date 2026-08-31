@@ -13,8 +13,10 @@ const navLinks = [
   { label: 'Over Ons', href: '/over-ons' },
   { label: 'Partners', href: '/partners' },
   { label: 'Doneren', href: '/doneren' },
-  { label: 'Contact', href: '/contact' },
 ];
+
+const contactLink = { label: 'Contact', href: '/contact' };
+
 
 export const Header = () => {
   const { t, i18n } = useTranslation();
@@ -155,12 +157,10 @@ export const Header = () => {
                         rel="noopener noreferrer"
                         className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-anthracite/80 hover:bg-anthracite/5 hover:text-gold transition-colors font-medium"
                       >
-                        <span
-                          aria-hidden="true"
-                          className="rounded border border-anthracite/15 bg-anthracite/5 px-1.5 py-0.5 text-[10px] font-bold tracking-wide text-anthracite/70"
-                        >
-                          {nation.code}
+                        <span aria-hidden="true" className="text-lg leading-none">
+                          {nation.flag}
                         </span>
+
                         <span className="flex-1">{t(nation.name)}</span>
                         <ArrowUpRight className="w-4 h-4 text-gold" />
                       </a>
@@ -176,7 +176,15 @@ export const Header = () => {
                 </div>
               )}
             </div>
+
+            <a
+              href={contactLink.href}
+              className="text-anthracite/80 hover:text-gold transition-colors font-medium"
+            >
+              {t(contactLink.label)}
+            </a>
           </nav>
+
 
           {/* Desktop CTA + audience switch */}
           <div className="hidden md:flex items-center gap-4">
@@ -244,12 +252,10 @@ export const Header = () => {
                       className="flex items-center gap-3 pl-10 pr-6 py-3 text-anthracite/80 hover:text-gold transition-colors font-medium"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      <span
-                        aria-hidden="true"
-                        className="rounded border border-anthracite/15 bg-anthracite/5 px-1.5 py-0.5 text-[10px] font-bold tracking-wide text-anthracite/70"
-                      >
-                        {nation.code}
+                      <span aria-hidden="true" className="text-lg leading-none">
+                        {nation.flag}
                       </span>
+
                       <span className="flex-1">{t(nation.name)}</span>
                       <ArrowUpRight className="w-4 h-4 text-gold" />
                     </a>
@@ -263,6 +269,15 @@ export const Header = () => {
                   </Link>
                 </div>
               )}
+
+              <a
+                href={contactLink.href}
+                className="px-6 py-3 text-anthracite/80 hover:text-gold hover:bg-anthracite/5 transition-colors font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t(contactLink.label)}
+              </a>
+
               <div className="px-6 py-4">
                 <Button asChild variant="hero" size="default" className="w-full">
                   <Link to="/upload" onClick={() => setIsMobileMenuOpen(false)}>

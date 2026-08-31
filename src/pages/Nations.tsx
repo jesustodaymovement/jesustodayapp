@@ -50,10 +50,11 @@ const Nations = () => {
                   >
                     <span
                       aria-hidden="true"
-                      className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-gold/15 text-sm font-bold tracking-wide text-anthracite/70"
+                      className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-gold/15 text-2xl leading-none"
                     >
-                      {nation.code}
+                      {nation.flag}
                     </span>
+
                     <span className="min-w-0 flex-1">
                       <span className="block font-bold text-anthracite">
                         {t(nation.name)}

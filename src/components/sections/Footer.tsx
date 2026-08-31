@@ -76,8 +76,12 @@ export const Footer = () => {
                   <Link to="/media" className="text-warm-white/60 hover:text-gold transition-colors">{t('Pers en media')}</Link>
                 </li>
                 <li>
+                  <Link to="/nations" className="text-warm-white/60 hover:text-gold transition-colors">{t('Nations')}</Link>
+                </li>
+                <li>
                   <Link to="/contact" className="text-warm-white/60 hover:text-gold transition-colors">{t('Neem contact op')}</Link>
                 </li>
+
               </ul>
             </div>
 
