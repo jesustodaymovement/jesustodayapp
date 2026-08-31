@@ -13,8 +13,10 @@ const navLinks = [
   { label: 'Over Ons', href: '/over-ons' },
   { label: 'Partners', href: '/partners' },
   { label: 'Doneren', href: '/doneren' },
-  { label: 'Contact', href: '/contact' },
 ];
+
+const contactLink = { label: 'Contact', href: '/contact' };
+
 
 export const Header = () => {
   const { t, i18n } = useTranslation();
