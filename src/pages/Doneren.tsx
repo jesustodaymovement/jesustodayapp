@@ -350,25 +350,9 @@ const WidgetSection = () => (
         </ScrollReveal>
 
         <ScrollReveal delay={300}>
-          <div className="flex justify-center">
-            <iframe
-              src="https://donorbox.org/embed/donatie-voor-jesus-today"
-              name="donorbox"
-              allow="payment"
-              seamless
-              frameBorder={0}
-              scrolling="no"
-              height="900px"
-              width="100%"
-              style={{
-                maxWidth: 500,
-                minWidth: 250,
-                maxHeight: 'none',
-              }}
-              title="Doneer aan JesusToday via Donorbox"
-            />
-          </div>
+          <DonorboxWidget />
         </ScrollReveal>
+
 
         <ScrollReveal delay={400}>
           <p className="text-sm text-muted-foreground mt-8">
