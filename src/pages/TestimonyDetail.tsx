@@ -560,14 +560,14 @@ title={t('Verhaal van {{name}}', { name: fullName })}
                 </section>
 
                 <section className="bg-warm-white rounded-2xl shadow-card p-8 md:p-10">
-                  <h2 className="text-3xl font-bold text-anthracite mb-2">{t('Het leven van Jezus')}</h2>
+                  <h2 className="text-3xl font-bold text-anthracite mb-2">{t('Wat is het evangelie?')}</h2>
                   <p className="text-muted-foreground mb-6">
-                    {t('Bekijk de film over het leven van Jezus en ontdek wie Hij is.')}
+                    {t("In deze video bekijken we wat de oorsprong is van het woord 'evangelie' en hoe dit woord het Oude Testament verbindt met het verhaal van Jezus en Zijn aankondiging van Gods koninkrijk. Jezus bracht Gods heerschappij in de wereld op een hele omgekeerde manier, en dat is het beste nieuws waar je op kunt hopen.")}
                   </p>
                   <div className="relative w-full overflow-hidden rounded-2xl aspect-video bg-anthracite">
                     <iframe
-                      src="https://www.youtube-nocookie.com/embed/2mgUPt2KI08"
-title={t('Het leven van Jezus')}
+                      src={`https://www.youtube-nocookie.com/embed/${gospelVideoId}`}
+                      title={t('Wat is het evangelie?')}
                       className="absolute inset-0 h-full w-full"
                       frameBorder={0}
                       loading="lazy"
@@ -578,10 +578,11 @@ title={t('Het leven van Jezus')}
                   <div className="mt-6">
                     <Button asChild size="lg">
                       <a
-                        href="https://www.youtube.com/watch?v=2mgUPt2KI08"
+                        href={`https://www.youtube.com/watch?v=${gospelVideoId}`}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
+
                         <ExternalLink className="w-5 h-5" />
                         {t('Bekijk op YouTube')}
                       </a>
