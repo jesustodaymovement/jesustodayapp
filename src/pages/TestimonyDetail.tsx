@@ -126,7 +126,9 @@ alt={t('Verhaal van {{name}}', { name: title })}
 };
 
 const TestimonyDetail = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const gospelVideoId = i18n.language?.startsWith('nl') ? 'AYUAXU1yIW0' : 'xmFPS0f-kzs';
+
   const { vimeoId } = useParams<{ vimeoId: string }>();
   const [testimony, setTestimony] = useState<Testimony | null>(null);
   const [relatedVideos, setRelatedVideos] = useState<Testimony[]>([]);
