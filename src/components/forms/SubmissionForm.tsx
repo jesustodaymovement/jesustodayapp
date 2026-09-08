@@ -151,7 +151,7 @@ export const SubmissionForm = ({
           />
         ) : f.type === 'yesno' ? (
           <div className="flex gap-2">
-            {['Ja', 'Nee'].map((opt) => (
+            {['Yes', 'No'].map((opt) => (
               <label
                 key={opt}
                 className="flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground transition-colors hover:bg-muted has-[:checked]:border-gold has-[:checked]:bg-gold/20 has-[:checked]:font-semibold"
