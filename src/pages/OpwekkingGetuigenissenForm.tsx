@@ -53,7 +53,7 @@ const OpwekkingGetuigenissenForm = () => {
                   { name: 'email', label: t('E-mail'), type: 'email', required: true, placeholder: 'jij@voorbeeld.nl' },
                   { name: 'phone', label: t('Telefoonnummer'), type: 'tel', required: true, placeholder: '06 12345678' },
                   { name: 'leeftijd', label: t('Age'), required: true, placeholder: t('Jouw leeftijd') },
-                  { name: 'plaats', label: t('Waar kunnen we je vinden?'), placeholder: t('Camping, tent of veld') },
+                  { name: 'plaats', label: t('Email'), type: 'email', placeholder: 'jij@voorbeeld.nl' },
                   { name: 'adres', label: t('Address'), placeholder: t('Straat en huisnummer') },
                   { name: 'postcode', label: t('Postcode'), placeholder: '1234 AB' },
                   { name: 'woonplaats', label: t('Woonplaats'), placeholder: t('Jouw woonplaats') },
