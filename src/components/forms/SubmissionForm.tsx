@@ -12,7 +12,7 @@ const CORE_FIELDS = ['name', 'email', 'phone', 'organization', 'subject', 'messa
 export interface SubmissionFieldDef {
   name: string;
   label: string;
-  type?: 'text' | 'email' | 'tel' | 'textarea' | 'select';
+  type?: 'text' | 'email' | 'tel' | 'textarea' | 'select' | 'yesno';
   required?: boolean;
   placeholder?: string;
   options?: string[];
@@ -149,6 +149,24 @@ export const SubmissionForm = ({
             maxLength={2000}
             placeholder={f.placeholder ? t(f.placeholder) : undefined}
           />
+        ) : f.type === 'yesno' ? (
+          <div className="flex gap-2">
+            {['Ja', 'Nee'].map((opt) => (
+              <label
+                key={opt}
+                className="flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground transition-colors hover:bg-muted has-[:checked]:border-gold has-[:checked]:bg-gold/20 has-[:checked]:font-semibold"
+              >
+                <input
+                  type="radio"
+                  name={f.name}
+                  value={t(opt)}
+                  required={f.required}
+                  className="sr-only"
+                />
+                {t(opt)}
+              </label>
+            ))}
+          </div>
         ) : f.type === 'select' ? (
           <select
             id={id}
