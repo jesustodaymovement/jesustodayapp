@@ -57,7 +57,7 @@ const OpwekkingGetuigenissenForm = () => {
                   { name: 'adres', label: t('Address'), placeholder: t('Straat en huisnummer') },
                   { name: 'postcode', label: t('Postcode'), placeholder: '1234 AB' },
                   { name: 'woonplaats', label: t('Woonplaats'), placeholder: t('Jouw woonplaats') },
-                  { name: 'verhaal_website', label: t('Story on Website'), type: 'yesno', required: true },
+                  { name: 'verhaal_website', label: t('If Under Age/ Parents email'), type: 'yesno', required: true },
                   { name: 'upload_social_media', label: t('Upload on Social Media'), type: 'yesno', required: true },
                   { name: 'tag_profiel', label: t('Tag your profile'), type: 'yesno', required: true },
                   { name: 'visitekaartjes', label: t('Business cards'), type: 'yesno', required: true },
