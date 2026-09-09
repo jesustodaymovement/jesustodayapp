@@ -5,3 +5,6 @@ verify_jwt = false
 
 [functions.send-submission-emails]
 verify_jwt = true
+
+[functions.submit-form]
+verify_jwt = false

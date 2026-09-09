@@ -14,6 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
+      blocked_submissions: {
+        Row: {
+          created_at: string
+          email: string | null
+          form_name: string | null
+          id: string
+          ip_hash: string | null
+          message_excerpt: string | null
+          name: string | null
+          reason: string
+          score: number
+          signals: Json | null
+          type: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          form_name?: string | null
+          id?: string
+          ip_hash?: string | null
+          message_excerpt?: string | null
+          name?: string | null
+          reason: string
+          score?: number
+          signals?: Json | null
+          type?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          form_name?: string | null
+          id?: string
+          ip_hash?: string | null
+          message_excerpt?: string | null
+          name?: string | null
+          reason?: string
+          score?: number
+          signals?: Json | null
+          type?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       email_send_log: {
         Row: {
           created_at: string
@@ -98,6 +143,30 @@ export type Database = {
           id?: string
           token?: string
           used_at?: string | null
+        }
+        Relationships: []
+      }
+      submission_rate_limits: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          ip_hash: string | null
+          message_hash: string | null
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          ip_hash?: string | null
+          message_hash?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          ip_hash?: string | null
+          message_hash?: string | null
         }
         Relationships: []
       }

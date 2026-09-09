@@ -1,9 +1,12 @@
 import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors';
+import { clientIp, countUrls, verifyTurnstile } from '../_shared/spam-guard.ts';
 
 interface SubscribePayload {
   email?: string;
   firstName?: string;
   lastName?: string;
+  honeypot?: string;
+  turnstileToken?: string;
 }
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -34,6 +37,24 @@ Deno.serve(async (req) => {
       return new Response(
         JSON.stringify({ error: 'Geen geldig e-mailadres.' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
+      );
+    }
+
+    // Spambescherming: honeypot, links in de naam en Turnstile.
+    if ((body.honeypot ?? '').trim() !== '' || countUrls(`${firstName} ${lastName}`) > 0) {
+      console.warn('Blocked newsletter signup', { reason: 'honeypot_or_links' });
+      return new Response(JSON.stringify({ ok: true }), {
+        status: 200,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    const turnstile = await verifyTurnstile(body.turnstileToken ?? '', clientIp(req));
+    if (!turnstile.ok) {
+      console.warn('Blocked newsletter signup', { reason: turnstile.reason });
+      return new Response(
+        JSON.stringify({ error: 'Beveiligingscheck mislukt, probeer het opnieuw.' }),
+        { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
       );
     }
 
