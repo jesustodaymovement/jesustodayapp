@@ -152,6 +152,45 @@ const AdminSubmissions = () => {
         </header>
 
         <div className="container mx-auto px-6 py-8">
+          <div className="flex gap-2 mb-6">
+            <Button variant={view === "inbox" ? "default" : "outline"} size="sm" onClick={() => setView("inbox")}>
+              Inzendingen ({items.length})
+            </Button>
+            <Button variant={view === "blocked" ? "default" : "outline"} size="sm" onClick={() => setView("blocked")}>
+              Geblokkeerd ({blocked.length})
+            </Button>
+          </div>
+
+          {view === "blocked" && (
+            <div className="bg-background rounded-2xl border border-border/50 overflow-hidden">
+              {blocked.length === 0 ? (
+                <p className="p-6 text-muted-foreground">Nog geen geblokkeerde inzendingen.</p>
+              ) : (
+                <ul className="divide-y divide-border/50">
+                  {blocked.map((b) => (
+                    <li key={b.id} className="p-4">
+                      <div className="flex flex-wrap items-center gap-2 text-sm">
+                        <span className="font-semibold">{b.name || "(geen naam)"}</span>
+                        <span className="text-muted-foreground">{b.email || "-"}</span>
+                        <span className="ml-auto text-xs text-muted-foreground">
+                          {new Date(b.created_at).toLocaleString("nl-NL")}
+                        </span>
+                      </div>
+                      <p className="mt-1 text-xs text-muted-foreground">
+                        {b.form_name || b.type || "formulier"} · reden: {b.reason}
+                      </p>
+                      {b.message_excerpt && (
+                        <p className="mt-2 text-sm whitespace-pre-wrap line-clamp-4">{b.message_excerpt}</p>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
+
+          {view === "inbox" && (
+          <>
           <div className="flex flex-col md:flex-row gap-3 mb-6">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
