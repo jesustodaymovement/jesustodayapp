@@ -1,35 +1,52 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
+import { detectSpam } from '@/lib/spam-guard';
 import { Mail, Loader2, CheckCircle2 } from 'lucide-react';
 
 export const NewsletterForm = () => {
   const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
+  const [honeypot, setHoneypot] = useState('');
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
+  const openedAt = useRef(Date.now());
+
+  const showSuccess = (description?: string) => {
+    setDone(true);
+    toast({
+      title: t('Bedankt voor je aanmelding'),
+      description: description ?? t('Je ontvangt voortaan updates van JesusToday.'),
+    });
+    setEmail('');
+    setFirstName('');
+  };
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (loading) return;
+
+    const elapsedMs = Date.now() - openedAt.current;
+    // Spam stil weigeren: dezelfde succesmelding, geen aanmelding.
+    if (detectSpam({ name: firstName, email, message: firstName, honeypot, elapsedMs })) {
+      showSuccess();
+      return;
+    }
+
     setLoading(true);
     try {
       const { data, error } = await supabase.functions.invoke('mailchimp-subscribe', {
-        body: { email, firstName },
+        body: { email, firstName, honeypot, elapsedMs },
       });
       if (error) throw error;
       if ((data as any)?.error) throw new Error((data as any).error);
-      setDone(true);
-      toast({
-        title: t('Bedankt voor je aanmelding'),
-        description: (data as any)?.alreadySubscribed
+      showSuccess(
+        (data as any)?.alreadySubscribed
           ? t('Je was al ingeschreven, fijn dat je erbij bent.')
-          : t('Je ontvangt voortaan updates van JesusToday.'),
-      });
-      setEmail('');
-      setFirstName('');
+          : undefined,
+      );
     } catch (err: any) {
       toast({
         title: t('Aanmelden mislukt'),
@@ -77,6 +94,20 @@ export const NewsletterForm = () => {
           )}
           {done ? t('Aangemeld') : t('Aanmelden')}
         </button>
+      </div>
+
+      {/* Honeypot: buiten beeld, alleen bots vullen dit in */}
+      <div className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+        <label htmlFor="newsletter-website">Website</label>
+        <input
+          id="newsletter-website"
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+        />
       </div>
     </form>
   );

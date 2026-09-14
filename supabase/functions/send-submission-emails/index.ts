@@ -2,6 +2,7 @@ import { createClient } from 'npm:@supabase/supabase-js@2'
 import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors'
 import { EmailAPIError } from 'npm:@lovable.dev/email-js@0.1.0'
 import { sendTemplateEmail } from '../_shared/transactional-email-templates/send-email.ts'
+import { detectSpam } from '../_shared/spam-guard.ts'
 
 // Auth note: verify_jwt = true in config.toml, so Supabase's gateway validates
 // the caller's JWT (anon or service_role) before this code runs.
@@ -93,6 +94,29 @@ Deno.serve(async (req) => {
   }
   if (!submission || String(submission.email).toLowerCase() !== email) {
     return jsonResponse({ error: 'Submission not found' }, 404)
+  }
+
+  // Tweede spamcontrole, vlak voor het versturen. Zo worden ook directe
+  // API-aanroepen geweigerd, met een stille succesmelding.
+  const spamReason = detectSpam({
+    name: String(submission.name ?? ''),
+    email,
+    subject: str(body.subject, 200),
+    message: String(submission.message ?? ''),
+  })
+  if (spamReason) {
+    console.warn('Blocked email dispatch', { reason: spamReason, submissionId })
+    const { error: blockError } = await supabase.from('blocked_submissions').insert({
+      form_name: formName,
+      reason: spamReason,
+      score: 100,
+      signals: [spamReason, 'blocked_before_email'],
+      name: String(submission.name ?? '').slice(0, 100),
+      email,
+      message_excerpt: String(submission.message ?? '').slice(0, 500),
+    })
+    if (blockError) console.warn('Failed to log blocked email', blockError.message)
+    return jsonResponse({ success: true, notified: false, confirmed: false })
   }
 
   const logSend = async (

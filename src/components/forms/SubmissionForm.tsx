@@ -60,12 +60,8 @@ export const SubmissionForm = ({
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
-
-    // Honeypot en snelheidscontrole tegen spam
-    if (String(data.get('website') ?? '') !== '' || Date.now() - openedAt.current < 1500) {
-      setSubmitted(true);
-      return;
-    }
+    const honeypot = String(data.get('website') ?? '');
+    const elapsedMs = Date.now() - openedAt.current;
 
     setLoading(true);
     try {
@@ -99,8 +95,11 @@ export const SubmissionForm = ({
         metadata: { ...(metadata ?? {}), ...extraMeta },
         extraFields,
         confirmationIntro,
+        honeypot,
+        elapsedMs,
       });
 
+      // Spam wordt stil geweigerd, dus iedereen ziet dezelfde bevestiging.
       setSubmitted(true);
       form.reset();
       toast({
@@ -205,14 +204,17 @@ export const SubmissionForm = ({
     >
       <div className="grid gap-4 sm:grid-cols-2">{fields.map(renderField)}</div>
 
-      <input
-        type="text"
-        name="website"
-        tabIndex={-1}
-        autoComplete="off"
-        aria-hidden="true"
-        className="hidden"
-      />
+      {/* Honeypot: buiten beeld, alleen bots vullen dit in */}
+      <div className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+        <label htmlFor={`${type}-website`}>Website</label>
+        <input
+          id={`${type}-website`}
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
 
       <Button type="submit" variant="hero" size="lg" className="w-full" disabled={loading}>
         {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Send className="h-5 w-5" />}

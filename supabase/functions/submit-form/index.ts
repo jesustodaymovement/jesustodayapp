@@ -1,15 +1,12 @@
 import { createClient } from 'npm:@supabase/supabase-js@2'
 import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors'
 import { z } from 'npm:zod@3.23.8'
-import {
-  clientIp,
-  evaluateSpam,
-  sha256,
-  verifyTurnstile,
-} from '../_shared/spam-guard.ts'
+import { clientIp, detectSpam, sha256 } from '../_shared/spam-guard.ts'
 
-// Public endpoint (verify_jwt = false): the browser has no session here.
-// Protection comes from Turnstile, the honeypot, rate limits and spam rules.
+// Publiek eindpunt (verify_jwt = false): de browser heeft hier geen sessie.
+// Bescherming komt van het honeypot-veld, de tijdmeting, de snelheidslimiet
+// per IP en het spamfilter. Spam wordt stil geweigerd: niets opgeslagen,
+// geen mail, en de afzender ziet een gewone succesmelding.
 
 const SUBMISSION_TYPES = ['contact', 'vraag', 'partner', 'opwekking', 'locatie', 'reactie'] as const
 
@@ -28,12 +25,11 @@ const BodySchema = z.object({
     .max(30)
     .optional(),
   confirmationIntro: z.string().max(500).optional(),
-  turnstileToken: z.string().max(4000).optional(),
   honeypot: z.string().max(200).optional(),
   elapsedMs: z.number().int().min(0).max(86_400_000).optional(),
 })
 
-// Windows: 3 per IP / 10 min, 10 per IP / 24 h, 3 per e-mail / 1 h.
+// Vensters: 3 per IP / 10 min, 10 per IP / 24 uur, 3 per e-mail / 1 uur.
 const LIMITS = [
   { scope: 'ip' as const, windowMs: 10 * 60 * 1000, max: 3, reason: 'rate_limit_ip_10min' },
   { scope: 'ip' as const, windowMs: 24 * 60 * 60 * 1000, max: 10, reason: 'rate_limit_ip_day' },
@@ -76,17 +72,19 @@ Deno.serve(async (req) => {
   const salt = Deno.env.get('SPAM_IP_SALT') ?? 'jesustoday-fallback-salt'
   const ip = clientIp(req)
   const ipHash = await sha256(`${salt}:${ip}`)
-  const messageHash = await sha256(`${salt}:${input.message.toLowerCase().replace(/\s+/g, ' ').trim()}`)
+  const messageHash = await sha256(
+    `${salt}:${input.message.toLowerCase().replace(/\s+/g, ' ').trim()}`,
+  )
   const userAgent = (req.headers.get('user-agent') ?? '').slice(0, 300)
 
-  const block = async (reason: string, score: number, signals: string[], status = 400) => {
-    console.warn('Blocked submission', { reason, score, signals, form: input.formName })
+  const logBlocked = async (reason: string) => {
+    console.warn('Blocked submission', { reason, form: input.formName })
     const { error } = await supabase.from('blocked_submissions').insert({
       form_name: input.formName,
       type: input.type,
       reason,
-      score,
-      signals,
+      score: 100,
+      signals: [reason],
       name: input.name.slice(0, 100),
       email,
       message_excerpt: input.message.slice(0, 500),
@@ -94,11 +92,16 @@ Deno.serve(async (req) => {
       user_agent: userAgent,
     })
     if (error) console.warn('Failed to log blocked submission', error.message)
-    return json({ error: 'blocked', reason }, status)
   }
 
-  // 1. Honeypot, timing, link count and weighted spam signals.
-  const verdict = evaluateSpam({
+  /** Stille weigering: bots leren zo niets van de reactie. */
+  const silentOk = async (reason: string) => {
+    await logBlocked(reason)
+    return json({ success: true })
+  }
+
+  // 1. Spamfilter: honeypot, tijd, links, spamwoorden, schrift, naamchecks.
+  const spamReason = detectSpam({
     name: input.name,
     email,
     subject: input.subject,
@@ -106,17 +109,9 @@ Deno.serve(async (req) => {
     honeypot: input.honeypot,
     elapsedMs: input.elapsedMs,
   })
-  if (verdict.blocked) {
-    return await block(verdict.reason ?? 'spam', verdict.score, verdict.signals)
-  }
+  if (spamReason) return await silentOk(spamReason)
 
-  // 2. Cloudflare Turnstile.
-  const turnstile = await verifyTurnstile(input.turnstileToken ?? '', ip)
-  if (!turnstile.ok) {
-    return await block(turnstile.reason ?? 'turnstile_failed', 100, ['turnstile'], 403)
-  }
-
-  // 3. Rate limits per IP and per e-mail address.
+  // 2. Snelheidslimieten per IP en per e-mailadres.
   const oldest = Math.max(...LIMITS.map((l) => l.windowMs))
   const since = new Date(Date.now() - oldest).toISOString()
   const { data: recent, error: recentError } = await supabase
@@ -133,17 +128,15 @@ Deno.serve(async (req) => {
       if (new Date(r.created_at as string).getTime() < from) return false
       return limit.scope === 'ip' ? r.ip_hash === ipHash : r.email === email
     }).length
-    if (count >= limit.max) {
-      return await block(limit.reason, 100, [`count_${count}`], 429)
-    }
+    if (count >= limit.max) return await silentOk(limit.reason)
   }
 
-  // 4. Identical message sent before, within 24 hours.
+  // 3. Exact hetzelfde bericht is al eerder binnengekomen.
   if (rows.some((r) => r.message_hash === messageHash)) {
-    return await block('duplicate_message', 100, ['duplicate'], 429)
+    return await silentOk('duplicate_message')
   }
 
-  // 5. Store the submission (service role only) and record the rate-limit hit.
+  // 4. Opslaan (alleen de server mag dit) en de limiethit vastleggen.
   const id = crypto.randomUUID()
   const { error: insertError } = await supabase.from('submissions').insert({
     id,
@@ -157,7 +150,10 @@ Deno.serve(async (req) => {
     metadata: input.metadata ?? null,
   })
   if (insertError) {
-    console.error('Submission insert failed', { code: insertError.code, message: insertError.message })
+    console.error('Submission insert failed', {
+      code: insertError.code,
+      message: insertError.message,
+    })
     return json({ error: 'save_failed' }, 500)
   }
 
@@ -166,7 +162,7 @@ Deno.serve(async (req) => {
     .insert({ ip_hash: ipHash, email, message_hash: messageHash })
   if (rlError) console.warn('Rate limit insert failed', rlError.message)
 
-  // 6. Only now do the e-mails go out.
+  // 5. Pas hierna gaan de mails eruit.
   const fields = [
     input.subject ? { label: 'Onderwerp', value: input.subject } : null,
     input.phone ? { label: 'Telefoon', value: input.phone } : null,
@@ -181,6 +177,7 @@ Deno.serve(async (req) => {
       name: input.name,
       email,
       message: input.message,
+      subject: input.subject,
       fields,
       submittedAt: new Date().toLocaleString('nl-NL', { dateStyle: 'long', timeStyle: 'short' }),
       confirmationIntro: input.confirmationIntro,
@@ -188,7 +185,7 @@ Deno.serve(async (req) => {
   })
   if (emailError) console.warn('Email dispatch failed', emailError.message)
 
-  // Best-effort cleanup of expired rate-limit rows.
+  // Opruimen van verlopen limietregels, zonder de reactie te vertragen.
   void supabase
     .from('submission_rate_limits')
     .delete()
@@ -197,5 +194,5 @@ Deno.serve(async (req) => {
       if (error) console.warn('Rate limit cleanup failed', error.message)
     })
 
-  return json({ success: true, id, turnstile: turnstile.configured })
+  return json({ success: true, id })
 })
