@@ -1,5 +1,6 @@
 import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
+import { detectSpam } from "@/lib/spam-guard";
 
 export const SUBMISSION_TYPES = [
   "contact",
@@ -32,53 +33,54 @@ export interface CreateSubmissionOptions extends SubmissionInput {
   extraFields?: { label: string; value?: string }[];
   /** Optional custom first paragraph of the confirmation email */
   confirmationIntro?: string;
+  /** Hidden honeypot field value */
+  honeypot?: string;
+  /** Milliseconds between opening and submitting the form */
+  elapsedMs?: number;
 }
 
+/**
+ * Verstuurt een inzending via de beveiligde serverroute. Opslaan en mailen
+ * gebeurt daar, na het spamfilter en de snelheidslimiet. Spam wordt stil
+ * geweigerd, de bezoeker ziet altijd een gewone bevestiging.
+ */
 export async function createSubmission(input: CreateSubmissionOptions) {
-  const { formName, extraFields, confirmationIntro, ...rest } = input;
+  const { formName, extraFields, confirmationIntro, honeypot, elapsedMs, ...rest } = input;
   const parsed = submissionSchema.parse(rest);
-  const id = crypto.randomUUID();
 
-  const { error } = await supabase.from("submissions").insert({
-    id,
-    type: parsed.type,
+  // Eerste controle in de browser, dezelfde regels lopen daarna op de server.
+  const spamReason = detectSpam({
     name: parsed.name,
     email: parsed.email,
-    phone: parsed.phone || null,
-    organization: parsed.organization || null,
-    subject: parsed.subject || null,
+    subject: parsed.subject,
     message: parsed.message,
-    metadata: parsed.metadata ?? null,
+    honeypot,
+    elapsedMs,
   });
-  if (error) throw error;
+  if (spamReason) {
+    return null;
+  }
 
-  const fields = [
-    parsed.subject ? { label: "Onderwerp", value: parsed.subject } : null,
-    parsed.phone ? { label: "Telefoon", value: parsed.phone } : null,
-    parsed.organization ? { label: "Organisatie", value: parsed.organization } : null,
-    ...(extraFields ?? []).filter((f) => f && f.value),
-  ].filter(Boolean);
-
-  // Notificatie naar het team, en bevestiging naar de inzender.
-  // Faalt dit, dan blijft de inzending bewaard in het adminoverzicht.
-  const submittedAt = new Date().toLocaleString("nl-NL", {
-    dateStyle: "long",
-    timeStyle: "short",
-  });
-
-  const { error: emailError } = await supabase.functions.invoke("send-submission-emails", {
+  const { data, error } = await supabase.functions.invoke("submit-form", {
     body: {
-      submissionId: id,
+      type: parsed.type,
       formName,
       name: parsed.name,
       email: parsed.email,
+      phone: parsed.phone || undefined,
+      organization: parsed.organization || undefined,
+      subject: parsed.subject || undefined,
       message: parsed.message,
-      fields,
-      submittedAt,
+      metadata: parsed.metadata,
+      extraFields,
       confirmationIntro,
+      honeypot,
+      elapsedMs,
     },
   });
-  if (emailError) console.warn("E-mail versturen mislukt", emailError);
 
-  return id;
+  if (error) throw error;
+  if ((data as any)?.error) throw new Error((data as any).error);
+
+  return ((data as any)?.id as string | undefined) ?? null;
 }
