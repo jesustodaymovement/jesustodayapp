@@ -29,10 +29,23 @@ const statusColors: Record<Submission["status"], string> = {
   afgehandeld: "bg-green-100 text-green-800",
 };
 
+type Blocked = {
+  id: string;
+  form_name: string | null;
+  type: string | null;
+  reason: string;
+  name: string | null;
+  email: string | null;
+  message_excerpt: string | null;
+  created_at: string;
+};
+
 const AdminSubmissions = () => {
   const navigate = useNavigate();
   const { session, isAdmin, loading: authLoading } = useAdminAuth();
   const [items, setItems] = useState<Submission[]>([]);
+  const [blocked, setBlocked] = useState<Blocked[]>([]);
+  const [view, setView] = useState<"inbox" | "blocked">("inbox");
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [filterType, setFilterType] = useState<string>("all");
@@ -46,6 +59,7 @@ const AdminSubmissions = () => {
   useEffect(() => {
     if (!isAdmin) return;
     void load();
+    void loadBlocked();
   }, [isAdmin]);
 
   async function load() {
@@ -54,6 +68,16 @@ const AdminSubmissions = () => {
     if (error) toast({ title: "Laden mislukt", description: error.message, variant: "destructive" });
     else setItems((data as Submission[]) ?? []);
     setLoading(false);
+  }
+
+  async function loadBlocked() {
+    const { data, error } = await supabase
+      .from("blocked_submissions")
+      .select("id, form_name, type, reason, name, email, message_excerpt, created_at")
+      .order("created_at", { ascending: false })
+      .limit(200);
+    if (error) toast({ title: "Geblokkeerde inzendingen laden mislukt", description: error.message, variant: "destructive" });
+    else setBlocked((data as Blocked[]) ?? []);
   }
 
   async function updateStatus(id: string, status: Submission["status"]) {
