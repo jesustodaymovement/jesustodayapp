@@ -2,6 +2,7 @@ import { createClient } from 'npm:@supabase/supabase-js@2'
 import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors'
 import { EmailAPIError } from 'npm:@lovable.dev/email-js@0.1.0'
 import { sendTemplateEmail } from '../_shared/transactional-email-templates/send-email.ts'
+import { detectSpam } from '../_shared/spam-guard.ts'
 
 // Auth note: verify_jwt = true in config.toml, so Supabase's gateway validates
 // the caller's JWT (anon or service_role) before this code runs.
