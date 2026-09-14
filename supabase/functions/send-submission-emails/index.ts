@@ -96,6 +96,29 @@ Deno.serve(async (req) => {
     return jsonResponse({ error: 'Submission not found' }, 404)
   }
 
+  // Tweede spamcontrole, vlak voor het versturen. Zo worden ook directe
+  // API-aanroepen geweigerd, met een stille succesmelding.
+  const spamReason = detectSpam({
+    name: String(submission.name ?? ''),
+    email,
+    subject: str(body.subject, 200),
+    message: String(submission.message ?? ''),
+  })
+  if (spamReason) {
+    console.warn('Blocked email dispatch', { reason: spamReason, submissionId })
+    const { error: blockError } = await supabase.from('blocked_submissions').insert({
+      form_name: formName,
+      reason: spamReason,
+      score: 100,
+      signals: [spamReason, 'blocked_before_email'],
+      name: String(submission.name ?? '').slice(0, 100),
+      email,
+      message_excerpt: String(submission.message ?? '').slice(0, 500),
+    })
+    if (blockError) console.warn('Failed to log blocked email', blockError.message)
+    return jsonResponse({ success: true, notified: false, confirmed: false })
+  }
+
   const logSend = async (
     templateName: string,
     recipient: string,
