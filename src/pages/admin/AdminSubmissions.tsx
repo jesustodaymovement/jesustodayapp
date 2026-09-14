@@ -257,6 +257,9 @@ const AdminSubmissions = () => {
               )}
             </div>
           </div>
+          </>
+          )}
+
         </div>
       </main>
     </>
