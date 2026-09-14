@@ -1,12 +1,12 @@
 import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors';
-import { clientIp, countUrls, verifyTurnstile } from '../_shared/spam-guard.ts';
+import { detectSpam } from '../_shared/spam-guard.ts';
 
 interface SubscribePayload {
   email?: string;
   firstName?: string;
   lastName?: string;
   honeypot?: string;
-  turnstileToken?: string;
+  elapsedMs?: number;
 }
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
