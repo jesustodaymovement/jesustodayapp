@@ -40,23 +40,23 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Spambescherming: honeypot, links in de naam en Turnstile.
-    if ((body.honeypot ?? '').trim() !== '' || countUrls(`${firstName} ${lastName}`) > 0) {
-      console.warn('Blocked newsletter signup', { reason: 'honeypot_or_links' });
+    // Spambescherming: honeypot, tijdmeting, links en spamwoorden.
+    // Stille weigering: de bot krijgt een gewone succesmelding.
+    const spamReason = detectSpam({
+      name: `${firstName} ${lastName}`.trim(),
+      email,
+      message: `${firstName} ${lastName}`.trim(),
+      honeypot: body.honeypot,
+      elapsedMs: typeof body.elapsedMs === 'number' ? body.elapsedMs : undefined,
+    });
+    if (spamReason) {
+      console.warn('Blocked newsletter signup', { reason: spamReason });
       return new Response(JSON.stringify({ ok: true }), {
         status: 200,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
 
-    const turnstile = await verifyTurnstile(body.turnstileToken ?? '', clientIp(req));
-    if (!turnstile.ok) {
-      console.warn('Blocked newsletter signup', { reason: turnstile.reason });
-      return new Response(
-        JSON.stringify({ error: 'Beveiligingscheck mislukt, probeer het opnieuw.' }),
-        { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
-      );
-    }
 
     const url = `https://${serverPrefix}.api.mailchimp.com/3.0/lists/${audienceId}/members`;
     const auth = 'Basic ' + btoa(`anystring:${apiKey}`);
