@@ -33,7 +33,6 @@ i18n
     },
     interpolation: { escapeValue: false },
     returnEmptyString: false,
-    parseMissingKeyHandler: (key) => key,
     react: { useSuspense: false },
   });
 
