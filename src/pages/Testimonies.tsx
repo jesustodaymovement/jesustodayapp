@@ -112,7 +112,7 @@ const Testimonies = () => {
   const { churchSlug } = useParams();
   const navigate = useNavigate();
   const church = churchSlug ? getChurchBySlug(churchSlug) : null;
-  const [language, setLanguage] = useState(churchSlug ? 'all' : 'nl');
+  const [language, setLanguage] = useState('all');
   const isEnChurchRoute = typeof window !== 'undefined' && window.location.pathname.startsWith('/en/');
   useEffect(() => {
     if (!churchSlug) return;
@@ -230,7 +230,7 @@ const Testimonies = () => {
   );
 
   useEffect(() => {
-    setLanguage(churchSlug ? 'all' : 'nl');
+    setLanguage('all');
     setSearch('');
     setSelectedTopics([]);
   }, [churchSlug]);
