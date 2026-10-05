@@ -22,12 +22,12 @@ Deno.serve(async (req) => {
     const skipCount = url.searchParams.get('SkipCount') ?? '0';
 
     const params = new URLSearchParams({
-      LanguageCode: languageCode,
       Status: status,
       Sorting: sorting,
       MaxResultCount: maxResultCount,
       SkipCount: skipCount,
     });
+    if (languageCode && languageCode !== 'all') params.set('LanguageCode', languageCode);
 
     const apiUrl = `${API_BASE}?${params.toString()}`;
     const response = await fetch(apiUrl, {

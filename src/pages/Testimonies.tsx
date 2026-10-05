@@ -100,13 +100,14 @@ alt={t('Verhaal van {{name}}', { name: testimony.user.username })}
 };
 
 const Testimonies = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [items, setItems] = useState<Testimony[]>([]);
   const [totalCount, setTotalCount] = useState(0);
   const [globalTotal, setGlobalTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [language, setLanguage] = useState('nl');
+  const [langCodes, setLangCodes] = useState<string[]>(LANGUAGES.map((l) => l.code));
   const [search, setSearch] = useState('');
   const [churchFilter, setChurchFilter] = useState('all');
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
@@ -159,26 +160,36 @@ const Testimonies = () => {
         Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
       };
       const base = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/get-testimonies`;
-      const totals = await Promise.all(
-        LANGUAGES.map(async (l) => {
-          const params = new URLSearchParams({
-            LanguageCode: l.code,
-            Status: '50',
-            Sorting: 'creationTime desc',
-            MaxResultCount: '1',
-            SkipCount: '0',
-          });
-          const res = await fetch(`${base}?${params.toString()}`, { headers });
-          if (!res.ok) return 0;
-          const data: ApiResponse = await res.json();
-          return data.totalCount ?? 0;
-        })
+      const probe = await fetch(`${base}?LanguageCode=all&Status=50&MaxResultCount=1&SkipCount=0`, { headers });
+      if (!probe.ok) return;
+      const total = ((await probe.json()) as ApiResponse).totalCount ?? 0;
+      setGlobalTotal(total);
+      const res = await fetch(
+        `${base}?LanguageCode=all&Status=50&MaxResultCount=${Math.max(total, 1)}&SkipCount=0`,
+        { headers }
       );
-      setGlobalTotal(totals.reduce((a, b) => a + b, 0));
+      if (!res.ok) return;
+      const data: ApiResponse = await res.json();
+      const codes = new Set<string>(LANGUAGES.map((l) => l.code));
+      data.items.forEach((i) => i.languageCode && codes.add(i.languageCode.toLowerCase()));
+      setLangCodes(Array.from(codes));
     } catch (e) {
       console.error('global total error', e);
     }
   };
+
+  const languageOptions = useMemo(() => {
+    let dn: Intl.DisplayNames | null = null;
+    try {
+      dn = new Intl.DisplayNames([i18n.language || 'en'], { type: 'language' });
+    } catch { /* ignore */ }
+    return langCodes
+      .map((code) => {
+        const name = dn?.of(code) ?? code.toUpperCase();
+        return { code, label: name.charAt(0).toUpperCase() + name.slice(1) };
+      })
+      .sort((a, b) => a.label.localeCompare(b.label));
+  }, [langCodes, i18n.language]);
 
   useEffect(() => {
     fetchVideos(language);
@@ -306,7 +317,8 @@ const Testimonies = () => {
                     <SelectValue placeholder={t('Taal')} />
                   </SelectTrigger>
                   <SelectContent>
-                    {LANGUAGES.map((l) => (
+                    <SelectItem value="all">{t('Alle talen')}</SelectItem>
+                    {languageOptions.map((l) => (
                       <SelectItem key={l.code} value={l.code}>
                         {l.label}
                       </SelectItem>
