@@ -387,8 +387,11 @@ const Privacy = () => {
         <article className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-anthracite mb-6">
-              {t('Privacy')}
-              <span className="text-gold">{t('verklaring')}</span>
+              {i18n.language?.startsWith('nl') ? (
+                <>Privacy<span className="text-gold">verklaring</span></>
+              ) : (
+                <>{t('Privacy_title_main')} <span className="text-gold">{t('Privacy_title_accent')}</span></>
+              )}
             </h1>
             <div className="space-y-3 mb-12">
               {content.intro.map((p, i) => (
