@@ -1,6 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { CHURCHES, findChurch, getChurchBySlug, churchPath } from '@/lib/churches';
+import NotFound from './NotFound';
+import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { Play, Loader2, Search } from 'lucide-react';
 import { Header } from '@/components/sections/Header';
 import { Footer } from '@/components/sections/Footer';
@@ -106,10 +109,16 @@ const Testimonies = () => {
   const [globalTotal, setGlobalTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [language, setLanguage] = useState('nl');
+  const { churchSlug } = useParams();
+  const navigate = useNavigate();
+  const church = churchSlug ? getChurchBySlug(churchSlug) : null;
+  const [language, setLanguage] = useState(churchSlug ? 'all' : 'nl');
   const [langCodes, setLangCodes] = useState<string[]>(LANGUAGES.map((l) => l.code));
   const [search, setSearch] = useState('');
-  const [churchFilter, setChurchFilter] = useState('all');
+  const churchFilter = church?.slug ?? 'all';
+  const uiLang = (i18n.language || 'en').split('-')[0];
+  const setChurchFilter = (v: string) =>
+    navigate(v === 'all' ? '/verhalen-over-jezus' : churchPath(v, uiLang));
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
 
   const fetchVideos = async (lang: string) => {
@@ -200,21 +209,17 @@ const Testimonies = () => {
   }, []);
 
   const churches = useMemo(() => {
-    const map = new Map<string, string>();
-    items.forEach((i) => {
-      const churchName = getChurchName(i.churchName);
-      const churchKey = getChurchKey(i.churchName);
-      if (churchName && churchKey && !map.has(churchKey)) map.set(churchKey, churchName);
-    });
-    return Array.from(map.entries())
-      .sort((a, b) => a[1].localeCompare(b[1]))
-      .map(([value, label]) => ({ value, label }));
-  }, [items]);
+    const present = new Set(items.map((i) => findChurch(i.churchName)?.slug).filter(Boolean));
+    if (church) present.add(church.slug);
+    return CHURCHES.filter((c) => present.has(c.slug))
+      .sort((x, y) => x.name.localeCompare(y.name))
+      .map((c) => ({ value: c.slug, label: c.name }));
+  }, [items, church]);
 
   const filtered = useMemo(() => {
     return items.filter((i) => {
       const churchName = getChurchName(i.churchName) ?? '';
-      const churchKey = getChurchKey(i.churchName);
+      const churchKey = findChurch(i.churchName)?.slug ?? null;
       if (churchFilter !== 'all' && churchKey !== churchFilter) return false;
       if (selectedTopics.length > 0) {
         const text = `${i.quote} ${i.user.username}`;
@@ -252,39 +257,83 @@ const Testimonies = () => {
 
   const clearFilters = () => {
     setSearch('');
-    setChurchFilter('all');
+    if (church) navigate('/verhalen-over-jezus');
     setSelectedTopics([]);
   };
 
   const hasActiveFilters =
     search.trim().length > 0 || churchFilter !== 'all' || selectedTopics.length > 0;
 
+  if (churchSlug && !church) return <NotFound />;
+
   return (
     <div className="min-h-screen bg-cream">
+      {church ? (
+        <Helmet>
+          <title>{`${t('Verhalen van')} ${church.name} | JesusToday`}</title>
+          <meta name="description" content={`${t('Bekijk alle video-verhalen over Jezus van')} ${church.name}.`} />
+          <meta property="og:title" content={`${t('Verhalen van')} ${church.name} | JesusToday`} />
+          <meta property="og:description" content={`${t('Bekijk alle video-verhalen over Jezus van')} ${church.name}.`} />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content={`https://jesustoday.app${churchPath(church.slug, uiLang)}`} />
+          <link rel="canonical" href={`https://jesustoday.app${churchPath(church.slug, uiLang)}`} />
+          <meta name="twitter:card" content="summary_large_image" />
+        </Helmet>
+      ) : (
       <Helmet>
-        <title>{t('Verhalen op video, JesusToday')}</title>
-        <meta
-          name="description"
-          content={t('Bekijk persoonlijke verhalen van mensen die hun ervaring met Jezus delen.')}
-        />
-        <meta property="og:title" content={t('Verhalen op video, JesusToday')} />
-        <meta
-          property="og:description"
-          content={t('Bekijk persoonlijke verhalen van mensen die hun ervaring met Jezus delen.')}
-        />
-        <meta property="og:url" content="https://jesustoday.app/verhalen-over-jezus" />
-
-        <link rel="canonical" href="https://jesustoday.app/verhalen-over-jezus" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:title" content={t('Verhalen op video, JesusToday')} />
-        <meta name="twitter:description" content={t('Bekijk persoonlijke verhalen van mensen die hun ervaring met Jezus delen.')} />
-      </Helmet>
+          <title>{t('Verhalen op video, JesusToday')}</title>
+          <meta
+            name="description"
+            content={t('Bekijk persoonlijke verhalen van mensen die hun ervaring met Jezus delen.')}
+          />
+          <meta property="og:title" content={t('Verhalen op video, JesusToday')} />
+          <meta
+            property="og:description"
+            content={t('Bekijk persoonlijke verhalen van mensen die hun ervaring met Jezus delen.')}
+          />
+          <meta property="og:url" content="https://jesustoday.app/verhalen-over-jezus" />
+  
+          <link rel="canonical" href="https://jesustoday.app/verhalen-over-jezus" />
+          <meta property="og:type" content="website" />
+          <meta name="twitter:title" content={t('Verhalen op video, JesusToday')} />
+          <meta name="twitter:description" content={t('Bekijk persoonlijke verhalen van mensen die hun ervaring met Jezus delen.')} />
+        </Helmet>
+      )}
 
       <Header />
 
       <main className="pt-32 pb-24">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
+            {church ? (
+              <div className="text-center mb-12">
+                <Link
+                  to="/verhalen-over-jezus"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-anthracite/70 hover:text-gold mb-6"
+                >
+                  <ArrowLeft className="w-4 h-4" /> {t('Alle kerken')}
+                </Link>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-anthracite mb-4">
+                  {t('Verhalen van')} <span className="text-gold">{church.name}</span>
+                </h1>
+                {!loading && (
+                  <p className="text-lg text-muted-foreground mb-6">
+                    {t('{{count}} verhalen te bekijken.', { count: filtered.length })}
+                  </p>
+                )}
+                {church.website && (
+                  <a
+                    href={church.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 font-semibold text-anthracite hover:opacity-90"
+                  >
+                    {t('Bezoek de website van')} {church.name}
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                )}
+              </div>
+            ) : (
             <ScrollReveal>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-anthracite mb-4">
                 {t('Verhalen over')} <span className="text-gold">{t('Jezus')}</span>
@@ -297,6 +346,7 @@ const Testimonies = () => {
                 {globalTotal > 0 && ` ${t('{{count}} verhalen te bekijken.', { count: globalTotal })}`}
               </p>
             </ScrollReveal>
+            )}
 
             {/* Filters */}
             <ScrollReveal delay={150}>
