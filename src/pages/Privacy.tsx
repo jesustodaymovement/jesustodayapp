@@ -378,8 +378,6 @@ const Privacy = () => {
         <meta property="og:title" content={t('Privacyverklaring, JesusToday')} />
         <meta property="og:description" content={t('Lees hoe JesusToday omgaat met jouw persoonsgegevens.')} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://jesustoday.app/privacy" />
-        <link rel="canonical" href="https://jesustoday.app/privacy" />
         <meta name="twitter:title" content={t('Privacyverklaring, JesusToday')} />
         <meta name="twitter:description" content={t('Lees hoe JesusToday omgaat met jouw persoonsgegevens.')} />
         <html lang={i18n.language} />

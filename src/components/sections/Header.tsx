@@ -7,6 +7,7 @@ import logo from '@/assets/jesus-today-logo.png';
 import { useAudienceOptional } from '@/contexts/AudienceContext';
 import { AudienceSwitch } from '@/components/AudienceSwitch';
 import { NATIONS } from '@/lib/nations';
+import { localizePath } from '@/lib/routes';
 
 const navLinks = [
   { label: 'Verhalen', href: '/verhalen-over-jezus' },
@@ -37,11 +38,8 @@ export const Header = () => {
   const lang = langOptions.some((o) => o.code === current) ? current : 'en';
   const setLanguage = (l: string) => {
     i18n.changeLanguage(l);
-    const path = window.location.pathname;
-    const nl = path.match(/^\/verhalen-over-jezus\/kerk\/([^/]+)/);
-    const en = path.match(/^\/en\/stories\/church\/([^/]+)/);
-    if (nl && l !== 'nl') navigate(`/en/stories/church/${nl[1]}`);
-    if (en && l === 'nl') navigate(`/verhalen-over-jezus/kerk/${en[1]}`);
+    const target = localizePath(window.location.pathname, l);
+    if (target !== window.location.pathname) navigate(target + window.location.search);
   };
 
   const LanguageSwitch = ({ className = '' }: { className?: string }) => (

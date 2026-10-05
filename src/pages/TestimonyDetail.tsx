@@ -279,8 +279,6 @@ const TestimonyDetail = () => {
             content={t('{{name}} deelt een persoonlijke getuigenis over Jezus. Bekijk de video en ontdek je volgende stap.', { name: fullName })}
           />
         )}
-        <meta property="og:url" content={`https://jesustoday.app/verhalen-over-jezus/${vimeoId}`} />
-        <link rel="canonical" href={`https://jesustoday.app/verhalen-over-jezus/${vimeoId}`} />
         <meta property="og:type" content="video.other" />
         {testimony && (
           <script type="application/ld+json">

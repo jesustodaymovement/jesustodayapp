@@ -46,8 +46,6 @@ const ShoopShoopPartners = () => {
           content={t('Een overzicht van de projecten en organisaties waar Shoop Shoop Marketing mee samenwerkt.')}
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://jesustoday.app/shoop-shoop-partners" />
-        <link rel="canonical" href="https://jesustoday.app/shoop-shoop-partners" />
       </Helmet>
 
       <Header />

@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { CHURCHES, findChurch, getChurchBySlug, churchPath } from '@/lib/churches';
 import NotFound from './NotFound';
+import { localizePath } from '@/lib/routes';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { Play, Loader2, Search } from 'lucide-react';
 import { Header } from '@/components/sections/Header';
@@ -113,20 +114,12 @@ const Testimonies = () => {
   const navigate = useNavigate();
   const church = churchSlug ? getChurchBySlug(churchSlug) : null;
   const [language, setLanguage] = useState('all');
-  const isEnChurchRoute = typeof window !== 'undefined' && window.location.pathname.startsWith('/en/');
-  useEffect(() => {
-    if (!churchSlug) return;
-    const cur = (i18n.language || 'en').split('-')[0];
-    if (isEnChurchRoute && cur === 'nl') i18n.changeLanguage('en');
-    if (!isEnChurchRoute && cur !== 'nl') i18n.changeLanguage('nl');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [churchSlug]);
   const [langCodes, setLangCodes] = useState<string[]>(LANGUAGES.map((l) => l.code));
   const [search, setSearch] = useState('');
   const churchFilter = church?.slug ?? 'all';
   const uiLang = (i18n.language || 'en').split('-')[0];
   const setChurchFilter = (v: string) =>
-    navigate(v === 'all' ? '/verhalen-over-jezus' : churchPath(v, uiLang));
+    navigate(v === 'all' ? localizePath('/verhalen-over-jezus', uiLang) : churchPath(v, uiLang));
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
 
   const fetchVideos = async (lang: string) => {
@@ -276,7 +269,7 @@ const Testimonies = () => {
 
   const clearFilters = () => {
     setSearch('');
-    if (church) navigate('/verhalen-over-jezus');
+    if (church) navigate(localizePath('/verhalen-over-jezus', uiLang));
     setSelectedTopics([]);
   };
 
@@ -294,8 +287,6 @@ const Testimonies = () => {
           <meta property="og:title" content={`${t('Verhalen van')} ${church.name} | JesusToday`} />
           <meta property="og:description" content={`${t('Bekijk alle video-verhalen over Jezus van')} ${church.name}.`} />
           <meta property="og:type" content="website" />
-          <meta property="og:url" content={`https://jesustoday.app${churchPath(church.slug, uiLang)}`} />
-          <link rel="canonical" href={`https://jesustoday.app${churchPath(church.slug, uiLang)}`} />
           <meta name="twitter:card" content="summary_large_image" />
         </Helmet>
       ) : (
@@ -310,9 +301,7 @@ const Testimonies = () => {
             property="og:description"
             content={t('Bekijk persoonlijke verhalen van mensen die hun ervaring met Jezus delen.')}
           />
-          <meta property="og:url" content="https://jesustoday.app/verhalen-over-jezus" />
   
-          <link rel="canonical" href="https://jesustoday.app/verhalen-over-jezus" />
           <meta property="og:type" content="website" />
           <meta name="twitter:title" content={t('Verhalen op video, JesusToday')} />
           <meta name="twitter:description" content={t('Bekijk persoonlijke verhalen van mensen die hun ervaring met Jezus delen.')} />

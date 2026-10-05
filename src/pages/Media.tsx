@@ -173,9 +173,7 @@ const Media = () => {
       <meta property="og:title" content={t('JesusToday in de media, pers en publicaties')} />
       <meta property="og:description" content={t('JesusToday in de media: VPRO Tegenlicht, EO en NPO Radio 5 over de app en de verhalen van gewone mensen.')} />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://jesustoday.app/media" />
 
-      <link rel="canonical" href="https://jesustoday.app/media" />
       <meta name="twitter:title" content={t('JesusToday in de media')} />
       <meta name="twitter:description" content={t('JesusToday in de media: VPRO Tegenlicht, EO en NPO Radio 5.')} />
     </Helmet>

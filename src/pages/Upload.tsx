@@ -158,9 +158,7 @@ const Upload = () => {
         <meta property="og:title" content={t('Upload jouw verhaal, JesusToday')} />
         <meta property="og:description" content={t('Deel jouw verhaal over Jezus in 3 simpele stappen.')} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://jesustoday.app/upload" />
 
-        <link rel="canonical" href="https://jesustoday.app/upload" />
         <meta name="twitter:title" content={t('Upload jouw verhaal, JesusToday')} />
         <meta name="twitter:description" content={t('Deel jouw verhaal over Jezus in 3 simpele stappen.')} />
       </Helmet>
