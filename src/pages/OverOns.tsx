@@ -159,7 +159,7 @@ const useStats = () => {
   return [
     { value: '300+', label: t('persoonlijke verhalen op video') },
     { value: '10+', label: t('samenwerkingen, o.a. Opwekking, The Send, New Wine, YWAM') },
-    { value: '1', label: t('land actief (Zuid-Afrika)') },
+    { value: '2', label: t('landen actief (Nederland en Zuid-Afrika)') },
     { value: '2', label: t('landen klaar voor opstart (India, Macedonië)') },
   ];
 };

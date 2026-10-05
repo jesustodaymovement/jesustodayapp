@@ -18,7 +18,7 @@ const Steun = () => {
   ];
 
   const stats = [
-    { value: '200+', label: t('persoonlijke verhalen op video') },
+    { value: '300+', label: t('persoonlijke verhalen op video') },
     { value: '10+', label: t('samenwerkingen, o.a. Opwekking en The Send') },
     { value: '10 mln', label: t('Nederlanders die we willen bereiken') },
   ];
