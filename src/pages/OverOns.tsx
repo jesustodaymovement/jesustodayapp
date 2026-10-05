@@ -553,9 +553,7 @@ const OverOns = () => {
           property="og:description"
           content={t('JesusToday is een platform voor persoonlijke verhalen op video, gemaakt door en voor mensen die hun ervaring met Jezus willen delen.')}
         />
-        <meta property="og:url" content="https://jesustoday.app/over-ons" />
 
-        <link rel="canonical" href="https://jesustoday.app/over-ons" />
         <meta property="og:type" content="website" />
         <meta name="twitter:title" content={t('Over JesusToday, ons verhaal')} />
         <meta name="twitter:description" content={t('JesusToday is een platform voor persoonlijke verhalen op video.')} />

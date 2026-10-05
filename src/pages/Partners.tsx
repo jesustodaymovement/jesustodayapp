@@ -196,9 +196,7 @@ const Partners = () => {
         <meta property="og:title" content={t('Partners, JesusToday voor kerken en organisaties')} />
         <meta property="og:description" content={t('Word partner van JesusToday. We helpen kerken en organisaties om verhalen vast te leggen en te delen via QR-kaartjes.')} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://jesustoday.app/partners" />
 
-        <link rel="canonical" href="https://jesustoday.app/partners" />
         <meta name="twitter:title" content={t('Partners, JesusToday voor kerken en organisaties')} />
         <meta name="twitter:description" content={t('Word partner van JesusToday.')} />
       </Helmet>

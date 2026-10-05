@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
 import { CHURCHES } from "../src/lib/churches";
+import { localizePath, PREFIX_LANGS } from "../src/lib/routes";
 
 const BASE_URL = "https://jesustoday.app";
 
@@ -93,11 +94,16 @@ function generateSitemap(entries: SitemapEntry[]) {
       changefreq: "monthly",
       priority: "0.6",
     })),
-    ...CHURCHES.flatMap<SitemapEntry>((c) => [
-      { path: `/verhalen-over-jezus/kerk/${c.slug}`, changefreq: "weekly", priority: "0.7" },
-      { path: `/en/stories/church/${c.slug}`, changefreq: "weekly", priority: "0.6" },
-    ]),
+    ...CHURCHES.map<SitemapEntry>((c) => ({
+      path: `/verhalen-over-jezus/kerk/${c.slug}`, changefreq: "weekly", priority: "0.7",
+    })),
   ];
+  const withLangs = allEntries.flatMap((e) => [
+    e,
+    ...PREFIX_LANGS.map((l) => ({ ...e, path: localizePath(e.path, l) })),
+  ]);
+  allEntries.length = 0;
+  allEntries.push(...withLangs.filter((e, i, arr) => arr.findIndex((x) => x.path === e.path) === i));
   writeFileSync(resolve("public/sitemap.xml"), generateSitemap(allEntries));
   console.log(`sitemap.xml written (${allEntries.length} entries)`);
 })();

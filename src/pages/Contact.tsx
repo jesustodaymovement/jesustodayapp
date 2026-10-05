@@ -24,9 +24,7 @@ const Contact = () => {
           content={t('Neem contact op met JesusToday. Stel je vraag of deel je verhaal.')}
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://jesustoday.app/contact" />
 
-        <link rel="canonical" href="https://jesustoday.app/contact" />
         <meta name="twitter:title" content={t('Contact, JesusToday')} />
         <meta name="twitter:description" content={t('Neem contact op met JesusToday.')} />
       </Helmet>

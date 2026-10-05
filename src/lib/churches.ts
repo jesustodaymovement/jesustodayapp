@@ -83,5 +83,6 @@ export const findChurch = (raw?: string | null): Church | null => {
 
 export const getChurchBySlug = (slug?: string) => CHURCHES.find((c) => c.slug === slug) ?? null;
 
+import { localizePath } from './routes';
 export const churchPath = (slug: string, lang: string) =>
-  lang === 'nl' ? `/verhalen-over-jezus/kerk/${slug}` : `/en/stories/church/${slug}`;
+  localizePath(`/verhalen-over-jezus/kerk/${slug}`, lang);
