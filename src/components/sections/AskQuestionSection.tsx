@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { ScrollReveal } from '@/components/ScrollReveal';
-import { SubmissionForm } from '@/components/forms/SubmissionForm';
 import { MessageCircle } from 'lucide-react';
 
 export const AskQuestionSection = () => {
@@ -25,26 +24,13 @@ export const AskQuestionSection = () => {
           </ScrollReveal>
 
           <ScrollReveal delay={150}>
-            <SubmissionForm
-              type="vraag"
-              formName="Vraag over geloof"
-              submitLabel="Stel je vraag"
-              successTitle="Je vraag is verstuurd"
-              successText="Dankjewel, iemand van ons team neemt persoonlijk contact met je op."
-              confirmationIntro="We hebben je vraag ontvangen. Iemand van ons team leest hem persoonlijk en neemt zo snel als het kan contact met je op."
-              fields={[
-                { name: 'name', label: 'Je naam', required: true, placeholder: 'Voornaam' },
-                { name: 'email', label: 'E-mail', type: 'email', required: true, placeholder: 'jij@voorbeeld.nl' },
-                {
-                  name: 'message',
-                  label: 'Je vraag',
-                  type: 'textarea',
-                  required: true,
-                  rows: 5,
-                  placeholder: 'Stel hier je vraag, hoe groot of klein ook...',
-                },
-              ]}
+            <iframe
+              src="https://forms.fillout.com/t/mQpEP3ZHmtus"
+              style={{ width: '100%', height: 650, border: 0, borderRadius: 16 }}
+              loading="lazy"
+              title={t('Heb je een vraag over geloof?')}
             />
+
           </ScrollReveal>
         </div>
       </div>
