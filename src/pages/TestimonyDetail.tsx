@@ -27,6 +27,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { fetchThumbnail, getChurchName } from '@/lib/testimonies';
+import { findChurch, churchPath } from '@/lib/churches';
 import { SubmissionForm } from '@/components/forms/SubmissionForm';
 import { useTranslation } from 'react-i18next';
 
@@ -379,12 +380,24 @@ title={t('Verhaal van {{name}}', { name: fullName })}
                         </div>
 
                         <div className="flex flex-wrap gap-3 text-sm">
-                          {churchName && (
-                            <span className="inline-flex items-center gap-2 rounded-full bg-cream px-4 py-2 text-anthracite">
-                              <MapPin className="w-4 h-4 text-gold" />
-                              {churchName}
-                            </span>
-                          )}
+                          {churchName && (() => {
+                            const c = findChurch(churchName);
+                            const lang = (i18n.language || 'en').split('-')[0];
+                            return c ? (
+                              <Link
+                                to={churchPath(c.slug, lang)}
+                                className="inline-flex items-center gap-2 rounded-full bg-cream px-4 py-2 text-anthracite hover:text-gold underline-offset-2 hover:underline"
+                              >
+                                <MapPin className="w-4 h-4 text-gold" />
+                                {c.name}
+                              </Link>
+                            ) : (
+                              <span className="inline-flex items-center gap-2 rounded-full bg-cream px-4 py-2 text-anthracite">
+                                <MapPin className="w-4 h-4 text-gold" />
+                                {churchName}
+                              </span>
+                            );
+                          })()}
                           <span className="inline-flex items-center gap-2 rounded-full bg-cream px-4 py-2 text-anthracite uppercase">
                             <PlayCircle className="w-4 h-4 text-gold" />
                             {testimony.languageCode}

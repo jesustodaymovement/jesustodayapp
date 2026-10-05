@@ -1,5 +1,6 @@
 import { readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
+import { CHURCHES } from "../src/lib/churches";
 
 const BASE_URL = "https://jesustoday.app";
 
@@ -92,6 +93,10 @@ function generateSitemap(entries: SitemapEntry[]) {
       changefreq: "monthly",
       priority: "0.6",
     })),
+    ...CHURCHES.flatMap<SitemapEntry>((c) => [
+      { path: `/verhalen-over-jezus/kerk/${c.slug}`, changefreq: "weekly", priority: "0.7" },
+      { path: `/en/stories/church/${c.slug}`, changefreq: "weekly", priority: "0.6" },
+    ]),
   ];
   writeFileSync(resolve("public/sitemap.xml"), generateSitemap(allEntries));
   console.log(`sitemap.xml written (${allEntries.length} entries)`);
