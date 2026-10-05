@@ -351,7 +351,7 @@ const Testimonies = () => {
             <ScrollReveal delay={100}>
               <p className="text-lg text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
                 {t('Echte verhalen van mensen die ontdekten wie Jezus voor hen is.')}
-                {globalTotal > 0 && ` ${t('{{count}} verhalen te bekijken.', { count: globalTotal })}`}
+                {(language === 'all' ? globalTotal : totalCount) > 0 && ` ${t('{{count}} verhalen te bekijken.', { count: language === 'all' ? globalTotal : totalCount })}`}
               </p>
             </ScrollReveal>
             </>
