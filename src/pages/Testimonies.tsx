@@ -224,6 +224,17 @@ const Testimonies = () => {
       .map((c) => ({ value: c.slug, label: c.name }));
   }, [items, church]);
 
+  const churchItems = useMemo(
+    () => (church ? items.filter((i) => findChurch(i.churchName)?.slug === church.slug) : items),
+    [items, church]
+  );
+
+  useEffect(() => {
+    setLanguage(churchSlug ? 'all' : 'nl');
+    setSearch('');
+    setSelectedTopics([]);
+  }, [churchSlug]);
+
   const filtered = useMemo(() => {
     return items.filter((i) => {
       const churchName = getChurchName(i.churchName) ?? '';
@@ -248,14 +259,14 @@ const Testimonies = () => {
   const topicCounts = useMemo(() => {
     const counts: Record<string, number> = {};
     TOPICS.forEach((t) => (counts[t.id] = 0));
-    items.forEach((i) => {
+    churchItems.forEach((i) => {
       const text = `${i.quote} ${i.user.username}`.toLowerCase();
       TOPICS.forEach((t) => {
         if (t.keywords.some((k) => text.includes(k))) counts[t.id] += 1;
       });
     });
     return counts;
-  }, [items]);
+  }, [churchItems]);
 
   const toggleTopic = (id: string) => {
     setSelectedTopics((prev) =>
@@ -319,22 +330,21 @@ const Testimonies = () => {
                   to="/verhalen-over-jezus"
                   className="inline-flex items-center gap-2 text-sm font-medium text-anthracite/70 hover:text-gold mb-6"
                 >
-                  <ArrowLeft className="w-4 h-4" /> {t('Alle kerken')}
+                  <ArrowLeft className="w-4 h-4" /> {t('Bekijk alle verhalen')}
                 </Link>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-anthracite mb-4">
                   {t('Verhalen van')} <span className="text-gold">{church.name}</span>
                 </h1>
-                {!loading && (
-                  <p className="text-lg text-muted-foreground mb-6">
-                    {t('{{count}} verhalen te bekijken.', { count: filtered.length })}
-                  </p>
-                )}
+                <p className="text-lg text-muted-foreground mb-6">
+                  {t('Alle verhalen van mensen uit')} {church.name}.
+                  {!loading && ` ${t('{{count}} verhalen te bekijken.', { count: churchItems.length })}`}
+                </p>
                 {church.website && (
                   <a
                     href={church.website}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 font-semibold text-anthracite hover:opacity-90"
+                    className="inline-flex items-center gap-2 rounded-lg border-2 border-gold/40 bg-warm-white px-5 py-2.5 font-semibold text-anthracite hover:border-gold transition-colors"
                   >
                     {t('Bezoek de website van')} {church.name}
                     <ExternalLink className="w-4 h-4" />
@@ -365,13 +375,15 @@ const Testimonies = () => {
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                   <Input
                     type="text"
-                    placeholder={t('Zoek op naam, quote of kerk...')}
+                    placeholder={church ? t('Zoek op naam of quote...') : t('Zoek op naam, quote of kerk...')}
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     className="pl-10 h-12"
                   />
                 </div>
 
+                {!church && (
+                <>
                 <Select value={language} onValueChange={setLanguage}>
                   <SelectTrigger className="md:w-48 h-12">
                     <SelectValue placeholder={t('Taal')} />
@@ -399,6 +411,8 @@ const Testimonies = () => {
                     ))}
                   </SelectContent>
                 </Select>
+                </>
+                )}
               </div>
 
               {/* Topic chips */}
