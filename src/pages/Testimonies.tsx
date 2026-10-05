@@ -113,6 +113,14 @@ const Testimonies = () => {
   const navigate = useNavigate();
   const church = churchSlug ? getChurchBySlug(churchSlug) : null;
   const [language, setLanguage] = useState(churchSlug ? 'all' : 'nl');
+  const isEnChurchRoute = typeof window !== 'undefined' && window.location.pathname.startsWith('/en/');
+  useEffect(() => {
+    if (!churchSlug) return;
+    const cur = (i18n.language || 'en').split('-')[0];
+    if (isEnChurchRoute && cur === 'nl') i18n.changeLanguage('en');
+    if (!isEnChurchRoute && cur !== 'nl') i18n.changeLanguage('nl');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [churchSlug]);
   const [langCodes, setLangCodes] = useState<string[]>(LANGUAGES.map((l) => l.code));
   const [search, setSearch] = useState('');
   const churchFilter = church?.slug ?? 'all';

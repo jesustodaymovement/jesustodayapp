@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Menu, X, ChevronDown, ArrowUpRight } from 'lucide-react';
@@ -26,6 +26,7 @@ export const Header = () => {
   const [isMobileNationsOpen, setIsMobileNationsOpen] = useState(false);
   const nationsRef = useRef<HTMLDivElement>(null);
   const audience = useAudienceOptional();
+  const navigate = useNavigate();
   const langOptions = [
     { code: 'en', label: 'EN' },
     { code: 'nl', label: 'NL' },
@@ -36,6 +37,11 @@ export const Header = () => {
   const lang = langOptions.some((o) => o.code === current) ? current : 'en';
   const setLanguage = (l: string) => {
     i18n.changeLanguage(l);
+    const path = window.location.pathname;
+    const nl = path.match(/^\/verhalen-over-jezus\/kerk\/([^/]+)/);
+    const en = path.match(/^\/en\/stories\/church\/([^/]+)/);
+    if (nl && l !== 'nl') navigate(`/en/stories/church/${nl[1]}`);
+    if (en && l === 'nl') navigate(`/verhalen-over-jezus/kerk/${en[1]}`);
   };
 
   const LanguageSwitch = ({ className = '' }: { className?: string }) => (

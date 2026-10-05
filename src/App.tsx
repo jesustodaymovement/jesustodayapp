@@ -115,6 +115,8 @@ const App = () => (
             <Route path="/base" element={<Base />} />
             <Route path="/verhalen-over-jezus" element={<Testimonies />} />
             <Route path="/verhalen-over-jezus/:vimeoId" element={<TestimonyDetail />} />
+            <Route path="/verhalen-over-jezus/kerk/:churchSlug" element={<Testimonies />} />
+            <Route path="/en/stories/church/:churchSlug" element={<Testimonies />} />
             <Route path="/doneren" element={<Doneren />} />
             <Route path="/steun" element={<Steun />} />
             <Route path="/privacy" element={<Privacy />} />
