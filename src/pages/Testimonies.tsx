@@ -342,6 +342,7 @@ const Testimonies = () => {
                 )}
               </div>
             ) : (
+            <>
             <ScrollReveal>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-anthracite mb-4">
                 {t('Verhalen over')} <span className="text-gold">{t('Jezus')}</span>
@@ -354,6 +355,7 @@ const Testimonies = () => {
                 {globalTotal > 0 && ` ${t('{{count}} verhalen te bekijken.', { count: globalTotal })}`}
               </p>
             </ScrollReveal>
+            </>
             )}
 
             {/* Filters */}
