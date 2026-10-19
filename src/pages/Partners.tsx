@@ -42,7 +42,8 @@ import ownj from '@/assets/partners/ownj.png';
 import martinKoornstra from '@/assets/endorsements/martin-koornstra.jpg';
 import janPool from '@/assets/endorsements/jan-pool.jpg';
 import benVerboom from '@/assets/endorsements/ben-verboom.jpg';
-import boothSelfie from '@/assets/partners/jt-booth-selfie.jpg';
+import boothSelfieAsset from '@/assets/partners/jt-logo-video.jpg.asset.json';
+const boothSelfie = boothSelfieAsset.url;
 
 const partners = [
   { name: 'GlobalRize', url: 'https://www.globalrize.nl/', logo: globalrize },
