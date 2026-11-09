@@ -2,7 +2,7 @@
 
 ## Volgorde verhalen
 - [x] Bestaande jongerenselectie vooraan zetten en Suzanne halverwege plaatsen
-- [ ] Volgorde testen op de pagina en bij taalfilters
+- [x] Volgorde testen op de pagina en bij taalfilters
 
 ## Spambescherming formulieren (afgerond)
 - [x] Tabellen `blocked_submissions` en `submission_rate_limits`, publieke insert op `submissions` ingetrokken
