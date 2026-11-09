@@ -13,6 +13,7 @@ import { Input } from '@/components/ui/input';
 import { useTranslation } from 'react-i18next';
 import { fetchThumbnail, getChurchKey, getChurchName } from '@/lib/testimonies';
 import { TOPICS, testimonyMatchesTopics } from '@/lib/topics';
+import { orderTestimonies } from '@/lib/testimony-order';
 import {
   Select,
   SelectContent,
@@ -229,7 +230,7 @@ const Testimonies = () => {
   }, [churchSlug]);
 
   const filtered = useMemo(() => {
-    return items.filter((i) => {
+    return orderTestimonies(items.filter((i) => {
       const churchName = getChurchName(i.churchName) ?? '';
       const churchKey = findChurch(i.churchName)?.slug ?? null;
       if (churchFilter !== 'all' && churchKey !== churchFilter) return false;
@@ -246,7 +247,7 @@ const Testimonies = () => {
         );
       }
       return true;
-    });
+    }));
   }, [items, churchFilter, search, selectedTopics]);
 
   const topicCounts = useMemo(() => {
