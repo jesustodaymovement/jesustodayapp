@@ -3,7 +3,9 @@ import { ScrollReveal } from '@/components/ScrollReveal';
 import { MessageCircle } from 'lucide-react';
 
 export const AskQuestionSection = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isNl = (i18n.resolvedLanguage || i18n.language || 'nl').startsWith('nl');
+  const formId = isNl ? 'mQpEP3ZHmtus' : '5unGP5iMq8us';
 
   return (
     <section className="py-24 bg-cream" id="stel-je-vraag">
@@ -25,8 +27,9 @@ export const AskQuestionSection = () => {
 
           <ScrollReveal delay={150}>
             <iframe
-              src="https://forms.fillout.com/t/mQpEP3ZHmtus"
-              style={{ width: '100%', height: 650, border: 0, borderRadius: 16 }}
+              key={formId}
+              src={`https://forms.fillout.com/t/${formId}`}
+              style={{ width: '100%', height: 500, border: 0, borderRadius: 16 }}
               loading="lazy"
               title={t('Heb je een vraag over geloof?')}
             />
