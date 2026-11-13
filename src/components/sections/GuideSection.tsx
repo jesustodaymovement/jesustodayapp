@@ -3,31 +3,46 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Upload } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Play } from 'lucide-react';
+import { BRAND_VIDEO_ID } from '@/lib/brand-video';
 
 export const GuideSection = () => {
   const { t } = useTranslation();
+  const [playing, setPlaying] = useState(false);
+  const [thumb, setThumb] = useState(`https://i.ytimg.com/vi/${BRAND_VIDEO_ID}/maxresdefault.jpg`);
   return (
     <section className="py-24 bg-anthracite">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-warm-white mb-16">
-              {t('Je hoeft het niet alleen te doen')}
+              {t('Verhalen die')} <span className="text-gold">{t('levens veranderen')}</span>
             </h2>
           </ScrollReveal>
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Visual Left */}
             <ScrollReveal delay={100}>
-              <div className="relative mx-auto w-full max-w-[420px] rounded-2xl overflow-hidden aspect-[9/16] bg-anthracite-light shadow-card">
-                <iframe
-                  src="https://player.vimeo.com/video/1114232845?title=0&byline=0&portrait=0"
-                  className="absolute inset-0 w-full h-full"
-                  frameBorder={0}
-                  allow="autoplay; fullscreen; picture-in-picture"
-                  allowFullScreen
-                  title={t('Je hoeft het niet alleen te doen')}
-                />
+              <div className="relative w-full rounded-2xl overflow-hidden aspect-video bg-anthracite-light shadow-card">
+                {playing ? (
+                  <iframe
+                    className="absolute inset-0 w-full h-full"
+                    src={`https://www.youtube-nocookie.com/embed/${BRAND_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1&playsinline=1`}
+                    title="JesusToday"
+                    allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                    allowFullScreen
+                  />
+                ) : (
+                  <button type="button" onClick={() => setPlaying(true)} aria-label={t('Bekijk de video')} className="group absolute inset-0 w-full h-full">
+                    <img src={thumb} onError={() => setThumb(`https://i.ytimg.com/vi/${BRAND_VIDEO_ID}/hqdefault.jpg`)} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
+                    <span className="absolute inset-0 flex items-center justify-center">
+                      <span className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gold flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
+                        <Play className="w-8 h-8 text-anthracite fill-current ml-1" />
+                      </span>
+                    </span>
+                  </button>
+                )}
               </div>
             </ScrollReveal>
 
