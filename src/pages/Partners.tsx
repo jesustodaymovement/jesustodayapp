@@ -1,3 +1,4 @@
+import { BrandVideoSection } from '@/components/sections/BrandVideoSection';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
@@ -238,6 +239,7 @@ const Partners = () => {
             </div>
           </div>
         </section>
+        <BrandVideoSection title="Samen maken we" accent="Jezus zichtbaar." />
 
         {/* Benefits */}
         <section className="py-24 bg-background">

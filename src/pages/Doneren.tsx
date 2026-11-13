@@ -1,3 +1,4 @@
+import { BrandVideoSection } from '@/components/sections/BrandVideoSection';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { Header } from '@/components/sections/Header';
@@ -655,6 +656,7 @@ const Doneren = () => {
       <main>
         <Hero />
         <ProblemSection />
+        <BrandVideoSection title="Help mee om verhalen" accent="verder te brengen." />
         <GuideSection />
         <ProofSection />
         <PlanSection />

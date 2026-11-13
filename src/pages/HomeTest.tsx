@@ -1,3 +1,4 @@
+import { BrandVideoSection } from '@/components/sections/BrandVideoSection';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { AudienceProvider, useAudience } from '@/contexts/AudienceContext';
@@ -43,6 +44,7 @@ const HomeTestContent = () => {
         ) : (
           <>
             <DiscoverProblemSection />
+            <BrandVideoSection title="Verhalen die" accent="levens veranderen" />
             <VideoSliderSection
               title={<>{t('Ontdek')} <span className="text-gold">{t('verhalen')}</span></>}
               subtitle={t('Ontdek hoe anderen hoop vonden in een wereld vol vragen.')}
