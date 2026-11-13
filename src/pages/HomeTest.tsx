@@ -32,6 +32,7 @@ const HomeTestContent = () => {
           <>
             <ProblemSection />
             <GuideSection />
+            <BrandVideoSection title="Verhalen die" accent="levens veranderen" />
             <div id="hoe-werkt-het">
               <PlanSection />
             </div>
