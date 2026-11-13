@@ -1,3 +1,4 @@
+import { BrandVideoSection } from '@/components/sections/BrandVideoSection';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
@@ -562,6 +563,7 @@ const OverOns = () => {
       <main>
         <Hero />
         <GapSection />
+        <BrandVideoSection title="Waarom verhalen" accent="levens veranderen." />
         <FounderSection />
         <ProofSection />
         <InTheFieldSection />
