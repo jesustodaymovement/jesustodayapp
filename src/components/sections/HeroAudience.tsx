@@ -3,7 +3,7 @@ import { ArrowRight, Upload, Play } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useAudience } from '@/contexts/AudienceContext';
 import { Link } from 'react-router-dom';
-import heroVideo from '@/assets/hero-banner.mp4';
+import heroVideoAsset from '@/assets/jt-website-hero-video.mp4.asset.json';
 
 export const HeroAudience = () => {
   const { t } = useTranslation();
@@ -38,7 +38,8 @@ export const HeroAudience = () => {
       <div className="absolute inset-0">
         <div className="absolute inset-0 w-full h-full">
           <video
-            src={heroVideo}
+            src={heroVideoAsset.url}
+            preload="auto"
             autoPlay
             loop
             muted
@@ -46,7 +47,7 @@ export const HeroAudience = () => {
             className="absolute inset-0 w-full h-full object-cover"
           />
         </div>
-        <div className="absolute inset-0 bg-anthracite/55" />
+        <div className="absolute inset-0 bg-anthracite/60" />
         <div className="absolute inset-0 bg-gradient-to-b from-anthracite/40 via-transparent to-anthracite" />
       </div>
 
