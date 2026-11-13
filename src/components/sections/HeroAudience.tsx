@@ -3,7 +3,7 @@ import { ArrowRight, Upload, Play } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useAudience } from '@/contexts/AudienceContext';
 import { Link } from 'react-router-dom';
-import heroVideoAsset from '@/assets/jt-website-hero-video.mp4.asset.json';
+import heroVideoAsset from '@/assets/jt-website-hero-video-v2.mp4.asset.json';
 
 export const HeroAudience = () => {
   const { t } = useTranslation();
