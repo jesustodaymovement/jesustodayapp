@@ -1,19 +1,26 @@
-# Merkvideo JesusToday plaatsen
+# Brandvideo JesusToday op vier pagina's
 
-Nieuwe YouTube-video `mAstvAviAkg` op vier plekken tonen.
+Video: YouTube `mAstvAviAkg`. Paginabreed, mobielvriendelijk, speelt af op de eigen website (bezoekers blijven op JesusToday, geen doorverwijzing naar YouTube).
 
-## Wat je ziet
-- **Homepage**: direct onder de openingsfoto een korte sectie "Dit is JesusToday" met de video groot in beeld (16:9, afgeronde hoeken, lichte achtergrond).
-- **Over ons**: video bovenaan het verhaal, als introductie op wie JesusToday is.
-- **Partners**: video vóór de uitleg voor kerken, met korte zin "Zie wat JesusToday voor jouw kerk kan betekenen".
-- **Doneren en Steun**: video bij de cijfers, zodat gevers zien waar hun gift naartoe gaat.
-- Koppen vertaald in NL, EN, ES en FIL. Geen em-dashes, lichte stijl, gouden accent #fad150.
+## Plaatsing en koppen
+| Pagina | Plek | Kop |
+|---|---|---|
+| Homepage | direct onder "Misschien herken je dit?" | Verhalen die levens veranderen |
+| Over ons | na "Wij zien een gat", vóór "Hoe het begon" | Waarom verhalen levens veranderen. |
+| Partners | na de introductie, vóór "Waarom partner worden?" | Samen maken we Jezus zichtbaar. |
+| Doneren | na "Het gat dat we zien", vóór Cornerstone Ministries | Help mee om verhalen verder te brengen. |
 
-## Snelheid
-De video laadt pas als iemand op play klikt: eerst alleen een thumbnail met gouden playknop. Zo blijft de site snel (PageSpeed).
+Koppen vertaald in EN, ES en FIL, met de laatste woorden in goud (#fad150), net als andere koppen. Geen em-dashes.
+
+## Ontwerp
+- Volle breedte op een lichte cream-achtergrond, video groot in 16:9 met afgeronde hoeken en een zachte schaduw.
+- Eerst een voorbeeldbeeld met een grote gouden playknop. Na een klik speelt de video op dezelfde plek af. Er komt geen YouTube-logo of link naar YouTube in de afbeelding (privacyvriendelijke versie, geen suggesties van andere kanalen).
+- Op mobiel past de video over de hele schermbreedte en is de playknop goed te raken.
+- De video laadt pas na de klik, dus de site blijft snel.
 
 ## Technisch
-- Nieuw herbruikbaar component `BrandVideo` (youtube-nocookie embed na klik, thumbnail van i.ytimg.com, lazy).
-- Video-id op één plek (`src/lib/brand-video.ts`).
-- Inbouwen in homepage-pagina, OverOns.tsx, Partners.tsx, Doneren.tsx, Steun.tsx; vertaalsleutels in nl/en/es/fil.
-- Controleren in de browser op alle vier pagina's en in twee talen.
+- `src/lib/brand-video.ts`: video-id op één plek.
+- `src/components/sections/BrandVideoSection.tsx`: herbruikbaar, props `title`/`accent`; youtube-nocookie embed met `rel=0&modestbranding=1&playsinline=1&autoplay=1` na klik, thumbnail `maxresdefault` met terugval `hqdefault`, toegankelijke knop met aria-label.
+- Invoegen in HomeTest.tsx (na DiscoverProblemSection), OverOns.tsx, Partners.tsx, Doneren.tsx.
+- Vertaalsleutels in en/es/fil.json.
+- In de browser controleren op alle vier pagina's, op desktop en mobiel, in NL en EN.
